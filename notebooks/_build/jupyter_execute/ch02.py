@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Content with notebooks
+# # 프로그래밍 시작하기
 # 
 # You can also create content with Jupyter Notebooks. This means that you can include
 # code blocks and their outputs in your book.
