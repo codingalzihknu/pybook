@@ -79,61 +79,40 @@ print(n - 1)
 
 # * 해당 사이트 접속해서 코드 확인 및 수정 후 'Visualize Execution' 버튼 누름.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor06.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor06.png" width="70%">
+#     </div>
+# </figure>
 
 # * 이후 아래 화면에서 'Forward' 버튼을 반복해서 누르면 
 #     각각의 명령문이 차례대로 실행되는 과정에서 일어나는 프레임(Global frame)의 변화를 확인할 수 있다.
 #     'Global frame'은 전역 변수를 담당하는 전역 프레임을 가리킨다.
 #     전역 변수에 대한 정의는 이후에 다룬다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor02.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor02.png" width="90%">
+#     </div>
+# </figure>
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor03.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
-# 
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor03.png" width="90%">
+#     </div>
+# </figure>
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor04.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor04.png" width="90%">
+#     </div>
+# </figure>
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor05.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor05.png" width="90%">
+#     </div>
+# </figure>
 
 # ### 변수 이름
 
@@ -509,46 +488,6 @@ type(input)
 # 
 # print("게임 종료!")
 # ```
-
-# ## 튜링 기계
-
-# **튜링기계**(Turing machine)는 계산을 기계적으로 다루기 위한 수학적 모형의 일종이며,
-# 1936년에 튜링(A. Turing)이 고안한 가상장치이다. 
-# 튜링기계에 대한 자세한 소개는 [위키피디아: 튜링기계](https://ko.wikipedia.org/wiki/튜링_기계)를 
-# 추천한다.
-
-# ### 튜링 완전성과 처치-튜링 테제
-
-# 앞서 언급된 기본 명령문들만으로도 파이썬 프로그래밍 언어가 충분히 강력하다.
-# 여기서 충분하다는 의미는 기존에 알려진 가장 강력한 프로그래밍 언어와 동급이란 의미이다.
-# 보다 전문적으로 **튜링 완전**(Turing complete)하다라고 말하며,
-# 이는 튜링기계와 원칙적으로 동일한 성능을 갖는다 것을 의미한다.
-# 
-# `for` 반복문 등과 같은 다른 기본 명령문들이 있다. 
-# 하지만 프로그래밍의 편의성을 높이는 데에 유용하지만 이론적으로 더 강력한
-# 프로그래밍 언어를 만들지는 못한다.
-# 즉, 튜링 완전성을 벗어나지는 못한다.
-# 
-# 어떤 프로그래밍 언어도 튜링 완전성 이상의 성능을 내지 못한다는 주장이 있다.
-# 즉, 미래의 어떤 컴퓨터도 튜링 완전성을 뛰어 넘지 못할 것이다 라는 주장이며
-# 이를 처치-튜링 테제(Church-Turing thesis)라고 부른다.
-# 처치-튜링 테제는 하나의 주장이다. 
-# 왜냐하면 미래에 어떤 종류의 컴퓨터가 출현할지 모르기 때문이다.
-# 하지만 현 시점까지는 튜링 완전성을 뛰어 넘는 컴퓨터나 프로그래밍 언어는 
-# 존재하지 않았다.
-
-# ### 정지문제
-
-# 앞서 언급한 튜링 완전성은 약간 오해의 소지가 있다.
-# 왜냐하면 튜링기계가 완전하다, 즉, 모든 문제를 해결할 수 있다라는 생각을 하게 만들기 때문이다.
-# 하지만 튜링 완전성은 다른 기계 또는 프로그래밍 언어가 튜링 기계와 이론적으로 동일한 능력을 보유한다라는 
-# 의미이지, 튜링기계가 완전하다는 의미가 아니다.
-# 
-# 실제로 튜링기계는 완전하지 않으며, 튜링기계의 불완전성은 튜링 자신이 소위 
-# **정지문제**(halting problem)로 알려진 문제의 답을 내려는 시도 과정에서 증명하였다.
-# 정지문제에 대한 쉽고 재밌는 설명은 한글자막이 지원되는 유튜브 동영상
-# [컴퓨터가 모든 것을 해결할 수 없다는 증명 (정지 문제)](https://www.youtube.com/watch?time_continue=308&v=92WHN-pAFCs&feature=emb_logo)에서
-# 들을 수 있다.
 
 # ## 주석
 
