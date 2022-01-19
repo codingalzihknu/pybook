@@ -3,116 +3,79 @@
 
 # # 변수, 값, 표현식, 명령문
 
-# _[Think Python의 2장](http://greenteapress.com/thinkpython2/html/thinkpython2003.html)
-# 내용을 요약 및 수정한 내용입니다._
+# **변수**(variables)는 컴퓨터 메모리에 저장된 특정 값을 가리키는 이름이다.
+# 프로그래밍 언어의 주요 기능 중의 하나가 바로 변수가 가리키는 값을 조작하는 것이다.
+# 여기서는 변수, 함수 등을 이용하여 다양한 방식으로 값을 표현하는 **표현식**(expressions)과,
+# 값을 조작하도록 하는 **명령문**(statements)의 기본 개념을 소개한다.
 
 # ## 변수와 변수 할당
 
-# 변수는 특정한 값을 가리키도록 하는 도구이며, 기본 역할은 두 가지이다.
-# 
-# * 특정 값을 컴퓨터 메모리에 기억해둔다. 
-#     변수가 가리키는 값을 변수를 이용하여 언제든지 활용할 수 있다.
-# * 지정된 값을 다른 용도로 사용되도록 전달하는 기능을 갖는다.
-#     예를 들어, 함수를 정의할 때 사용되는 매개변수는 함수의 인자로 지정된 값을 
-#     함수 본체에 사용된 코드에 전달한다. 
-
-# ### 변수 할당
-
-# 변수 할당은 변수가 특정 값을 가리키도록 하는 것을 의미하며 명령형 프로그래밍의 기본 명령문 중의 하나이며,
-# 아래의 형식으로 사용된다.
+# 파이썬 프로그램에서 사용되는 변수를 선언하려면
+# 해당 변수가 특정 값을 가리키도록 하는
+# **변수 할당**(variable assignment) 명령해야 한다.
+# 변수 할당 명령문의 형식은 다음과 같다.
 # 
 # ```python
-# 변수 = 표현식
+# 변수 = 값
 # ```
 # 
-# 예를 들어, 아래 세 개의 할당 명령문은 특정 변수에 특정 표현식을 지정하는 기본적인 방식을 보여준다.
+# 예를 들어, 서로 다른 종류의 값을 가리키는 세 개의 변수를 선언하는 할당 명령문을 보여준다.
 
 # In[1]:
 
 
-message = '이제부터 변수 할당 명령문을 다룹니다.'
+greetings = '안녕하세요!'
 n = 17
 pi = 3.1415926535897932
 
 
-# 위 명령문을 실행하면 
-# 
-# * 변수 `message`는 '이제부터 변수 할당 명령문을 다룹니다.' 라는 문자열을, 
-# * 변수 `n`는 정수 17을
-# * 변수 `pi`는 원주율 $\pi$에 해당하는 값을
-# 
-# 각각 가리킨다.
-# 
-# 변수가 가리키는 값은 프로그램 실행과정에서 달라질 수 있다.
-# 예를 들어, 변수 `n`에 18을 새롭게 할당할 수 있다.
+# 이제 부터 `greetings`, `n`, `pi` 등은 할당된 값을 가리키며,
+# 동시에 할당된 값과 동일하게 취급된다.
 
 # In[2]:
-
-
-n = 18
-
-
-# 그러면 이제부터는 `n`은 저웃 18처럼 다룰 수 있다.
-
-# In[3]:
 
 
 print(n - 1)
 
 
-# ### 프레임
+# 그런데 변수는 가리키는 값이 달라질 수 있다. 
+# 예를 들어, 변수 `n`에 18을 새롭게 할당할 수 있다.
+
+# In[3]:
+
+
+n = 18
+
+
+# 이제부터 `n`은 정수 18처럼 동일하게 취급된다.
+
+# In[4]:
+
+
+print(n - 1)
+
+
+# ### 참고: 파이썬 튜터와 프레임
 
 # 변수 할당은 **컴퓨터 메모리** 상에서 이루어지며,
-# 변수들과 변수들에 할당된 값들 사이의 관계는 **프레임**(frame)을 통해 관리된다.
+# 변수들과 변수들에 할당된 값들 사이의 관계는 **프레임**(frames)을 통해 관리된다.
 # 즉, 변수 할당 명령문을 실행하면 컴퓨터 메모리 상에서 변수들과 변수들에 할당된 값들 사이의 관계에
 # 변화가 발생하며, 이는 프레임에 변화를 초래한다.
-
-# #### 파이썬튜터(pythontutor)와 프레임
-
+# 
 # 컴퓨터 메모리 상에서 일어나는 변화를 사람이 직접 눈으로 볼 수는 없다. 
-# 하지만 파이썬튜터가 프레임의 변화를 시각적으로 보여주는 기능을 지원한다.
+# 하지만 파이썬 튜터([https://pythontutor.com/](https://pythontutor.com/))가 프레임의 변화를 시각적으로 보여주는 기능을 지원한다.
 # 앞서 변수 세 개의 할당을 실행하면 프레임이 어떻게 변화하는지를
-# [pythontutor.com](http://pythontutor.com/visualize.html#code=message%20%3D%20'%EC%9D%B4%EC%A0%9C%EB%B6%80%ED%84%B0%20%EB%B3%80%EC%88%98%20%ED%95%A0%EB%8B%B9%20%EB%AA%85%EB%A0%B9%EB%AC%B8%EC%9D%84%20%EB%8B%A4%EB%A3%B9%EB%8B%88%EB%8B%A4.'%0An%20%3D%2017%0Api%20%3D%203.1415926535897932&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에 
+# [pythontutor.com: 변수 할당](https://pythontutor.com/visualize.html#code=greetings%20%3D%20'%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94!'%0An%20%3D%2017%0Api%20%3D%203.1415926535897932&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에 
 # 접속해서 확인할 수 있다.
 # 
 # 파이썬튜터 사용법은 다음과 같다.
-
-# * 해당 사이트 접속해서 코드 확인 및 수정 후 'Visualize Execution' 버튼 누름.
-
-# <figure>
-#     <div align="center">
-#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor06.png" width="70%">
-#     </div>
-# </figure>
-
-# * 이후 아래 화면에서 'Forward' 버튼을 반복해서 누르면 
-#     각각의 명령문이 차례대로 실행되는 과정에서 일어나는 프레임(Global frame)의 변화를 확인할 수 있다.
-#     'Global frame'은 전역 변수를 담당하는 전역 프레임을 가리킨다.
+# 
+# * 해당 사이트에 접속해서 코드 확인 및 수정 후 <kbd>Visualize Execution</kbd> 버튼을 누른다.
+# 
+# * 이후 화면에서 <kbd>Next></kbd> 버튼을 반복해서 누르면 
+#     각각의 명령문이 차례대로 실행되는 과정에서 발생하는 프레임의 변화를 확인할 수 있다.
+#     Global frame은 전역 변수를 담당하는 전역 프레임을 가리킨다.
 #     전역 변수에 대한 정의는 이후에 다룬다.
-
-# <figure>
-#     <div align="center">
-#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor02.png" width="90%">
-#     </div>
-# </figure>
-
-# <figure>
-#     <div align="center">
-#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor03.png" width="90%">
-#     </div>
-# </figure>
-
-# <figure>
-#     <div align="center">
-#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor04.png" width="90%">
-#     </div>
-# </figure>
-
-# <figure>
-#     <div align="center">
-#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor05.png" width="90%">
-#     </div>
-# </figure>
 
 # ### 변수 이름
 
@@ -185,7 +148,7 @@ print(n - 1)
 # 소문자와 대문자는 엄연히 구분된다.
 # 예를 들어, `'hello'`와 `Hello`는 서로 다른 문자열이다.
 
-# In[4]:
+# In[5]:
 
 
 'hello' == 'Hello'
@@ -215,19 +178,19 @@ print(n - 1)
 # 
 # 만약 값이 어떤 자료형에 속하는지 모르겠다면 아래와 같이 확인한다.
 
-# In[5]:
+# In[6]:
 
 
 type(1)
 
 
-# In[6]:
+# In[7]:
 
 
 type(3.2)
 
 
-# In[7]:
+# In[8]:
 
 
 type('Hello, World!')
@@ -240,13 +203,13 @@ type('Hello, World!')
 # 첫째, `'17'`, `'3.2'` 등은 숫자처럼 보이지만 따옴표로 둘러싸여 있으며,
 # 숫자가 아닌 숫자 기호로 이루어진 문자열이다.
 
-# In[8]:
+# In[9]:
 
 
 type('17')
 
 
-# In[9]:
+# In[10]:
 
 
 type('3.2')
@@ -261,7 +224,7 @@ type('3.2')
 # 튜플은 여러 개의 값을 하나로 묶어서 사용하는 값들의 자료형이며
 # 나중에 자세히 다룬다.
 
-# In[10]:
+# In[11]:
 
 
 not_a_number = 1,000,000
@@ -270,7 +233,7 @@ print(not_a_number)
 
 # 실제로 `not_a_number`의 지료형은 튜플이다.
 
-# In[11]:
+# In[12]:
 
 
 type(not_a_number)
@@ -293,7 +256,7 @@ type(not_a_number)
 # 우편번호는 연산이 아니라 구역 식별용으로 사용되기에,
 # 고유명사처럼 문자열로 처리하는 것이 좋다.
 
-# In[12]:
+# In[13]:
 
 
 # 청와대 우편번호
@@ -305,14 +268,14 @@ zipcode = '03048'
 # 변수의 자료형은 가리키는 값의 자료형을 사용한다.
 # 따라서, 변수의 자료형은 할당된 값이 수정되면 함께 수정된 값의 자료형을 갖는다.
 
-# In[13]:
+# In[14]:
 
 
 x = 18
 type(x)
 
 
-# In[14]:
+# In[15]:
 
 
 x = 3.14
@@ -359,7 +322,7 @@ type(x)
 # 
 # 이 점에 주의하면서 아래 코드를 살펴보자.
 
-# In[15]:
+# In[16]:
 
 
 print(print(1), print(2))
@@ -397,7 +360,7 @@ print(print(1), print(2))
 # 
 # 덧셈 기호는 두 문자열을 이어붙일 때 사용한다. 
 
-# In[16]:
+# In[17]:
 
 
 first = '파이썬, '
@@ -409,13 +372,13 @@ print(first + second)
 # 
 # 문자열을 정수와 곱하면 해당 문자열을 정수만큼 복제하여 모두 이어붙인다.
 
-# In[17]:
+# In[18]:
 
 
 'spam'*3
 
 
-# In[18]:
+# In[19]:
 
 
 'I love you! '*4
@@ -446,7 +409,7 @@ print(first + second)
 # * 마지막 줄에 있는 `input` 함수는 자체로 하나의 값이다. 
 #      `input` 함수의 자료형은 `method`라고 한다. 
 
-# In[19]:
+# In[20]:
 
 
 type(input)
@@ -517,7 +480,7 @@ type(input)
 # * 한 줄 주석: 우물 정 또는 영어로 샵(sharp)이라 불리는 기호(`#`, 샵)로 시작하며
 #     `#` 이후의 문장은 실행과정에서 무시된다.
 
-# In[20]:
+# In[21]:
 
 
 # speed는 시속을 가리키는 변수이다.
@@ -527,7 +490,7 @@ speed = 90 # 속도 단위는 km이다.
 
 # * 여러 줄 주석: 작은 따옴표 세 개(`'''`)로 감싼다.
 
-# In[21]:
+# In[22]:
 
 
 print(0)
@@ -628,7 +591,7 @@ print(1)
 # 
 # 예를 들어, 아래 프로그램은 두 배 계산 대신에 제곱 계산을 하는 실수를 보여준다.
 
-# In[22]:
+# In[23]:
 
 
 num = 3
