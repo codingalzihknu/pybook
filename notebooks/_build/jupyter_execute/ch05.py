@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 변수, 값, 표현식, 명령문
-
-# _[Think Python의 2장](http://greenteapress.com/thinkpython2/html/thinkpython2003.html)
-# 내용을 요약 및 수정한 내용입니다._
+# # 함수
 
 # ## 변수와 변수 할당
 
@@ -79,61 +76,40 @@ print(n - 1)
 
 # * 해당 사이트 접속해서 코드 확인 및 수정 후 'Visualize Execution' 버튼 누름.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor06.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor06.png" width="70%">
+#     </div>
+# </figure>
 
 # * 이후 아래 화면에서 'Forward' 버튼을 반복해서 누르면 
 #     각각의 명령문이 차례대로 실행되는 과정에서 일어나는 프레임(Global frame)의 변화를 확인할 수 있다.
 #     'Global frame'은 전역 변수를 담당하는 전역 프레임을 가리킨다.
 #     전역 변수에 대한 정의는 이후에 다룬다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor02.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor02.png" width="90%">
+#     </div>
+# </figure>
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor03.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
-# 
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor03.png" width="90%">
+#     </div>
+# </figure>
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor04.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor04.png" width="90%">
+#     </div>
+# </figure>
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/pythontutor05.png" style="width:700px">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <figure>
+#     <div align="center">
+#         <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/pythontutor05.png" width="90%">
+#     </div>
+# </figure>
 
 # ### 변수 이름
 
@@ -152,28 +128,43 @@ print(n - 1)
 
 # * 숫자로 시작
 
-# In[4]:
-
-
-7trombones = 'big parade'
-
+# ```python
+# 7trombones = 'big parade'
+# ```
+# 
+# ```python  
+#   File "/tmp/ipykernel_882/795954469.py", line 1
+#     7trombones = 'big parade'
+#      ^
+# SyntaxError: invalid syntax
+# ```
 
 # * 공백 사용
 
-# In[5]:
-
-
-big number = 1000000
-
+# ```python
+# big number = 1000000
+# ```
+# 
+# ```python
+#   File "/tmp/ipykernel_882/2232769824.py", line 1
+#     big number = 1000000
+#         ^
+# SyntaxError: invalid syntax
+# ```
 
 # * 지정어 사용: 예를 들어, `class`는 파이썬에서 클래스를 선언할 때 사용되는 특수한 기능을 갖는다.
 #     클래스는 이후에 다룬다.
 
-# In[6]:
-
-
-class = 'Advanced Theoretical Zymurgy'
-
+# ```python
+# class = 'Advanced Theoretical Zymurgy'
+# ```
+# 
+# ```python
+#   File "/tmp/ipykernel_882/3803549429.py", line 1
+#     class = 'Advanced Theoretical Zymurgy'
+#           ^
+# SyntaxError: invalid syntax
+# ```
 
 # 파이썬의 지정어들은 다음과 같다.
 # 
@@ -192,7 +183,7 @@ class = 'Advanced Theoretical Zymurgy'
 # 소문자와 대문자는 엄연히 구분된다.
 # 예를 들어, `'hello'`와 `Hello`는 서로 다른 문자열이다.
 
-# In[1]:
+# In[4]:
 
 
 'hello' == 'Hello'
@@ -222,19 +213,19 @@ class = 'Advanced Theoretical Zymurgy'
 # 
 # 만약 값이 어떤 자료형에 속하는지 모르겠다면 아래와 같이 확인한다.
 
-# In[7]:
+# In[5]:
 
 
 type(1)
 
 
-# In[8]:
+# In[6]:
 
 
 type(3.2)
 
 
-# In[9]:
+# In[7]:
 
 
 type('Hello, World!')
@@ -247,13 +238,13 @@ type('Hello, World!')
 # 첫째, `'17'`, `'3.2'` 등은 숫자처럼 보이지만 따옴표로 둘러싸여 있으며,
 # 숫자가 아닌 숫자 기호로 이루어진 문자열이다.
 
-# In[10]:
+# In[8]:
 
 
 type('17')
 
 
-# In[11]:
+# In[9]:
 
 
 type('3.2')
@@ -268,7 +259,7 @@ type('3.2')
 # 튜플은 여러 개의 값을 하나로 묶어서 사용하는 값들의 자료형이며
 # 나중에 자세히 다룬다.
 
-# In[12]:
+# In[10]:
 
 
 not_a_number = 1,000,000
@@ -277,7 +268,7 @@ print(not_a_number)
 
 # 실제로 `not_a_number`의 지료형은 튜플이다.
 
-# In[13]:
+# In[11]:
 
 
 type(not_a_number)
@@ -285,17 +276,22 @@ type(not_a_number)
 
 # 셋째, 숫자는 0으로 시작하면 안된다.
 
-# In[14]:
-
-
-# 청와대 우편번호
-zipcode = 03048
-
+# ```python
+# # 청와대 우편번호
+# zipcode = 03048
+# ```
+# 
+# ```python
+#   File "/tmp/ipykernel_1081/521329660.py", line 2
+#     zipcode = 03048
+#                   ^
+# SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers
+# ```    
 
 # 우편번호는 연산이 아니라 구역 식별용으로 사용되기에,
 # 고유명사처럼 문자열로 처리하는 것이 좋다.
 
-# In[15]:
+# In[12]:
 
 
 # 청와대 우편번호
@@ -307,14 +303,14 @@ zipcode = '03048'
 # 변수의 자료형은 가리키는 값의 자료형을 사용한다.
 # 따라서, 변수의 자료형은 할당된 값이 수정되면 함께 수정된 값의 자료형을 갖는다.
 
-# In[16]:
+# In[13]:
 
 
 x = 18
 type(x)
 
 
-# In[17]:
+# In[14]:
 
 
 x = 3.14
@@ -361,7 +357,7 @@ type(x)
 # 
 # 이 점에 주의하면서 아래 코드를 살펴보자.
 
-# In[30]:
+# In[15]:
 
 
 print(print(1), print(2))
@@ -399,7 +395,7 @@ print(print(1), print(2))
 # 
 # 덧셈 기호는 두 문자열을 이어붙일 때 사용한다. 
 
-# In[31]:
+# In[16]:
 
 
 first = '파이썬, '
@@ -411,13 +407,13 @@ print(first + second)
 # 
 # 문자열을 정수와 곱하면 해당 문자열을 정수만큼 복제하여 모두 이어붙인다.
 
-# In[32]:
+# In[17]:
 
 
 'spam'*3
 
 
-# In[33]:
+# In[18]:
 
 
 'I love you! '*4
@@ -448,7 +444,7 @@ print(first + second)
 # * 마지막 줄에 있는 `input` 함수는 자체로 하나의 값이다. 
 #      `input` 함수의 자료형은 `method`라고 한다. 
 
-# In[29]:
+# In[19]:
 
 
 type(input)
@@ -510,46 +506,6 @@ type(input)
 # print("게임 종료!")
 # ```
 
-# ## 튜링 기계
-
-# **튜링기계**(Turing machine)는 계산을 기계적으로 다루기 위한 수학적 모형의 일종이며,
-# 1936년에 튜링(A. Turing)이 고안한 가상장치이다. 
-# 튜링기계에 대한 자세한 소개는 [위키피디아: 튜링기계](https://ko.wikipedia.org/wiki/튜링_기계)를 
-# 추천한다.
-
-# ### 튜링 완전성과 처치-튜링 테제
-
-# 앞서 언급된 기본 명령문들만으로도 파이썬 프로그래밍 언어가 충분히 강력하다.
-# 여기서 충분하다는 의미는 기존에 알려진 가장 강력한 프로그래밍 언어와 동급이란 의미이다.
-# 보다 전문적으로 **튜링 완전**(Turing complete)하다라고 말하며,
-# 이는 튜링기계와 원칙적으로 동일한 성능을 갖는다 것을 의미한다.
-# 
-# `for` 반복문 등과 같은 다른 기본 명령문들이 있다. 
-# 하지만 프로그래밍의 편의성을 높이는 데에 유용하지만 이론적으로 더 강력한
-# 프로그래밍 언어를 만들지는 못한다.
-# 즉, 튜링 완전성을 벗어나지는 못한다.
-# 
-# 어떤 프로그래밍 언어도 튜링 완전성 이상의 성능을 내지 못한다는 주장이 있다.
-# 즉, 미래의 어떤 컴퓨터도 튜링 완전성을 뛰어 넘지 못할 것이다 라는 주장이며
-# 이를 처치-튜링 테제(Church-Turing thesis)라고 부른다.
-# 처치-튜링 테제는 하나의 주장이다. 
-# 왜냐하면 미래에 어떤 종류의 컴퓨터가 출현할지 모르기 때문이다.
-# 하지만 현 시점까지는 튜링 완전성을 뛰어 넘는 컴퓨터나 프로그래밍 언어는 
-# 존재하지 않았다.
-
-# ### 정지문제
-
-# 앞서 언급한 튜링 완전성은 약간 오해의 소지가 있다.
-# 왜냐하면 튜링기계가 완전하다, 즉, 모든 문제를 해결할 수 있다라는 생각을 하게 만들기 때문이다.
-# 하지만 튜링 완전성은 다른 기계 또는 프로그래밍 언어가 튜링 기계와 이론적으로 동일한 능력을 보유한다라는 
-# 의미이지, 튜링기계가 완전하다는 의미가 아니다.
-# 
-# 실제로 튜링기계는 완전하지 않으며, 튜링기계의 불완전성은 튜링 자신이 소위 
-# **정지문제**(halting problem)로 알려진 문제의 답을 내려는 시도 과정에서 증명하였다.
-# 정지문제에 대한 쉽고 재밌는 설명은 한글자막이 지원되는 유튜브 동영상
-# [컴퓨터가 모든 것을 해결할 수 없다는 증명 (정지 문제)](https://www.youtube.com/watch?time_continue=308&v=92WHN-pAFCs&feature=emb_logo)에서
-# 들을 수 있다.
-
 # ## 주석
 
 # 프로그램 코드 중간중간에 사용된 명령문과 관련된 설명을 적어 놓으면 코드를 보다 쉽게 이해할 수 있게 된다.
@@ -559,7 +515,7 @@ type(input)
 # * 한 줄 주석: 우물 정 또는 영어로 샵(sharp)이라 불리는 기호(`#`, 샵)로 시작하며
 #     `#` 이후의 문장은 실행과정에서 무시된다.
 
-# In[37]:
+# In[20]:
 
 
 # speed는 시속을 가리키는 변수이다.
@@ -569,7 +525,7 @@ speed = 90 # 속도 단위는 km이다.
 
 # * 여러 줄 주석: 작은 따옴표 세 개(`'''`)로 감싼다.
 
-# In[36]:
+# In[21]:
 
 
 print(0)
@@ -586,11 +542,15 @@ print(1)
 # 허용되지 않은 문자나 기호를 포함하는 경우에 파이썬 해석기는 오류를 발생시키며 프로그램의 실행을 멈춘다.
 # 예를 들어, 아래와 같이 변수 이름에 공백을 사용하여 실행한 결과를 확인해 보자.
 
-# In[38]:
-
-
-bad name = 5
-
+# ```python
+#  bad name = 5
+# 
+# ---------------------------------------------------------------------------
+#   File "/tmp/ipykernel_868/870302018.py", line 1
+#     bad name = 5
+#         ^
+# SyntaxError: invalid syntax
+# ```    
 
 # 이와 같이 오류가 발생하면 오류의 원인을 찾아 해결해야 한다.
 # 이렇게 프로그램의 오류를 찾아 해결하는 과정을 **디버깅**(debugging)이라 부른다.
@@ -612,12 +572,18 @@ bad name = 5
 # 
 # 런타임 에러의 또다는 대표적인 예는 **0으로 나누기 오류**이다.
 
-# In[41]:
-
-
-num = 0
-print(3/num)
-
+# ```python
+# num = 0
+# print(3/num)
+# 
+# ---------------------------------------------------------------------------
+# ZeroDivisionError                         Traceback (most recent call last)
+# /tmp/ipykernel_868/2927743795.py in <module>
+#       1 num = 0
+# ----> 2 print(3/num)
+# 
+# ZeroDivisionError: division by zero
+# ```
 
 # `ZeroDivisionError` 라고 표시되는데,
 # 이는 0으로 나눗셈을 시도하는 경우 발생한다. 
@@ -632,12 +598,18 @@ print(3/num)
 # 예를 들어 아래 코드에는 문법적인 오류가 없다.
 # 하지만 실행을 하면 'a_number' 라는 이름이 선언되어 있지 없기 때문에 문제가 발생한다.
 
-# In[42]:
-
-
-a_Number = 327.68
-b = a_number * 3
-
+# ```python
+# a_Number = 327.68
+# b = a_number * 3
+# 
+# ---------------------------------------------------------------------------
+# NameError                                 Traceback (most recent call last)
+# /tmp/ipykernel_868/830051863.py in <module>
+#       1 a_Number = 327.68
+# ----> 2 b = a_number * 3
+# 
+# NameError: name 'a_number' is not defined
+# ```
 
 # 자세히 살펴보면 'a_number'와 'a_Number' 둘 중에 하나는 오타임을 알 수 있다.
 
@@ -654,7 +626,7 @@ b = a_number * 3
 # 
 # 예를 들어, 아래 프로그램은 두 배 계산 대신에 제곱 계산을 하는 실수를 보여준다.
 
-# In[1]:
+# In[22]:
 
 
 num = int(input("숫자를 입력하세요: "))
@@ -670,63 +642,64 @@ print("입력한 값의 두 배는", doubleNum, "입니다.")
 # ## 연습문제
 
 # 1. 아래 명령문들을 실행하였을 때 무슨 일이 발생하는지를 확인하라.
-# ```
-# print("Hello World"
-# print("Hello World)
-# print('Hello World")
-# print(+2)
-# print(2++2)
-# print(023)
-# print(21 8)
-# ```
+# 
+#     ```python
+#     print("Hello World"
+#     print("Hello World)
+#     print('Hello World")
+#     print(+2)
+#     print(2++2)
+#     print(023)
+#     print(21 8)
+#     ```
 # 
 # 1. 변수 선언과 할당 관련 주의해야할 점들을 다룬다.
 #     아래 명령문들을 실행하였을 때 무슨 일이 발생하는지를 확인하라.
-# ```
-# 23 = n
-# x = y = 1
-# x = 2;
-# y = x + 1.
-# z = x y
-# ```
+# 
+#     ```python
+#     23 = n
+#     x = y = 1
+#     x = 2;
+#     y = x + 1.
+#     z = x y
+#     ```
+# 
 # 1. 아래와 같이 변수들이 선언 및 할당되었다고 가정하자.
-# ```
-# width = 17
-# height = 12.0
-# delimiter = '.'
-# ```
-# 다음에 오는 각각의 표현식들에 대해, 표현식의 값과 (표현식의 값이 갖는) 자료형을 확인하라.
-# ```
-# width//2
-# width/2
-# width/2.0
-# height/3
-# 1+2*5
-# delimiter*5
-# ```
+# 
+#     ```python
+#     width = 17
+#     height = 12.0
+#     delimiter = '.'
+#     ```
+# 
+#     다음에 오는 각각의 표현식들에 대해, 표현식의 값과 (표현식의 값이 갖는) 자료형을 확인하라.
+# 
+#     ```python
+#     width//2
+#     width/2
+#     width/2.0
+#     height/3
+#     1+2*5
+#     delimiter*5
+#     ```
 # 
 # 1. 파이썬을 계산기처럼 사용할 수 있다.
-#     <br><br>
 #     1. 반지름이 r인 구의 부피는 $\frac{4}{3} \pi r^3$ 이다. 반지름이 5인 구의 부피는 얼마인가? 
-#         <br>
 #         (**힌트:** 392.7은 답이 아니다.)
-#     <br><br>
+#         
 #     1. 책의 정가는 권당 $24,950$원이지만, 각 권당 $10\%$ 의 할인을 받는다고 가정하자.
 #         첫 한 권의 운송료는 $2,000$원 이고, 두 권째 부터는 권당 500원을 추가로 내야 한다.
 #         60권을 사서 배송을 받고자 하면 얼마를 지불해야 하는가?
-#     <br><br>
+#         
 #     1. 오전 6:52 에 집을 떠나서, 가볍게 (km당 8분 15초 소요) 1km을 뛰고, 
 #         이어서 좀 빠르게 (km당 7분 12초 소요) 3km를 뛴 후, 다시 가볍게 1km를 마저 달린다면, 
 #         아침 식사를 위해 집에 돌아오는 시간은 언제인가?
-#     <br><br>
+#         
 #     1. 만약 10 킬로미터를 43분 30초 만에 달렸다면, 마일당 소요 시간은 얼마인가? 
 #         시간당 마일로 계산한 평균 속도는 얼마인가? 
-#         <br>
 #         (**힌트:** 1마일은 1.61 킬로미터로 계산한다.)
-#     <br><br>
 # 
 # 1. `print` 함수의 성질을 조사한다. 
 #     즉, `print` 함수가 받아들일 수 있는 인자와 리턴값에 대해 알아본다.
 #     설명을 예를 들면서 하면 더욱 좋다.
-#     <br><br>
 #     (힌트: `help(print)` 명령문을 실행하면 `print` 함수에 대한 기초정보를 확인할 수 있다.)
