@@ -7,8 +7,16 @@
 # kgkgk
 # ```
 
-# ```{참고}
-# kgkgk
+# ```{list-table} This table title
+# :header-rows: 1
+# :name: example-table
+# 
+# * - Training
+#   - Validation
+# * - 0
+#   - 5
+# * - 13720
+#   - 2744
 # ```
 
 # You can also create content with Jupyter Notebooks. This means that you can include
