@@ -2,7 +2,15 @@
 # coding: utf-8
 
 # # 마크다운과 주피터 노트북
-# 
+
+# ```{note}
+# kgkgk
+# ```
+
+# ```{참고}
+# kgkgk
+# ```
+
 # You can also create content with Jupyter Notebooks. This means that you can include
 # code blocks and their outputs in your book.
 # 
