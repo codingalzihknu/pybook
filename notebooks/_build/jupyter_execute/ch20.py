@@ -7,6 +7,10 @@
 # kgkgk
 # ```
 
+# ```{admonition} 참고
+# 한글식 참고
+# ```
+
 # ```{list-table} This table title
 # :header-rows: 1
 # :name: example-table
