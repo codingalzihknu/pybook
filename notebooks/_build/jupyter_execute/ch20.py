@@ -11,9 +11,9 @@
 # 한글식 참고
 # ```
 
-# ```{list-table} This table title
+# ```{list-table} 테이블 만들기
 # :header-rows: 1
-# :name: example-table
+# :name: 테이블 예제
 # 
 # * - Training
 #   - Validation
