@@ -76,7 +76,7 @@ print(n + 2)
 # 이용하면 프레임의 변화를 시각적으로 추적할 수 있다.
 # 
 # 앞서 변수 세 개의 할당을 실행하면 프레임이 어떻게 변화하는지를
-# [pythontutor.com: 변수 할당](https://pythontutor.com/visualize.html#code=greetings%20%3D%20'%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94!'%0An%20%3D%2017%0Api%20%3D%203.1415926535897932&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에 
+# [pythontutor.com: 변수 할당](https://pythontutor.com/visualize.html#code=greetings%20%3D%20'%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94!'%0An%20%3D%2017%0Api%20%3D%203.1415926535897932%0A%0Aprint%28n%20%2B%202%29%0A%0An%20%3D%2018%0A%0Aprint%28n%20%2B%202%29&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에 
 # 접속해서 확인할 수 있다.
 # 
 # 파이썬튜터 사용법은 다음과 같다.
@@ -96,9 +96,9 @@ print(n + 2)
 # 
 # * 알파벳, 숫자, 언더스코어(`_`, underscore) 등을 사용한다.
 # * 숫자로 시작할 수 없다.
-# * 이름에 공백을 사용할 수 없다.
-# * 골뱅이 기호(`@`), 물결 기호(`~`)는 사용할 수 없다.
-# * 파이썬에서 특별한 역할을 수행하는 **키워드**(keyword)는 사용할 수 없다.
+# * 공백을 사용할 수 없다.
+# * 골뱅이 기호 (`@`), 물결 기호(`~`)는 사용할 수 없다.
+# * 더불어 파이썬에서 특별한 역할을 수행하는 **키워드**(keyword)는 사용할 수 없다.
 
 # 사용하면 안되는 사례 몇 가지를 살펴보자.
 
@@ -128,7 +128,8 @@ print(n + 2)
 #     SyntaxError: invalid syntax
 #     ```
 
-# * 키워드 사용: 예를 들어, `False`는 거짓을 나타내는 부울값이기에 다른 역할로 의미로 사용될 수 없다.
+# * 키워드 사용: 예를 들어, `False`는 거짓을 나타내는 부울값(Boolean value)이기에 
+#     다른 의미로 사용될 수 없다.
 # 
 #     ```python
 #     False = 0
@@ -140,6 +141,8 @@ print(n + 2)
 #         ^
 #     SyntaxError: cannot assign to False
 #     ```
+
+# **파이썬 키워드**
 
 # 파이썬 프로그래밍 언어의 키워드는 다음과 같다.
 # 각 키워드의 역할은 차차 하나씩 설명될 것이다. 
@@ -179,7 +182,8 @@ print(n + 2)
 헬로 = 'hello'
 
 
-# 아래 식에서 덧셈 기호(`+`)는 **문자열 연결** 연산자이다.
+# 아래 식에서 덧셈 기호(`+`)는 두 문자열을 연결하여
+# 새로운 문자열을 생성하는 **연결**(concatenation) 연산자이다.
 
 # In[9]:
 
