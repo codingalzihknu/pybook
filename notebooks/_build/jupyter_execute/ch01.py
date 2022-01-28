@@ -195,4 +195,6 @@
 # 따르면, 2022년 1월 기준으로 파이썬은 가장 인기있는 프로그래밍 언어이다. 
 # 이에 지금 당장 프로그래밍을 배우고자 한다면, 파이썬을 추천한다. 
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/tiobe-index.jpg" style="width:500px;"></div>
+# <div align="center">
+#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/tiobe-index.jpg" style="width:500px;">
+# </div>
