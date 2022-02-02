@@ -1,126 +1,76 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 프로그래밍 개발 환경
-
-# 프로그래밍을 하려면, 개발 도구부터 설치해야 하는데, 이때 통합 개발 환경을 설치해주는 것이 좋다. (수정 필요)지금부터는 파이썬 프로그래밍에 많이 사용하는 통합 개발 환경인  비주얼 스튜디오 코드(Visual Studio Code, VS code)의 설치 방법에 대해서 살펴본다. 
-
-# :::{admonition} 참고
-# :class: info
+# # 프로그래밍 시작하기
 # 
-# 통합 개발 환경<font size="1">Integrated Development Environment(IDE)</font>은 코딩, 디버그, 컴파일 등 프로그램 개발과 관련된 작업을 하나의 프로그램으로 처리하는 소프트웨어이다. 
-# :::
-
-# 1. 아나콘다 설치 → spyder or jupyter notebook
-# 1. 아나콘다 설치 & vs code 설치 → vs code
-# 별도의 프로그램 설치 없이 파이썬을 사용하는 방법도 있다. 
-# 1. Repl.it or colab
+# You can also create content with Jupyter Notebooks. This means that you can include
+# code blocks and their outputs in your book.
 # 
-# 공유도 간편하게 할 수 있다. 작업 내용이 자동으로 저장됨. 
-
-# ## 아나콘다 설치
-
-# 파이썬을 아직 설치하지 않았다면, 데이터 분석에 필요한 라이브러리가 포함되어 있는 아나콘다<font size="1">Anaconda</font>를 설치하는 것이 좋다. 
+# ## Markdown + notebooks
 # 
-# 아나콘다를 설치하려면 먼저 설치 프로그램을 다운로드해야 한다. 
-
-# &#9312; 아나콘다 
-# 사이트<font size="1">https://www.anaconda.com/products/individual</font>에 
-# 접속한다. 
-# 그리고 화면 오른쪽에 있는 다운로드 버튼을 눌러 아나콘다 설치 프로그램을 다운로드한다. 
-
-# :::{admonition} 참고
-# :class: info
+# As it is markdown, you can embed images, HTML, etc into your posts!
 # 
-# 아나콘다 사이트에 접속하면, 접속자의 운영체제를 확인하여 설치 가능한 파이썬 최신 버전을 보여준다. 이 글을 작성하는 시점에는 파이썬 3.9가 최신 버전이다. 
-# :::
-
-# &#9313; 다운로드한 Anaconda3-Window_64.exe 실행파일을 더블 클릭하여 설치를 시작한다. 설치화면이 아래와 같이 나오면 Next 버튼을 눌러서 다음 화면으로 넘어간다.  
-
-# &#9314; 약관이 나타나면, 동의하는 I Agree 버튼을 눌러 다음 화면으로 넘어간다. 
-
-# &#9315; 사용자 환경에 따라 권한을 설정한 다음, Next 버튼을 눌러 다음 화면으로 넘어간다. 
-
-# &#9316; 설치 경로를 지정한 다음, Next 버튼을 눌러 다음 화면으로 넘어간다. 
-
-# :::{admonition} 참고
-# :class: info
+# ![](https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg)
 # 
-# 특별한 경우가 아니면, 기본 경로를 그대로 두고 다음으로 넘어가면 된다. 
-# :::
-
-# &#9317; 아나콘다를 기본 파이썬으로 설정하고, Install 버튼을 눌러 설치를 진행한다. 
-
-# &#9318; 설치 시간은 보통 1~3분 정도 걸리며, 컴퓨터 환경에 따라 5분이상 소요되기도 한다. 설치 완료가 되면, Next를 눌러 다음 화면으로 넘어간다. 
-
-# &#9319; Finish 버튼을 눌러 설치를 완료한다. 
-
-# ## 비주얼 스튜디오 코드 설치
-
-# 비주얼 스튜디오 코드<font size="1">Visual Studio Code</font>를 
-# 설치하려면 먼저 설치 프로그램을 다운로드해야 한다. 
-
-# &#9312; 비주얼 스튜디오 코드 
-# 사이트<font size="1">https://code.visualstudio.com/</font> 에 접속한다. 
-# 그리고 화면 왼쪽에 있는 다운로드 버튼을 눌러 비주얼 스튜디오 코드 
-# 설치 프로그램을 다운로드한다. 
-
-# :::{admonition} 참고
-# :class: info
+# You can also $add_{math}$ and
 # 
-# 비주얼 스튜디오 코드 사이트에 접속하면, 접속자의 운영체제를 확인하여 설치 가능한 버전을 보여준다.
-# :::
-
-# &#9313; 다운로드한 VSCodeUserSetup.exe 실행파일을 더블 클릭하여 설치를 시작한다. 약관이 나타나면, 동의합니다를 선택하고, 다음을 눌러서 다음 화면으로 넘어간다.  
-
-# &#9314; 설치 경로를 지정한 다음, 다음 버튼을 눌러 다음 화면으로 넘어간다. 
-
-# :::{admonition} 참고
-# :class: info
+# $$
+# math^{blocks}
+# $$
 # 
-# 특별한 경우가 아니면, 기본 경로를 그대로 두고 다음으로 넘어가면 된다. 
-# :::
-
-# &#9315; 시작 메뉴에 비주얼 스튜디오 코드가 보이도록 하고 싶다면 다음을 누르고, 아니라면 시작 메뉴 폴더를 만들지 않음을 선택하고 다음을 눌러 다음으로 넘어가면 된다.  
-
-# &#9316; 추가로 필요한 작업이 있다면, 선택하고 다음을 눌러 다음 화면으로 넘어가면 된다. 
-
-# &#9317; 앞에서 선택한 항목들을 보여준다. 확인 후 설치를 눌러 설치를 진행한다. 
-
-# &#9318; 설치 시간은 보통 1~3분 정도 걸리며, 컴퓨터 환경에 따라 5분이상 소요되기도 한다.
-
-# &#9319; 종료 버튼을 눌러 설치를 완료한다. 
-
-# - vs code python extension 설치 및 설정
-
-# ## 설치없이 파이썬 사용하기1 - 레플릿
-
-# 레플릿<font size="1">Repl.it</font>을 사용하면, 
-# 별도의 프로그램 설치 없이 파이썬을 사용할 수 있다. 사용 방법은 간단하다.  
-
-# &#9312; 레플릿 
-# 사이트<font size="1">https://replit.com/</font>에 
-# 접속한다. 
-# 그리고 오른쪽 위의 Sign up을 눌러 회원가입을 하고, 로그인을 한다. 
-
-# &#9313; 로그인하면 아래와 같은 화면이 나온다. 왼쪽 위의 +Create 버튼을 누르면, Create a repl 창이 나온다. 여기서 Template은 Python을 선택하고, 제목Title은 적당한 것으로 변경한 다음 오른쪽 아래에 보이는 +Create Repl 버튼을 누르면 된다.  
-
-# &#9314; 코드 편집기와 
-
-# ## 설치없이 파이썬 사용하기2 - 구글 코랩
-
-# 구글 코랩<font size="1">Google Colab</font>은 
-# 구글에서 제공하는 주피터 노트북이다. 
+# or
 # 
-# Colaboratory 줄여서 Colab이라고 함. 브라우저 내에서 python 스크립트를 작성하고 실행할 수 있다. 
+# $$
+# \begin{aligned}
+# \mbox{mean} la_{tex} \\ \\
+# math blocks
+# \end{aligned}
+# $$
 # 
-# - 설치가 필요하지 않음.
-# - GPU 무료 액세스
-# - 간편한 공유
+# But make sure you \$Escape \$your \$dollar signs \$you want to keep!
 # 
-# 필요사항
+# ## MyST markdown
 # 
-# - 구글계정
-# - 웹 브라우저(ex. 크롬)
+# MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
+# out [the MyST guide in Jupyter Book](https://jupyterbook.org/content/myst.html),
+# or see [the MyST markdown documentation](https://myst-parser.readthedocs.io/en/latest/).
 # 
-# Hello, Python!
+# ## Code blocks and outputs
+# 
+# Jupyter Book will also embed your code blocks and output in your book.
+# For example, here's some sample Matplotlib code:
+
+# In[1]:
+
+
+from matplotlib import rcParams, cycler
+import matplotlib.pyplot as plt
+import numpy as np
+plt.ion()
+
+
+# In[2]:
+
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+N = 10
+data = [np.logspace(0, 1, 100) + np.random.randn(100) + ii for ii in range(N)]
+data = np.array(data).T
+cmap = plt.cm.coolwarm
+rcParams['axes.prop_cycle'] = cycler(color=cmap(np.linspace(0, 1, N)))
+
+
+from matplotlib.lines import Line2D
+custom_lines = [Line2D([0], [0], color=cmap(0.), lw=4),
+                Line2D([0], [0], color=cmap(.5), lw=4),
+                Line2D([0], [0], color=cmap(1.), lw=4)]
+
+fig, ax = plt.subplots(figsize=(10, 5))
+lines = ax.plot(data)
+ax.legend(custom_lines, ['Cold', 'Medium', 'Hot']);
+
+
+# There is a lot more that you can do with outputs (such as including interactive outputs)
+# with your book. For more information about this, see [the Jupyter Book documentation](https://jupyterbook.org)
