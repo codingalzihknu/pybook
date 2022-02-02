@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 기본자료형
+# # 함수
 
 # **고계 함수와 제1종 객체**
 # 
