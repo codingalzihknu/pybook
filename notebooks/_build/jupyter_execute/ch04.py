@@ -355,7 +355,6 @@ first + second
 # ```python
 # >>> 'hello' * 'python'
 # 
-# ---------------------------------------------------------------------------
 # TypeError                                 Traceback (most recent call last)
 # /tmp/ipykernel_355/2897560022.py in <module>
 # ----> 1 'hello' * 'python'
