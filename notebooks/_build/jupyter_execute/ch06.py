@@ -6,8 +6,6 @@
 # _[Think Python의 3장](http://greenteapress.com/thinkpython2/html/thinkpython2004.html)와 [Think Python 14장](http://greenteapress.com/thinkpython2/html/thinkpython2015.html#sec173)의
 # 내용을 요약 및 수정한 내용입니다._
 
-# # 함수
-
 # **고계 함수와 제1종 객체**
 # 
 # 파이썬에서는 함수도 하나의 값으로 간주된다.
@@ -510,7 +508,7 @@ mul(add(2, mul(0x4, 0x6)), add(0x3, 0o5))
 # 아래 그림에서 &#9312; ~ &#9319;번 사이의 번호가 배정된 네모상자로 둘러싸인 부분이 
 # 현재 실행중인 함수호출 또는 함수호출의 결과값을 나타낸다.
 
-# <div align="center"><img src="images/fun_call.png" style="width:600px;"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_call.png" style="width:600px;"></div>
 
 # ### 예제
 
