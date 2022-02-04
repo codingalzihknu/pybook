@@ -578,7 +578,7 @@ print(print(1), print(2))
 # 아래 그림에서 &#9312; ~ &#9319;번 사이의 번호가 배정된 네모상자로 둘러싸인 부분이 
 # 현재 실행중인 함수호출 또는 함수호출의 결과값 또는 부수효과(화면 출력)를 나타낸다.
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_print.png" style="width:400px;"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_print.png" style="width:600px;"></div>
 
 # [PythonTutor: 함수호출 부수효과](http://pythontutor.com/visualize.html#code=def%20myPrint%28*args,%20**kwargs%29%3A%0A%20%20%20%20print%28*args,%20**kwargs%29%0A%0AmyPrint%28myPrint%281%29,%20myPrint%282%29%29&cumulative=false&curInstr=11&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
 # 앞서 사용한 표현식과 동일하게 작동하는 표현식이 계산되는 과정을 살펴볼 수 있다.
@@ -780,15 +780,7 @@ printItems(moBong)
 # 콜라츠는 어떤 숫자로 시작하든지 반복잡업이 언젠가는 끝난다고 추측하였지만,
 # 언제 끝나는가는 수학적으로 알아내지 못했으며, 여전히 미해결 문제로 남아 있다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/collatz01.png">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Collatz-stopping-time.svg/440px-Collatz-stopping-time.svg.png" style="width:400px;"></div>
 # 
 # <그림출처: [위키백과](https://en.wikipedia.org/wiki/Collatz_conjecture)>
 
@@ -1191,15 +1183,7 @@ np.random.random()
 # 
 # 파일의 내용은 아래와 같다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/wc1.png">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/wc1.png" style="width:600px;"></div>
 
 # ### `__init__.py` 파일 작성
 # 
@@ -1400,28 +1384,12 @@ dict.__name__
 # 
 # 위와 같이 작성하면 `import wc`를 실행해도 `if __name__ == '__main__':`에 포함된 코드는 실행되지 않는다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/wc5.png">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/wc5.png" style="width:600px;"></div>
 
 # 반면에 터미널을 이용해서 현재 작업 디렉토리에서  `python codes/wc.py` 형태로 `wc.py` 코드를 직접 실행하면 
 # `if __name__ == '__main__'` 조건문의 본체가 실행된다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/wc4.png">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/wc4.png" style="width:600px;"></div>
 
 # `__main__` 함수의 이런 기능은 C, Java 등에서 의무적으로 사용되는 `main` 함수와 유사한 기능을 수행한다. 
 # `Repl.it` 사이트에서 main 모듈이 기본적으로 실행되는 이유가 이런 전통에서 유래한다.
