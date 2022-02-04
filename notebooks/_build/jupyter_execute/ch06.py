@@ -534,17 +534,7 @@ mul(add(2, mul(0x4, 0x6)), add(0x3, 0o5))
 # 아래 그림에서 보듯이 인자를 입력받은 후에 각각 절대값과 덧셈을 실행하여 결과값을 돌려주는 일 
 # 이외에는 다른 일을 행하지 않는다.
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun.png" style="width:600px;"></div>
-
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/fun_pure.png">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_pure.png" style="width:400px;"></div>
 
 # ### 부수효과가 있는 함수 (Impure functions)
 # 
@@ -588,15 +578,7 @@ print(print(1), print(2))
 # 아래 그림에서 &#9312; ~ &#9319;번 사이의 번호가 배정된 네모상자로 둘러싸인 부분이 
 # 현재 실행중인 함수호출 또는 함수호출의 결과값 또는 부수효과(화면 출력)를 나타낸다.
 
-# <p>
-# <table cellspacing="20">
-# <tr>
-# <td>
-# <img src="images/fun_print.png">
-# </td>
-# </tr>
-# </table>
-# </p>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_print.png" style="width:400px;"></div>
 
 # [PythonTutor: 함수호출 부수효과](http://pythontutor.com/visualize.html#code=def%20myPrint%28*args,%20**kwargs%29%3A%0A%20%20%20%20print%28*args,%20**kwargs%29%0A%0AmyPrint%28myPrint%281%29,%20myPrint%282%29%29&cumulative=false&curInstr=11&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
 # 앞서 사용한 표현식과 동일하게 작동하는 표현식이 계산되는 과정을 살펴볼 수 있다.

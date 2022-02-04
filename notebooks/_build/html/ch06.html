@@ -1228,7 +1228,7 @@ print(...)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1418</span><span class="o">/</span><span class="mf">633021337.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1474</span><span class="o">/</span><span class="mf">633021337.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">abs</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
 
 <span class="ne">TypeError</span>: bad operand type for abs(): &#39;str&#39;
@@ -1601,15 +1601,7 @@ None
 <p>예를 들어 절대값을 계산하는 <code class="docutils literal notranslate"><span class="pre">abs</span></code> 함수와 덧셈을 행하는 <code class="docutils literal notranslate"><span class="pre">add</span></code> 함수 등이 순수한 함수이다.
 아래 그림에서 보듯이 인자를 입력받은 후에 각각 절대값과 덧셈을 실행하여 결과값을 돌려주는 일
 이외에는 다른 일을 행하지 않는다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun.png" style="width:600px;"></div><p>
-<table cellspacing="20">
-<tr>
-<td>
-<img src="images/fun_pure.png">
-</td>
-</tr>
-</table>
-</p></div>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_pure.png" style="width:400px;"></div></div>
 <div class="section" id="impure-functions">
 <h3><span class="section-number">6.6.2. </span>부수효과가 있는 함수 (Impure functions)<a class="headerlink" href="#impure-functions" title="Permalink to this headline">¶</a></h3>
 <p>부수효과가 있는 함수는 부수효과가 없는 함수와는 달리 결과값을 돌려주는 것 이외에 부수적인 일을 한다.
@@ -1660,15 +1652,7 @@ None None
 <p>아래의 그림은 위 코드를 호출하는 과정을 설명한다.
 아래 그림에서 ① ~ ⑧번 사이의 번호가 배정된 네모상자로 둘러싸인 부분이
 현재 실행중인 함수호출 또는 함수호출의 결과값 또는 부수효과(화면 출력)를 나타낸다.</p>
-<p>
-<table cellspacing="20">
-<tr>
-<td>
-<img src="images/fun_print.png">
-</td>
-</tr>
-</table>
-</p><p><a class="reference external" href="http://pythontutor.com/visualize.html#code=def%20myPrint%28*args,%20**kwargs%29%3A%0A%20%20%20%20print%28*args,%20**kwargs%29%0A%0AmyPrint%28myPrint%281%29,%20myPrint%282%29%29&amp;cumulative=false&amp;curInstr=11&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 함수호출 부수효과</a>에서
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun_print.png" style="width:400px;"></div><p><a class="reference external" href="http://pythontutor.com/visualize.html#code=def%20myPrint%28*args,%20**kwargs%29%3A%0A%20%20%20%20print%28*args,%20**kwargs%29%0A%0AmyPrint%28myPrint%281%29,%20myPrint%282%29%29&amp;cumulative=false&amp;curInstr=11&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 함수호출 부수효과</a>에서
 앞서 사용한 표현식과 동일하게 작동하는 표현식이 계산되는 과정을 살펴볼 수 있다.</p>
 <p><strong>주의:</strong> <code class="docutils literal notranslate"><span class="pre">print</span></code> 함수와 동일하게 작동하는 <code class="docutils literal notranslate"><span class="pre">myPrint</span></code> 함수를 사용했다.
 함수의 이름만 다를 뿐 동일한 표현식이다.</p>
