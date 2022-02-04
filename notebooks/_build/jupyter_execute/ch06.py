@@ -534,6 +534,8 @@ mul(add(2, mul(0x4, 0x6)), add(0x3, 0o5))
 # 아래 그림에서 보듯이 인자를 입력받은 후에 각각 절대값과 덧셈을 실행하여 결과값을 돌려주는 일 
 # 이외에는 다른 일을 행하지 않는다.
 
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/fun.png" style="width:600px;"></div>
+
 # <p>
 # <table cellspacing="20">
 # <tr>
