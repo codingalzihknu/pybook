@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (ch:module)=
 # # 모듈
+
+# 캡슐화<font size="2">encapsulation</font>?
 
 # ## 모듈이란?
 
