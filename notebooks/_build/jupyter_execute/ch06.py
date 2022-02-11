@@ -495,7 +495,7 @@ np.sin(radian)
 # ::::{prf:example} 인자 없는 함수
 # :label: no-parameters
 # 
-# 매개 변수를 사용하지 않는 함수라 하더라도 괄호를 반드시 사용해야 한다.
+# 매개 변수를 사용하지 않는 함수라 하더라도 반드시 괄호와 함께 호출해야 한다.
 # 
 # ```python
 # >>> def myPrint():
@@ -505,6 +505,33 @@ np.sin(radian)
 # 인자 없어요!
 # ```
 # ::::
+
+# :::{admonition} 함수와 제1종 객체
+# :class: info
+# 
+# 파이썬 함수도 값으로 간주되는 객체<font size="2">object</font>이다.
+# 이렇게 하나의 값으로 간주되는 객체를
+# **제1종 객체**(first-class object)라고 부른다.
+# 함수가 하나의 값이기에 다음과 같이 변수 할당에 사용할 수 있다.
+# 
+# ```python
+# a_function = myPrint
+# ```
+# 
+# 반면에 아래 코드는 `myPrint()` 함수의 반환값인 `None`이 변수 할당에 사용된다.
+# 
+# ```python
+# not_a_function = myPrint()
+# ```
+# 
+# 함수는 심지어 다른 함수의 인자 또는 반환값으로도 사용될 수 있지만
+# 여기서는 더 이상 설명하지 않으며 관심있는 경우 
+# [이곳](https://velog.io/@shchoice/First-class-Function%EC%9D%BC%EA%B8%89-%ED%95%A8%EC%88%98-Higher-order-Function%EA%B3%A0%EC%9C%84-%ED%95%A8%EC%88%98)에 있는 
+# 블로그를 읽어보기를 추천한다.
+# 
+# **주의**: first-class object가 주로 "일급 객체"로 번역되지만
+# "제1종 객체"가 보다 개념상 보다 적절하다.
+# :::
 
 # ### 키워드 인자
 
@@ -588,7 +615,7 @@ print('Hello,', 'Python', '!', sep='\n')
 # ```
 # 
 # 따라서 둘째 인자를 반드시 입력하지 않아도 되며,
-# 그럴 경우 둘째 인자는 자동으로 10이 된다.
+# 그럴 경우 둘째 인자는 자동으로 10이 사용된다.
 # 
 # ```python
 # >>> myAdd10(5) # right=10
@@ -662,11 +689,11 @@ x = np.exp(np.log(2))
 # In[29]:
 
 
-def hour_to_min(hour):
+def hour2min(hour):
     minutes = hour * 60
     return minutes
 
-two_hour = hour_to_min(2)
+two_hour = hour2min(2)
 
 
 # 위 코드의 실행 결과 `two_hour` 변수는 120을 가리킨다.
@@ -704,54 +731,62 @@ print("2 시간은", two_hour, "분입니다.")
 
 # ## 함수 호출과 스택 다이어그램
 
-# 함수의 실행 중에 발생하는 모든 정보는 
-# 컴퓨터 메모리 상의 
-# **스택**<font size="2">stack</font>이란 영역에서 관리된다.
-# 
-# 하나의 함수가 실행되면 곧바로 하나의 
-# **프레임**<font size="2">frame</font>이 생성되어
+# 함수가 실행되는 중에 발생하는 모든 정보는 컴퓨터 메모리 상의 
+# **스택**<font size="2">stack</font>이란 영역에서 
+# **프레임**<font size="2">frame</font>으로 관리된다.
+# 하나의 함수가 호출되면 곧바로 하나의 프레임이 생성되어
 # 해당 함수의 실행 과정 중에 발생하는 지역 변수의 생성 및 값 할당, 할당된 값 업데이트 등을
 # 관리한다.
+
+# ### 프레임의 생성과 사멸
+
+# 함수의 실행과 함께 생성된 프레임은 함수의 실행이 종료되면 스택에서 사라진다.
+# 하지만 함수의 반환값은 지정된 변수에 할당되거나 다른 함수의 인자로 전달된다.
+
+# ::::{prf:example} 프레임의 생성과 사멸
+# :label: stack-diagram
 # 
-# 함수의 실행과 함께 생성된 프레임은 
-# 함수의 실행이 종료되면 해당 함수의 반환값을 지정된 변수에 할당하면서 동시에 
-# 바로 스택 영역에서 사라진다. 
-
-# In[ ]:
-
-
-
-
-
-# 다른 프레임에 넘겨 준 후에 사라지는 과정이 반복된다. 이렇게 특정 함수 호출과 관련된 프레임을 **지역 프레임**이라 
-# 부른다.
-# 반면에 프로그램이 실생되는 전 과정동안 살아 있는 프레임을 **전역 프레임**이라 부른다. 
+# 다음 코드를 이용하여 함수 호출과 프레임 생성 및 사멸의 관계를 알아보자.
 # 
-# 예를 들어, 앞서 지역 변수와 전역 변수를 설명하면서 사용한 코드를 
-# [PythonTutor:지역 변수 전역 변수](http://pythontutor.com/visualize.html#code=def%20hour_to_min%28hour%29%3A%0A%20%20%20%20minutes%20%3D%20hour%20*%2060%0A%20%20%20%20return%20minutes%0A%0Atwo_hour%20%3D%20hour_to_min%282%29%0Aprint%28minutes%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서 
-# 실행하면서 프레임의 변화를 살펴볼 수 있다. 
+# ```python
+# def hour2min(hour):
+#     min = hour * 60
+#     return min
 # 
-# 위 프로그램을 한 단계씩 실행할 때 아래 사항들에 생각하면서 메모리 상태의 변화를 살펴보아야 한다. 
+# def hour2sec(hour):
+#     min = hour2min(hour)
+#     sec = 60 * min
+#     return sec
 # 
-# * 전역 변수와 함수들은 전역 프레임(global frame)에서 다룬다.
-# * 지역 변수들은 함수가 호출되면 생성되어 지역 변수들의 정보를 다루다가, 함수의 실행이 종료되면 
-#     모든 정보와 함께 사라진다. 
-#     예를 들어, 마지막 그림에서 `minutes` 값을 확인하고자 할 때 오류가 발생하는 이유가 
-#     `hour_to_min` 함수가 호출될 때 생성된 지역 프레임이 함수의 실행이 종료되면 사라지기 때문이라는 
-#     점을 눈으로 확인할 수 있다.
+# print("2 시간은", hour2sec(2), "초입니다.")
+# ```
 # 
-# 반면에 재귀함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생한다.
-# 그리고 이런 프레임들의 변화가 스택(stack) 형식으로 이루어지는데,
-# 따라서 그와 같은 프레임들의 변화를 **스택 다이어그램**(stack diagram)이라 부른다.
+# 아래 그림은 위 코드의 실행 과정중에 생성된 프레임으로 구성된 스택의 상태를 보여준다.
+# 
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/stack-diagram.jpg" style="width:275px;"></div>
+# 
+# - 맨 위 프레임: Global frame 이라 생성된 프레임은 전역적으로 사용 가능한 함수 이름과 전역 변수를 관리한다.
+# - 가운데 프레임: `hour2sec()` 함수가 호출되면서 생성된 프레임이며, 매개 변수 `hour`가 
+#     지역 변수로 포함되어 있다.
+# - 맨 아래 프레임: 변수 할당문 `min = hour2min(hour)`를 실행하면 먼저 
+#     `hour2min()` 함수가 호출되기에 새로 생성된 프레임이다.
+#     매개 변수 `hour`와 지역 변수 `min`이 포함된다.
+#     지역 변수 `sec`은 `hour2min()` 함수의 실행이 완료된 후에 반환값이 정해지면 그때 포함된다.
+# ::::
 
-# ### 고계 함수와 제1종 객체
+# ### 스택 다이어그램
 
-# 파이썬에서는 함수도 하나의 값으로 간주된다.
-# 이렇게 하나의 값으로 간주되는 객체를
-# **제1종 객체**(first-class object)라고 부른다.
-# 제1종 객체로 간주되는 값은 변수에 할당되거나, 함수의 인자 또는 반환값으로 사용될 수 있다.
+# 위 코드의 전체 실행 과정을 
+# [PythonTutor: 프레임의 생성과 사멸](https://pythontutor.com/visualize.html#code=def%20hour2min%28hour%29%3A%0A%20%20%20%20min%20%3D%20hour%20*%2060%0A%20%20%20%20return%20min%0A%0Adef%20hour2sec%28hour%29%3A%0A%20%20%20%20min%20%3D%20hour2min%28hour%29%0A%20%20%20%20sec%20%3D%2060%20*%20min%0A%20%20%20%20return%20sec%0A%0Aprint%28%222%20%EC%8B%9C%EA%B0%84%EC%9D%80%22,%20hour2sec%282%29,%20%22%EC%B4%88%EC%9E%85%EB%8B%88%EB%8B%A4.%22%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
+# 확인해 보면 함수 호출이 발생할 때마다 프레임이 생성되고 또 함수의 실행이 완료될 때마다
+# 해당 함수의 프레임이 사멸하는 것을 확인할 수 있다.
 # 
-# 함수를 인자로 받거나 내주는 값으로 사용하는 함수를 **고계 함수**(higher-order function)라 부른다.
+# 프레임은 생성된 순서 역순으로 사멸한다.
+# 즉, 가장 나중에 생성된 프레임이 가장 먼저,
+# 가장 먼저 생성된 프레임이 가장 나중에 사멸한다. 
+# 이렇게 작동하는 구조를 일반적으로 **스택 자료구조**라 하며,
+# 이런 의미에서 이와 같은 프레임의 구조를 
+# **스택 다이어그램**(stack diagram)이라 부른다.
 
 # ## 연습문제 
 
