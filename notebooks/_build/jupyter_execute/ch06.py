@@ -529,8 +529,8 @@ np.sin(radian)
 # [이곳](https://velog.io/@shchoice/First-class-Function%EC%9D%BC%EA%B8%89-%ED%95%A8%EC%88%98-Higher-order-Function%EA%B3%A0%EC%9C%84-%ED%95%A8%EC%88%98)에 있는 
 # 블로그를 읽어보기를 추천한다.
 # 
-# **주의**: first-class object가 주로 "일급 객체"로 번역되지만
-# "제1종 객체"가 보다 개념상 보다 적절하다.
+# **주의**: first-class object를 주로 &#8220;일급 객체&#8221;로 번역되지만
+# &#8220;제1종 객체&#8221;가 개념상 보다 적절하다.
 # :::
 
 # ### 키워드 인자
