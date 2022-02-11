@@ -521,7 +521,7 @@ np.sin(radian)
 # 반면에 아래 코드는 `myPrint()` 함수의 반환값인 `None`이 변수 할당에 사용된다.
 # 
 # ```python
-# not_a_function = myPrint()
+# a_return_value = myPrint()
 # ```
 # 
 # 함수는 심지어 다른 함수의 인자 또는 반환값으로도 사용될 수 있지만
