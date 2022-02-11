@@ -5,6 +5,7 @@ format: jb-book
 root: intro
 options:
   numbered: True
+  only_build_toc_files: true
 chapters:
 - file: ch01
 - file: ch02
