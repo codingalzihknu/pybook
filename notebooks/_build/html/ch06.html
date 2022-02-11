@@ -90,7 +90,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   소개
+   책 소개
   </a>
  </li>
 </ul>
@@ -132,17 +132,32 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch08.html">
-   8. 재귀
+   8. 조건문
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch09.html">
+   9. 재귀
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   10. 반복문
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch11.html">
+   11. 모음 자료형
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch20.html">
-   9. 마크다운과 주피터 노트북
+   12. 마크다운과 주피터 노트북
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ch21.html">
-   10. MyST 활용 예제
+   13. MyST 활용 예제
   </a>
  </li>
 </ul>
@@ -1153,9 +1168,13 @@ Python
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>둘째 매개 변수 자리에 위치한 <code class="docutils literal notranslate"><span class="pre">...</span></code>은 화면에 출력할 여러 개의 값이 인자로 사용될 수 있음을 의미한다.
-<code class="docutils literal notranslate"><span class="pre">end='\n'</span></code> 매개 변수는 지정된 인자들을 출력한 후에 기본적으로 줄바꿈을 실행하는 것을 의미한다.
-<code class="docutils literal notranslate"><span class="pre">end=''</span></code>로 설정하면 줄바꿈을 하지 않게 된다. 아래 두 경우를 비교하면 차이점을 확인할 수 있다.</p>
+<ul>
+<li><p>둘째 매개 변수 자리에 위치한 말줄임표(<code class="docutils literal notranslate"><span class="pre">...</span></code>)는
+여러 개의 값이 인자로 사용될 수 있음을 의미한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end='\n'</span></code> 매개 변수는 지정된 인자들을 출력한 후에
+기본적으로 줄바꿈을 실행하는 것을 의미한다.
+<code class="docutils literal notranslate"><span class="pre">end=''</span></code>로 설정하면 줄바꿈을 하지 않게 된다.
+아래 두 경우를 비교하면 차이점을 확인할 수 있다.</p>
 <p>먼저 <code class="docutils literal notranslate"><span class="pre">end='\n'</span></code> 기본값을 그대로 사용하는 경우엔 굳이 언급하지 않는다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello,&#39;</span><span class="p">,</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="go">Hello,</span>
@@ -1172,12 +1191,8 @@ Python
 <span class="go">!&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<div class="info admonition">
-<p class="admonition-title">빈 문자열 <code class="docutils literal notranslate"><span class="pre">''</span></code> 과 공백 문자 <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code></p>
-<p>빈 문자열<font size="2">empty string</font> <code class="docutils literal notranslate"><span class="pre">''</span></code> 는
-아무런 문자를 포함하지 않으며 따라서 문자열의 길이가 0이다.
-반면에 <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> 는 눈에 보이지는 않지만 공백 문자 하나를 포함하는 문자열이며 길이가 1이다.</p>
-</div>
+</li>
+</ul>
 <div class="info admonition">
 <p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">file</span></code>과 <code class="docutils literal notranslate"><span class="pre">flush</span></code> 매개 변수</p>
 <p><code class="docutils literal notranslate"><span class="pre">print()</span></code> 함수의 <code class="docutils literal notranslate"><span class="pre">file</span></code>과 <code class="docutils literal notranslate"><span class="pre">flush</span></code> 두 매개 변수는 특별한 경우에 활용되며
@@ -1304,12 +1319,17 @@ Python
 </div>
 <div class="section" id="id13">
 <h2><span class="section-number">6.6. </span>함수 호출과 스택 다이어그램<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
-<p>함수를 호출하여 실행을 하면 컴퓨터 메모리의 스택(stack) 영역에 함수의 호출과 실행과정,
-그리고 실행 결과값과 관련된 정보의 변화가 일어난다.
-이런 정보의 변화를 <strong>프레임</strong>(frame)으로 다루며,
-프레임은 모든 함수와 변수의 생성, 호출, 삭제 과정을 기록한다.</p>
-<p>또한 하나의 함수가 호출될 때마다 하나의 프레임이 임시로 생성되었다가 함수의 실행이 종료되면 해당 함수의
-반환값을 다른 프레임에 넘겨 준 후에 사라지는 과정이 반복된다. 이렇게 특정 함수 호출과 관련된 프레임을 <strong>지역 프레임</strong>이라
+<p>함수의 실행 중에 발생하는 모든 정보는
+컴퓨터 메모리 상의
+<strong>스택</strong><font size="2">stack</font>이란 영역에서 관리된다.</p>
+<p>하나의 함수가 실행되면 곧바로 하나의
+<strong>프레임</strong><font size="2">frame</font>이 생성되어
+해당 함수의 실행 과정 중에 발생하는 지역 변수의 생성 및 값 할당, 할당된 값 업데이트 등을
+관리한다.</p>
+<p>함수의 실행과 함께 생성된 프레임은
+함수의 실행이 종료되면 해당 함수의 반환값을 지정된 변수에 할당하면서 동시에
+바로 스택 영역에서 사라진다.</p>
+<p>다른 프레임에 넘겨 준 후에 사라지는 과정이 반복된다. 이렇게 특정 함수 호출과 관련된 프레임을 <strong>지역 프레임</strong>이라
 부른다.
 반면에 프로그램이 실생되는 전 과정동안 살아 있는 프레임을 <strong>전역 프레임</strong>이라 부른다.</p>
 <p>예를 들어, 앞서 지역 변수와 전역 변수를 설명하면서 사용한 코드를
