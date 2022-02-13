@@ -3,7 +3,192 @@
 
 # # 재귀
 
-# 재귀란 ...
+# ## Recursion 
+# \label{recursion}
+# \index{recursion}
+# 
+# It is legal for one function to call another;
+# it is also legal for a function to call itself.  It may not be obvious
+# why that is a good thing, but it turns out to be one of the most
+# magical things a program can do.
+# For example, look at the following function:
+# 
+# \begin{verbatim}
+# def countdown(n):
+#     if n <= 0:
+#         print('Blastoff!')
+#     else:
+#         print(n)
+#         countdown(n-1)
+# \end{verbatim}
+# %
+# If {\tt n} is 0 or negative, it outputs the word, ``Blastoff!''
+# Otherwise, it outputs {\tt n} and then calls a function named {\tt
+# countdown}---itself---passing {\tt n-1} as an argument.
+# 
+# What happens if we call this function like this?
+# 
+# \begin{verbatim}
+# >>> countdown(3)
+# \end{verbatim}
+# %
+# The execution of {\tt countdown} begins with {\tt n=3}, and since
+# {\tt n} is greater than 0, it outputs the value 3, and then calls itself...
+# 
+# \begin{quote}
+# The execution of {\tt countdown} begins with {\tt n=2}, and since
+# {\tt n} is greater than 0, it outputs the value 2, and then calls itself...
+# 
+# \begin{quote}
+# The execution of {\tt countdown} begins with {\tt n=1}, and since
+# {\tt n} is greater than 0, it outputs the value 1, and then calls itself...
+# 
+# \begin{quote}
+# The execution of {\tt countdown} begins with {\tt n=0}, and since {\tt
+# n} is not greater than 0, it outputs the word, ``Blastoff!'' and then
+# returns.
+# \end{quote}
+# 
+# The {\tt countdown} that got {\tt n=1} returns.
+# \end{quote}
+# 
+# The {\tt countdown} that got {\tt n=2} returns.
+# \end{quote}
+# 
+# The {\tt countdown} that got {\tt n=3} returns.
+# 
+# And then you're back in \verb"__main__".  So, the
+# total output looks like this:
+# \index{main}
+# 
+# \begin{verbatim}
+# 3
+# 2
+# 1
+# Blastoff!
+# \end{verbatim}
+# %
+# A function that calls itself is {\bf recursive}; the process of
+# executing it is called {\bf recursion}.
+# \index{recursion}
+# \index{function!recursive}
+# 
+# As another example, we can write a function that prints a
+# string {\tt n} times.
+# 
+# \begin{verbatim}
+# def print_n(s, n):
+#     if n <= 0:
+#         return
+#     print(s)
+#     print_n(s, n-1)
+# \end{verbatim}
+# %
+# If {\tt n <= 0} the {\bf return statement} exits the function.  The
+# flow of execution immediately returns to the caller, and the remaining
+# lines of the function don't run.
+# \index{return statement}
+# \index{statement!return}
+# 
+# The rest of the function is similar to {\tt countdown}: it displays
+# {\tt s} and then calls itself to display {\tt s} $n-1$ additional
+# times.  So the number of lines of output is {\tt 1 + (n - 1)}, which
+# adds up to {\tt n}.
+# 
+# For simple examples like this, it is probably easier to use a {\tt
+# for} loop.  But we will see examples later that are hard to write
+# with a {\tt for} loop and easy to write with recursion, so it is
+# good to start early.
+# \index{for loop}
+# \index{loop!for}
+# 
+# 
+# \section{Stack diagrams for recursive functions}
+# \label{recursive.stack}
+# \index{stack diagram}
+# \index{function frame}
+# \index{frame}
+# 
+# In Section~\ref{stackdiagram}, we used a stack diagram to represent
+# the state of a program during a function call.  The same kind of
+# diagram can help interpret a recursive function.
+# 
+# Every time a function gets called, Python creates a
+# frame to contain the function's local variables and parameters.
+# For a recursive function, there might be more than one frame on the
+# stack at the same time.
+# 
+# Figure~\ref{fig.stack2} shows a stack diagram for {\tt countdown} called with
+# {\tt n = 3}.
+# 
+# \begin{figure}
+# \centerline
+# {\includegraphics[scale=0.8]{figs/stack2.pdf}}
+# \caption{Stack diagram.}
+# \label{fig.stack2}
+# \end{figure}
+# 
+# 
+# As usual, the top of the stack is the frame for \verb"__main__".
+# It is empty because we did not create any variables in 
+# \verb"__main__" or pass any arguments to it.
+# \index{base case}
+# \index{recursion!base case}
+# 
+# The four {\tt countdown} frames have different values for the
+# parameter {\tt n}.  The bottom of the stack, where {\tt n=0}, is
+# called the {\bf base case}.  It does not make a recursive call, so
+# there are no more frames.
+# 
+# As an exercise, draw a stack diagram for \verb"print_n" called with
+# \verb"s = 'Hello'" and {\tt n=2}.
+# Then write a function called \verb"do_n" that takes a function
+# object and a number, {\tt n}, as arguments, and that calls
+# the given function {\tt n} times.
+# 
+# 
+# \section{Infinite recursion}
+# \index{infinite recursion}
+# \index{recursion!infinite}
+# \index{runtime error}
+# \index{error!runtime}
+# \index{traceback}
+# 
+# If a recursion never reaches a base case, it goes on making
+# recursive calls forever, and the program never terminates.  This is
+# known as {\bf infinite recursion}, and it is generally not
+# a good idea.  Here is a minimal program with an infinite recursion:
+# 
+# \begin{verbatim}
+# def recurse():
+#     recurse()
+# \end{verbatim}
+# %
+# In most programming environments, a program with infinite recursion
+# does not really run forever.  Python reports an error
+# message when the maximum recursion depth is reached:
+# \index{exception!RuntimeError}
+# \index{RuntimeError}
+# 
+# \begin{verbatim}
+#   File "<stdin>", line 2, in recurse
+#   File "<stdin>", line 2, in recurse
+#   File "<stdin>", line 2, in recurse
+#                   .   
+#                   .
+#                   .
+#   File "<stdin>", line 2, in recurse
+# RuntimeError: Maximum recursion depth exceeded
+# \end{verbatim}
+# %
+# This traceback is a little bigger than the one we saw in the
+# previous chapter.  When the error occurs, there are 1000
+# {\tt recurse} frames on the stack!
+# 
+# If you encounter an infinite recursion by accident, review
+# your function to confirm that there is a base case that does not
+# make a recursive call.  And if there is a base case, check whether
+# you are guaranteed to reach it.
 
 # ## 재귀함수
 
