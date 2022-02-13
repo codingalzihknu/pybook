@@ -125,7 +125,7 @@ type(False)
 # ```
 # ::::
 
-# ## 논리 연산자
+# ### 논리 연산자
 
 # There are three **logical operators**: `and`, `or`, and `not`.
 # The semantics (meaning) of these operators is
