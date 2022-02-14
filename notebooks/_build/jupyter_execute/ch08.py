@@ -3,8 +3,8 @@
 
 # # 조건문
 
-# 특정 조건의 성립여부에 따라 다른 일을 하게 만드는 명령문이 
-# **조건문**<font size="2">conditional statement</font>이다.
+# **조건문**<font size="2">conditional statement</font>은
+# 특정 조건의 성립여부에 따라 다른 일을 하게 만드는 명령문이다.
 # 조건문의 가장 간단한 형식은 다음과 같다.
 # 
 # ```python
