@@ -3,174 +3,91 @@
 
 # # 재귀
 
-# ## Recursion 
-# \label{recursion}
-# \index{recursion}
+# ```{note}
+# This text is **standard** _Markdown_
+# ```
+
+# 하나의 함수가 실행되는 동안 다른 함수를 호출할 수 있으며 
+# 심지어 실행되는 함수 자신을 다시 호출할 수 있다. 
+# 예를 들어 아래 `countdown()` 함수의 본문에 현재 정의되고 있는 자신에 대한 호출이 포함되어 있다.
+
+# In[1]:
+
+
+def countdown(n):
+    if n <= 0:
+        print('발사!')
+    else:
+        print(n)
+        countdown(n-1)
+
+
+# `countdown()` 함수의 작동 방식은 다음과 같다.
 # 
-# It is legal for one function to call another;
-# it is also legal for a function to call itself.  It may not be obvious
-# why that is a good thing, but it turns out to be one of the most
-# magical things a program can do.
-# For example, look at the following function:
+# - `n` 이 0 이하인 경우: `'발사!'` 출력
+# - `n` 이 양의 정수인 경우: `n`을 출력한 다음 바로 `countdown(n-1)` 호출.
+#     
+# `n` 이 양수인 경우 동일한 함수가 호출되지만 인자가 1적어 지고 결국 `n`이 되어
+# 더 이상의 함수 호출이 없어 실행이 멈춘다.
 # 
-# \begin{verbatim}
-# def countdown(n):
-#     if n <= 0:
-#         print('Blastoff!')
-#     else:
-#         print(n)
-#         countdown(n-1)
-# \end{verbatim}
-# %
-# If {\tt n} is 0 or negative, it outputs the word, ``Blastoff!''
-# Otherwise, it outputs {\tt n} and then calls a function named {\tt
-# countdown}---itself---passing {\tt n-1} as an argument.
-# 
-# What happens if we call this function like this?
-# 
-# \begin{verbatim}
-# >>> countdown(3)
-# \end{verbatim}
-# %
-# The execution of {\tt countdown} begins with {\tt n=3}, and since
-# {\tt n} is greater than 0, it outputs the value 3, and then calls itself...
-# 
-# \begin{quote}
-# The execution of {\tt countdown} begins with {\tt n=2}, and since
-# {\tt n} is greater than 0, it outputs the value 2, and then calls itself...
-# 
-# \begin{quote}
-# The execution of {\tt countdown} begins with {\tt n=1}, and since
-# {\tt n} is greater than 0, it outputs the value 1, and then calls itself...
-# 
-# \begin{quote}
-# The execution of {\tt countdown} begins with {\tt n=0}, and since {\tt
-# n} is not greater than 0, it outputs the word, ``Blastoff!'' and then
-# returns.
-# \end{quote}
-# 
-# The {\tt countdown} that got {\tt n=1} returns.
-# \end{quote}
-# 
-# The {\tt countdown} that got {\tt n=2} returns.
-# \end{quote}
-# 
-# The {\tt countdown} that got {\tt n=3} returns.
-# 
-# And then you're back in \verb"__main__".  So, the
-# total output looks like this:
-# \index{main}
-# 
-# \begin{verbatim}
-# 3
-# 2
-# 1
-# Blastoff!
-# \end{verbatim}
-# %
-# A function that calls itself is {\bf recursive}; the process of
-# executing it is called {\bf recursion}.
-# \index{recursion}
-# \index{function!recursive}
-# 
-# As another example, we can write a function that prints a
-# string {\tt n} times.
-# 
-# \begin{verbatim}
-# def print_n(s, n):
-#     if n <= 0:
-#         return
-#     print(s)
-#     print_n(s, n-1)
-# \end{verbatim}
-# %
-# If {\tt n <= 0} the {\bf return statement} exits the function.  The
-# flow of execution immediately returns to the caller, and the remaining
-# lines of the function don't run.
-# \index{return statement}
-# \index{statement!return}
-# 
-# The rest of the function is similar to {\tt countdown}: it displays
-# {\tt s} and then calls itself to display {\tt s} $n-1$ additional
-# times.  So the number of lines of output is {\tt 1 + (n - 1)}, which
-# adds up to {\tt n}.
-# 
-# For simple examples like this, it is probably easier to use a {\tt
-# for} loop.  But we will see examples later that are hard to write
-# with a {\tt for} loop and easy to write with recursion, so it is
-# good to start early.
-# \index{for loop}
-# \index{loop!for}
-# 
-# 
-# \section{Stack diagrams for recursive functions}
-# \label{recursive.stack}
-# \index{stack diagram}
-# \index{function frame}
-# \index{frame}
-# 
-# In Section~\ref{stackdiagram}, we used a stack diagram to represent
-# the state of a program during a function call.  The same kind of
-# diagram can help interpret a recursive function.
-# 
-# Every time a function gets called, Python creates a
-# frame to contain the function's local variables and parameters.
-# For a recursive function, there might be more than one frame on the
-# stack at the same time.
-# 
-# Figure~\ref{fig.stack2} shows a stack diagram for {\tt countdown} called with
-# {\tt n = 3}.
-# 
-# \begin{figure}
-# \centerline
-# {\includegraphics[scale=0.8]{figs/stack2.pdf}}
-# \caption{Stack diagram.}
-# \label{fig.stack2}
-# \end{figure}
-# 
-# 
-# As usual, the top of the stack is the frame for \verb"__main__".
+# 예를 들어 `countdown(3)`을 호출하면 다음처럼 실행된다.
+
+# In[2]:
+
+
+countdown(3)
+
+
+# 함수 본문에 자신을 호출하는 함수를 기능을 **재귀**<font size="2">recursion</font>라 하며,
+# 재귀 기능을 같는 함수를 **재귀 함수**<font size="2">recursive function</font>라 한다.
+
+# ## 재귀 함수의 스택 다이어그램
+
+# 재귀 함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생한다.
+# 스택 다이어그램의 변화가 경우에 따라 매우 복잡해지기도 한다.
+
+# 아래 그림 shows a stack diagram for `countdown` called with
+# `n = 3`.
+
+# <div align="center"><img src="https://greenteapress.com/thinkpython2/html/thinkpython2005.png" style="width:150px;"></div>
+
+# 예를 들어,
+# [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
+# 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
+# 즉, 스택 다이어그램의 변화를 살펴볼 수 있다.
+
+# As usual, the top of the stack is the frame for `__main__`.
 # It is empty because we did not create any variables in 
-# \verb"__main__" or pass any arguments to it.
-# \index{base case}
-# \index{recursion!base case}
+# `__main__` or pass any arguments to it.
 # 
-# The four {\tt countdown} frames have different values for the
-# parameter {\tt n}.  The bottom of the stack, where {\tt n=0}, is
-# called the {\bf base case}.  It does not make a recursive call, so
+# The four `countdown` frames have different values for the
+# parameter `n`.  The bottom of the stack, where `n=0`, is
+# called the **base case**.  It does not make a recursive call, so
 # there are no more frames.
 # 
-# As an exercise, draw a stack diagram for \verb"print_n" called with
-# \verb"s = 'Hello'" and {\tt n=2}.
-# Then write a function called \verb"do_n" that takes a function
-# object and a number, {\tt n}, as arguments, and that calls
-# the given function {\tt n} times.
-# 
-# 
-# \section{Infinite recursion}
-# \index{infinite recursion}
-# \index{recursion!infinite}
-# \index{runtime error}
-# \index{error!runtime}
-# \index{traceback}
-# 
+# As an exercise, draw a stack diagram for `print_n` called with
+# `s = 'Hello'` and `n=2`.
+# Then write a function called `do_n` that takes a function
+# object and a number, `n`, as arguments, and that calls
+# the given function `n` times.
+
+# ## Infinite recursion
+
 # If a recursion never reaches a base case, it goes on making
 # recursive calls forever, and the program never terminates.  This is
-# known as {\bf infinite recursion}, and it is generally not
+# known as **infinite recursion**, and it is generally not
 # a good idea.  Here is a minimal program with an infinite recursion:
-# 
-# \begin{verbatim}
+
+# ```python
 # def recurse():
 #     recurse()
-# \end{verbatim}
-# %
+# ```
+
 # In most programming environments, a program with infinite recursion
 # does not really run forever.  Python reports an error
 # message when the maximum recursion depth is reached:
-# \index{exception!RuntimeError}
-# \index{RuntimeError}
-# 
-# \begin{verbatim}
+
+# ```python
 #   File "<stdin>", line 2, in recurse
 #   File "<stdin>", line 2, in recurse
 #   File "<stdin>", line 2, in recurse
@@ -179,11 +96,11 @@
 #                   .
 #   File "<stdin>", line 2, in recurse
 # RuntimeError: Maximum recursion depth exceeded
-# \end{verbatim}
-# %
+# ```
+
 # This traceback is a little bigger than the one we saw in the
 # previous chapter.  When the error occurs, there are 1000
-# {\tt recurse} frames on the stack!
+# `recurse` frames on the stack!
 # 
 # If you encounter an infinite recursion by accident, review
 # your function to confirm that there is a base case that does not
@@ -192,9 +109,9 @@
 
 # ## 재귀함수
 
-# 봉 감독의 영화(Movies by Bong, moBong)를 담고 있는 리스트가 아래와 같이 있다.
+# 봉준호 감독의 영화(Movies by Bong, moBong)를 담고 있는 리스트가 아래와 같이 있다.
 
-# In[1]:
+# In[3]:
 
 
 moBong = ["기생충", 2019, ["설국열차", 2013, ["살인의 추억", 2003]]]
@@ -214,7 +131,7 @@ moBong = ["기생충", 2019, ["설국열차", 2013, ["살인의 추억", 2003]]]
 # 
 # 먼저, 위 리스트의 항목들을 하나씩 확인하려면 아래와 같이 `for` 반복문을 활용해보자.
 
-# In[2]:
+# In[4]:
 
 
 for item in moBong:
@@ -227,7 +144,7 @@ for item in moBong:
 # **주의:** 아래 코드에서 `isinstance(item, list)`는 `item` 변수가 가리키는 항목이 
 # 리스트 자료형 여부를 확인한다.
 
-# In[3]:
+# In[5]:
 
 
 for item in moBong:
@@ -241,7 +158,7 @@ for item in moBong:
 # 여전히 삼중 리스트의 모든 항목을 나열하진 못한다. 
 # 3중 `for` 반복문을 활용해보자.
 
-# In[4]:
+# In[6]:
 
 
 for item in moBong:
@@ -285,7 +202,7 @@ for item in moBong:
 # 반복되는 작업에 이름을 주면, 위 세 개의 코드를 하나의 함수로 정의할 수 있다.
 # 예를 들어, 아래와 같이 앞서 언급된 명령문에 `printItems`이란 이름을 주어 함수로 정의해보자.
 
-# In[5]:
+# In[7]:
 
 
 def printItems(aList):
@@ -308,7 +225,7 @@ def printItems(aList):
 # 
 # 사실 임의로 중첩된 리스트를 인자로 받아도 중첩을 모두 풀어버린다.
 
-# In[6]:
+# In[8]:
 
 
 printItems(moBong)
@@ -348,7 +265,7 @@ printItems(moBong)
 
 # 콜라츠의 질문에 답하는 함수를 아래와 같이 `while` 반복문을 이용하여 구현할 수 있다.
 
-# In[7]:
+# In[9]:
 
 
 def collatzWhile(num):
@@ -362,19 +279,19 @@ def collatzWhile(num):
     return count
 
 
-# In[8]:
+# In[10]:
 
 
 collatzWhile(7)
 
 
-# In[9]:
+# In[11]:
 
 
 collatzWhile(128)
 
 
-# In[10]:
+# In[12]:
 
 
 collatzWhile(129)
@@ -382,7 +299,7 @@ collatzWhile(129)
 
 # 반면에 재귀를 이용할 경우 아래와 같이 구현한다.
 
-# In[11]:
+# In[13]:
 
 
 def collatz_(num):
@@ -394,19 +311,19 @@ def collatz_(num):
         return collatz_(num*3 + 1) + 1
 
 
-# In[12]:
+# In[14]:
 
 
 collatz_(7)
 
 
-# In[13]:
+# In[15]:
 
 
 collatz_(128)
 
 
-# In[14]:
+# In[16]:
 
 
 collatz_(129)
@@ -414,7 +331,7 @@ collatz_(129)
 
 # 반복되는 과정을 보고 싶으면 반복될 때마다 숫자를 출력하면 된다.
 
-# In[15]:
+# In[17]:
 
 
 def collatzWhile_(num):
@@ -430,25 +347,25 @@ def collatzWhile_(num):
     return count
 
 
-# In[16]:
+# In[18]:
 
 
 collatzWhile_(7)
 
 
-# In[17]:
+# In[19]:
 
 
 collatzWhile_(128)
 
 
-# In[18]:
+# In[20]:
 
 
 collatzWhile_(129)
 
 
-# In[19]:
+# In[21]:
 
 
 def collatz(num):
@@ -463,33 +380,23 @@ def collatz(num):
         return collatz(num*3 + 1) + 1
 
 
-# In[20]:
+# In[22]:
 
 
 collatz(7)
 
 
-# In[21]:
+# In[23]:
 
 
 collatz(128)
 
 
-# In[22]:
+# In[24]:
 
 
 collatz(129)
 
-
-# ## 재귀 함수 호출과 스택 다이어그램
-
-# 재귀함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생한다.
-# 스택 다이어그램의 변화가 경우에 따라 매우 복잡해지기도 한다.
-# 
-# 예를 들어,
-# [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
-# 재귀함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
-# 즉, 스택 다이어그램의 변화를 살펴볼 수 있다.
 
 # ## 연습문제 
 
