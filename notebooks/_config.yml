@@ -38,8 +38,10 @@ sphinx:
     - sphinx_proof
 
 # To parse raw HTML image
-parse:
-  myst_enable_extensions:
+# WARNING: this extension is not compatible with "sphinx_proof"
+#
+# parse:
+#   myst_enable_extensions:
 # don't forget to list any other extensions you want enabled,
 # including those that are enabled by default!
-    - html_image
+#     - html_image
