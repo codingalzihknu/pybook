@@ -237,46 +237,51 @@ type(False)
 # 예를 들어 크거나, 작거나, 같은 세 가지 경우를 다음과 같이 다룰 수 있다.
 # 
 # ```python
-# if x == y:
-#     print('x and y are equal')
+# if x < y:
+#     print('x가 y보다 작다')
 # else:
-#     if x < y:
-#         print('x is less than y')
+#     if x > y:
+#         print('x가 y보다 크다')
 #     else:
-#         print('x is greater than y')
+#         print('x와 y가 같다')
 # ```
 
-# The outer conditional contains two branches.  The
-# first branch contains a simple statement.  The second branch
-# contains another `if` statement, which has two branches of its
-# own.  Those two branches are both simple statements,
-# although they could have been conditional statements as well.
+# 위와 같이 `if ... else ...` 조건문을 중첩해서 사용하면
+# 원하는 대로 경우를 나누어서 처리할 수 있다.
+# 경우의 확인 순서는 바깥 쪽에 위치한 경우부터 시작해서
+# 점차 `else` 문 안쪽으로 진행한다.
 # 
-# Although the indentation of the statements makes the structure
-# apparent, **nested conditionals** become difficult to read very
-# quickly.  It is a good idea to avoid them when you can.
-# 
-# Logical operators often provide a way to simplify nested conditional
-# statements.  For example, we can rewrite the following code using a
-# single conditional:
+# 일반적으로 3번 이상의 중첩을 사용하는 것은 권장되지 않는다.
+# 이유는 경우의 구분이 너무 복잡해질 수 있기 때문이다.
+# 가능하면 중첩 조건문 대신에 `elif` 문을 활용할 것이 권장된다.
 
+# ::::{prf:example}
+# :label: exp_nested_conditionals
+# 
+# 논리 연산자를 활용하여 중첩 조건문의 활용을 피할 수도 있다.
+# 
+# 아래 코드는 중첩 조건문을 사용하여 `x`가 0보다 크면서 동시에 10보다 작은 경우를 다룬다.
+# 
 # ```python
 # if 0 < x:
 #     if x < 10:
-#         print('x is a positive single-digit number.')
+#         print('x가 0보다 크고 동시에 10보다 작은 경우')
 # ```
-
-# The `print` statement runs only if we make it past both
-# conditionals, so we can get the same effect with the `and` operator:
-
+# 
+# `print()` 함수가 `0 < x`와 `x < 10` 두 조건을 모두 만족하는 경우에만
+# 실행되기에 아래와 같이 `and` 연산자를 이용하면 굳이 조건문을 
+# 중첩으로 사용할 필요가 없다. 
+# 
 # ```python
 # if 0 < x and x < 10:
-#     print('x is a positive single-digit number.')
+#     print('x가 0보다 크고 동시에 10보다 작은 경우')
 # ```
-
-# For this kind of condition, Python provides a more concise option:
-
+# 
+# 참고로 `0 < x and x < 10`를 `0 < x < 10`로 표현할 수 있다.
+# 
 # ```python
 # if 0 < x < 10:
-#     print('x is a positive single-digit number.')
+#     print('x가 0보다 크고 동시에 10보다 작은 경우')
 # ```
+# ::::
+# 
