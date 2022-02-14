@@ -3,10 +3,6 @@
 
 # # 재귀
 
-# ```{note}
-# This text is **standard** _Markdown_
-# ```
-
 # 하나의 함수가 실행되는 동안 다른 함수를 호출할 수 있으며 
 # 심지어 실행되는 함수 자신을 다시 호출할 수 있다. 
 # 예를 들어 아래 `countdown()` 함수의 본문에 현재 정의되고 있는 자신에 대한 호출이 포함되어 있다.
@@ -54,41 +50,60 @@ countdown(3)
 # 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
 # 즉, 스택 다이어그램의 변화를 살펴볼 수 있다.
 
-# ## Infinite recursion
+# ## 기저 조건과 무한 재귀
 
-# If a recursion never reaches a base case, it goes on making
-# recursive calls forever, and the program never terminates.  This is
-# known as **infinite recursion**, and it is generally not
-# a good idea.  Here is a minimal program with an infinite recursion:
-
-# ```python
-# def recurse():
-#     recurse()
-# ```
-
-# In most programming environments, a program with infinite recursion
-# does not really run forever.  Python reports an error
-# message when the maximum recursion depth is reached:
-
-# ```python
-#   File "<stdin>", line 2, in recurse
-#   File "<stdin>", line 2, in recurse
-#   File "<stdin>", line 2, in recurse
-#                   .   
-#                   .
-#                   .
-#   File "<stdin>", line 2, in recurse
-# RuntimeError: Maximum recursion depth exceeded
-# ```
-
-# This traceback is a little bigger than the one we saw in the
-# previous chapter.  When the error occurs, there are 1000
-# `recurse` frames on the stack!
+# 재귀 함수의 실행이 멈추려면 재귀 호출 과정에서 언젠가는 더 이상 자신을 호출하지 않아야 한다.
+# `countdown()` 함수는 `0`과 함께 호출될 때 더 이상 재귀 호출을 하지 않는다. 
+# 이렇게 더 이상 재귀 호출이 발생하지 않도록 하는 경우를 
+# **기저 조건**<font size="2">base case</font>이라 한다.
+# 즉, `countdown()` 함수의 기저 조건은 `n = 0`이다.
 # 
-# If you encounter an infinite recursion by accident, review
-# your function to confirm that there is a base case that does not
-# make a recursive call.  And if there is a base case, check whether
-# you are guaranteed to reach it.
+# 반면에 아래 함수는 기저 조건을 갖지 않는다. 
+# 
+# ```python
+# def count_infinitely(n):
+#     print(n)
+#     count_finitely(n+1)
+# ```
+# 
+# `count_infinitely()` 함수를 호출하면 재귀 호출이 무한정 반복됨을 쉽게 알 수 있다.
+# 하지만 파이썬을 포함해서 대부분의 프로그래밍 언어는 재귀 호출의 무한 반복을 허용하지 않고
+# 언젠가 아래와 같은 오류를 발생시키면서 실행을 중지시킨다. 
+# 
+# ```python
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+#   File "<stdin>", line 3, in count_infinitely
+#   File "<stdin>", line 3, in count_infinitely
+#   File "<stdin>", line 3, in count_infinitely
+#   [Previous line repeated 992 more times]
+#   File "<stdin>", line 2, in count_infinitely
+# RecursionError: maximum recursion depth exceeded while calling a Python object
+# ```
+
+# :::{admonition} 최대 재귀 한도
+# :class: info
+# 
+# 파이썬은 **최대 재귀 한도**<font size="2">Maximum recursion depth</font>를 정해
+# 허용되는 재귀 호출의 반복 횟수를 지정한다. 
+# 한도는 파이썬 버전과 운영체제 등에 따라 다를 수 있으며
+# 필요에 따라 조정하는 것도 가능하다.
+# 
+# 사용하는 파이썬의 최대 재귀 한도는 아래 방식으로 확인할 수 있다.
+# ```python
+# import sys
+# print(sys.getrecursionlimit())
+# ```
+# :::
+
+# 재귀 함수를 실행해서 무한 반복에 빠지거나 최대 재귀 한도를 벗어났다는
+# 오류 메시지가 발생하면 다음 두 가지 사항을 확인해야 한다.
+# 
+# - 기저 조건이 주어졌는가?
+# - 어떠한 경우에도 기저 조건에 다달하는가?
+# 
+# 하나라도 충족되지 않거나 확인할 수 없다면 해당 재귀 함수의 활용에 매우 
+# 주의를 기울여야 한다.
 
 # ## 재귀함수
 
