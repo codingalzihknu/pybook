@@ -25,7 +25,6 @@ def countdown(n):
 #     
 # `n` 이 양수인 경우 동일한 함수가 호출되지만 인자가 1적어 지고 결국 `n`이 되어
 # 더 이상의 함수 호출이 없어 실행이 멈춘다.
-# 
 # 예를 들어 `countdown(3)`을 호출하면 다음처럼 실행된다.
 
 # In[2]:
@@ -85,14 +84,14 @@ countdown(3)
 # :class: info
 # 
 # 파이썬은 **최대 재귀 한도**<font size="2">Maximum recursion depth</font>를 정해
-# 허용되는 재귀 호출의 반복 횟수를 지정한다. 
+# 허용되는 재귀 호출의 최대 반복 횟수를 지정한다. 
 # 한도는 파이썬 버전과 운영체제 등에 따라 다를 수 있으며
 # 필요에 따라 조정하는 것도 가능하다.
 # 
-# 사용하는 파이썬의 최대 재귀 한도는 아래 방식으로 확인할 수 있다.
+# 사용하는 파이썬의 최대 재귀 한도는 다음 명령문으로 확인할 수 있다.
 # ```python
-# import sys
-# print(sys.getrecursionlimit())
+# >>> import sys
+# >>> print(sys.getrecursionlimit())
 # ```
 # :::
 
@@ -105,14 +104,204 @@ countdown(3)
 # 하나라도 충족되지 않거나 확인할 수 없다면 해당 재귀 함수의 활용에 매우 
 # 주의를 기울여야 한다.
 
-# ## 재귀함수
+# ## 자연수의 계승
 
-# 봉준호 감독의 영화(Movies by Bong, moBong)를 담고 있는 리스트가 아래와 같이 있다.
+# 음이 아닌 정수 $n$이 주어졌을 때 1부터 $n$ 까지의 곱을 $n$의 계승 또는 
+# 팩토리얼<font size="2">factorial</font>이라 하고 $n!$로 표시한다. 
+# 
+# $$
+# \begin{align*}
+# 0! & = 1 \\
+# n! & = n \, (n-1)!\quad\text{단, $n>0$.}
+# \end{align*}
+# $$
+# 
+# 계승을 계산하는 함수 `factorial()` 을 재귀로 구현할 수 있다.
+# 
+# - 기저 조건은 `n == 0`이고, 1을 반환한다. 
+# - `n`이 0보다 크면 `(n-1)`의 계승과 `n`을 곱합 값을 반환한다.
 
 # In[3]:
 
 
-moBong = ["기생충", 2019, ["설국열차", 2013, ["살인의 추억", 2003]]]
+def factorial(n):
+    if n == 0:                            # 기저 조건
+        return 1
+    else:
+        recursion_step = factorial(n-1)   # (n-1)의 계승
+        result = n * recursion_step
+        return result
+
+
+# ## 수열 점화식과 재귀
+
+# **수열 점화식**은 수열 $\{a_n\}$에서 인접하는 두 항목 사이의 관계를 
+# 아래와 같은 방식으로 표현한 식이다.
+# 
+# $$
+# a_{n+1} = f(n, a_n)
+# $$
+# 
+# 예를 들어 **피보나치 수열**<font size="2">Fibonacci sequence</font>은 
+# 처음엔 1과 1로 시작한 후에 이후의 항목은 이전 두 개의 항목의 합으로 생성된다.
+# 
+#     1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+# 
+# 피보나치 수열의 두 항목의 관계 점화식은 다음과 같다.
+# 
+# $$
+# \begin{align*}
+# f_0 & = 1 \\
+# f_1 & = 1 \\
+# f_n & = f_{n-1} + f_{n-2} \quad \text{단, $n \ge 2$.}
+# \end{align*}
+# $$
+
+# 점화식이 알려진 수열의 $n$ 번째 항목을 생성하는 
+# 함수는 기본적으로 재귀로 쉽게 구현할 수 있다.
+# 피보나치 수열의 `n` 번째 값을 구하는 함수는 다음과 같다.
+
+# In[4]:
+
+
+def fibonacci(n):
+    if n == 0:
+        return 1
+    elif  n == 1:
+        return 1
+    else:                                        # n >= 2 인 경우
+        return fibonacci(n-1) + fibonacci(n-2)
+
+
+# 피보나치 수열의 처음 10개 항목은 다음과 같다.
+
+# In[5]:
+
+
+for n in range(10):
+    print(fibonacci(n), end=', ')
+
+print('...')
+
+
+# :::{admonition} 인덱스의 시작
+# :class: info
+# 
+# 프로그래밍에서는 관습적으로 순서를 1번부터가 아닌 0번부터 시작한다. 
+# 따라서 피보나치 수열의 0번과 1번 값이 1, 2번 값은 2, 3번 값은 3 등이 된다.
+# :::
+
+# ## 콜라츠 추측
+
+# 독일 수학자 콜라츠(Collatz -> L.)가 1937년에 아래 알고리즘을
+# 얼마나 많이 반복하면 최종적으로 숫자 1에 다다를 것인가를 질문했다.
+# 
+# * 주어진 숫자가 짝수면 2로 나눈다.
+# * 주어진 숫자가 홀수면 3배한 후 1을 더한다.
+# 
+# 실제로 숫자 7부터 시작해서 위 과정을 16번 반복하면 1에 다다른다. 
+# 
+#     7 -> 22 -> 11 -> 34 -> 17 -> 52 -> 26 -> 13 -> 40 -> 20 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
+#     
+# 반면에 숫자 128부터 시작하면 7번만 반복하면 된다.
+# 
+#     128 -> 64 -> 32 -> 16 -> 8 -> 4 -> 2 -> 1    
+
+# 콜라츠 알고리즘을 재귀 함수로 구현할 수 있다.
+# 
+# - 기저 조건: `num == 1`
+# - `num % 2 == 0`: 짝수인 경우. 2로 나누기
+# - 기타<font size="2">else</font>: 홀수 인 경우. 3배 더하기 1.
+
+# In[6]:
+
+
+def collatz(num):
+    if num == 1:                        # 기저 조건
+        print(num)
+    elif num % 2 == 0:                  # 짝수인 경우
+        print(num, end=' -> ')
+        collatz(num//2)
+    else:                               # 홀수인 경우
+        print(num, end=' -> ')
+        collatz(num*3 + 1)
+
+
+# In[7]:
+
+
+collatz(7)
+
+
+# In[8]:
+
+
+collatz(128)
+
+
+# In[9]:
+
+
+collatz(129)
+
+
+# 재귀 호출 횟수를 반환값으로 지정할 수 있다.
+# 
+# - `n == 1`: 재귀 호출 없음. 0 반환.
+# - 짝수인 경우: 2로 나눈 값에 대한 재귀 호출 횟수 더하기 1
+# - 홀수인 경우: 세 배 더하기 1에 대한 재귀 호출 횟수 더하기 1
+
+# In[10]:
+
+
+def collatz_count(num):
+    if num == 1:                        # 기저 조건
+        return 0
+    elif num % 2 == 0:                  # 짝수인 경우
+        return collatz_count(num//2) + 1
+    else:                               # 홀수인 경우
+        return collatz_count(num*3 + 1) + 1
+
+
+# In[11]:
+
+
+print(collatz_count(7), "회")
+
+
+# In[12]:
+
+
+print(collatz_count(128), "회")
+
+
+# In[13]:
+
+
+print(collatz_count(129), "회")
+
+
+# :::{admonition} 콜라츠 추측
+# :class: info
+# 
+# 앞서 보았듯이 처음 시작하는 값이 작다고 해서 반드시 먼저 끝나는 것이 아니다.
+# 이처럼 시작 값이 정해졌을 때 언제 위 1에 다다르며 종료하는지 알려지지 않았다.
+# 반면에 지금까지 테스트한 모든 자연수에 대해 콜라츠 알고리즘은 
+# 언젠가는 1에 다다르며 종료하였다.
+# 즉, 콜라츠 알고리즘이 모든 수에 대해 언젠가는 1에 다다르며 정지한다라는 주장이
+# 아직 증명도 부정도 되지 않고 있다.
+# 이렇게 증명도 부정되 되지 않은 콜라츠의 주장을 **콜라츠 추측**<font size="2">Collatz conjecture</font>
+# 라 부른다.
+# :::
+
+# ## 영화 감독 봉준호
+
+# 봉준호 영화 감독의 영화를 담고 있는 리스트가 아래와 같이 있다.
+
+# In[14]:
+
+
+movie_Bong = ["기생충", 2019, ["설국열차", 2013, ["살인의 추억", 2003]]]
 
 
 # 위 리스트는 3중이다. 리스트 안에 리스트, 또 리스트 안에 리스트.
@@ -126,13 +315,11 @@ moBong = ["기생충", 2019, ["설국열차", 2013, ["살인의 추억", 2003]]]
 # 살인의 추억
 # 2003
 # ```
-# 
-# 먼저, 위 리스트의 항목들을 하나씩 확인하려면 아래와 같이 `for` 반복문을 활용해보자.
 
-# In[4]:
+# In[15]:
 
 
-for item in moBong:
+for item in movie_Bong:
     print(item)
 
 
@@ -142,10 +329,10 @@ for item in moBong:
 # **주의:** 아래 코드에서 `isinstance(item, list)`는 `item` 변수가 가리키는 항목이 
 # 리스트 자료형 여부를 확인한다.
 
-# In[5]:
+# In[16]:
 
 
-for item in moBong:
+for item in movie_Bong:
     if isinstance(item, list):
         for itemN in item:
             print(itemN)
@@ -156,10 +343,10 @@ for item in moBong:
 # 여전히 삼중 리스트의 모든 항목을 나열하진 못한다. 
 # 3중 `for` 반복문을 활용해보자.
 
-# In[6]:
+# In[17]:
 
 
-for item in moBong:
+for item in movie_Bong:
     if isinstance(item, list):
         for itemN in item:
             if isinstance(itemN, list):
@@ -200,7 +387,7 @@ for item in moBong:
 # 반복되는 작업에 이름을 주면, 위 세 개의 코드를 하나의 함수로 정의할 수 있다.
 # 예를 들어, 아래와 같이 앞서 언급된 명령문에 `printItems`이란 이름을 주어 함수로 정의해보자.
 
-# In[7]:
+# In[18]:
 
 
 def printItems(aList):
@@ -223,182 +410,15 @@ def printItems(aList):
 # 
 # 사실 임의로 중첩된 리스트를 인자로 받아도 중첩을 모두 풀어버린다.
 
-# In[8]:
-
-
-printItems(moBong)
-
-
-# ### 예제: 콜라츠 추측
-
-# 독일 수학자인 콜라츠(Collatz, L.)가 1937년에 아래 알고리즘을
-# 얼마나 많이 반복하면 최종적으로 숫자 1에 다다를 것인가를 질문했다.
-# 
-# * 주어진 숫자가 짝수면 2로 나눈다.
-# * 주어진 숫자가 홀수면 3배한 후 1을 더한다.
-# 
-# 실제로 숫자 7부터 시작해서 위 과정을 16번 반복하면 1에 다다른다. 
-# 
-#     7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1
-#     
-# 반면에 숫자 128부터 시작하면 7번만 반복하면 된다.
-# 
-#     128, 64, 32, 16, 8, 4, 2, 1
-#     
-# 즉, 처음 시작하는 값이 작다고 해서 반드시 먼저 끝나는 것이 아니다.
-# 또한 무지 오랫동안 반복해야 하는 경우도 있다.
-# 예를 들어, 129로 시작하면 무려 122번 반복해야 한다.
-# 
-# 아래 그림은 10,000까지의 숫자들과 관련된 반복회수를 보여준다.
-# 그림에서 알 수 있듯이 반복회수와 관련된 수학적 특징을 확인하기 어렵다.
-# 실제로 콜라츠의 질문에 대한 답이 여전히 알려지지 않았다.
-# 반면에 무한 반복되는 경우도 알려지지 않았다.
-# 
-# 콜라츠는 어떤 숫자로 시작하든지 반복잡업이 언젠가는 끝난다고 추측하였지만,
-# 언제 끝나는가는 수학적으로 알아내지 못했으며, 여전히 미해결 문제로 남아 있다.
-
-# <div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Collatz-stopping-time.svg/440px-Collatz-stopping-time.svg.png" style="width:400px;"></div>
-# 
-# <그림출처: [위키백과](https://en.wikipedia.org/wiki/Collatz_conjecture)>
-
-# 콜라츠의 질문에 답하는 함수를 아래와 같이 `while` 반복문을 이용하여 구현할 수 있다.
-
-# In[9]:
-
-
-def collatzWhile(num):
-    count = 0
-    while (num != 1):
-        if num%2 == 0:
-            num = num//2
-        else:
-            num = num*3+1
-        count = count+1
-    return count
-
-
-# In[10]:
-
-
-collatzWhile(7)
-
-
-# In[11]:
-
-
-collatzWhile(128)
-
-
-# In[12]:
-
-
-collatzWhile(129)
-
-
-# 반면에 재귀를 이용할 경우 아래와 같이 구현한다.
-
-# In[13]:
-
-
-def collatz_(num):
-    if num == 1:
-        return 0
-    elif num%2 == 0:
-        return collatz_(num//2) + 1
-    else:
-        return collatz_(num*3 + 1) + 1
-
-
-# In[14]:
-
-
-collatz_(7)
-
-
-# In[15]:
-
-
-collatz_(128)
-
-
-# In[16]:
-
-
-collatz_(129)
-
-
-# 반복되는 과정을 보고 싶으면 반복될 때마다 숫자를 출력하면 된다.
-
-# In[17]:
-
-
-def collatzWhile_(num):
-    count = 0
-    while (num != 1):
-        if num%2 == 0:
-            print(num, end=', ')
-            num = num//2
-        else:
-            print(num, end=', ')
-            num = num*3+1
-        count = count+1
-    return count
-
-
-# In[18]:
-
-
-collatzWhile_(7)
-
-
 # In[19]:
 
 
-collatzWhile_(128)
-
-
-# In[20]:
-
-
-collatzWhile_(129)
-
-
-# In[21]:
-
-
-def collatz(num):
-    if num == 1:
-        print(num)
-        return 0
-    elif num%2 == 0:
-        print(num, end=', ')
-        return collatz(num//2) + 1
-    else:
-        print(num, end=', ')
-        return collatz(num*3 + 1) + 1
-
-
-# In[22]:
-
-
-collatz(7)
-
-
-# In[23]:
-
-
-collatz(128)
-
-
-# In[24]:
-
-
-collatz(129)
+printItems(movie_Bong)
 
 
 # ## 연습문제 
 
-# 1. `printItems` 수정하여 `moBong`에 포함된 항목들을 아래와 같이 
+# 1. `printItems` 수정하여 `movie_Bong`에 포함된 항목들을 아래와 같이 
 #     출력하도록 하는 `printItems2` 함수를 구현하라.
 # 
 #         기생충
@@ -419,7 +439,7 @@ collatz(129)
 #         ```
 # 
 #     * 위에서 `level` 매개변수의 인자는 탭키를 사용하는 횟수를 나타내도록 한다. 
-#         그러면 `printItems2(moBong, 0)`을 실행하면 원하는 결과가 나와야 한다.
+#         그러면 `printItems2(movie_Bong, 0)`을 실행하면 원하는 결과가 나와야 한다.
 #     * 탭 출력은 `print('\t')`를 이용하면 된다.
 #     <br><br>
 # 1. 위 과제에서 구현한 `printItems2` 함수를 아래와 같이 수정하라.
