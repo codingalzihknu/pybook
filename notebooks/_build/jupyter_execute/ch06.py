@@ -857,40 +857,34 @@ print("2 시간은", two_hour, "분입니다.")
 # `hour`와 `minutes`의 생존주기, 즉, 언제 생성되고 언제 사라지는지를 시각적으로 확인할 수 있다.
 # :::
 
-# ## 함수 호출과 스택 다이어그램
+# ## 콜 스택: 프레임의 생성과 사멸
 
-# 함수가 실행되는 중에 발생하는 모든 정보는 컴퓨터 메모리 상의 
-# **스택**<font size="2">stack</font>이란 영역에서 
-# **프레임**<font size="2">frame</font>으로 관리된다.
-# 하나의 함수가 호출되면 곧바로 해당 함수의 이름을 사용하는 프레임이 생성되어
-# 해당 함수의 실행 과정 중에 발생하는 지역 변수의 생성 및 값 할당, 
+# 함수가 실행되는 동안 발생하는 모든 정보는 컴퓨터 메모리 상에서
+# **프레임**<font size="2">frame</font> 형식으로 관리된다.
+# 프레임은 하나의 함수가 실행되는 동안 발생하는 지역 변수의 생성 및 값 할당, 
 # 할당된 값 업데이트 등을 관리한다.
-
-# ### 프레임의 생성과 사멸
-
 # 함수의 실행과 함께 생성된 프레임은 함수의 실행이 종료되면 스택에서 사라진다.
 # 하지만 함수의 반환값은 지정된 변수에 할당되거나 다른 함수의 인자로 전달된다.
-
-# (exp:stack-diagram)=
-# ::::{prf:example} 프레임의 생성과 사멸
-# :label: stack-diagram
 # 
 # 다음 코드를 이용하여 함수 호출과 프레임 생성 및 사멸의 관계를 알아보자.
-# 
-# ```python
-# def hour2min(hour):
-#     min = hour * 60
-#     return min
-# 
-# def hour2sec(hour):
-#     min = hour2min(hour)
-#     sec = 60 * min
-#     return sec
-# 
-# print("2 시간은", hour2sec(2), "초입니다.")
-# ```
-# 
-# 아래 그림은 위 코드의 실행 과정중에 생성된 프레임으로 구성된 스택의 상태를 보여준다.
+
+# In[31]:
+
+
+def hour2min(hour):
+    min = hour * 60
+    return min
+
+def hour2sec(hour):
+    min = hour2min(hour)
+    sec = 60 * min
+    return sec
+
+print("2 시간은", hour2sec(2), "초입니다.")
+
+
+# 아래 그림은 `hour2sec(2)`가 실행되면 이어서 바로 `hour2min(2)`가 호출되어
+# `hour`와 `min` 두 지역 변수로 구성된 프레임이 포함된 콜 스택의 상태를 보여준다.
 # 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/stack-diagram.jpg" style="width:275px;"></div>
 # 
@@ -903,24 +897,20 @@ print("2 시간은", two_hour, "분입니다.")
 #     변수 할당문 `min = hour2min(hour)`를 실행하면 먼저 
 #     `hour2min()` 함수가 호출되기에 새로 생성된 프레임이다.
 #     매개 변수 `hour`와 지역 변수 `min`이 포함된다.
-#     지역 변수 `sec`은 `hour2min(hour)` 의 반환값이 정해지면 그때 포함된다.
-# ::::
-
-# ### 스택 다이어그램
-
+# - hour2sec 프레임의 지역 변수 `sec`은 `hour2min(hour)` 의 반환값이 정해지면 그때 포함된다.
+# 
 # 위 코드의 전체 실행 과정을 
 # [PythonTutor: 프레임의 생성과 사멸](https://pythontutor.com/visualize.html#code=def%20hour2min%28hour%29%3A%0A%20%20%20%20min%20%3D%20hour%20*%2060%0A%20%20%20%20return%20min%0A%0Adef%20hour2sec%28hour%29%3A%0A%20%20%20%20min%20%3D%20hour2min%28hour%29%0A%20%20%20%20sec%20%3D%2060%20*%20min%0A%20%20%20%20return%20sec%0A%0Aprint%28%222%20%EC%8B%9C%EA%B0%84%EC%9D%80%22,%20hour2sec%282%29,%20%22%EC%B4%88%EC%9E%85%EB%8B%88%EB%8B%A4.%22%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
 # 확인해 보면 함수 호출이 발생할 때마다 프레임이 생성되고 또 함수의 실행이 완료될 때마다
 # 해당 함수의 프레임이 사멸하는 것을 확인할 수 있다.
-# 
+
 # 프레임은 생성된 순서 역순으로 사멸한다.
 # 즉, 가장 나중에 생성된 프레임이 가장 먼저,
 # 가장 먼저 생성된 프레임이 가장 나중에 사멸한다. 
-# 이렇게 작동하는 구조를 일반적으로 **스택 자료구조**라 하며,
-# 이런 의미에서 이와 같은 프레임의 구조를 
-# **스택 다이어그램**(stack diagram)이라 부른다.
-# 
-# {numref}`Example %s <exp:stack-diagram>`의 프로그램 실행 과정에서의 
+# 이렇게 작동하는 구조가 **스택**<font size="2">stack</font> 이기에
+# 함수의 프레임으로 구성된 스택을 **콜 스택**<font size="2">call stack</font>이라 부른다.
+# **스택 다이어그램**(stack diagram)은 콜 스택의 변화를 다이어그램으로 표현한다.
+# 위 프로그램의 실행 과정에서의 
 # 스택 다이어그램의 변화는 다음과 같다.
 # 
 # - 프레임 생성 순서

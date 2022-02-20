@@ -31,6 +31,7 @@
 #     pass          # 음수인 경우 할 일을 나중에 추가할 것!
 # ```
 
+# (sec:boolean_expression)=
 # ## 부울식
 
 # **부울식**<font size="2">boolean expression</font>은

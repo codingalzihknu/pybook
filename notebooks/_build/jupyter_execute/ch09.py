@@ -35,20 +35,20 @@ countdown(3)
 
 
 # 함수 본문에 자신을 호출하는 함수를 기능을 **재귀**<font size="2">recursion</font>라 하며,
-# 재귀 기능을 같는 함수를 **재귀 함수**<font size="2">recursive function</font>라 한다.
+# **재귀 함수**<font size="2">recursive function</font>는 재귀를 활용하는 함수이다.
 
-# ## 재귀 함수의 스택 다이어그램
+# ## 재귀 함수의 콜 스택
 
 # 재귀 함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생하여
-# 스택 다이어그램의 변화가 경우에 따라 매우 복잡해지기도 한다.
-# 아래 그림은 `countdown(3)`을 호출했을 때의 스택 다이어그램의 상태 중 하나이다.
+# 콜 스택의 변화가 경우에 따라 매우 복잡해지기도 한다.
+# 아래 그림은 `countdown(3)`을 호출했을 때의 콜 스택의 상태를 스택 다이어그램으로 보여준다.
 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/count_down.jpg" style="width:300px;"></div>
 
 # 예를 들어,
 # [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
 # 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
-# 즉, 스택 다이어그램의 변화를 살펴볼 수 있다.
+# 즉, 콜 스택의 변화를 살펴볼 수 있다.
 
 # ## 기저 조건과 무한 재귀
 
@@ -105,7 +105,7 @@ countdown(3)
 # 하나라도 충족되지 않거나 확인할 수 없다면 해당 재귀 함수의 활용에 매우 
 # 주의를 기울여야 한다.
 
-# ## 함수 실행의 종료와 `return` 명령문
+# ## 함수 실행 종료와 `return` 명령문
 
 # 함수의 본문에 함수의 반환값을 지정하는 `return 표현식`이 여러 번
 # 사용될 수 있다.
@@ -161,11 +161,22 @@ def countdown_num(n):
 print('반환값:', countdown_num(0))
 
 
+# 하지만 `n`이 `0`보다 크면 `countdown_num(n-1)` 이 
+# 재귀적으로 호출되어 실행이 종료할 때까지 기다렸다가
+# 반환값을 받아 `result`가 가리키는 값을 지정한다.
+# 
+# `n = 1`이면 재귀 호출이 한 번 발생하며
+# 재귀 호출된 `countdown_num(0)`은 `0`을 반환하며 종료된다.
+# 따라서 `result = 0 + 1`이 실행되어 최종적으로 `1`을 반환한다.
+
 # In[8]:
 
 
 print('반환값:', countdown_num(1))
 
+
+# 일반적으로 `n = k`이면 재귀 호출이 `k-1` 번 발생하며
+# 재귀적으로 호출된 역순으로 계산된 값을 반환하며 실행을 종료한다.
 
 # In[9]:
 
