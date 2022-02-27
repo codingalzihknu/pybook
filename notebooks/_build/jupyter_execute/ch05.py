@@ -305,6 +305,19 @@ print(s)
 # | `\n` | 줄바꿈 |
 # | `\t` | 탭 |
 
+# :::{prf:example}
+# :label: exp_backslash
+# 
+# 예를 들어 백슬래시 두 개를 포함한 문자열을 지정하려면 따라서 
+# 네 개의 백슬래시를 사용한다.
+# 즉, 백슬래시 문자를 하나의 문자로 표현하려면 항상 짝수 개의 백슬래시가 사용되어야 한다.
+# 
+# ```python
+# >>> print("\\\\")
+# \\
+# ```
+# :::
+
 # ### 문자열 기본 연산
 
 # |연산 기호|의미|예시|실행 결과|
@@ -363,419 +376,337 @@ print("안녕, " + name)
 # ```
 # :::
 
-# ### whitespace
+# ### 화이트 스페이스
 
-# whitespace는 화면상으로 아무것도 표시되지 않는 공백 문자를 말한다.  
-# 
-# `string.whitespace`는 공백으로 간주하는 문자를 포함하는 문자열로, 여기에는 스페이스<font size = "2">space</font>, 탭<font size = "2">tab</font>, 줄변경<font size = "2">line feed or new line</font>, 캐리지 리턴<font size = "2">carriage return</font>, 수직탭<font size = "2">vertical tab</font>, 폼피드<font size = "2">form feed</font> 문자가 포함된다.
+# **화이트 스페이스**<font size="2">whitespace</font>는 
+# 화면상 보이지 않는 여백을 가리키는 문자를 의미한다.
+# `string` 모듈의 `whitespace` 변수가 화이트 스페이스 문자를 모두 포함한다.
 
 # In[28]:
 
 
 import string
+
 string.whitespace
 
 
-# |기호|설명|
-# |:----------:|:----------:|
-# |` `|공백 <font size = "2">space</font>| 
-# |`\t`|탭 <font size = "2">tab</font>| 
-# |`\n`|줄변경 <font size = "2">line feed or new line</font>|
-# |`\r`|캐리지 리턴 <font size = "2">carriage return</font>|
-# |`\v` 또는 `\x0b`|수직탭 <font size = "2">vertical tab</font>|
-# |`\f` 또는 `\x0c`|폼피드<font size = "2">form feed</font>|
+# `' \t\n\r\x0b\x0c'` 의 맨 왼쪽에는 스페이스 바를 한 번 눌렀을 때
+# 발생하는 여백 문자 `' '` 이 위치한다.
+# 위 문자열에 포함된 각 화이트 스페이스 기호의 의미는 다음과 같다.
+
+# | 기호 | 설명 |
+# | :---: | :---: |
+# | `' '`  | 스페이스<font size = "2">space</font>| 
+# | `'\t'` | 탭<font size = "2">tab</font>| 
+# | `'\n'` | 줄 변경<font size = "2">new line</font>|
+# | `\r` | 캐리지 리턴<font size = "2">carriage return</font>|
+# | `'\v'` 또는 `'\x0b'` | 수직탭<font size = "2">vertical tab</font>|
+# | `'\f'` 또는 `'\x0c` | 폼피드<font size = "2">form feed</font>|
+
+# 이중에 스페이스, 줄 변경, 탭이 가장 많이 사용되며,
+# 다른 화이트 스페이스는 여기서는 다루지 않는다.
 
 # In[29]:
 
 
-print('1\n2\t3')
+print(' 1\n2\t3')
 
 
-# In[30]:
-
-
-print('123\b4')
-
-
-# * 캐리지 리턴(`\r`)은 그 줄의 맨앞으로 이동시키는 특수 문자이다.
-
-# In[31]:
-
-
-print('1234\r56')
-
-
-# * `\v` 또는 `\x0b`는 수직탭이고,  `\f` 또는 `\x0c`는 다음 페이지로 이동하는 것을 의미한다. 
-
-# :::{admonition} 문자열 `''`과 문자의 `' '` 차이첨 
+# :::{admonition} `''` 대 `' '`
 # :class: info
 # 
-# 빈 문자열<font size = "2">empty string</font> `''`는 아무런 문자도 포함하지 않았기 때문에 문자열의 길이 즉, 문자열에 포함된 문자의 개수가 0이다.   
-# 반면 `' '`는 눈에 보이지는 않지만 공백 문제 하나를 포함하는 문자열이며 길이가 1이다. 
+# 빈 문자열<font size = "2">empty string</font> 
+# `''` 는 아무런 문자도 포함하지 않았기 때문에 문자열의 길이 즉, 문자열에 포함된 문자의 개수가 0이다.
+# 반면 `' '` 는 눈에 보이지는 않지만 스페이스 여백 하나를 포함하는 문자열이며, 따라서 길이가 1이다. 
 # :::
 
-# ### 문자열에 특수 문자 활용하기
-
-# 백슬래시(￦), 줄바꾸기(￦n), 탭(￦t) 등은 문자열에 사용될 경우 특수한 기능을 갖는다. 그리고 백슬래시(`\`)기호를 붙여서 특수 기능을 해제<font size= "2">escape</font>할 수 있다.
-
-# In[32]:
-
-
-print("Hello\\n World")
-
-
-# In[33]:
-
-
-print("Hello\\t World")
-
-
-# In[34]:
-
-
-print("Good\\night")
-
-
-# 연속된 백슬래시 두 개를 출력하려면 아래와 같이 해야 한다.
-
-# In[35]:
-
-
-print("\\\\")
-
-
-# :::{admonition} 주의
-# :class: caution
+# :::{prf:example}
+# :label: exp_backslash_escape
 # 
-# 아래와 같이 코드를 작성하면 오류가 발생하므로 주의해야 한다.
+# 화이트 스페이스가 기능을 발휘하지 않고 그 자체로 문자열에 포함되도록 하려면
+# 앞서 언급한 백슬래시 자체를 이스케이프 문자로 표현한다. 
+# 
 # ```python
-# >>> print("\\\")
-#   File "/tmp/ipykernel_76/2337434698.py", line 1
-#     print("\\\")
-#                 ^
-# SyntaxError: EOL while scanning string literal
+# >>> print("Hello\\n World")
+# Hello\n World
+# 
+# >>> print("Hello\\t World")
+# Hello\5 World
 # ```
-
-# :::{admonition} 참고 
-# :class: info  
-# **순수 문자열**
-# '가공되지 않은'의 의미를 갖는 'raw' 단어의 첫 글자인 'r'을 문자열 앞에 두면 특수 기능이 사라진다.
 # :::
 
-# In[36]:
+# ### 날 문자열
 
+# **날 문자열**<font size="2">raw string</font>은 
+# '가공되지 않은'의 의미를 갖는 영어 단어 *raw* 의 첫 글자인 `'r'` 이
+# 추가된 문자열이다. 
+# 이스케이프 문자가 날 문자열에 포함되더라도 특별한 기능을
+# 발휘하지 못한다.
 
-print(r"Hello\n World")
-
-
-# In[37]:
-
-
-print(r"Hello\t World")
-
-
-# In[38]:
+# In[30]:
 
 
 print(r"Hello\ World")
 
 
-# ### 문자열과 `input()` 함수
+# In[31]:
 
-# 사용자의 입력은 `input()` 함수를 사용하여 받을 수 있다. 아래와 같이 `input()`을 입력하고 코드를 실행하면, 그 아래에 값을 입력하라는 창이 나온다. 그곳에 `Hello, python!`을 입력하고 엔터<font size ="2">enter</font>를 누르면 입력한 문자열이 그대로 출력된다.
 
-# In[39]:
+print(r"Hello\n World")
 
 
-input()
+# In[32]:
 
 
-# `input()` 함수로 입력받은 값은 변수에 할당하여 사용할 수도 있다.
+print(r"Hello\t World")
 
-# In[76]:
 
+# ### 문자열 포매팅
 
-name = input()
-print("Hello, " + name)
+# **문자열 포매팅**<font size="2">string formatting</font>은
+# 문자열 안에 변수 또는 표현식을 사용하여 변하는 값을
+# 반영하여 문자열을 생성하도록 한다.
+# 여러 방식이 있지만 여기서는 가장 최신 방법인 
+# **f-문자열**<font size="2">f-string</font>을 
+# 활용하는 방법을 소개한다.
+# f-문자열은 문자열 앞에 `f`를 붙이며, 
+# 문자열 안에 임의의 표현식이 중괄호로 감싸여서 사용될 수 있다.
 
-
-# 이때 `input()` 함수로 입력받은 값은 문자열`str`이다.
-
-# In[77]:
-
-
-type(name)
-
-
-# 사용자가 숫자를 입력하더라도 입력받은 값은 문자열`str`이다.
-
-# In[80]:
-
-
-num = input()
-type(num)
-
-
-# 사용자에게 무엇을 입력할지 알려주고 싶다면, 그 내용의 문자열을 `input()`의 인자로 사용하면 된다.
-
-# In[83]:
-
-
-input_num = input("정수를 입력하세요 : ")
-print("입력하신 정수는 " + input_num + "입니다.")
-
-
-# ### 문자열과 `print()` 함수
-
-# 그 동안 출력을 위해 `print()` 함수를 사용하였다. 예를 들어, `Hello, python`을 출력하고 싶다면, 아래와 같이 코드를 작성하면 된다. 
-
-# In[84]:
-
-
-print('Hello, python')
-
-
-# 이제 `print()` 함수에 대해서 조금 더 살펴보자. 
-
-# * 큰 따옴표(또는 작은 따옴표)로 둘러싸인 문자열을 연속해서 사용하면 문자열에서 +연산을 한 것과 동일한 결과를 출력해준다.
-
-# In[86]:
-
-
-print("Hello ""World")
-print('Hello ''World')
-print('Hello '"World")
-print("Hello " + "World")
-
-
-# * 문자열 사이에 콤마(`,`)를 사용하면 띄어쓰기를 할 수 있다.
-
-# In[87]:
-
-
-print("Hello", "World")
-
-
-# * 인자들 사이에 구분자를 넣고 싶다면, `sep`을 변경하면 된다. `sep`의 기본값은 공백이다.
-
-# In[88]:
-
-
-print("010", "1234", "5678", sep = "-")
-print("Hello", "World", sep = ", ")
-
-
-# * 마지막에 출력할 문자를 변경하고 싶다면, `end`를 변경하면 된다. `end`의 기본값은 줄변경(`\n`)이다.
-
-# In[89]:
-
-
-print("a")
-print("b", end = "")
-print("c", end = "\t")
-print("d")
-
-
-# ### 문자열 포매팅 <font size = "2">String formatting</font>
-
-# #### `str.format()`
-
-# `format()`메서드를 사용하면, 문자열의 중괄호(`{}`)가 `format()`의 인자로 변경된다. 예제와 함께 살펴보자. 
-
-# In[113]:
-
-
-'{}님, 안녕하세요.'.format('강현')
-
-
-# In[114]:
-
-
-name = '강현'
-'{}님, 안녕하세요.'.format(name)
-
-
-# In[117]:
-
-
-age = 3
-'강현이는 {}살이다.'.format(age)
-
-
-# 여러 개의 값을 변경할 때는 콤마(`,`)로 구분해서 적어준다. 
-
-# In[118]:
+# In[33]:
 
 
 name = '강현'
 age = 3
-'{}이는 {}살이다.'.format(name, age)
+s = f'{name}이는 {age}살이다.'
+print(s)
 
 
-# 인덱스 항목을 사용하여 넣어줄 위치를 지정할 수도 있다.
-
-# In[121]:
+# In[34]:
 
 
-name1 = '강현'
-name2 = '나영'
-print('{}이와 {}이는 친구다.'.format(name1, name2))
-print('{0}이와 {1}이는 친구다.'.format(name1, name2))
-print('{1}이와 {0}이는 친구다.'.format(name1, name2))
+s1 = f'{name}이의 동생은 {age - 2}살이다'
+print(s1)
 
 
-# **소수점 표현**  
-# 
-# 콜론(`:`) 뒤에 소수점아래 몇 번째 자리까지 출력할지를 적어주면, 그 만큼을 보여준다.  
-# 예제와 함께 살펴보자. 
-# * `.`은 소수점을 의미하고, 소수점 뒤의 숫자는 소수점 뒤에 나올 숫자의 개수다.  
+# 출력되는 문자열의 길이를 지정하고 좌우로 정렬할 수 있다.
 
-# In[101]:
+# In[35]:
 
 
-num = 0.123456789
-print('{0:.1f}'.format(num))
-print('{0:.2f}'.format(num))
-print('{0:.3f}'.format(num))
-print('{0:.5f}'.format(num)) # 소수점 아래 여섯 번째 자리에서 반올림
+s = 'hi'
 
 
-# #### f-string
-
-# 문자열 앞에 `f` 를 붙이면, 문자열 포매팅 기능을 사용할 수 있다.  
-# 예제와 함께 살펴보자. 
-
-# In[122]:
+# In[36]:
 
 
-name = '강현'
-f'{name}님, 안녕하세요.'
+print(f'{s:<10}')
+print(f'{s:>10}')
+print(f'{s:^10}')
 
 
-# In[123]:
+# 남은 자리를 지정된 문자로 채울 수 있다.
+
+# In[37]:
 
 
-age = 3
-f'강현이는 {age}살이다.'
+print(f'{s:+<10}')
+print(f'{s:0>10}')
+print(f'{s:-^10}')
 
 
-# In[124]:
+# 부동소수점의 소수점 이하 자릿수를 지정하려면 `{표현식:.1f}` 와 같은 형식을 사용한다.
+
+# In[38]:
 
 
-name = '강현'
-age = 3
-f'{name}이는 {age}살이다.'
+num = 17.123456789
 
-
-# `{}`안에 변수와 수식(`+`, `-`, `*`, `/` 등)을 함께 사용하는 것도 가능하다. 
-
-# In[126]:
-
-
-name = '강현'
-age = 3
-f'{name}이의 동생은 {age - 2}살이다'
-
-
-# In[109]:
-
-
-num = 0.123456789
 print(f'{num:.1f}')
 print(f'{num:.2f}')
 print(f'{num:.3f}')
 
 
+# 전체 자릿수를 지정하려면 `{표현식:3.2f}` 와 같은 형식을 사용한다.
+
+# In[39]:
+
+
+print(f'{num:15.2f}')
+
+
+# 좌우 정렬도 가능하다.
+
+# In[40]:
+
+
+print(f'{num:<15.5f}')
+print(f'{num:>15.5f}')
+print(f'{num:0>15.5f}')
+
+
+# ### 문자열과 `input()` 함수
+
+# 사용자의 입력은 `input()` 함수를 사용하여 받을 수 있다.
+# 아래와 같이 `input()`을 입력하고 코드를 실행하면, 그 아래에 값을 입력하라는 창이 나온다. 
+# 예를 들어 `Hello, python!`을 입력하고 엔터 키 <kbd>Enter</kbd>를 누르면 
+# 입력한 내용이 그대로 출력된다.
+# 
+# ```python
+# >>> input()
+# Hello, Python!
+# 'Hello, Python!'
+# ```
+
+# `input()` 함수는 입력받은 내용을 문자열로 반환한다.
+# 따라서 변수에 할당하여 사용할 수 있다.
+# 
+# ```python
+# >>> s = input()
+# '파이썬 좋아!'
+# >>> print('진짜로 ' + name)
+# 진짜로 '파이썬 좋아!'
+# ```
+
+# 사용자가 숫자를 입력하더라도 문자열로 처리된다.
+# 
+# ```python
+# >>> num = input()
+# 17
+# >>> type(num)
+# <class 'str'>
+# ```
+# 
+# 따라서 입력받은 정수를 연산에 활용하려면 
+# 먼저 `int()` 함수 또는 `float()` 함수를 이용하여 정수 또는 부동소수점으로 
+# 자료형을 변환해야 한다. 
+# 아래 {numref}`%s절 <sec:type_casting>`에서 두 함수를 자세히 소개한다.
+# 
+# ```python
+# >>> int(num) / 3
+# 5.666666666666667
+# ```
+
+# 문자열 인자를 이용하여 입력사항을 안내할 수 있다.
+# 
+# ```python
+# >>> input_num = input("정수를 입력하세요 : ")
+# 정수를 입력하세요 : 23
+# >>> print("입력하신 정수는 " + input_num + "입니다.")
+# 입력하신 정수는 23입니다.
+# ```
+
 # ## 부울값
 
-# 참(`True`)과 거짓(`False`)를 나타내는 자료형이다. 
-# 파이썬에서 부울 자료형은 `int` 형의 자식형<font size = "2"> subtype</font>이고, 대부분의 상황에서 `True`와 `False`는 각각 `1`과 `0`처럼 동작한다. 
+# 참과 거짓을 의미하는 `True`와 `False`를 
+# **부울값**<font size="2">boolean</font>
+# 또는 **진리값**이라 한다.
+# 부울값은 `bool` 유형을 갖는 **유일한 두 개의 값**이다.
 
-# ### 논리 연산자
+# In[41]:
 
-# |연산 기호|의미|예시|실행 결과|
-# |:----------:|:----------:|:----------:|:--------:|
-# |`and`|그리고|`True and False`|`False`|
-# |`or`|또는|`True or False`|`True`|
-# |`not`|부정|`not False`|`True`|
 
-# :::{admonition} 참고 
-# :class: info
+type(True)
+
+
+# In[42]:
+
+
+d = False
+type(d)
+
+
+# ### 논리식
+
+# **논리식**<font size="2">boolearn expression</font>은
+# 참 또는 거짓으로 계산될 수 있는 표현식이다.
+# 논리식은 기본적으로 등식, 부등식 등의 **비교 연산자**를 이용하여 표현한다.
+# 또한 **논리 연산자**를 이용하여 보다 복잡한 논리식을 구성할 수 있다.
+
+# **비교 연산자**
+
+# 비교 연산자는 수, 문자열 등의 크기를 비교할 수 이며
+# 다음 연산자를 기본으로 지원한다.
 # 
-# `x and y`는 `x`가 참일 때만 `y`를 확인한다.  
-# `x or y`는 `x`가 거짓일 때만 `y`를 확인한다.
-# 
-# 예를 들어, 아래와 같이  `False and 3/0`를 실행하면 `False`가 나온다. 
-# ```python
-# >>> False and 3/0
-# ```
-# 
-# 하지만 반대로 `3/0 and False`를 실행하면 오류가 발생한다. 
-# ```python
-# >>> False and 3/0
-# ZeroDivisionError                         Traceback (most recent call last)
-# /tmp/ipykernel_422/2156724109.py in <module>
-# ----> 1 True and 3/0
-# 
-# ZeroDivisionError: division by zero
-# ```
-# :::
-
-# ### 비교 연산자
-
 # |연산 기호|의미|예시|실행 결과|
 # |:----------:|:----------:|:----------:|:--------:|
 # |`<`|작다|`2 < 1`|`False`|
 # |`<=`|작거나 같다|`1 <= 2`|`True`|
 # |`>`|크다|`2 > 1`|`True`|
 # |`>=`|크거나 같다|`1 >= 2`|`False`|
-# |`==`|같다|`1 == '1'`|`False`|
+# |`==`|같다|`3 == 2 * 1`|`False`|
 # |`!=`|같지 않다|`1 != '1'`|`True`|
 
-# 서로 다른 숫자형을 제외하고는 서로 다른 형은 같다고 비교되지 않는다. 
+# 두 값의 동치성 여부를 판단하는 `==` 연산자는 
+# 자료형이 다르면 무조건 거짓으로 판정한다.
+# 하지만 정수는 부동소수점으로 취급하기에 
+# 예를 들어 1과 1.0은 동치라고 판정한다.
 
-# 예를 들어, 정수 `1`와 부동소수점 `1.0`이 같은지 여부를 확인해보자.
-
-# In[17]:
-
-
-1 == 1.0
-
-
-# 반면, 정수 `1`과 문자열 `'1'`은 형<font size = "2">type</font>이 달라서 같은지 여부를 확인해보면, `False`가 나온다.
-
-# In[18]:
-
-
-1 == '1'
-
-
-# In[8]:
+# In[43]:
 
 
 1 == 1.0
 
 
-# 문자열도 비교연산자를 사용할 수 있다.   
-# 크기 비교 연산자들은 영어 사전식의 알파벳 순서를 사용한다. 
+# 문자열도 비교 연산자를 지원하며
+# 사전식 순서 개념을 사용한다.
 
-# In[28]:
-
-
-'apple' == 'pineapple'
-
-
-# In[26]:
+# In[44]:
 
 
 'apple' < 'banana'
 
 
+# 영어 알파벳의 경우 대문자가 소문자보다 작다고 판단한다.
+
+# In[45]:
+
+
+'apple' < 'Apple'
+
+
+# ### 논리 연산자
+
+# 영어의 *and*, *or*, *not* 의 개념과 거의(!) 유사하게 작동하는
+# 세 개의 논리 연산자를 이용하여 보다 복잡한 논리식을 구현할 수 있다.
+
+# |연산 기호|의미|예시|실행 결과|
+# |:----------:|:----------:|:----------:|:--------:|
+# |`and`|그리고|`1==2 and 3==2+1`|`False`|
+# |`or`|또는|`1==2 and 3==2+1`|`True`|
+# |`not`|부정|`not 1==2`|`True`|
+
 # :::{admonition} 참고 
 # :class: info
-# 영어 알파벳의 경우 대문자가 소문자보다 작다고 판단한다.
+# 
+# `and` 와 `or` 가 자연어의 *and* 와 *or* 와는 조금 다르게 작동한다. 
+# 예를 들어, 아래와 같이  `False and 3/0`를 실행하면 `False`로 계산되는데
+# 좀 이상하다. 
+# 왜냐하면 `3/0` 이 `ZeroDivisionError` 라는 오류를 발생시켜야 할 것으로
+# 기대되기 때문이다.
+# 
+# ```python
+# >>> False and 3/0
+# False
+# ```
+# 
+# 실제로 `3/0 and False` 를 실행하면 `3/0`을 먼저 확인하기에 오류가 발생한다. 
+# 
+# ```python
+# >>> 3/0 and False
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# ZeroDivisionError: division by zero
+# ```
+# 
+# `False and 3/0` 를 실행할 때 오류가 발생하지 않은 이유는 
+# `x and y`는 `x`가 참일 때만 `y` 를 확인하기 때문이다.
+# `x` 를 먼저 확인해서 거짓으로 판명되면 논리식 전체를 바로 거짓으로 계산한다.
+# 반면에 `x or y`는 `x`가 거짓일 때만 `y`를 확인한다.
+# 즉, `x`를 먼저 확인해서 참이되면 논리식 전체를 참으로 계산한다.
+# 
 # :::
 
+# (sec:type_casting)=
 # ## 형변환
 
 # `2.3 + 3`을 실행하면 파이썬 해석기<font size="2">interpreter</font>는
@@ -785,7 +716,7 @@ print(f'{num:.3f}')
 # 이렇게 값의 유형을 적절하게 자동 변환하는 기능을 
 # **형변환**<font size="2">type casting</font>이라 부른다.
 
-# In[9]:
+# In[46]:
 
 
 float(3)
@@ -793,17 +724,27 @@ float(3)
 
 # `float()` 함수 이외에 `int()`, `str()`, `bool()` 등 다양한 형변환 함수가 제공된다.
 
+# :::{admonition} `float` 대 `float()`
+# :class: tip
+# 
+# `float`는 부동소수점 자료형을 가리키기도 하고 
+# 형변환 함수를 가리키기도 한다. 
+# 여기서는 자료형과 함수 이름을 구분하기 위해 
+# 함수는 `int()`, `float()`, `str()` 등처럼
+# 함수 이름과 괄호를 함께 사용하는 표기법 관행을 따른다.
+# :::
+
 # **`int()` 함수**
 # 
 # 정수 모양의 문자열 또는 부동소수점을 정수로 변환한다.
 
-# In[11]:
+# In[47]:
 
 
 int('5')
 
 
-# In[12]:
+# In[48]:
 
 
 int(4.8)
@@ -811,39 +752,78 @@ int(4.8)
 
 # `True`와 `False`는 각각 1과 0으로 취급된다.
 
-# In[13]:
+# In[49]:
 
 
 int(True)
+
+
+# In[50]:
+
+
+int(False)
 
 
 # **`float()` 함수**
 # 
 # 유한소수 모양의 문자열 또는 정수 등을 부동소수점으로 변환한다.
 
-# In[14]:
+# In[51]:
+
+
+float(7)
+
+
+# In[52]:
+
+
+float('7')
+
+
+# In[53]:
 
 
 float('7.9')
 
 
+# :::{admonition} 주의 
+# :class: caution  
+# `int()`함수의 인자로 문자열을 사용할 때는 그 모양이 정수의 모양을 갖추어야 한다.
+# 
+# ```python
+# >>> int('5.1')
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# ValueError: invalid literal for int() with base 10: '5.1'
+# ```
+# 
+# `float()` 함수의 문자열 인자는 정수 또는 부동소수점 모양이어야 한다. 
+# 
+# ```python
+# >>> float('5.2a')
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# ValueError: could not convert string to float: '5.2a'
+# ```
+# :::
+
 # **`str()` 함수**
 # 
 # 임의의 값을 문자열로 변환한다.
 
-# In[74]:
+# In[54]:
 
 
 str(6)
 
 
-# In[15]:
+# In[55]:
 
 
 str(7.6)
 
 
-# In[16]:
+# In[56]:
 
 
 str(False)
@@ -855,60 +835,38 @@ str(False)
 # `0`, `0.0`, `''`(빈 문자열) 등처럼 0, 비어 있는 것, 의미 없는 것등은 `False` 로
 # 그렇지 않으면 `True` 로 지정한다.
 
-# In[24]:
+# In[57]:
 
 
 bool(0)
 
 
-# In[25]:
+# In[58]:
 
 
 bool(2)
 
 
-# In[26]:
+# In[59]:
 
 
 bool(0.0)
 
 
-# In[27]:
+# In[60]:
 
 
 bool(0.01)
 
 
-# In[28]:
+# In[61]:
 
 
 bool('')
 
 
-# In[29]:
+# In[62]:
 
 
 bool('Hello')
 
-
-# :::{admonition} 주의 
-# :class: caution  
-# `int()`함수의 인자로 문자열을 사용할 때는 그 모양이 정수모양이어야 하고, `float()` 함수의 인자로 문자열을 사용할 때는 그 모양이 정수 또는 부동소수점 모양이어야 한다. 
-# 
-# ```python
-# >>> int('5.0')
-# ValueError                                Traceback (most recent call last)
-# /tmp/ipykernel_279/3485297474.py in <module>
-# ----> 1 int('5.0')
-# 
-# ValueError: invalid literal for int() with base 10: '5.0'
-# ```
-# ```python
-# >>> float('5GB')
-# ValueError                                Traceback (most recent call last)
-# /tmp/ipykernel_279/814975516.py in <module>
-# ----> 1 float('5GB')
-# 
-# ValueError: could not convert string to float: '5GB'
-# ```
-# :::
