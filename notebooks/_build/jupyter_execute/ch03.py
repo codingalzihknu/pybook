@@ -3,226 +3,337 @@
 
 # # 프로그래밍 시작하기
 
-# In the following examples, input and output are distinguished by the presence or absence of prompts (>>> and …): to repeat the example, you must type everything after the prompt, when the prompt appears; lines that do not begin with a prompt are output from the interpreter. Note that a secondary prompt on a line by itself in an example means you must type a blank line; this is used to end a multi-line command.
+# 간단한 예제를 이용하여 파이썬 프로그래밍을 맛보기 해본다.
 
-# You can toggle the display of prompts and output by clicking on >>> in the upper-right corner of an example box. If you hide the prompts and output for an example, then you can easily copy and paste the input lines into your interpreter.
+# ## 계산기
 
-# Many of the examples in this manual, even those entered at the interactive prompt, include comments. Comments in Python start with the hash character, #, and extend to the end of the physical line. A comment may appear at the start of a line or following whitespace or code, but not within a string literal. A hash character within a string literal is just a hash character. Since comments are to clarify code and are not interpreted by Python, they may be omitted when typing in examples.
-# 
-# Some examples:
+# 파이썬을 계산기로 활용할 수 있다.
+
+# ### 수 연산
+
+# 임의의 연산식을 작성하고 실행하면 연산 결과가 계산되어 보여진다. 
+# 일반적으로 알려진 사칙연산 규칙이 동일하게 적용된다.
 
 # In[1]:
 
 
-# this is the first comment
-spam = 1  # and this is the second comment
-          # ... and now a third!
-text = "# This is not a comment because it's inside quotes."
+-5 + 2
 
 
-# ## 3.1. Using Python as a Calculator
+# In[2]:
 
-# Let’s try some simple Python commands. Start the interpreter and wait for the primary prompt, >>>. (It shouldn’t take long.)
 
-# ### 3.1.1. Numbers
+50 - 5 * 6
 
-# The interpreter acts as a simple calculator: you can type an expression at it and it will write the value. Expression syntax is straightforward: the operators +, -, * and / work just like in most other languages (for example, Pascal or C); parentheses (()) can be used for grouping. For example:
+
+# In[3]:
+
+
+(50 - 5 * 6) / 4
+
+
+# In[4]:
+
+
+17 / 3
+
+
+# `-3`, `5`, `17` 등의 정수는 `int` 라는 정수 자료형에 속하고, 
+# `5.0`, `1.6` 등의 소수는 `float`
+# **부동소수점** 자료형에 속한다.
+# 나눗셈의 결과는 항상 `float`에 속한다. 
+# 
+# 대다수의 프로그래밍 언어에서 `5` 와 `5.0` 은 서로 다른 
+# **자료형**<font size="2">data type</font>에 속하는 것으로 취급한다.
+# 하지만 그럼에도 불구하고 `5` 와 `5.0` 을 동일한 수로 간주하기도 한다. 
+# 이는 정수와 소수는 원래 다르지만 정수 집합을 소수 집합의 부분집합으로 취급한다는
+# 수학 상식과도 일치한다.
+# 따라서 정수와 부동소수점이 함께 연산에 사용되는 정수는 모두 부동소수점으로 처리되어
+# 계산된다.
+
+# In[5]:
+
+
+4 * 3.75 - 1
+
+
+# 몫과 나머지는 정수로 계산된다.
+
+# In[6]:
+
+
+17 // 3   # 몫 계산
+
+
+# In[7]:
+
+
+17 % 3    # 나머지 계산
+
+
+# 지수승 연산은 `**` 연산자를 이용한다.
+# 샵 기호는 이후의 문장을 주석<font size="2">comment</font> 로 처리하도록 한다.
+# 즉, 파이썬 해석기에 의해 무시되어 코드 실행과 무관해진다.
+
+# In[8]:
+
+
+5 ** 2    # 5의 제곱
+
+
+# In[9]:
+
+
+2 ** 7    # 2의 7승
+
+
+# :::{admonition} 주의
+# :class: warning
+# 
+# 지수승 연산이 뺄셈 연산 보다 우선된다.
+# 예를 들어 `-3**2`는 `-3`의 제곱인 9가 아닌 `-(3**2)`, 즉 `-9`로 계산된다.
+# 혼란을 피하기 위해 괄호 사용을 권장한다.
+# :::
+
+# ### 변수 할당
+
+# **변수 할당**<font size="2">variable assignment</font>은 
+# 변수가 특정 값을 가리키도록 명령하는 것이다.
+# 이를 위해 등호 기호 `=` 를 사용한다.
+
+# In[10]:
+
+
+width = 20
+height = 5 * 9
+
+
+# 변수가 가리키는 값을 대신하여 해당 변수를 연산에 사용할 수 있다.
+
+# In[11]:
+
+
+width * height
+
+
+# 변수 할당이 지정되지 않는 변수,
+# 즉 정의되지 않은 변수는 사용할 수 없다.
 # 
 # ```python
-# >>> 2 + 2
-# 4
-# >>> 50 - 5*6
-# 20
-# >>> (50 - 5*6) / 4
-# 5.0
-# >>> 8 / 5  # division always returns a floating point number
-# 1.6
-# ```
-
-# The integer numbers (e.g. 2, 4, 20) have type int, the ones with a fractional part (e.g. 5.0, 1.6) have type float. We will see more about numeric types later in the tutorial.
-# 
-# Division (/) always returns a float. To do floor division and get an integer result (discarding any fractional result) you can use the // operator; to calculate the remainder you can use %:
-# 
-# ```python
-# >>> 17 / 3  # classic division returns a float
-# 5.666666666666667
-# >>>
-# >>> 17 // 3  # floor division discards the fractional part
-# 5
-# >>> 17 % 3  # the % operator returns the remainder of the division
-# 2
-# >>> 5 * 3 + 2  # floored quotient * divisor + remainder
-# 17
-# ```
-
-# With Python, it is possible to use the ** operator to calculate powers:
-# 
-# ```python
-# >>> 5 ** 2  # 5 squared
-# 25
-# >>> 2 ** 7  # 2 to the power of 7
-# 128
-# ```
-# 
-# **주의**
-# 
-# Since ** has higher precedence than -, -3**2 will be interpreted as -(3**2) and thus result in -9. To avoid this and get 9, you can use (-3)**2.
-
-# The equal sign (=) is used to assign a value to a variable. Afterwards, no result is displayed before the next interactive prompt:
-# 
-# ```python
-# >>> width = 20
-# >>> height = 5 * 9
-# >>> width * height
-# 900
-# ```
-
-# If a variable is not “defined” (assigned a value), trying to use it will give you an error:
-# 
-# ```python
-# >>> n  # try to access an undefined variable
+# >>> n
 # Traceback (most recent call last):
 #   File "<stdin>", line 1, in <module>
 # NameError: name 'n' is not defined
 # ```
 
-# There is full support for floating point; operators with mixed type operands convert the integer operand to floating point:
-# 
-# ```python
-# >>> 4 * 3.75 - 1
-# 14.0
-# ```
+# ## 문자열
 
-# In interactive mode, the last printed expression is assigned to the variable _. This means that when you are using Python as a desk calculator, it is somewhat easier to continue calculations, for example:
-# 
-# ```python
-# >>> tax = 12.5 / 100
-# >>> price = 100.50
-# >>> price * tax
-# 12.5625
-# >>> price + _
-# 113.0625
-# >>> round(_, 2)
-# 113.06
-# ```
+# **문자열**은 문자와 기호들의 나열을 의미하며 작은따옴표 또는 끈따옴표로 감싸인다.
+# `print()` 함수는 지정된 문자열을 화면에 출력한다.
+# 이때 문자열을 감싸는 따옴표를 제고하고 동시에 문자열에 포함된 특별한 기능을 수행하는 문자를
+# 적절하게 변환해서 보여준다.
 
-# This variable should be treated as read-only by the user. Don’t explicitly assign a value to it — you would create an independent local variable with the same name masking the built-in variable with its magic behavior.
-# 
-# In addition to int and float, Python supports other types of numbers, such as Decimal and Fraction. Python also has built-in support for complex numbers, and uses the j or J suffix to indicate the imaginary part (e.g. 3+5j).
+# In[12]:
 
-# ### 3.1.2. Strings
 
-# Besides numbers, Python can also manipulate strings, which can be expressed in several ways. They can be enclosed in single quotes ('...') or double quotes ("...") with the same result. 
+'spam eggs'
 
-# **주의**
-# 
-# Unlike other languages, special characters such as \n have the same meaning with both single ('...') and double ("...") quotes. The only difference between the two is that within single quotes you don’t need to escape " (but you have to escape \') and vice versa.
 
-# \ can be used to escape quotes:
-# 
-# ```python
-# >>> 'spam eggs'  # single quotes
-# 'spam eggs'
-# >>> 'doesn\'t'  # use \' to escape the single quote...
-# "doesn't"
-# >>> "doesn't"  # ...or use double quotes instead
-# "doesn't"
-# >>> '"Yes," they said.'
-# '"Yes," they said.'
-# >>> "\"Yes,\" they said."
-# '"Yes," they said.'
-# >>> '"Isn\'t," they said.'
-# '"Isn\'t," they said.'
-# ```
+# In[13]:
 
-# In the interactive interpreter, the output string is enclosed in quotes and special characters are escaped with backslashes. While this might sometimes look different from the input (the enclosing quotes could change), the two strings are equivalent. The string is enclosed in double quotes if the string contains a single quote and no double quotes, otherwise it is enclosed in single quotes. The print() function produces a more readable output, by omitting the enclosing quotes and by printing escaped and special characters:
-# 
-# ```python
-# >>> '"Isn\'t," they said.'
-# '"Isn\'t," they said.'
-# >>> print('"Isn\'t," they said.')
-# "Isn't," they said.
-# >>> s = 'First line.\nSecond line.'  # \n means newline
-# >>> s  # without print(), \n is included in the output
-# 'First line.\nSecond line.'
-# >>> print(s)  # with print(), \n produces a new line
-# First line.
-# Second line.
-# ```
 
-# If you don’t want characters prefaced by \ to be interpreted as special characters, you can use raw strings by adding an r before the first quote:
-# 
-# ```python
-# >>> print('C:\some\name')  # here \n means newline!
-# C:\some
-# ame
-# >>> print(r'C:\some\name')  # note the r before the quote
-# C:\some\name
-# ```
+print('spam eggs')
 
-# String literals can span multiple lines. One way is using triple-quotes: """...""" or '''...'''. End of lines are automatically included in the string, but it’s possible to prevent this by adding a \ at the end of the line. The following example:
-# 
-# ```python
-# print("""\
-# Usage: thingy [OPTIONS]
-#      -h                        Display this usage message
-#      -H hostname               Hostname to connect to
-# """)
-# ```
-# produces the following output (note that the initial newline is not included):
-# 
-# ```
-# Usage: thingy [OPTIONS]
-#      -h                        Display this usage message
-#      -H hostname               Hostname to connect to
-# ```
 
-# Strings can be concatenated (glued together) with the + operator, and repeated with *:
-# 
-# ```python
-# >>> # 3 times 'un', followed by 'ium'
-# >>> 3 * 'un' + 'ium'
-# 'unununium'
-# ```
+# 작은따옴표로 감싸인 문자열이 작은따옴표를 포함하도록 하려면
+# 백슬래시 `\`기호를 작은따옴표 기호 바로 앞에 추가한다.
 
-# Two or more string literals (i.e. the ones enclosed between quotes) next to each other are automatically concatenated.
-# 
-# ```python
-# >>> 'Py' 'thon'
-# 'Python'
-# ```
+# In[14]:
 
-# This feature is particularly useful when you want to break long strings:
-# 
-# ```python
-# >>> text = ('Put several strings within parentheses '
-# ...         'to have them joined together.')
-# >>> text
-# 'Put several strings within parentheses to have them joined together.'
-# ```
 
-# This only works with two literals though, not with variables or expressions:
-# 
-# ```python
-# >>> prefix = 'Py'
-# >>> prefix 'thon'  # can't concatenate a variable and a string literal
-#   File "<stdin>", line 1
-#     prefix 'thon'
-#                 ^
-# SyntaxError: invalid syntax
-# >>> ('un' * 3) 'ium'
-#   File "<stdin>", line 1
-#     ('un' * 3) 'ium'
-#                    ^
-# SyntaxError: invalid syntax
-# ```
+'doesn\'t'
 
-# If you want to concatenate variables or a variable and a literal, use +:
+
+# In[15]:
+
+
+print('doesn\'t')
+
+
+# 큰따옴표로 감싸인 문자열에 작은따옴표를 임의로 포함시킬 수 있다.
+# 이는 문자열의 시작과 끝이 작은따옴표에도 불구하고 명확하기 때문이다.
+
+# In[16]:
+
+
+"doesn't"
+
+
+# In[17]:
+
+
+print("doesn't")
+
+
+# 동일한 이유로 작은따옴표로 감싸인 문자열이 큰따옴표를 포함해도 된다.
+
+# In[18]:
+
+
+'"Yes," they said.'
+
+
+# In[19]:
+
+
+print('"Yes," they said.')
+
+
+# 하지만 큰따옴표로 감싸인 문자열이 큰따옴표를 포함하려면
+# 여기서도 백슬래시 기호를 추가해야 한다.
+
+# In[20]:
+
+
+"\"Yes,\" they said."
+
+
+# In[21]:
+
+
+print("\"Yes,\" they said.")
+
+
+# 문자열에 큰따옴표와 작은따옴표가 동시에 포함되면
+# 감싸는 따옴표와 동일한 종류의 따옴표는 백슬래시가 추가되어야 한다.
+
+# In[22]:
+
+
+'"Isn\'t," they said.'
+
+
+# `print()` 함수는 백슬래시의 모든 특수 기능을 적절히 반영해서 화면에 출력한다.
+
+# In[23]:
+
+
+print('"Isn\'t," they said.')
+
+
+# `\n`은 줄바꿈을 의미하는 문자다.
+
+# In[24]:
+
+
+s = 'First line.\nSecond line.'
+
+
+# 변수 `s` 가 가리키는 문자열은 다음과 같다.
+
+# In[25]:
+
+
+s
+
+
+# `print()` 함수를 이용하면 실제 의도한 대로 두 줄로 표현된다.
+
+# In[26]:
+
+
+print(s)
+
+
+# ### 날 문자열
+
+# 앞서의 경우처럼 작은따옴표, 큰따옴표, 특수 문자에 대해 백슬래시를 사용하냐,
+# 그렇지 않냐를 걱정하는 것 대신에
+# **날 문자열**<font size="2">raw string</font>을 사용하면 보다 편리하다.
+# 날 문자열은 문자열 앞에 `r`을 추가해서 얻어지며
+# 그러면 문자열 안에 포함된 모든 특수 문자들의 기능이 제거된다.
+
+# In[27]:
+
+
+print('C:\some\name')  # 일반 문자열 사용. 줄바꿈 적용됨.
+
+
+# In[28]:
+
+
+print(r'C:\some\name')  # 날 문자열 사용. 줄바꿈 없음.
+
+
+# ### 여러줄 문자열
+
+# 여러 줄로 작성된 문자열은 항상 세개의 작은따옴표 또는 세 개의 큰따옴표로 감싸져야 한다.
+
+# In[29]:
+
+
+print("""첫째줄(위에 여백 없음!)
+둘째줄
+셋째줄
+""")
+
+
+# 하지만 다음과 같이 첫째줄에 비어 있는채로 출력된다.
+
+# In[30]:
+
+
+print("""
+첫째줄(위에 여백 있음)
+둘째줄
+셋째줄
+""")
+
+
+# 이를 방지하려면 백슬래시 기호를 추가한다.
+
+# In[31]:
+
+
+print("""첫째줄(위에 여백 없음)
+둘째줄
+셋째줄
+""")
+
+
+# ### 문자열 연산
+
+# 문자열의 `+` 와 `*` 두 기호를 이용한 연산을 지원한다.
 # 
-# ```python
-# >>> prefix + 'thon'
-# 'Python'
-# ```
+# `+` 연산자는 두 문자열을 이어붙인다.
+
+# In[32]:
+
+
+'hello' + 'python'
+
+
+# In[33]:
+
+
+'hello, ' + 'python'
+
+
+# `*` 연산자는 정수와 문자열을 인자로 받아 정수 만큼 복제해서 이어붙인다.
+
+# In[34]:
+
+
+3 * 'hello'
+
+
+# In[35]:
+
+
+2 * 'hello, ' + "python"
+
+
+# ### 문자열 인덱싱
 
 # Strings can be indexed (subscripted), with the first character having index 0. There is no separate character type; a character is simply a string of size one:
 # 
@@ -334,24 +445,6 @@ text = "# This is not a comment because it's inside quotes."
 # >>> s = 'supercalifragilisticexpialidocious'
 # >>> len(s)
 # 34
-# ```
-
-# **See also**
-# 
-# Text Sequence Type — str
-# Strings are examples of sequence types, and support the common operations supported by such types.
-# 
-# String Methods
-# Strings support a large number of methods for basic transformations and searching.
-# 
-# Formatted string literals
-# String literals that have embedded expressions.
-# 
-# Format String Syntax
-# Information about string formatting with str.format().
-# 
-# printf-style String Formatting
-# The old formatting operations invoked when strings are the left operand of the % operator are described in more detail here.
 # ```
 
 # ### 3.1.3. Lists

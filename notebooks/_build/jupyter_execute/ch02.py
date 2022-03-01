@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 프로그래밍 개발 환경
+# # 프로그래밍 개발 환경
 
 # 파이썬으로 프로그래밍을 하려면 적절한 개발환경을 준비해야 하며,
 # 오프라인과 온라인 두 가지 방식이 있다.
@@ -112,9 +112,8 @@
 # [TensorFlow 팀의 동영상](https://www.youtube.com/watch?v=rNgswRZ2C1Y)에서 확인할 수 있다.
 # :::
 
-# :::{admonition} 파이썬 개발 환경 설정 안내 문서
-# :class: seealso
-# 
+# ## 온&middot;오프라인 개발 환경 설정 안내
+
 # 지금까지 소개한 다양한 앱과 웹사이트의 설치 및 사용법을 
-# {ref}`ch:environment_setting`에서 캡처 이미지를 활용한 문서 형식으로 설명한다.
-# :::
+# {ref}`ch:environment_setting`에서 캡처 이미지를 활용한 문서 형식으로 
+# 자세히 설명한다.
