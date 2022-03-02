@@ -80,7 +80,7 @@
 #     <img src="https://raw.githubusercontent.com/hj617kim/pybook/master/images/ch02/anaconda10.png" style="width:400px;">
 # </div>
 
-# ## 스파이더 실행
+# ## 스파이더 실행법
 
 # 스파이더는 과학프로그래밍을 위한 IDE로, 아나콘다를 설치하면 스파이더를 사용할 수 있다.
 
@@ -106,7 +106,7 @@
 #  편집기 부분과 터미널 부분은 파이썬 인터프리터를 공유한다. 그래서 편집기 부분에 코드를 입력 후 실행하면, 터미널 부분에서도 편집기 부분에서 정의된 변수나 함수 등을 사용할 수 있다. 
 
 # (sec:jupyter_notebook)=
-# ## 주피터 노트북 실행
+# ## 주피터 노트북 실행법
 
 # 주피터 노트북은 대화형 파이썬 인터프리터로, 웹브라우저에서 파이썬 코드를 작성하고 실행 결과를 바로 확인할 수 있다. 아나콘다를 설치하면 주피터 노트북을 사용할 수 있다. 
 
@@ -212,7 +212,7 @@
 # </div>
 
 # (sec:replit)=
-# ## 레플릿 사용
+# ## 레플릿 사용법
 
 # 레플릿은 온라인 IDE로 별도의 프로그램 설치 없이 파이썬을 사용할 수 있다. 사용 방법은 간단하다. 
 
@@ -241,7 +241,7 @@
 # <div align="center"><img src="https://raw.githubusercontent.com/hj617kim/pybook/master/images/ch02/replit05_r.png" style="width:800px;"></div>
 
 # (sec:google_colab)=
-# ## 구글 코랩 사용
+# ## 구글 코랩 사용법
 
 # 구글 코랩은 구글에서 제공하는 주피터 노트북이다. 레플릿과 마찬가지로 사용 방법은 간단하다.
 
