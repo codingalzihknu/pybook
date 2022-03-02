@@ -7,16 +7,16 @@ options:
   numbered: True
 #  only_build_toc_files: true
 chapters:
-- file: ch01
-- file: ch02
-- file: ch03
-- file: ch04
-- file: ch05
-- file: ch06
-- file: ch07
-- file: ch08
-- file: ch09
-- file: ch10
-- file: ch11
-- file: ch12
-- file: ch13
+- file: programming
+- file: environment
+- file: starting
+- file: variables_expressions
+- file: datatypes
+- file: functions
+- file: function_interfaces
+- file: conditionals
+- file: recursion
+- file: iterations
+- file: sequences
+- file: files
+- file: modules

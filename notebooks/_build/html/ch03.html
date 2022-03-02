@@ -38,9 +38,12 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -114,7 +117,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="ch05.html">
+  <a class="reference internal" href="ch_basicDataTypes.html">
    5. 기본자료형
   </a>
  </li>
@@ -144,7 +147,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="ch11.html">
+  <a class="reference internal" href="ch_sequences.html">
    11. 모음 자료형
   </a>
  </li>
@@ -599,6 +602,18 @@ IPython 콘솔처럼 명령문을 실행할 수 있으며
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 </pre></div>
 </div>
 </div>
@@ -1198,7 +1213,8 @@ ame
 <div class="section" id="id12">
 <h3><span class="section-number">3.4.4. </span>문자열 인덱싱<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>문자열은 문자 여러 개의 나열이며 문자들 사이의 순서가 중요하다.
-이때 문자열 왼편에 위치한 문자부터 차례대로 0, 1, 2, …</p>
+이때 문자열 왼편에 위치한 문자부터 차례대로 0, 1, 2, … 등의
+<strong>인덱스</strong><font size="2">index</font>를 부여받는다.</p>
 <p>Strings can be indexed (subscripted), with the first character having index 0. There is no separate character type; a character is simply a string of size one:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># character in position 0</span>
