@@ -16,7 +16,8 @@
 #     * 레플릿 사용
 #     * 구글 코랩 사용
 
-# ## 아나콘다
+# (sec:anaconda_install)=
+# ## 아나콘다 설치
 
 # 아나콘다를 설치하려면 먼저 설치 프로그램을 다운로드해야 한다. 
 
@@ -79,7 +80,7 @@
 #     <img src="https://raw.githubusercontent.com/hj617kim/pybook/master/images/ch02/anaconda10.png" style="width:400px;">
 # </div>
 
-# ## 스파이더
+# ## 스파이더 실행
 
 # 스파이더는 과학프로그래밍을 위한 IDE로, 아나콘다를 설치하면 스파이더를 사용할 수 있다.
 
@@ -104,7 +105,8 @@
 
 #  편집기 부분과 터미널 부분은 파이썬 인터프리터를 공유한다. 그래서 편집기 부분에 코드를 입력 후 실행하면, 터미널 부분에서도 편집기 부분에서 정의된 변수나 함수 등을 사용할 수 있다. 
 
-# ## 주피터 노트북
+# (sec:jupyter_notebook)=
+# ## 주피터 노트북 실행
 
 # 주피터 노트북은 대화형 파이썬 인터프리터로, 웹브라우저에서 파이썬 코드를 작성하고 실행 결과를 바로 확인할 수 있다. 아나콘다를 설치하면 주피터 노트북을 사용할 수 있다. 
 
@@ -128,7 +130,8 @@
 #     <img src="https://raw.githubusercontent.com/hj617kim/pybook/master/images/ch02/jupyter06.png" style="width:800px;">
 # </div>
 
-# ## 비주얼 스튜디오 코드
+# (sec:vs_code)=
+# ## 비주얼 스튜디오 코드 설치
 
 # VS Code는 마이크로소프트에서 만든 소스 코드 에디터로 다양한 프로그래밍 언어를 지원하며 대부분의 OS에서 실행된다. 에디터는 들여쓰기나 코드 자동 완성, 문법 오류 감지 등 개발할 때 편리한 기능을 제공하기 때문에 개발 속도를 높이는 데 도움을 줄 수 있다.  
 
@@ -208,7 +211,8 @@
 #     <img src="https://raw.githubusercontent.com/hj617kim/pybook/master/images/ch02/vscode14.png" style="width:800px;">
 # </div>
 
-# ## 레플릿
+# (sec:replit)=
+# ## 레플릿 사용
 
 # 레플릿은 온라인 IDE로 별도의 프로그램 설치 없이 파이썬을 사용할 수 있다. 사용 방법은 간단하다. 
 
@@ -236,7 +240,8 @@
 
 # <div align="center"><img src="https://raw.githubusercontent.com/hj617kim/pybook/master/images/ch02/replit05_r.png" style="width:800px;"></div>
 
-# ## 구글 코랩
+# (sec:google_colab)=
+# ## 구글 코랩 사용
 
 # 구글 코랩은 구글에서 제공하는 주피터 노트북이다. 레플릿과 마찬가지로 사용 방법은 간단하다.
 

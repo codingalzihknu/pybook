@@ -18,6 +18,13 @@
 # 주피터 노트북을 모두 포함하는 
 # [아나콘다<font size = "2">Anaconda</font>](https://www.anaconda.com/products/individual) 패키지를 설치할 것을 추천한다.
 
+# :::{admonition} 참고
+# :class: info
+# 
+# {ref}`sec:anaconda_install`에서 캡처 이미지를 활용한 문서 형식으로 
+# 아나콘다의 설치 과정을 자세히 설명한다.
+# :::
+
 # ### 주피터 노트북
 
 # 간단한 파이썬 코드 설명은 **대화식 프로그래밍**<font size="2">interactive programming</font>을
@@ -40,11 +47,14 @@
 # IPython 콘솔은 파이썬 프로그래밍 이외에 보다 다양한 기능을 지원하며
 # 앞으로 필요한 기능을 하나씩 언급할 것이다.
 
-# :::{admonition} 아나콘다 설치와 주피터 노트북 사용법
-# :class: tip
+# :::{admonition} 참고
+# :class: info
 # 
-# [유튜버 나도코딩의 동영상](https://www.youtube.com/watch?v=dJfq-eCi7KI&t=2298s)에서 아나콘다의 설치 과정과
-# 주피터 노트북의 기초 사용법에 대한 상세한 설명을 들을 수 있다.
+# {ref}`sec:jupyter_notebook`에서 캡처 이미지를 활용한 문서 형식으로 
+# 주피터 노트북의 실행법을 간단히 설명한다.
+# 아나콘다의 설치 과정과 주피터 노트북의 기초 사용법에 대한 상세한 설명은 
+# [유튜버 나도코딩의 동영상](https://www.youtube.com/watch?v=dJfq-eCi7KI&t=2298s)을
+# 참고하면 좋다.
 # :::
 
 # ### 통합 개발 환경(IDE)
@@ -68,11 +78,13 @@
 # 여기서는 일명 **VS Code**라 불리는 
 # 비주얼 스튜디오 코드를 사용할 것을 추천한다.
 
-# :::{admonition} VS Code 설치와 사용법
-# :class: tip
+# :::{admonition} 참고
+# :class: info
 # 
-# [생활코딩의 동영상](https://www.youtube.com/watch?v=K8qVH8V0VvY&t=337s)에서 
-# VS Code의 설치와 사용법에 대한 상세한 설명을 들을 수 있다.
+# {ref}`sec:vs_code`에서 캡처 이미지를 활용한 문서 형식으로 
+# VS Code의 설치 과정과 사용법을 설명한다.
+# 보다 자세한 설명은 [생활코딩의 동영상](https://www.youtube.com/watch?v=K8qVH8V0VvY&t=337s)을
+# 참고한다.
 # :::
 
 # ## 온라인 개발 환경
@@ -91,10 +103,12 @@
 # 회원가입 시 구글 계정을 이용하면 나중에 구글 코랩 사이트와 연동할 때 좀 더 편리할 수 있다.
 # 무료 회원인 경우 일부 제한이 있지만 프로그래밍 입문에 필요한 요소는 모두 제공된다.
 
-# :::{admonition} 레플릿 사용법
-# :class: tip
+# :::{admonition} 참고
+# :class: info
 # 
-# [유튜버 알파쿠의 동영상](https://www.youtube.com/watch?v=YVHX62wX_zg)에서 레플릿 사이트의 사용법에 대한 상세한 설명을 들을 수 있다.
+# {ref}`sec:replit`에서 캡처 이미지를 활용한 문서 형식으로 
+# 레플릿 사이트의 설치 과정과 사용법을 설명한다.
+# 보다 자세한 설명은 [유튜버 알파쿠의 동영상](https://www.youtube.com/watch?v=YVHX62wX_zg)을 참고한다.
 # :::
 
 # ### 구글 코랩
@@ -103,17 +117,12 @@
 # 구글에서 제공하는 파이썬 전용 온라인 주피터 노트북이다.
 # 웹브라우저를 이용하여 어떤 준비 없이 바로 파이썬 프로그래밍을 시작할 수 있다.
 
-# :::{admonition} 구글 코랩 사용법
-# :class: tip
+# :::{admonition} 참고
+# :class: info
 # 
-# 구글 코랩의 사용법은 
-# [유튜버 봉수골 개발자 이선비의 동영상](https://www.youtube.com/watch?v=91E0qenm7W4)을 참고한다.
+# {ref}`sec:google_colab`에서 캡처 이미지를 활용한 문서 형식으로 
+# 레플릿 사이트의 설치 과정과 사용법을 설명한다.
+# 보다 자세한 설명은 [유튜버 봉수골 개발자 이선비의 동영상](https://www.youtube.com/watch?v=91E0qenm7W4)을 참고한다.
 # 그리고 입문용은 아니지만 구글 코랩만이 지원하는 유용한 고급 기능을 
 # [TensorFlow 팀의 동영상](https://www.youtube.com/watch?v=rNgswRZ2C1Y)에서 확인할 수 있다.
 # :::
-
-# ## 온&middot;오프라인 개발 환경 설정 안내
-
-# 지금까지 소개한 다양한 앱과 웹사이트의 설치 및 사용법을 
-# {ref}`ch:environment_setting`에서 캡처 이미지를 활용한 문서 형식으로 
-# 자세히 설명한다.
