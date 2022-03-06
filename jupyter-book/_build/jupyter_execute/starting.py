@@ -967,3 +967,7 @@ while a < 10:
 # 1. 단계 2로 돌아가서 `a < 10` 조건이 참인지 여부를 확인하고,
 #     참이면 단계 3을 반복하고,
 #     거짓이면 실행을 멈춘다.
+
+# ## 연습문제
+
+# 참고: [(실습) 프로그래밍 시작하기](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-starting.ipynb)
