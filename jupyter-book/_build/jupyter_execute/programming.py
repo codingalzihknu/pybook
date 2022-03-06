@@ -40,7 +40,7 @@
 
 # 아래 그림은 컴퓨터와 프로그램에 대한 설명을 요약헤서 보여준다. 
 # 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/hardware-vs-software.jpg" style="width:450px;"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/hardware-vs-software.jpg" style="width:450px;"></div>
 
 # 프로그램의 핵심은 문제 해결을 위한 특정 알고리즘이며, 
 # 사용되는 알고리즘에 따라 결과는 같지만 다르게 작동하는 프로그램을 구현할 수 있다. 
@@ -194,5 +194,5 @@
 # 따르면, 2022년 2월 기준으로 파이썬은 가장 인기있는 프로그래밍 언어이다. 
 
 # <div align="center">
-#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/tiobe_index2202.jpg" style="width:500px;">
+#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/tiobe_index2202.jpg" style="width:500px;">
 # </div>
