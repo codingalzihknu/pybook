@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (ch:functions)=
 # # 함수
 
 # 프로그램은 명령문의 합성으로 구현된다. 
