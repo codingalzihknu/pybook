@@ -378,6 +378,12 @@ print("안녕, " + name)
 # ```
 # :::
 
+# ### 문자열 인덱싱과 슬라이싱
+
+# 준비중 ...
+# 
+# 참고: https://codingalzi.github.io/pyfast/ch02.html
+
 # ### 화이트 스페이스
 
 # **화이트 스페이스**<font size="2">whitespace</font>는 

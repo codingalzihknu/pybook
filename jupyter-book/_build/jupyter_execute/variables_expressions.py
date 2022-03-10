@@ -352,7 +352,6 @@ import math
 
 
 # 원주율 
-
 pi = math.pi
 
 math.sin(pi/2)
