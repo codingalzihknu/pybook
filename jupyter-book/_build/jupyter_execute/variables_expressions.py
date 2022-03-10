@@ -127,6 +127,19 @@ print(num)
 # * 숫자로 시작할 수 없다.
 # * 파이썬에서 특별한 역할을 수행하는 
 #     **키워드**<font size="2">keyword</font>는 사용할 수 없다.
+# 
+#     파이썬 프로그래밍 언어의 키워드는 파이썬 최소 버전 3.7 이후로 총 35개이다.
+#     각 키워드의 역할은 필요할 때마다 설명될 것이다. 
+# 
+#     ```python
+#     False      await      else       import     pass
+#     None       break      except     in         raise
+#     True       class      finally    is         return
+#     and        continue   for        lambda     try
+#     as         def        from       nonlocal   while
+#     assert     del        global     not        with
+#     async      elif       if         or         yield
+#     ```
 
 # 허용되지 않는 사례 몇 가지를 살펴보자.
 
@@ -161,22 +174,6 @@ print(num)
 #         ^
 #     SyntaxError: cannot assign to False
 #     ```
-
-# **파이썬 키워드**
-
-# 파이썬 프로그래밍 언어의 키워드는 3.8 버전 기준으로 다음과 
-# 총 35개이다.
-# 각 키워드의 역할은 필요할 때마다 설명될 것이다. 
-# 
-# ```python
-# False      await      else       import     pass
-# None       break      except     in         raise
-# True       class      finally    is         return
-# and        continue   for        lambda     try
-# as         def        from       nonlocal   while
-# assert     del        global     not        with
-# async      elif       if         or         yield
-# ```
 
 # **소문자와 대문자**
 
