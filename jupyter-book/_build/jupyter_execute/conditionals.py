@@ -110,11 +110,11 @@ type(False)
 # 이외에 다음 비교 연산자가 참, 거짓을 가리키는 부울식에 많이 사용된다.
 # 
 # ```python
-#     x != y       # x와 y가 서로 다른 값을 가리킬 때 참
-#     x > y        # x가 y보다 클 때 참
-#     x < y        # x가 y보다 작을 때 참
-#     x >= y       # x가 y보다 크거나 같을 때 참
-#     x <= y       # x가 y보다 작거나 같을 때 참
+# x != y       # x와 y가 서로 다른 값을 가리킬 때 참
+# x > y        # x가 y보다 클 때 참
+# x < y        # x가 y보다 작을 때 참
+# x >= y       # x가 y보다 크거나 같을 때 참
+# x <= y       # x가 y보다 작거나 같을 때 참
 # ```
 
 # ::::{prf:example}
@@ -317,3 +317,7 @@ type(False)
 # ```
 # ::::
 # 
+
+# ## 연습문제 
+
+# 참고: [숫자 맞히기](https://formal.hknu.ac.kr/ProgInPython/notebooks/PiPy01A-ProgrammingStart.html)

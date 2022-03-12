@@ -597,7 +597,7 @@ type(num)
 # :label: number-guessing
 # 
 # 위 기본 명령문을 이용하여 숫자맞히기 게임을 아래와 같이 구현할 수 있다.
-# 조건문과 `while`을 아직 제대로 살펴보진 않았지만
+# `if` 조건문과 `while` 반복문을 아직 제대로 살펴보진 않았지만
 # 사용된 명령문의 의미를 어렵지 않게 이해할 수 있다. 
 # 
 # ```python
@@ -610,10 +610,11 @@ type(num)
 #     guess = int(input("0부터 20 사이의 숫자를 입력하세요: "))
 #     if guess == secret:
 #         print("맞았습니다!")
-#     elif guess > secret:
-#         print("너무 커요!")
 #     else:
-#         print("너무 작아요!")
+#         if guess > secret:
+#             print("너무 커요!")
+#         else:
+#             print("너무 작아요!")
 # 
 # print("게임 종료!")
 # ```
