@@ -827,4 +827,4 @@ print("입력한 값", num, "의 두 배는", doubleNum, "입니다.")
 
 # ## 연습문제
 
-# 참고: [(실습) 프로그래밍 시작하기](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-variables_expressions.ipynb)
+# 참고: [(실습) 변수, 값, 표현식, 명령문](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-variables_expressions.ipynb)
