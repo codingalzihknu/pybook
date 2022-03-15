@@ -876,3 +876,7 @@ bool('')
 
 bool('Hello')
 
+
+# ## 연습문제
+
+# 참고: [(실습) 기본자료형](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-datatypes.ipynb)
