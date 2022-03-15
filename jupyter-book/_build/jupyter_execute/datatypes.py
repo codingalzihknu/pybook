@@ -621,14 +621,12 @@ d = False
 type(d)
 
 
-# ### 논리식
-
 # **논리식**<font size="2">boolearn expression</font>은
-# 참 또는 거짓으로 계산될 수 있는 표현식이다.
-# 논리식은 기본적으로 등식, 부등식 등의 **비교 연산자**를 이용하여 표현한다.
-# 또한 **논리 연산자**를 이용하여 보다 복잡한 논리식을 구성할 수 있다.
+# `True` 또는 `False`를 가리키는 표현식이다. 
+# 논리식은 기본적으로 등식, 부등식 등의 **비교 연산자**를 이용하여 표현하며,
+# **논리 연산자**를 이용하여 보다 복잡한 논리식을 구성한다.
 
-# **비교 연산자**
+# ### 비교 연산자
 
 # 비교 연산자는 수, 문자열 등의 크기를 비교할 수 이며
 # 다음 연산자를 기본으로 지원한다.
@@ -680,6 +678,65 @@ type(d)
 # |`and`|그리고|`1==2 and 3==2+1`|`False`|
 # |`or`|또는|`1==2 and 3==2+1`|`True`|
 # |`not`|부정|`not 1==2`|`True`|
+
+# 논리 연산자들 사이의 우선순위는 `not` 이 가장 높고 `and` 와 `or` 는 동등하다.
+# 예를 들어
+# 
+# ```python
+# not a > b and b > c
+# ```
+# 
+# 는
+# 
+# ```python
+# (not a > b) and b > c
+# ```
+# 
+# 와는 서로 동치이지만
+# 
+# ```python
+# not (a > b and b > c)
+# ```
+# 
+# 와는 일반적으로 서로 다른 값을 가리킨다.
+
+# :::{prf:example}
+# :label: logical_op1
+# 
+# 세 개의 수 중에서 최댓값을 출력하는 코드는 다음과 같다.
+# 
+# ```python
+# a = 3
+# b = 7
+# c = -1
+# 
+# if a > b and a > c:
+#     print(a)
+# elif a > b and not a > c:
+#         print(c)
+# elif not a > b and b > c:
+#     print(b)
+# else:
+#     print(c)
+# ```
+# :::
+
+# :::{prf:example}
+# :label: logical_op2
+# 
+# 양수가 최소 하나라도 있는 경우에만 `True`를 출력한다.
+# 
+# ```python
+# a = -23
+# b = -7
+# c = 1
+# 
+# if a > 0 or b > 0 or not c <= 0:
+#     print(True)
+# else:
+#     print(False)
+# ```
+# :::
 
 # :::{admonition} 참고 
 # :class: info
@@ -876,6 +933,237 @@ bool('')
 
 bool('Hello')
 
+
+# ## 기타 자료형
+
+# 파이썬이 기본으로 제공하는 자료형은 지금까지 살펴 본 정수, 부동소수점, 문자열, 부울값 이외에
+# {numref}`%s장 <ch:collections>`에서 자세히 다룰
+# 리스트, 튜플, 사전, 집합 등의 
+# 모음<font size="2">collection</font> 자료형이 있다.
+# 그리고 사용자가 원하면 직접 새로운 자료형을 정의해서 사용할 수 있는 기능을 
+# 파이썬이 제공한다.
+# 
+# 자료형을 직접 정의하는 방법은 나중에 
+# {numref}`%s장 <ch:classes>`에서 
+# 클래스를 다룰 때 자세히 살펴볼 것이다. 
+# 여기서는 판다스<font size="2">Pandas</font> 라는 
+# 파이썬 추가 패키지가 제공하는 자료형인 `Timestamp` 를 소개한다.
+
+# ### 날짜와 시간
+
+# 판다스의 `Timestamp` 자료형은 날짜와 시간에 특화된 문자열 자료형으로 생각할 수 있다.
+# 하지만 문자열과는 달리 날짜와 시간과 관련된 연산을 지원한다.
+# 예를 들어 다음과 같이 1999년 10월 4일과
+# 오전 9시 30분을 문자열로 지정해보자.
+
+# In[63]:
+
+
+date_str = 'October 4, 1999'  # 문자열로 작성된 날짜
+time_str = '9:30:00'          # 문자열로 작성된 시간
+
+
+# :::{admonition} 참고 
+# :class: info
+# 
+# 한글이 아닌 영어식 날짜를 사용하는 이유는 이어서 소개할 `Timestamp` 자료형이 
+# 영어만 지원하기 때문이다.
+# :::
+
+# 이렇게 문자열로 지정된 날짜와 시간은 일상에서 사용되는 날짜와 시간의 연산에 활용될 수 있다.
+# 예를 들어 1999년 10월 4일은 오늘 기준으로 며칠 전인지를 알고 싶거나,
+# 오전 9시 30분에서 3시간 15분 뒤는 몇 시 몇 분인지 알고 싶을 때
+# 문자열을 이용해서 바로 답을 구할 수 없다. 
+# 하지만 판다스의 `Timestamp` 자료형으로 변환하면 일상적인 연산이 가능해진다.
+# 
+# 판다스 모듈은 관습적으로 `pd` 라는 이름으로 사용되며
+# 아래와 같이 불러와야 한다.
+
+# In[64]:
+
+
+import pandas as pd
+
+
+# 문자열로 작성된 날짜와 시간을 `Timestamp` 자료형으로 변환하려면
+# 다음 방식으로 형변환한다.
+# 
+# 날짜만 지정되면 시간은 새벽 0시 0분 0초로 설정된다.
+
+# In[65]:
+
+
+pd.Timestamp(date_str)
+
+
+# 시간만 지정되면 날짜는 코드가 실행된 날의 정보를 이용한다.
+
+# In[66]:
+
+
+pd.Timestamp(time_str)
+
+
+# 날짜와 시간을 모두 지정할 수 있다.
+
+# In[67]:
+
+
+birthday = date_str + ' ' + time_str
+birthday
+
+
+# In[68]:
+
+
+date_of_birth = pd.Timestamp(birthday)
+date_of_birth
+
+
+# `Timestamp` 값으로부터 년, 월, 일, 시, 분, 초 정보를 확인할 수 있다.
+
+# In[69]:
+
+
+date_of_birth.year, date_of_birth.month, date_of_birth.day
+
+
+# In[70]:
+
+
+date_of_birth.hour, date_of_birth.minute, date_of_birth.second
+
+
+# 달과 요일을 영어 표현으로 확인할 수도 있다.
+# 1999년 10월 4일은 월요일이었다.
+
+# In[71]:
+
+
+date_of_birth.day_name(), date_of_birth.month_name()
+
+
+# 현재 시각을 알고자 하면 `Timestamp` 클래스의 `now()` 메서드를 호출한다.
+
+# In[72]:
+
+
+now = pd.Timestamp.now()
+now
+
+
+# :::{admonition} 메서드
+# :class: info
+# 
+# **메서드**<font size="2">method</font>는 특정 자료형과
+# 함께 사용되는 함수이다.
+# {numref}`%s장에서 <ch:collections>`
+# 모음 자료형을 설명할 때 다양한 메서드를 살펴볼 것이다.
+# :::
+
+# ### 날짜와 시간 연산
+
+# `Timestamp` 자료형은 특정 연산을 지원한다. 
+# 예를 들어 나이는 현재 시간과 생일 사이의 차이로 계산된다.
+
+# In[73]:
+
+
+age = now - date_of_birth
+age
+
+
+# 뺄셈 연산 결과는 `Timedelta` 자료형의 값으로 지정되며
+# 일, 시, 분, 초, 마이크로초($10^{-6}$초) 단위로 계산된다. 
+
+# :::{admonition} 참고 
+# :class: seealso
+# 
+# 델타<font size="2">delta</font>는 그리스어 알파벳($\Delta$)이지만 증가량 또는 차이를 나타내는 의미로 많이 사용된다.
+# :::
+
+# `components` 속성에 차이 내용을 별도로 저장된다.
+
+# In[74]:
+
+
+age.components
+
+
+# 차이를 일 단위로 따로 확인할 수 있다.
+
+# In[75]:
+
+
+age.days
+
+
+# `Timedelta` 에 저장되는 가장 큰 단위는 년(year)이 아니라 일(day)이다.
+# 사실 일 년이 365일이기도 하고 366일 이기도 하기에 년 단위로 계산하면 부정확해진다.
+# 실제로 지구의 공전 주기는 약 365.24일이다.
+
+# In[76]:
+
+
+a_year = 365.24
+
+
+# 이 정보를 이용하여 나이를 계산하면 다음과 같다.
+
+# In[77]:
+
+
+age.days / a_year
+
+
+# 나이를 말할 때 보통 소수점 이하는 버린다.
+# 이를 위해 넘파이 모듈의 `floor()` 함수를 사용할 수 있다.
+
+# In[78]:
+
+
+import numpy as np
+
+np.floor(age.days / 365.24)
+
+
+# `ceil()` 함수를 이용하여 나이를 올림할 수도 있다.
+
+# In[79]:
+
+
+np.ceil(age.days / 365.24)
+
+
+# :::{prf:example}
+# :label: exp_timestamp_comparison
+# 
+# `Timestamp` 자료형의 값들을 서로 크기 비교가 가능하다.
+# 예를 들어 생일이 지났는지 여부를 다음과 같이 확인할 수 있다.
+# 
+# ```python
+# # 올해의 생일 날짜
+# bday_this_year = pd.Timestamp(now.year,
+#                               date_of_birth.month, 
+#                               date_of_birth.day)
+# bday_this_year
+# ```
+# 
+# ```python
+# Timestamp('2022-10-04 00:00:00')
+# ```
+# 
+# 크기 비교 연산자 `>` 를 이용하여 `now` 가 가리키는 값과 비교하면 생일이 지났는지 여부를 
+# 알 수 있다.
+# 
+# ```python
+# now > bday_this_year
+# ```
+# 
+# ```python
+# False
+# ```
+# :::
 
 # ## 연습문제
 

@@ -17,6 +17,7 @@ chapters:
 - file: conditionals
 - file: recursion
 - file: iterations
-- file: sequences
+- file: collections
 - file: files
 - file: modules
+- file: classes
