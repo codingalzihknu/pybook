@@ -11,8 +11,8 @@ chapters:
 - file: environment
 - file: starting
 - file: variables_expressions
+- file: casestudy_guessing
 - file: datatypes
-- file: casestudy_game_programming
 - file: functions
 - file: casestudy_function_interfaces
 - file: conditionals
