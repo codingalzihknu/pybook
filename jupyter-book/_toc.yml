@@ -12,8 +12,9 @@ chapters:
 - file: starting
 - file: variables_expressions
 - file: datatypes
+- file: casestudy_game_programming
 - file: functions
-- file: function_interfaces
+- file: casestudy_function_interfaces
 - file: conditionals
 - file: recursion
 - file: iterations
