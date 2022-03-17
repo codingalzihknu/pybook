@@ -1,521 +1,247 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 사례 연구: 숫자 알아맞히기
+# (case:guessing_numbers)=
+# # 사례 연구: 프로그램 개발
 
-# 1~100 사이의 정수가 주어졌을 때 추측으로 알아맞히는 게임을 구현한다.
+# 특정 문제를 해결하는 프로그램을 구현하기 위해
+# 먼저 해결 방법과 과정을 상세하게 묘사한 
+# **알고리즘**<font size="2">algorithm</font>을 구상한다.
+# 그런 다음 알고리즘을 컴퓨터에게 이해시키는 데에 필요한 
+# **프로그래밍 요소**들을 확인하고,
+# 그 요소들을 **논리적으로 어떻게 배치**할 것인지 고민한다. 
 # 
-# * 각 단계의 내용이 충족되도록 전 단계의 코드를 수정 보완하여라.  
-#     예를 들어, 2단계에 작성하는 코드는 1단계와 2단계의 내용이 모두 충족되어야 한다.
-# * 1~100 사이의 정수를 하나 선택하여 `answer` 변수에 할당한다.  
-#     `answer = 15   # 다른 값으로 변경 가능`
+# 여기서는 **숫자맞히기 게임**을 구현하는 과정을
+# 단계별로 확인하면서 프로그램 개발 과정을 구체적으로 살펴본다.
 
-# 1단계) `input()` 함수를 이용하여 1에서 100사이의 정수를 입력받는 코드를 작성하여라.
+# ## 숫자맞히기 게임
+
+# 사용자가 단 한 번의 추측으로 비밀<font size="2">secret</font> 숫자 19를 맞히면
+# `"맞았습니다"`를, 틀리면 `"틀렸습니다"`를 출력하는
+# **숫자맞히기 게임**의 
+# 가장 단순한 버전은 다음과 같다.
+# 선택 범위를 좁혀주기 위해 1부터 100까지의 수로 제한한다는 안내를 표시한다.
+
+# ```python
+# secret = 19
+# guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
 # 
-# > 1에서 100사이의 정수를 입력하세요 :  
-# > 입력하신 정수는 OO 입니다.
-
-# num_input = input("1에서 100사이의 정수를 입력하세요 :")
-# num_input = int(num_input)
-# print("입력하신 정수는", num_input, "입니다.")
-
-# 2단계) 참여자가 임의의 숫자를 입력하여 `answer`를 맞히면 `You win!`을, 아니면 `You lose!`를 출력하여라.
-
-# answer = 15
-# 
-# num_input = input("1에서 100사이의 정수를 입력하세요 :")
-# num_input = int(num_input)
-# print("입력하신 정수는", num_input, "입니다.")
-# 
-# if num_input == answer:
-#   print("You win!")
+# if guess == secret:
+#     print("맞았습니다!")
 # else:
-#   print("You lose!")
+#     print("틀렸습니다!")
+# 
+# print("게임 종료!")
+# ```
 
-# answer = 15
+# 위 코드에 사용된 프로그래밍 요소는 다음과 같으며,
+# 언급된 요소의 의미와 역할은 그리 어렵지 않게 파악할 수 있을 것이다.
+# - 변수 할당 
+#     - `secret`: 비밀 숫자 지정
+#     - `guess`: 사용자가 추측한 값 지정
+# - 함수 호출
+#     - `input()`: 사용자로부터 입력값 받기
+#     - `int()`: `input()` 함수가 반환한 문자열을 정수로 변환
+#     - `print()`: 정답 여부 및 게임 종료 확인 출력
+# - `if` 조건문: 비밀 숫자와 추측한 수의 동치성 여부 판단 결과에 따라
+#     비밀 숫자를 맞혔는지 여부 출력
+
+# 앞서 언급한 요소들에 대한 주석을 추가하면
+# 해당 요소들의 배치 논리를 이해할 수 있다.
+
+# ```python
+# # 게임 안내
+# print("숫자맞히기 게임에 환영합니다.")
 # 
-# num_input = input("1에서 100사이의 정수를 입력하세요 :")
-# num_input = int(num_input)
-# print("입력하신 정수는", num_input, "입니다.")
+# # 맞혀야 하는 숫자 지정
+# secret = 19
 # 
-# if num_input == answer:
-#   print("You win!")
+# # 입력할 숫자의 범위 안내 및 입력값 저장하기.
+# guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
+# 
+# # 두 숫자의 동치 여부에 따른 명령문 실행
+# if guess == secret:
+#     print("맞았습니다!")
 # else:
-#   print("You lose!")
-
-# 3단계) 참여자가 입력한 값이 `answer`와 다르다면, 큰지 작은지 여부를 알려줄 수 있는 코드를 작성하여라.
+#     print("틀렸습니다!")
 # 
-# ex) 너무 작아요(Too low), 너무 커요(Too high)
-
-# answer = 15
-# 
-# num_input = input("1에서 100사이의 정수를 입력하세요 :")
-# num_input = int(num_input)
-# print("입력하신 정수는", num_input, "입니다.")
-# 
-# if num_input == answer:
-#   print("You win!")
-# elif num_input > answer:
-#   print("You lose!")
-#   print("너무 커요(Too high)") 
-# else: 
-#   print("You lose!")
-#   print("너무 작아요(Too low)") 
-# 
-# 
-
-# 4단계) `try...except`를 이용하여 참여자가 정수가 아닌 값을 입력하면 `정수를 입력하세요`를 출력하여라.
-
-# answer = 15
-# 
-# try :
-#   num_input = input("1에서 100사이의 정수를 입력하세요 :")
-#   num_input = int(num_input)
-#   print("입력하신 정수는", num_input, "입니다.")
-# 
-#   if num_input == answer:
-#     print("You win!")
-#   elif num_input > answer:
-#     print("You lose!")
-#     print("너무 커요(Too high)") 
-#   else: 
-#     print("You lose!")
-#     print("너무 작아요(Too low)") 
-# 
-# except ValueError:
-#   print("정수를 입력하세요")
-
-# 5단계) 참여자가 1에서 100사이의 정수가 아닌 수를 입력하면 `1에서 100사이의 정수만 입력해야 합니다`를 출력하여라.
-
-# answer = 15
-# 
-# try :
-#   
-#   num_input = input("1에서 100사이의 정수를 입력하세요 :")
-#   num_input = int(num_input)
-# 
-#   if 0 <= num_input <= 100:
-# 
-#     print("입력하신 정수는", num_input, "입니다.")
-# 
-#     if num_input == answer:
-#       print("You win!")
-#     elif num_input > answer:
-#       print("You lose!")
-#       print("너무 커요(Too high)") 
-#     else: 
-#       print("You lose!")
-#       print("너무 작아요(Too low)") 
-#     
-#   else:
-# 
-#     print("1에서 100사이의 정수만 입력해야 합니다")
-#  
-# 
-# except ValueError:
-#   print("정수를 입력하세요")
-
-# 6단계) 참여자가 정답을 맞힐 때까지 입력을 요구하여라.
-
-# answer = 15
-# 
-# while True:
-# 
-#   try :
-#     
-#     num_input = input("1에서 100사이의 정수를 입력하세요 :")
-#     num_input = int(num_input)
-# 
-#     if 0 <= num_input <= 100:
-# 
-#       print("입력하신 정수는", num_input, "입니다.")
-# 
-#       if num_input == answer:
-#         print("You win!")
-#         break
-#         
-#       elif num_input > answer:
-#         print("You lose!")
-#         print("너무 커요(Too high)") 
-#       else: 
-#         print("You lose!")
-#         print("너무 작아요(Too low)") 
-#       
-#     else:
-# 
-#       print("1에서 100사이의 정수만 입력해야 합니다")
-#   
-# 
-#   except ValueError:
-#     print("정수를 입력하세요")
-
-# 7단계) 참여자가 몇 번 시도하여 정답을 맞혔는지를 보여줘라. 
-
-# count_trial = 0
-# answer = 15
-# 
-# while True:
-#   
-#   try :
-#     
-#     num_input = input("1에서 100사이의 정수를 입력하세요 :")
-#     count_trial = count_trial + 1
-#     num_input = int(num_input)
-# 
-#     if 0 <= num_input <= 100:
-# 
-#       print("입력하신 정수는", num_input, "입니다.")
-# 
-#       if num_input == answer:
-#         print("You win!")
-#         print("시도하신 횟수는: ", count_trial, '번 입니다.')
-#         break
-#         
-#       elif num_input > answer:
-#         print("You lose!")
-#         print("너무 커요(Too high)") 
-#       else: 
-#         print("You lose!")
-#         print("너무 작아요(Too low)") 
-#       
-#     else:
-# 
-#       print("1에서 100사이의 정수만 입력해야 합니다")
-#   
-# 
-#   except ValueError:
-#     print("정수를 입력하세요")
-
-# **문제2) 키와 몸무게를 인자로 받아 체질량지수(BMI)를 구하는 코드를 작성하여라. 아래의 사항들을 참고한다.**
-# 
-# $BMI = \frac{weight}{height^2}$
-# 
-# * 단위 :
-#   * 몸무게(weight) : `kg`
-#   * 키(height) : `m`
-# 
-# * `BMI` 수치에 따른 체중 분류
-#   * `BMI <= 18.5` 이면 저체중
-#   * `18.5 < BMI <= 23` 이면 정상
-#   * `23 < BMI <= 25` 이면 과체중
-#   * `25 < BMI <= 30` 이면 비만
-#   * `BMI > 30` 이면 고도비만
-
-# weight_input = input("몸무게를 입력해주세요 (kg):")
-# weight_input = float(weight_input)
-# 
-# height_input = input("키를 입력해주세요 (m):")
-# height_input = float(height_input)
-# 
-# BMI = weight_input/(height_input**2)
-# 
-# if BMI <= 18.5 :
-#   print("저체중입니다.")
-# 
-# elif BMI <= 23 :
-#   print("정상체중입니다.")
-# 
-# elif BMI <= 25 :
-#   print("과체중입니다.")
-# 
-# elif BMI <= 30 :
-#   print("비만입니다.")
-# 
-# else :
-#   print("고도비만입니다.")
-
-# **문제3) 두 개의 정수 `a`, `b`를 입력받아 `a/b`를 계산하는 코드를 작성하여라.**
-# 
-# 단, 아래의 내용을 만족하도록 코드를 작성한다.
-# * 정수가 아닌 값이 입력될 경우, 정수를 입력하라고 전달한다.
-# * `b`에 `0`이 입력될 경우, 0이 아닌 숫자를 입력하라고 전달한다. 
-# * 올바른 값이 입력될 때까지 입력을 요구한다. 
-
-# 
-# while True:
-# 
-#   try :
-#     a = int(input("정수 a를 입력해주세요: "))
-#     b = int(input("정수 b를 입력해주세요: "))
-# 
-#     a_over_b = a/b
-#     print("a/b = ", a_over_b)
-#     break
-# 
-#   except ValueError:
-#     print("정수를 입력해주세요")
-# 
-#   except ZeroDivisionError:
-#     print("0이 아닌 b를 입력해주세요")
-# 
-
-# **문제4) 숫자 야구 게임 코드를 작성하여라.**
-# 
-# 숫자 야구 게임은 임의로 정한 3자리의 수(`ans`)를 참여자가 맞히는 게임으로, 아래의 규칙을 따른다.
-# * 사용되는 수는 1~9까지의 서로 다른 정수이다. 
-# * 참여자가 입력한 수가 `ans`와 다를 경우, 참여자에게 결과를 알려준다.
-#   * 숫자와 위치가 맞으면, 스트라이크
-#   * 숫자는 맞지만 위치가 틀리면, 볼
-#   * 숫자와 위치가 모두 틀리면, 아웃  
-# 
-# 예를 들어, ans가 123 일 때, 참여자가 456을 입력하면 '아웃', 257을 입력하면 '1볼', 273을 입력하면 '1볼 1스트라이크'이다. 
-# 
-# 
-# * 각 단계의 내용이 충족되도록 전 단계의 코드를 수정 보완하여라.  
-# 예를 들어, 2단계에 작성하는 코드는 1단계와 2단계의 내용이 모두 충족되어야 한다.
-# * 3자리 수를 하나 선택하여 `ans` 변수에 할당한다.  
-# `ans = 157   # 다른 값으로 변경 가능`
-# 
-# 1단계) 3자리의 수를 입력받는 코드를 작성하여라.
-# > 3자리의 수를 입력하세요 : 
-
-# baseball_input = input("3자리의 수를 입력하세요: ")
-
-# 2단계) 참여자가 입력한 3자리의 수와 `ans`를 비교하여, 스트라이크가 몇 인지를 출력하여라. 
-
-# ans = 157
-# ans = str(ans)
-# 
-# baseball_input = input("3자리의 수를 입력하세요: ")
-# 
-# count_strike = 0
-# 
-# for i in range(3):
-#   if ans[i] == baseball_input[i]:
-#     count_strike += 1
-# 
-# print(count_strike, " 스트라이크!") 
-# 
-# 
-
-# ```
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# .
+# # 종료 확인 출력    
+# print("게임 종료!")
 # ```
 
-# 연습을 더 하고 싶다면, 아래의 문제를 풀어보세요!
-# 
-# **[추가 문제1] 문제4)를 완성해보자.**  
-# 3단계) 참여자가 입력한 3자리의 수와 `ans`를 비교하여, 스트라이크와 볼이 몇 인지를 출력하여라.
+# ## 프로그램 업그레이드 1편
 
-# ans = 157
-# ans = str(ans)
+# 앞서 설명한 게임은 불공정하다.
+# 비밀 숫자에 대한 아무런 정보를 주지 않기 때문이다.
+# 공정성을 높이기 위해 동치 여부 이외에 크기 비교도 실행해서
+# 사용자가 입력한 값이 너무 큰지 또는 너무 작은지 여부를 알려주도록 해보자.
 # 
-# baseball_input = input("3자리의 수를 입력하세요: ")
-# 
-# count_strike = 0
-# count_ball = 0
-# 
-# for i in range(3):
-# 
-#   if ans[i] in baseball_input:
-# 
-#     if ans[i] == baseball_input[i]:
-#       count_strike = count_strike + 1
-#     else:
-#       count_ball = count_ball + 1
-# 
-# print(count_strike, " 스트라이크!", count_ball, " 볼!")
-#  
+# 이를 위해 `else` 본문에 `guess` 와 `secret`의 크기를 비교하는 `if` 조건문을
+# 추가한다.
+# 또한 숫자맞히기 게임을 안내하는 문장도 게임 시작 전에 출력하도록 한다.
 
-# 4단계) 참여자가 입력한 3자리의 수와 `ans`를 비교하여, 아웃이면 아웃을, 아니면 스트라이크와 볼이 몇 인지를 출력하여라.
-
-# ans = 157
-# ans = str(ans)
+# ```python
+# print("숫자맞히기 게임에 환영합니다.")
 # 
-# baseball_input = input("3자리의 수를 입력하세요: ")
+# secret = 19
+# guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
 # 
-# count_strike = 0
-# count_ball = 0
-# 
-# for i in range(3):
-# 
-#   if ans[i] in baseball_input:
-# 
-#     if ans[i] == baseball_input[i]:
-#       count_strike = count_strike + 1
-#     else:
-#       count_ball = count_ball + 1
-# 
-# if count_strike + count_ball == 0:
-#   print("아웃!")
+# if guess == secret:
+#     print("맞았습니다!")
 # else:
-#   print(count_strike, " 스트라이크!", count_ball, " 볼!")
-#  
-
-# 들여쓰기를 주의해 주세요!
-
-# 5단계) 참여자가 정답을 맞힐 때까지 입력을 요구하여라.
-
-# ans = 157
-# ans = str(ans)
-# 
-# while True:
-# 
-#   baseball_input = input("3자리의 수를 입력하세요: ")
-# 
-#   count_strike = 0
-#   count_ball = 0
-# 
-#   for i in range(3):
-# 
-#     if ans[i] in baseball_input:
-# 
-#       if ans[i] == baseball_input[i]:
-#         count_strike = count_strike + 1
-#       else:1
-#         count_ball = count_ball + 1
-# 
-#   if count_strike + count_ball == 0:
-#     print("아웃!")
-#   else:
-#     print(count_strike, " 스트라이크!", count_ball, " 볼!")
-#     if count_strike == 3:
-#       print("게임 끝!")
-#       break
-#   
-
-# 6단계) 숫자가 아닌 값을 입력하면, `숫자를 입력하세요`를 출력하여라.
-
-# ans = 157
-# ans = str(ans)
-# 
-# while True:
-# 
-#   try:
-# 
-#     baseball_input = input("3자리의 수를 입력하세요: ")
-# 
-#     baseball_int = int(baseball_input)
-# 
-#     count_strike = 0
-#     count_ball = 0
-# 
-#     for i in range(3):
-# 
-#       if ans[i] in baseball_input:
-# 
-#         if ans[i] == baseball_input[i]:
-#           count_strike = count_strike + 1
-#         else:
-#           count_ball = count_ball + 1
-# 
-#     if count_strike + count_ball == 0:
-#       print("아웃!")
+#     if guess > secret:          # 크기 비교
+#         print("너무 커요!")
 #     else:
-#       print(count_strike, " 스트라이크!", count_ball, " 볼!")
-#       if count_strike == 3:
-#         print("게임 끝!")
-#         break
-#   
-#   except ValueError:
-#     print("숫자를 입력하세요")
+#         print("너무 작아요!")
+# 
+# print("게임 종료!")
+# ```
 
-# [note] while문은 반드시 loop를 빠져나올 수 있도록 코드를 고려한다
+# 위 코드에는 `if` 조건문이 중첩으로 사용되었다.
+# 하지만 자세히 보면
+# `guess`와 `secret`가 가리키는 두 값이 같거나, 크거나, 그렇지 않을 때 등 
+# 세 가지 경우를 다룬다.
+# 
+# 이런 경우 굳이 중첩 조건문을 사용하는 대신에 아래와 같이 일반화된 조건문을 사용하는 것이 
+# 권장된다. 
+# 이유는 아무래도 중첩 조건문은 코드 이해를 보다 어렵게 하기 때문이다.
 
-# 7단계) 세 자리 미만의 수를 입력하면, `세 자리의 수를 입력하세요`를 출력하여라.  
+# ```python
+# print("숫자맞히기 게임에 환영합니다.")
 # 
+# secret = 19
+# guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
+# 
+# if guess == secret:
+#     print("맞았습니다!")
+# elif guess > secret:
+#     print("너무 커요!")
+# else:
+#     print("너무 작아요!")
+# 
+# print("게임 종료!")
+# ```
 
-# ans = 157
-# ans = str(ans)
+# ## 프로그램 업그레이드 2편
+
+# 게임의 공정성이 조금 개선되었지만 아직 부족하다.
+# 예를 들어, 추측이 틀려도 게임이 바로 멈추기 때문에 게임 사용자 입장에서는 조금 허무해질 수 있다.
+# 이점을 보완하기 위해 사용자가 비밀 숫자를 맞힐 때까지 프로그램이 실행되도록 해보자.
+
+# 사용자가 몇 번만에 문제를 맞힐지를 미리 알 수 없기에
+# 특정 조건이 만족되는 한 동일 작업을 반복하도록 하는
+# `while` 반복문을 사용한다.
+# 요구되는 조건식과 본체 명령문은 아래 내용을 담아야 한다.
 # 
-# while True:
+# * 조건식: 사용자가 입력한 숫자가 정답과 다른지 여부 판단.
 # 
-#   try:
-# 
-#     baseball_input = input("3자리의 수를 입력하세요: ")
-# 
-#     baseball_int = int(baseball_input)
-#     baseball_3digit = baseball_input[2]
+#     ```python
+#     guess != secret
+#     ```
 #     
+# * 본체 명령문: 사용자에게 새로운 숫자를 입력 받아 정답 여부 또는 크기 비교 여부 전달.
+#     즉, 아래 코드를 본문으로 사용해야 함.
 # 
-#     count_strike = 0
-#     count_ball = 0
+#     ```python
+#     guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
 # 
-#     for i in range(3):
-# 
-#       if ans[i] in baseball_input:
-# 
-#         if ans[i] == baseball_input[i]:
-#           count_strike = count_strike + 1
-#         else:
-#           count_ball = count_ball + 1
-# 
-#     if count_strike + count_ball == 0:
-#       print("아웃!")
+#     if guess == secret:
+#         print("맞았습니다!")
+#     elif guess > secret:
+#         print("너무 커요!")
 #     else:
-#       print(count_strike, " 스트라이크!", count_ball, " 볼!")
-#       if count_strike == 3:
-#         print("게임 끝!")
-#         break
-#   
-#   except ValueError:
-#     print("숫자를 입력하세요")
-#     
-#   except IndexError:
-#     print("세 자리의 수를 입력하세요")
+#         print("너무 작아요!")
+#     ```
 
-# **[추가문제2] 영어단어를 입력받아 알파벳순으로 출력하는 코드를 작성하여라.**  
-# 예를 들어, `dog`를 입력하면, `dgo`를 출력한다.
+# 아래 코드에서 `guess = -1`, 즉 음의 정수로 설정한 이유는 
+# 비밀 숫자가 1보다 큰 양수이기에
+# `guess != secret` 이 거짓이 되어
+# `while` 반복문의 본문이 최소한 한 번은 실행되도록 하기 위함이다.
 
-# word_input = input("영어단어를 입력해주세요 :")
-# word_input = word_input.lower() # 소문자로 변환
+# ```python
+# print("숫자맞히기 게임에 환영합니다.")
 # 
-# word_output = word_input
+# secret = 19
+# guess = -1   # 이어지는 while 반복문이 최소 한 번은 실행되도록 하기 위함임.
 # 
-# for i in range(len(word_input)):
-#     
-#   minindex = i
-#   
-#   for j in range(i,len(word_input)):
-#     if word_output[j] < word_output[minindex]: 
-#       minindex = j
-#   
-#   word_temp = ""  ## i와 minindex의 위치를 교환하기 위한 temp 변수
-# 
-#   for k in range(len(word_input)):
-# 
-#     if k == i:
-#       word_temp = word_temp + word_output[minindex]
-#     elif k == minindex:
-#       word_temp = word_temp + word_output[i]
+# while guess != secret:
+#     guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
+#     if guess == secret:
+#         print("맞았습니다!")
+#     elif guess > secret:
+#         print("너무 커요!")
 #     else:
-#       word_temp = word_temp + word_output[k]
-#     
-#   word_output = word_temp
-#   
-# print("알파벳순 : " + word_output)
-
-# [note] list를 이용하면 간편하게 풀 수 있다.
-
-# **[추가문제3] 다음 중 오류가 발생하는 코드는 무엇인가**
+#         print("너무 작아요!")
 # 
-# (a)
+# print("게임 종료!")
 # ```
-# if 3/0 or True :
-#   print("A")
+
+# ## 프로그램 업그레이드 3편
+
+# 앞서 프로그램 업그레이드 2편에서 개선한 코드는 상당히 훌륭하다. 
+# 사용자가 숨은 값을 맞출 수 있도록 유도하며, 숫자 19를 맞혀야만 종료된다.
+# 
+# 그런데 위 게임은 한 번 하면 더 이상 사용하지 않는다. 
+# 맞혀야 하는 숫자가 항상 19이기 때문이다.
+# 따라서 위 게임을 좀 더 흥미롭게 만들기 위해서 맞혀야 하는 숫자를 게임이 실행될 때마다 임의로 변하도록 바꿀 필요가 있다.
+
+# **`random` 모듈**
+
+# 임의의 정수를 생성하기 위해 `randint` 함수를 이용하는 방법이 있다.
+# `randint` 함수는 두 개의 정수 인자를 받으면 두 정수를 양끝으로 갖는 구간에서 임의의 값을 정하여 리턴한다.
+# 예를 들어, 1부터 100사이의 정수 중에서 임의의 값을 선택하려면 `randint(1, 100)`이라 작성하면 된다.
+# 
+# 그런데 `randint` 함수는 덧셈, 뺄셈 등 사칙연산과는 달리,
+# 먼저 `random` 이라는 모듈을 불러와야(import) 사용할 수 있다.
+# 
+# **모듈**(module)은 파이썬 소스코드를 담은 파일이며, 확장자로 py를 사용한다.
+# 모듈은 서로 연관이 있는 다양한 함수들을 하나의 파일로 묶어 놓을 때 유용하게 사용한다.
+# 
+# 예를 들어, `random` 모듈, 즉, `random.py` 파일 안에는 무작위수 생성과 관련된 
+# 다양한 함수들이 포함되어 있으며,
+# 지정된 구간 사이에서 임의의 정수를 생성하는 `randint` 함수가 그중에 하나이다.
+
+# ```python
+# >>> from random import randint
+# >>> randint(1, 100)
+# 69
+# >>> randint(1, 100)
+# 36
+# ```
+
+# 숫자맞히기 게임에 무작위수 생성 기능을 추가하고자 하려면,
+# `secret` 변수가 가리키는 숫자를  고정된 숫자 19가 아니라
+# 아래와 같이 `randint` 함수가 0과 100 사이에서 임의로 생성하는 값으로 지정해야 한다.
+# 
+# ```python
+# secret = randint(1, 100)
 # ```
 # 
-# (b)
+# 앞서 구상한 내용을 토대로 하여 아래와 같이 `randint` 함수를 활용하면,
+# 소스코드 개발자 또한 맞혀야 하는 숫자를 알 수 없게 된다.
+# 
+# 아래 게임을 여러 번 실행하면서 게임의 성능을 확인해보자.
+
+# ```python
+# from random import randint
+# 
+# print("숫자맞히기 게임에 환영합니다.")
+# 
+# secret = randint(1,100)
+# guess = -1
+# 
+# while guess != secret:
+#     guess = int(input("1부터 100 사이의 숫자 하나를 입력하세요: "))
+#     if guess == secret:
+#         print("맞았습니다!")
+#     elif guess > secret:
+#         print("너무 커요!")
+#     else:
+#         print("너무 작아요!")
+# 
+# print("게임 종료!")
 # ```
-# if True or 3/0 :
-#   print("B")
-# ```
 
-# if 3/0 or True :
-#   print("A")
+# ## 연습문제
 
-# if True or 3/0 :
-#   print("B")
-
-# or 연산은 앞이 True이면 뒤를 계산하지 않고 코드를 실행한다! 
+# 참고: [(실습) 사례 연구: 프로그램 개발](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-guessing_numbrs.ipynb)

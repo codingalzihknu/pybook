@@ -887,7 +887,7 @@ print("2 시간은", hour2sec(2), "초입니다.")
 # 아래 그림은 `hour2sec(2)`가 실행되면 이어서 바로 `hour2min(2)`가 호출되어
 # `hour`와 `min` 두 지역 변수로 구성된 프레임이 포함된 콜 스택의 상태를 보여준다.
 # 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/notebooks/images/stack-diagram.jpg" style="width:275px;"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/stack-diagram.jpg" style="width:275px;"></div>
 # 
 # - 맨 위 프레임: Global frame은 전역적<font size="2">global</font>으로 
 #     사용 가능한 함수 이름과 전역 변수를 관리한다.

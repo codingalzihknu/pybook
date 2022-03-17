@@ -1119,4 +1119,4 @@ x[0][1]
 
 # ## 연습문제
 
-# 참고: [(실습) 프로그래밍 시작하기](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-starting.ipynb)
+# 참고: [(실습) 사례 연구: 프로그램 개발 과정](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-starting.ipynb)
