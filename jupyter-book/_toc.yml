@@ -11,7 +11,7 @@ chapters:
 - file: environment
 - file: starting
 - file: variables_expressions
-- file: casestudy_guessing_numbers
+- file: casestudy_planning
 - file: datatypes
 - file: functions
 - file: casestudy_function_interfaces
