@@ -387,4 +387,4 @@
 
 # ## 연습문제
 
-# 참고: [(실습) 사례 연구: 프로그램 구상](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-guessing_numbers.ipynb)
+# 참고: [(실습) 사례 연구: 프로그램 구상](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-casestudy_planning.ipynb)
