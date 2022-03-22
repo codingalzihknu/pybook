@@ -321,14 +321,11 @@
 # ```python
 # try:
 #     guess = int(input("1부터 100 사이의 정수 하나를 입력하세요: "))
-#     
-#     # 기타 명령문
-#     
 # except:
 #     print("정수를 입력하세요.")
 # ```
 
-# 아래 코드는 `except` 에 `continue` 를 대신 사용한다. 
+# 아래 코드는 `except` 부분에 에 `continue` 를 대신 사용한다. 
 # `continue` 는 현재 실행중인 `while` 반복문을
 # 다시 시작하라고 지정할 때 사용하는 명령문이다.
 # 따라서 정수가 아닌 값이 입력되면 `while` 명령문의 처음으로 돌아가서 
@@ -343,20 +340,21 @@
 # guess = -1
 # 
 # while guess != secret:
+#     
 #     try:  # 정수 입력이 아닌 경우 대처             
 #         guess = int(input("1부터 100 사이의 정수 하나를 입력하세요: "))
-# 
-#         if guess == 0:
-#             break
-#         
-#         if guess == secret:
-#             print("맞았습니다!")
-#         elif guess > secret:
-#             print("너무 커요!")
-#         else:
-#             print("너무 작아요!")
 #     except: 
-#         continue  # 정수 입력이 아닌 경우 while 반복문 새로 시작
+#         continue  # while 반복문의 처음으로 돌아가기
+# 
+#     if guess == 0:
+#         break
+# 
+#     if guess == secret:
+#         print("맞았습니다!")
+#     elif guess > secret:
+#         print("너무 커요!")
+#     else:
+#         print("너무 작아요!")
 # 
 # print("게임 종료!")
 # ```
