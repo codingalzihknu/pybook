@@ -475,7 +475,7 @@ np.sin(radian)
 # 매개변수n = 인자n
 # ```
 
-# ::::{prf:example}
+# :::{prf:example}
 # :label: myAdd
 # 
 # 두 숫자의 합을 계산하는 함수 `myAdd`를 아래와 같이 직접 정의할 수 있다.
@@ -497,21 +497,59 @@ np.sin(radian)
 # 
 # 결국 `sum`은 정수 `3`을 가리키게 되어 함수의 실행은 3을 
 # 반환하면서 종료한다.
-# ::::
-
-# ::::{prf:example} 인자 없는 함수
-# :label: no-parameters
 # 
-# 매개 변수를 사용하지 않는 함수라 하더라도 반드시 괄호와 함께 호출해야 한다.
+# 함수의 반환값은 아래 코드에서처럼 다른 변수의 할당 또는 다른 함수의 인자로 사용될 수 있다.
 # 
 # ```python
-# >>> def myPrint():
-# ...     print('인자 없어요!')
-# ...
-# >>> myPrint()
-# 인자 없어요!
+# >>> m2p5 = myAdd(-2, 5)
+# >>> print("-2와 5의 합은", m2p5, "입니다.")
+# -2와 5의 합은 3 입니다.
 # ```
-# ::::
+# :::
+
+# :::{prf:example} 인자 없는 함수
+# :label: no-parameters
+# 
+# 아래 코드에서 정의된 `grid2()` 함수는 인자를 받지 않으며, 반환값도 없다.
+# 
+# ```python
+# pm = "+ - - - - "
+# bs = "|         "
+# plus = "+"
+# bar = "|"
+# 
+# def print_pm(s):
+#     print(s)
+# 
+# def print_bs(s):
+#     print(s)
+#     
+# def grid2():
+#     for num1 in [1, 2]:
+#         print_pm(pm * 2 + plus)
+#         for num2 in [1, 2, 3, 4]:
+#             print_bs(bs * 2 + bar)
+# 
+#     print_pm(pm*2 + plus)
+# ```
+# 
+# `grid()` 함수를 호출하면 아래 모양의 격자가 그려진다.
+# 
+# ```python
+# >>> grid()
+# + - - - - + - - - - +
+# |         |         |
+# |         |         |
+# |         |         |
+# |         |         |
+# + - - - - + - - - - +
+# |         |         |
+# |         |         |
+# |         |         |
+# |         |         |
+# + - - - - + - - - - +
+# ```
+# :::
 
 # ### 제1종 객체 
 
@@ -928,39 +966,4 @@ print("2 시간은", hour2sec(2), "초입니다.")
 
 # ## 연습문제 
 
-# 1. 다음 조건을 만족시키는 `right_align()`라는 함수를 정의하라.
-#     * `s` 라는 매개 변수 하나만 사용한다.
-#     * 하나의 문자열과 함께 호출되면 해당 문자열의 끝이 20번째 칸에 위치하도록
-#         화면에 출력하라.
-# 
-#     ```python
-#     >>> right_align('python')
-#                   python
-#     >>> right_align('hello python')
-#             hello python
-#     ```                                                                 
-# 
-#     힌트: 입력 문자열의 길이를 확인 한 후에 출력할 문자열을 지정하라.
-#     문자열의 길이는 `len()` 함수를 이용한다.
-# 
-# 1. 지금까지 배운 방식만을 이용하여 다음 문제를 해결하라.
-# 
-#     1. 다음과 같은 격자를 그리는 함수를 작성하라.
-# 
-#         ```
-#         + - - - - + - - - - +
-#         |         |         |
-#         |         |         |
-#         |         |         |
-#         |         |         |
-#         + - - - - + - - - - +
-#         |         |         |
-#         |         |         |
-#         |         |         |
-#         |         |         |
-#         + - - - - + - - - - +
-#         ```
-# 
-#         힌트: {numref}`%s <sec:keyword-arguments>`절의 `print()` 함수 설명 참고.
-# 
-#     1. 위 문제와 유사하게 4개의 행과 4개의 열을 갖는 격자를 그리는 함수를 작성하라.
+# 참고: [(실습) 함수](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-functions.ipynb)
