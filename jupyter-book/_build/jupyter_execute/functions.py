@@ -565,6 +565,8 @@ np.sin(radian)
 # 대표적으로 C 언어의 경우 함수는 제1종 객체가 아니다.
 # 즉, 함수를 다른 함수의 인자 또는 반환값으로 사용할 수 없다.
 # 반면에 파이썬은 다룰 수 있는 모든 것이 제1종 객체이다. 
+
+# **함수 활용: 변수 할당**
 # 
 # 함수가 하나의 값이기에 예를 들어 다음과 같이 
 # `myPrint()` 함수를 변수 할당에 사용할 수 있다.
@@ -575,7 +577,6 @@ np.sin(radian)
 # >>> a_function = myPrint
 # >>> a_function
 # <function myPrint at 0x7f1c890a2af0>
-# >>> 
 # ```
 # 
 # 괄호을 사용하면 함수 호출을 의미하깅 아래 코드는 `myPrint()` 함수가
@@ -585,7 +586,6 @@ np.sin(radian)
 # >>> a_return_value = myPrint()
 # 인자 없어요!
 # >>> a_return_value
-# >>> 
 # ```
 
 # :::{admonition} C 언어의 포인터 활용
@@ -605,90 +605,103 @@ np.sin(radian)
 # 포인터가 C 언어에서 핵심적인 역할을 수행하는 이유가 바로 여기에 있다.
 # :::
 
-# ::::{prf:example} 함수를 인자로 받는 함수
-# :label: exp:first-class-function_1
+# **함수 활용: 인자**
 # 
-# 아래 조건을 만족하도록 `do_twice()` 함수를 정의해보자.
+# 함수를 다른 함수의 인자로 사용할 수 있다. 
+# 예를 들어 아래 `do_twice()` 함수를 살펴보자.
+
+# In[26]:
+
+
+def do_twice(func, arg):
+    x = func(arg)
+    return func(x)
+
+
+# 위 함수의 인자와 반환값은 다음과 같다.
 # 
-# * 두 개의 인자를 받는다.
-# * 첫째 인자는 하나의 인자를 받는 함수가 사용된다.
-# * 둘째 인자는 첫째 인자로 사용된 함수의 인자로 사용될 값이다. 
-# * 둘째 인자로 들어온 값에 대해 두 번 연속 적용한 값을 반환한다.
+# * 첫째 인자: 하나의 인자를 받는 함수
+# * 둘째 인자: 첫째 인자로 사용된 함수의 인자로 사용될 값
+# * 반환값: 둘째 인자로 들어온 값에 대해 첫째 인자 함수를 두 번 연속 적용한 값
 # 
 # 함수 `f`를 인자 `x`에 두 번 연속 적용한다는 의미는`f(f(x))`를 의미한다.
-# 따라서 `do_twice()` 함수를 다음과 같이 정의할 수 있다.
-# 
-# ```python
-# def do_twice(func, arg):
-#     x = func(arg)
-#     return func(x)
-# ```
-# 
-# `three_times()` 함수는 인자의 세 배를 반환한다.
-# 
-# ```python
-# def three_times(num):
-#     return num * 3
-# ```
-# 
+
+# 다음 `three_times()` 함수는 인자의 세 배를 계산하여 반환한다.
+
+# In[27]:
+
+
+def three_times(num):
+    return num * 3
+
+
 # `three_times()` 함수를 정수 `2`에 대해 연속으로 적용한 값은 18이다.
 # 실제로 2의 세 배는 6, 6의 세 배는 18이다.
 # 다음과 같이 확인할 수 있다.
-# 
-# ```python
-# >>> do_twice(three_times, 2)
-# 18
-# ```
-# 
-# 위 계산은 다음과 동일하다.
-# 
-# ```python
-# >>> three_times(three_times(2))
-# 18
-# ```
-# 
-# ::::
 
-# ::::{prf:example} 함수를 반환하는 함수
-# :label: exp:first-class-function_2
-# 
-# `adding_n_func(n)`를 호출하면
-# `n`을 더하는 함수 `myAdd_n()`을 반환한다.
-# 
-# ```python
-# def adding_n_func(n):
-# 
-#     def myAdd_n(m):
-#         return n + m
-#     
-#     return myAdd_n
-# ```
-# 
-# 그려면 `adding_n_func(10)`은 입력값에 10을 더한 값을 반환하는 함수를
-# 반환한다.
-# 
-# ```python
-# >>> myAdd10 = adding_n_func(10)
-# >>> myAdd10(3)
-# 13
-# ```
-# ::::
+# In[28]:
 
-# :::{admonition} C 언어의 포인터 활용
-# :class: info
+
+three_times(three_times(2))
+
+
+# `do_twice()` 함수를 이용하여 동일한 결과를 얻는다.
+
+# In[29]:
+
+
+do_twice(three_times, 2)
+
+
+# **함수 활용: 반환값**
 # 
-# C 언어는 제1종 객체의 범위가 매우 제한적이다. 
-# 반면에 파이썬, 
-# C++, C#, 
-# 자바<font size="2">Java</font>, 
-# 자바스크립트<font size="2">Javascript</font>, 
-# 스위프트<font size="2">Swift</font> 등
-# 보다 현대적인 프로그래밍 언어는
-# 이미 또는 점점 더 거의 모든 객체를 제1종 객체로 지원한다.
+# 함수를 반환하는 함수를 정의할 수 있다.
+# 예를 들어 다음 `adding_n_func(n)`를 호출하면 `n`을 더하는 함수 `myAdd_n()`을 반환한다.
+
+# In[30]:
+
+
+def adding_n_func(n):
+
+    def myAdd_n(m):
+        return n + m
+    
+    return myAdd_n
+
+
+# `myAdd_n()` 함수는 `adding_n_func()` 함수의 본문에서 정의되는 함수이다.
+# 따라서 `adding_n_func()` 함수 밖에서는 절대 사용될 수 없는 일종의 
+# 지역 변수이며, 이런 의미로 **지역 함수**<font size="2">local function</font>라고 불린다. 
 # 
-# C 언어는 함수, 구조체 등 제1종 객체가 아닌 객체를
-# 포인터를 이용하여 다룬다. 
-# 포인터가 C 언어에서 핵심적인 역할을 수행하는 이유가 여기에 있다.
+# 실제로 `myAdd_n()` 함수를 사용하려면 `n` 에 해당하는 값이 필요한데 그 값은
+# `adding_n_func(10)` 등이 먼저 실행되어야 정해진다. 
+# 
+# 이 성질을 이용하여 입력값에 10을 더한 값을 반환하는 함수 `myAdd10()` 를 다음과 같이 정의하여
+# 활용할 수 있다.
+
+# In[31]:
+
+
+myAdd10 = adding_n_func(10)  # 10 을 더하는 함수
+myAdd10(3)                   # 10 + 3
+
+
+# :::{prf:example}
+# :label: map_function
+# 
+# `map()` 함수는 하나의 함수 `f` 와 하나의 리스트 또는 튜플 등을 모음 자료형 값 `iter` 을 인자로 받는다.
+# 그러면 함수 `f` 를 `iter` 에 포함된 각 항목에 적용하여 반환된 값들로 이루어진
+# `map` 자료형의 값을 반환한다.
+# 
+# `map` 자료형은 리스트 또는 튜플과 매우 유사하며, `list()` 함수를 이용하여
+# 쉽게 리스트로 변환된다.
+# 예를 들어, 리스트 `[3, 4, 5, 6]` 의 각 항목에 10을 더하기 위해
+# `myAdd10()` 함수를 `map()` 함수의 인자로 다음과 같이 사용하면 된다.
+# 
+# ```python
+# >>> list(map(myAdd10, [3, 4, 5, 6]))
+# [13, 14, 15, 16]
+# ```
 # :::
 
 # (sec:keyword-arguments)=
@@ -698,7 +711,7 @@ np.sin(radian)
 # 그러면 각 인자를 공백<font size="2">space</font>으로 구분하여
 # 함께 한 줄에 출력한다.
 
-# In[26]:
+# In[32]:
 
 
 print('Hello,', 'Python', '!')
@@ -706,7 +719,7 @@ print('Hello,', 'Python', '!')
 
 # 그런데 각각의 인자를 서로 다른 줄에 출력하려면 아래와 같이 해야 한다.
 
-# In[27]:
+# In[33]:
 
 
 print('Hello,', 'Python', '!', sep='\n')
@@ -810,7 +823,7 @@ print('Hello,', 'Python', '!', sep='\n')
 # 예를 들어 아래 코드에서 변수 `x` 가 가리키는 값은 지수승 함수 `np.exp()`가
 # `np.log(2)`를 인자로 사용해서 계산된 반환값을 가리킨다.
 
-# In[28]:
+# In[34]:
 
 
 x = np.exp(np.log(2))
@@ -844,7 +857,7 @@ x = np.exp(np.log(2))
 # 매개 변수 `hour`와 함수 본문에서 선언된 `minutes` 변수는 모두 지역 변수이다.
 # 반면에 `two_hour` `hour_to_min(2)`의 실행 결괏값을 가리키는 전역 변수이다. 
 
-# In[29]:
+# In[35]:
 
 
 def hour2min(hour):
@@ -856,7 +869,7 @@ two_hour = hour2min(2)
 
 # 위 코드의 실행 결과 `two_hour` 변수는 120을 가리킨다.
 
-# In[30]:
+# In[36]:
 
 
 print("2 시간은", two_hour, "분입니다.")
@@ -898,7 +911,7 @@ print("2 시간은", two_hour, "분입니다.")
 # 
 # 다음 코드를 이용하여 함수 호출과 프레임 생성 및 사멸의 관계를 알아보자.
 
-# In[31]:
+# In[37]:
 
 
 def hour2min(hour):
