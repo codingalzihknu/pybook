@@ -686,7 +686,7 @@ myAdd10 = adding_n_func(10)  # 10 을 더하는 함수
 myAdd10(3)                   # 10 + 3
 
 
-# :::{prf:example}
+# :::{prf:example} `map()` 함수
 # :label: map_function
 # 
 # `map()` 함수는 하나의 함수 `f` 와 하나의 리스트 또는 튜플 등을 모음 자료형 값 `iter` 을 인자로 받는다.
@@ -801,6 +801,78 @@ print('Hello,', 'Python', '!', sep='\n')
 # ```
 # ::::
 
+# (sec:boolean_functions)=
+# ### 부울값 함수
+
+# 부울값을 반환하는 함수를 이용하면 복잡한 테스트를 쉽게 진행할 수 있다.
+# 예를 들어 아래 함수는 두 정수를 대상으로 약수, 배수의 관계가 있는지 여부를 판단할 때
+# 사용될 수 있다.
+
+# In[34]:
+
+
+def is_divisible(x, y):
+    if x % y == 0:
+        return True
+    else:
+        return False
+
+
+# In[35]:
+
+
+is_divisible(6, 4)
+
+
+# In[36]:
+
+
+is_divisible(6, 3)
+
+
+# 위 함수를 다음과 같이 보다 간단하게 정의할 수도 있다.
+
+# In[37]:
+
+
+def is_divisible(x, y):
+    return x % y == 0
+
+
+# 부울값 함수를 조건문 등에 쉽게 활용할 수 있다.
+
+# In[38]:
+
+
+x = 16
+y = 4
+
+if is_divisible(x, y):
+    print(f'{x} 을(를) {y} (으)로 나눌 수 있다.')
+
+
+# :::{prf:example} `filter()` 함수
+# :label: degree2radian
+# 
+# `filter()` 함수는 첫째 인자로 부울값 함수를, 둘째 인자로 리스트, 튜플 등을 사용한다.
+# 단, 부울값 함수 인자는 한 개의 인자만 사용하는 함수이어야 한다.
+# 
+# `filter(f, aList)` 방식으로 호출하면 `aList` 에 포함된 항목 `item` 중에서 `f(item)` 이
+# 참이 되는 `item` 만 모은다.
+# 반환값은 `filter` 유형의 값이지만 `list()` 함수를 
+# 이용하면 쉽게 리스트로 반환된다.
+# 
+# ```python
+# def divisible_by_3(x):
+#     return is_divisible(x, 3)
+# ```
+# 
+# ```python
+# list(filter(divisible_by_3, [3, 4, 5, 6, 7]))
+# [3, 6]
+# ```
+# :::
+
 # ### 함수 합성과 함수 호출 표현식
 
 # 수학에서 $f$, $g$ 두 개의 함수를 합성해서 새로운 함수 $f\circ g$ 를 
@@ -823,7 +895,7 @@ print('Hello,', 'Python', '!', sep='\n')
 # 예를 들어 아래 코드에서 변수 `x` 가 가리키는 값은 지수승 함수 `np.exp()`가
 # `np.log(2)`를 인자로 사용해서 계산된 반환값을 가리킨다.
 
-# In[34]:
+# In[39]:
 
 
 x = np.exp(np.log(2))
@@ -857,7 +929,7 @@ x = np.exp(np.log(2))
 # 매개 변수 `hour`와 함수 본문에서 선언된 `minutes` 변수는 모두 지역 변수이다.
 # 반면에 `two_hour` `hour_to_min(2)`의 실행 결괏값을 가리키는 전역 변수이다. 
 
-# In[35]:
+# In[40]:
 
 
 def hour2min(hour):
@@ -869,7 +941,7 @@ two_hour = hour2min(2)
 
 # 위 코드의 실행 결과 `two_hour` 변수는 120을 가리킨다.
 
-# In[36]:
+# In[41]:
 
 
 print("2 시간은", two_hour, "분입니다.")
@@ -911,7 +983,7 @@ print("2 시간은", two_hour, "분입니다.")
 # 
 # 다음 코드를 이용하여 함수 호출과 프레임 생성 및 사멸의 관계를 알아보자.
 
-# In[37]:
+# In[42]:
 
 
 def hour2min(hour):
