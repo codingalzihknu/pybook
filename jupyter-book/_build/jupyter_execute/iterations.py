@@ -441,3 +441,7 @@ my_sqrt(2, 0.0001)
 
 my_sqrt(2, 0.000001)
 
+
+# ## 연습문제
+
+# 참고: [(실습) 반복문](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-iterations.ipynb)
