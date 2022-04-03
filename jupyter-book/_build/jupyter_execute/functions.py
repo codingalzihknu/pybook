@@ -852,7 +852,7 @@ if is_divisible(x, y):
 
 
 # :::{prf:example} `filter()` 함수
-# :label: degree2radian
+# :label: filter
 # 
 # `filter()` 함수는 첫째 인자로 부울값 함수를, 둘째 인자로 리스트, 튜플 등을 사용한다.
 # 단, 부울값 함수 인자는 한 개의 인자만 사용하는 함수이어야 한다.

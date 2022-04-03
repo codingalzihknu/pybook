@@ -18,7 +18,8 @@ chapters:
 - file: conditionals
 - file: recursion
 - file: iterations
-- file: collections
+- file: collections1
+- file: collections2
 - file: files
 - file: modules
 - file: classes
