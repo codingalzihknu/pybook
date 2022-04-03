@@ -1040,7 +1040,7 @@ tup = ([1, 2], 10, 100)
 # 변수 `tup` 과 튜플 사이의 관계는 아래 그림에서 보여준다.
 
 # <div align="center">
-#     <img src="https://raw.githubusercontent.com/hj617kim/core_pybook/master/images/ch04/tuple01.png" style="width:275px;">
+#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/hj617kim/ch04/tuple01.png" style="width:275px;">
 # </div>
 
 # 따라서 아래와 같이 첫번째 항목 자체는 변경이 가능하다. 
@@ -1060,7 +1060,7 @@ tup
 
 
 # <div align="center">
-#     <img src="https://raw.githubusercontent.com/hj617kim/core_pybook/master/images/ch04/tuple02.png" style="width:300px;">
+#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/hj617kim/ch04/tuple02.png" style="width:300px;">
 # </div>
 
 # ### 튜플 메서드
@@ -1068,7 +1068,7 @@ tup
 # 튜플은 불변 자료형이라 메서드가 별로 없다. 많이 사용되는 두 개의 메소드를 살펴보자.   
 # 
 # |메서드|설명|
-# |:----------:|:----------:|
+# |:----------|:----------|
 # |`tuple.count()`|지정된 항목이 등장한 횟수 반환|
 # |`tuple.index()`|지정된 항목이 처음 위치한 인덱스 반환|
 
@@ -1076,61 +1076,119 @@ tup
 
 
 num_tuple = (1, 2, 3, 1, 3, 5, 5, 10, 15)
-print(num_tuple.count(1))
-print(num_tuple.index(5))
 
 
-# ## `zip()` 함수
-
-# 시퀀스(예, 문자열, 리스트, 튜플) 여러 개의 항목을 순서대로 짝지어 튜플의 리스트 형식의 객체를 생성한다. 자료형이 달라도 된다. 단, `zip()` 함수의 반환값은 구체적으로 명시되지 않는다. 
+# **`count()` 메서드**
 
 # In[109]:
+
+
+num_tuple.count(1)
+
+
+# **`index()` 메서드**
+
+# In[110]:
+
+
+num_tuple.index(5)
+
+
+# ## 짝짓기와 해체
+
+# 차형 자료형을 짝짓는 것과 항목별로 해체하는 것을 살펴본다.
+
+# ### `zip()` 함수
+
+# 문자열, 리스트, 튜플 등 순차 자료형 여러 개를 묶어 하나의 값으로 만든다.
+# 이때, 각 순차 자료형의 값에 사용된 순서를 반영한다.
+# 단, `zip()` 함수의 반환값은 구체적으로 명시되지 않는다. 
+
+# In[111]:
 
 
 zip("abc", [1, 2, 3])
 
 
-# `list()`함수를 이용하여 리스트로 변환하면, 쉽게 내용을 확인할 수 있다. 
+# `for` 반복문을 이용하여 항목을 확인할 수는 있다.
 
-# In[110]:
+# In[112]:
+
+
+for item in zip("abc", [1, 2, 3]):
+    print(item)
+
+
+# 아니면 `list()`함수를 이용하여 튜플 리스트로 변환할 수도 있다.
+
+# In[113]:
 
 
 list(zip("abc", [1, 2, 3]))
 
 
-# 여러 개를 짝짓는 것도 가능하며, 각 자료형의 길이가 다르면 짧은 길이에 맞춰서 짝을 짓는다. 
+# 여러 개의 모음 자료형을 짝짓는 것도 가능하다.
+# 단. 길이가 다르면 가장 짧은 길이에 맞춰서 짝을 짓고, 나머지는 버린다.
 
-# In[111]:
+# In[114]:
 
 
 list(zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15]))
 
 
-# ### 해체 방법
+# ### 해체
 
-# 시퀀스 항목 각각을 변수에 지정하고자 할 때는 해체하는 방법을 사용한다. 단, 사용되는 변수의 수는 항목의 수와 일치해야 한다.   
+# 순자 자료형의 항목 각각에 대해 변수 할당을 진행할 수 있다.
+# 단, 사용되는 변수의 수는 항목의 수와 일치해야 한다.
 # 예를 들어, 세 개의 항목을 갖는 시퀀스를 해체하려면 세 개의 변수가 필요하다. 
 
-# In[112]:
+# In[115]:
 
 
 a, b = "12"
+
+
+# In[116]:
+
+
+print(a, type(a)) # 타입은 문자열이다.
+print(b)
+
+
+# In[117]:
+
+
 c, d, e = [3, 4, 5]
+
+
+# In[118]:
+
+
+print(c) 
+print(d) 
+print(e) 
+
+
+# In[119]:
+
+
 f, g = (6, 7)
-print(a) 
-print(type(a)) # 타입은 문자열이다.
-print(b) #타입 - str
-print(c) #타입 - int
-print(d) #타입 - int
-print(e) #타입 - int
-print(f) #타입 - int
-print(g) #타입 - int
 
 
-# 굳이 이름을 주지 않아도 되는 항목이 있다면 변수 대신에 밑줄<font size = "2">underscore</font>(`_`) 기호를 사용한다.   
-# 예를 들어, 변수 `d`가 필요없다면 아래와 같이 해체할 수 있다. 
+# In[120]:
 
-# In[113]:
+
+print(f) 
+print(g) 
+
+
+# **밑줄 기호 `_` 활용**
+# 
+# 변수의 이름이 굳이 필요 없다면 밑줄<font size = "2">underscore</font>(`_`) 기호를
+# 대신 사용할 수 있다.
+# 예를 들어, 둘째 값에 대한 변수가 필요없다면 아래와 같이 해체할 수 있다. 
+
+# In[121]:
 
 
 c, _, e = [3, 4, 5]
@@ -1139,7 +1197,8 @@ print(c + e)
 
 # :::{admonition} 주의   
 # :class: caution  
-# 시퀀스 항목 각각을 변수에 지정하고자 할 때는 사용되는 변수의 수와 항목의 수는 일치해야 한다.
+# 항목의 개수와 변수의 개수가 일치하지 않으면 오류가 발생한다.
+# 오류를 피하려면 위해 밑줄 등을 반드시 활용해야 한다.
 # 
 # ```python
 # >>> c, e = [3, 4, 5]
@@ -1152,13 +1211,21 @@ print(c + e)
 # ```
 # :::
 
-# 반면에 앞에 몇 개만 변수에 할당하고 나머지는 하나의 리스트로 묶을 수도 있다. 이를 위해 별표 기호<font size = "2">asterisk</font>(`*`)를 하나의 변수명과 함께 사용한다. 
+# **별표 기호 `*` 활용**
+# 
+# 앞에 몇 개의 값에만 변수 할당에 사용하고 나머지는 하나의 리스트로 묶어서 퉁쳐버릴 수도 있다.
+# 이를 위해 별표 기호<font size = "2">asterisk</font>(`*`)를 하나의 변수명과 함께 사용한다. 
 
-# In[114]:
+# In[122]:
 
 
 values = (1, 2, 3, 4, 5)
 a, b, *rest = values
+
+
+# In[123]:
+
+
 print(a)
 print(b)
 print(rest)
@@ -1166,10 +1233,77 @@ print(rest)
 
 # 나머지 항목들을 무시하고 싶다면, 별표와 밑줄을 함께 사용한다. 
 
-# In[115]:
+# In[124]:
 
 
 a, b, *_ = values
+
+
+# In[125]:
+
+
 print(a)
 print(b)
+
+
+# ### unzip
+
+# unzip(언짚) 은 `zip()` 함수의 역함수의 기능에 해당한다.
+# 즉, 튜플의 리스트에서 여러 개의 리스트를 생성하는 기능이다.
+# 
+# 그런데 이 기능은 함수의 인자를 해체하는 `*` 연산자와 `zip()` 함수 자체를 이용하여 
+# 구현할 수 있다.
+
+# In[126]:
+
+
+pairs = [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
+
+numbers, letters = zip(*pairs)
+
+
+# In[127]:
+
+
+numbers
+
+
+# In[128]:
+
+
+letters
+
+
+# `zip(*pairs)` 이 호출되었을 때 다음 과정이 실행된다.
+# 
+# ```
+# zip(*[(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')])
+#     => zip((1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'))
+#     => [(1, 2, 3, 4), ('a', 'b', 'c', 'd')]
+# ```
+
+# ### 동시 반복
+
+# `zip()` 을 이용하면 여러 개의 리스트, 튜플을 대상으로 동시에 반복문을 돌릴 수 있다.
+
+# In[129]:
+
+
+letters = ['a', 'b', 'c']
+numbers = [0, 1, 2]
+for l, n in zip(letters, numbers):
+    print(f'문자: {l}')
+    print(f'숫자: {n}')
+
+
+# In[130]:
+
+
+letters = ['a', 'b', 'c']
+numbers = [0, 1, 2]
+operators = ['*', '/', '+']
+for l, n, o in zip(letters, numbers, operators):
+    print(f'문자:   {l}')
+    print(f'숫자:   {n}')
+    print(f'연산자: {o}')
 
