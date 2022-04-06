@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # (ch:collections)=
-# # 모음 자료형 3부
+# # 모음 자료형 3부: range, 조건제시법, 이터레이터, 제너레이터
 
 # ## `range` 자료형
 

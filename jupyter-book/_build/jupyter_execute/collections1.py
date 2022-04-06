@@ -2,10 +2,12 @@
 # coding: utf-8
 
 # (ch:collections)=
-# # 모음 자료형 1부
+# # 모음 자료형 1부: 문자열, 리스트, 튜플
 
-# 모음 자료형<font size = "2">Collection Data Types</font>은
+# 모음 자료형<font size = "2">collection data types</font>은
 # 여러 개의 값을 항목으로 포함하는 값들의 자료형이다.
+# 많은 값을 담고 있다는 의미에서
+# **컨테이너**<font size="2">container</font>라고도 불린다.
 # 파이썬은 아래 다섯 가지 모음 자료형을 기본으로 제공한다.
 # 
 # ```
@@ -732,6 +734,7 @@ food
 
 # :::{admonition} 참고   
 # :class: info   
+# 
 # 두 개의 리스트를 덧셈 기호를 이용하여 확장할 수도 있지만, 원래의 리스트를 변경하는 것이 아니라 새로운 리스트를 생성한다.
 # 
 # ```python
