@@ -22,8 +22,6 @@ a_set = {4, 9.2, "apple", True, 4}
 a_set
 
 
-# :::{admonition} 참고  
-# :class: info  
 # 집합의 원소는 모두 불변 자료형이어야 한다. 예를 들어 리스트는 집합의 원소가 될 수 없다. 
 # 
 # ```python
@@ -34,7 +32,6 @@ a_set
 # 
 # TypeError: unhashable type: 'list'
 # ```
-# :::
 
 # **공집합**
 # 
@@ -51,7 +48,9 @@ empty_set
 # :::{admonition} 주의  
 # :class: caution  
 # 
-# 빈 집합을 만들 때는 `set()`을 사용해야 한다. `{}`은 빈 딕셔너리이다. 
+# 빈 집합을 만들 때는 `set()`을 사용해야 한다. `{}`은 이어서 소개할 
+# 빈 사전<font size="2">empty dictionary</font>이다. 
+# 
 # ```python
 # >>> a = {}
 # >>> type(a)
@@ -77,7 +76,7 @@ empty_set
 'a' not in {1, 'b', True, 9}
 
 
-# **집합 연산(수학)**
+# **합집합, 교집합, 차집합, 부분집합**
 # 
 # 합집합, 교집합, 차집합 계산과 부분집합 여부 등을 확인하는 연산은 
 # 수학에서 사용되는 개념과 동일하게 작동한다.
@@ -472,13 +471,13 @@ print(dic)
 # ## 형변환 함수
 
 # **`list()` 함수**
-
-# `list()` : 리스트형으로 변환.
+# 
+# 임의의 모음 자료형을 리스트로 변환한다.
 
 # In[42]:
 
 
-list('abc')  #문자열의 각 문자를 항목으로 갖는 리스트 반환
+list('abc')
 
 
 # In[43]:
@@ -493,254 +492,172 @@ list((1, 2, 3))
 list({1, 2, 5})
 
 
+# 사전은 여러 방식으로 변환된다.
+
 # In[45]:
 
 
 dic = {'Hello' : '안녕', 'World' : '세계'}
-print(list(dic))
-print(list(dic.keys()))
-print(list(dic.values()))
-print(list(dic.items()))
 
 
-# **`tuple()` 함수**
-
-# `tuple()` : 튜플형으로 변환.
+# * 키 리스트
 
 # In[46]:
 
 
-tuple('abc')
+list(dic)
 
 
 # In[47]:
 
 
-tuple([1, 2, 3])
+list(dic.keys())
 
+
+# * 값 리스트
 
 # In[48]:
 
 
-tuple({1, 2, 5})
+list(dic.values())
 
+
+# * (키, 값) 리스트
 
 # In[49]:
 
 
-dic = {'Hello' : '안녕', 'World' : '세계'}
-print(tuple(dic))
-print(tuple(dic.keys()))
-print(tuple(dic.values()))
-print(tuple(dic.items()))
+list(dic.items())
 
 
-# **`set()` 함수**
-
-# `set()` : 집합형으로 변환.
+# **`tuple()` 함수**
+# 
+# 임의의 모음 자료형을 튜플로 변환한다.
 
 # In[50]:
 
 
-set('abc')
+tuple('abc')
 
 
 # In[51]:
 
 
-set([1, 1, 2, 5])
+tuple([1, 2, 3])
 
 
 # In[52]:
 
 
-set((1, 3, 3, 9, 1))
+tuple({1, 2, 5})
 
+
+# 사전에 대해서는 `list()` 함수와 동일한 방식으로 작동한다.
 
 # In[53]:
 
 
-dic = {'Hello' : '안녕', 'World' : '세계', 'Hi' : '안녕'}
-print(set(dic))
-print(set(dic.keys()))
-print(set(dic.values()))
-print(set(dic.items()))
+dic = {'Hello' : '안녕', 'World' : '세계'}
+
+
+# In[54]:
+
+
+tuple(dic)
+
+
+# In[55]:
+
+
+tuple(dic.keys())
+
+
+# In[56]:
+
+
+tuple(dic.values())
+
+
+# In[57]:
+
+
+tuple(dic.items())
+
+
+# **`set()` 함수**
+# 
+# 임의의 모음 자료형을 집합으로 변환한다.
+# 이 과정에서 순서와 중복이 무시된다.
+
+# In[58]:
+
+
+set('abc')
+
+
+# In[59]:
+
+
+set([1, 1, 2, 5])
+
+
+# In[60]:
+
+
+set((1, 3, 3, 9, 1))
+
+
+# In[61]:
+
+
+dic = {'Hello' : '안녕', 'World' : '세계'}
+
+
+# In[62]:
+
+
+set(dic)
+
+
+# In[63]:
+
+
+set(dic.keys())
+
+
+# In[64]:
+
+
+set(dic.values())
+
+
+# In[65]:
+
+
+set(dic.items())
 
 
 # **`dict()` 함수**
-
-# `dict()` : 사전형으로 변환.  
 # 
-# 사전의 각 항목은 키와 값으로 이루어졌기 때문에 적절하게 짝지어진 데이터를 사용해야 사전을 만들 수 있다.
+# 키-값의 튜플 형식의 항목을 갖는 모음 자료형을 사전으로 변환한다. 
+# 단, 키로 사용되는 값은 해시가능이어야 한다.
 
-# In[54]:
+# In[66]:
 
 
 data = [('Hello', '안녕'), ('World', '세계'), ('Programming', '프로그래밍')]
 dict(data)
 
 
-# In[55]:
+# In[67]:
 
 
 data = zip('abcde', [1, 2, 3, 4, 5])
 dict(data)
 
 
-# In[56]:
+# In[68]:
 
 
 dict(Hello = '안녕', World = '세계', Programming = '프로그래밍')
 
-
-# ## 조건제시법
-
-# 리스트, 집합, 사전은 조건제시법<font size = "2">comprehension</font>을 이용하여 정의할 수 있다.
-
-# ### 리스트 조건제시법
-
-# 리스트 조건제시법은 수학에서 집합을 정의할 때 사용하는 조건제시법과 매우 유사한다.   
-# 
-# * 0과 10사이에 있는 홀수들의 제곱을 원소로 갖는 집합을 조건제시법으로 표현한다.  
-# { x^2 | 0 <= x <= 10, 단 x는 홀수 }
-# 
-# * 집합 기호를 리스트 기호로 대체한다.   
-# [ x^2 | 0 <= x <= 10, 단 x는 홀수 ]  
-# 
-# * 집합의 짝대기(|) 기호는 `for`로 대체한다.   
-# [ x^2 for 0 <= x <= 10, 단 x는 홀수 ]  
-# 
-# * 짝대기 기호 왼편에 위치한 x^2를 파이썬 수식으로 변경한다. 즉, x ** 2로 변경한다.   
-# [ x ** 2 for 0 <= x <= 10, 단 x는 홀수 ]  
-# 
-# * 짝대기 기호 오른편에 위치하고, 변수 x가 어느 범위에서 움직이는지를 설명하는 부등식인 0 <= x <= 10 부분을 파이썬 수식으로 변경한다. 주로, 기존에 정의된 리스트를 사용하거나 `range()` 함수를 사용하여 범위를 x in ... 형식으로 지정한다.   
-# [ x ** 2 for x in range(11), 단 x는 홀수 ]  
-
-# :::{admonition} `range()` 함수  
-# :class: info  
-# `range()` 함수는 규칙성을 가진 정수들의 모음<font size = "2">collection</font>을 반환한다. 반환된 값은 range객체이며, 리스트와 유사하게 작동한다.  
-# 
-# `range()` 함수는 인자를 최대 세 개까지 받을 수 있다. 각 인자들의 역할은 슬라이싱에 사용되는 세 개의 인자들의 역할과 동일하다. 
-# * `range([start, ] stop [, step])`
-# * `start`의 경우 주어지지 않으면 `0`을 기본값으로 갖는다.
-# * `step`의 경우 주어지지 않으면 `1`을 기본값으로 갖는다.
-# 
-# 예를 들어, 0부터 10까지의 정수들로 이루어진 `range`객체는 다음과 같이 생성한다.  
-# 리스트로 형변환하면 `range(11)` 안에 포함된 항목을 확인할 수 있다. 
-# ```python
-# >>> print(range(11))
-# range(0, 11)
-# >>> print(list(range(11)))
-# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-# ```
-# range형은 불변 시퀀스이다. 
-# :::
-# 
-
-# * 마지막으로 변수 `x`에 대한 제한조건인 `단 x는 홀수` 부분을 파이썬의 `if` 문장으로 변경한다. 예를 들어, `x는 홀수`는 파이썬의 `x % 2 == 1`로 나타낼 수 있다.  
-# `[x**2 for x in range(11) if x % 2 == 1]`
-
-# In[57]:
-
-
-a_list = [x**2 for x in range(11) if x % 2 == 1]
-a_list
-
-
-# :::{admonition} 참고   
-# :class: info  
-# 
-# 위의 조건제시법은 다음 장에서 소개하는 `for` 반복문을 활용한 코드와 동일하다.
-# 
-# ```python
-# >>> a_list = []
-# >>> for x in range(0, 10) :
-#         if x % 2 == 1 :
-#             a_list.append(x ** 2)
-# >>> print(a_list)
-# [1, 9, 25, 49, 81]
-# ```
-# :::
-# 
-
-# :::{admonition} 참고  
-# :class: info  
-# 아래와 같이 리스트를 초기화할 때, 리스트 조건제시법을 사용하면 좋다. 
-# ```python
-# >>> a = [[0] * 5 for x in range(5)]
-# >>> print(a)
-# [[0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0]]
-# ```
-# 
-# 리스트 `a`는 리스트`b`와 동일하지 않다. 
-# ```python
-# >>> b = [[0] * 5] * 5
-# >>> print(b)
-# [[0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0]]
-# ```
-# 
-# 아래 그림처럼 리스트 `a`의 각 항목은 서로 다른 리스트를 참조한다. 반면 리스트 `b`의 각 항목은 하나의 리스트를 참조한다. 
-# <div align="center">
-#     <img src="https://raw.githubusercontent.com/hj617kim/core_pybook/master/images/ch04/list_comp01.png" style="width:400px;">
-# </div>
-# 
-# 이러한 성질로 아래와 같은 일이 발생한다. 예를 들어, `a[2][3] = 1` 코드를 사용하여 리스트 `a`의 3행 4열의 값을 1로 변경하고자 하면, 해당 값이 1로 변경된 것을 볼 수 있다. 반면 `b[2][3] = 1` 코드를 사용한 다음, `b`를 확인해보면 4열의 값이 모두 1로 변경된 것을 볼 수 있다. 즉, 리스트 `b`는 원하는 대로 동작하지 않는다. 
-# 
-# ```python
-# >>> a = [[0] * 5 for x in range(5)]
-# >>> a[2][3] = 1
-# [[0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 1, 0],
-#  [0, 0, 0, 0, 0],
-#  [0, 0, 0, 0, 0]]
-# >>> b[2][3] = 1
-# >>> print(b)
-# [[0, 0, 0, 1, 0],
-#  [0, 0, 0, 1, 0],
-#  [0, 0, 0, 1, 0],
-#  [0, 0, 0, 1, 0],
-#  [0, 0, 0, 1, 0]]
-# ```
-# :::
-# 
-
-# ### 집합 조건제시법 
-
-# 조건제시법을 이용하여 집합을 생성하는 과정은 리스트 조건제시법과 비슷하다. 
-
-# In[58]:
-
-
-words = 'Python is a general purpose language'.split()
-print(words)
-words_len = [len(x) for x in words] # 리스트 조건제시법
-print(words_len)
-unique_len = {len(x) for x in words} # 집합 조건제시법
-print(unique_len)
-
-
-# ### 사전 조건제시법  
-
-# 조건제시법을 이용하여 사전을 생성하는 과정도 유사하다. 
-
-# In[59]:
-
-
-words = 'Python is a general purpose language'.split()
-print(words)
-len_dict = {k : len(k) for k in words}
-print(len_dict)
-
-
-# ## 연습문제
-
-# 참고: [(실습) 모음 자료형](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections.ipynb)
