@@ -513,25 +513,22 @@ np.sin(radian)
 # plus = "+"
 # bar = "|"
 # 
-# def print_pm(s):
+# def print_p(s):
 #     print(s)
 # 
-# def print_ps(s):
-#     print(s)
-#     
 # def grid2():
 #     for num1 in [1, 2]:
-#         print_pm(pm * 2 + plus)
+#         print_p(pm * 2 + plus)
 #         for num2 in [1, 2]:
-#             print_ps(ps * 2 + bar)
+#             print_p(ps * 2 + bar)
 # 
-#     print_pm(pm*2 + plus)
+#     print_p(pm*2 + plus)
 # ```
 # 
-# `grid()` 함수를 호출하면 아래 모양의 격자가 그려진다.
+# `grid2()` 함수를 호출하면 아래 모양의 격자가 그려진다.
 # 
 # ```python
-# >>> grid()
+# >>> grid2()
 # + - - + - - +
 # |     |     |
 # |     |     |
