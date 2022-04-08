@@ -93,9 +93,9 @@ range(3) == range(0, 3, 1)
 
 zero2ten_odd = []
 
-for num in range(10):
-    if num%2 == 1:
-        zero2ten_odd.append(num**2)
+for x in range(11):
+    if x%2 == 1:
+        zero2ten_odd.append(x**2)
 
 zero2ten_odd
 
