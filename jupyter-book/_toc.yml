@@ -23,5 +23,7 @@ chapters:
 - file: collections3
 - file: files
 - file: modules
+- file: oop
 - file: classes
+- file: inheritance
 - file: casestudy_classes
