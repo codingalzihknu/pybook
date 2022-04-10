@@ -275,26 +275,29 @@ print(f3)
 # 
 # - $m$을 $n$으로 나눌 수 있으면 $n$이 최대공약수이다.
 # - 그렇지 않으면 $n$과 $m\,\%\, n$의 최대공약수가 원하는 최대공약수이다.
-# 
-# 위 기법을 구현하면 다음과 같다.
-# 
-# ```python
-# def gcd(m, n):
-#     while m % n != 0:
-#         m, n = n, m % n
-#     return n
-# 
-# print(gcd(20, 10))
-# 10
-# 
-# print(gcd(20, 30))
-# 10
-# ```
 # :::
+
+# 위 기법을 구현하면 다음과 같다.
+
+# In[14]:
+
+
+def gcd(m, n):
+    while m % n != 0:
+        m, n = n, m % n
+    return n
+
+
+# In[15]:
+
+
+print(gcd(20, 10))
+print(gcd(20, 30))
+
 
 # `gcd()` 함수를 `__add__()` 함수의 정의에 활용하자. 
 
-# In[14]:
+# In[16]:
 
 
 class Fraction:
@@ -328,7 +331,7 @@ class Fraction:
 
 # 이제 8/6이 아니라 3/4를 반환한다.
 
-# In[15]:
+# In[17]:
 
 
 f1 = Fraction(1, 4)
@@ -347,7 +350,7 @@ print(f3)
 # 따라서 두 변수가 참조하는 값은 동등하지 않다고 판정된다.
 # 이와같이 두 값의 동등성을 판단하는 것을 __얕은 동등성__(shallow equality)이라 부른다.
 
-# In[19]:
+# In[18]:
 
 
 x = Fraction(1, 2)
@@ -357,7 +360,7 @@ x == y
 
 # 물론 두 객체가 동일하지 않다고 판단된다.
 
-# In[20]:
+# In[19]:
 
 
 x is y
@@ -367,7 +370,7 @@ x is y
 
 # 반면에 아래처럼 두 변수가 참조하는 객체를 동일(identical)하게 하면 당연히 다른 결과가 나온다.
 
-# In[21]:
+# In[20]:
 
 
 x = Fraction(1, 2)
@@ -390,7 +393,7 @@ print(x is y)
 # 
 # 이를 구현하는 `__eq__()` 메서드를 `Fraction` 클래스에 추가하자.
 
-# In[22]:
+# In[21]:
 
 
 class Fraction:
@@ -421,7 +424,7 @@ class Fraction:
         return first_num == second_num
 
 
-# In[23]:
+# In[22]:
 
 
 x = Fraction(1, 2)
@@ -429,7 +432,7 @@ y = Fraction(1, 2)
 print(x == y)
 
 
-# In[24]:
+# In[23]:
 
 
 x = Fraction(1, 2)
