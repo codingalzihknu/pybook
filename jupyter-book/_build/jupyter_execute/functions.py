@@ -131,7 +131,7 @@ y + 1
 # 값으로 사용될 수 있다.
 # :::
 
-# ### `print()` 함수의 반환값 `None`
+# ### `None` 반환값
 
 # 파이썬은 모든 함수가 반환값을 갖도록 강제한다.
 # `print()` 함수처럼 반환값이 없는 것처럼 보이는 함수도
@@ -933,11 +933,11 @@ if is_divisible(x, y):
 # In[42]:
 
 
-def plus_5(n) :
-    return n + 5
+def plus_10(n) :
+    return n + 10
 
-print(plus_5(10))
-print(plus_5(20))
+print(plus_10(10))
+print(plus_10(20))
 
 
 # 람다 함수를 사용하면, 아래와 같이 코드를 작성할 수 있다. 
@@ -945,7 +945,7 @@ print(plus_5(20))
 # In[43]:
 
 
-x = lambda a : a + 5
+x = lambda a : a + 10
 
 print(x(10))
 print(x(20))
