@@ -469,20 +469,21 @@ const thebe_selector_output = ".output, .cell_output"
 <p><code class="docutils literal notranslate"><span class="pre">turtle</span></code> 모듈은 간단한 그림을 그리는 다양한 도구를 제공하며,
 파이썬에 기본 모듈로 포함되어 있다.
 따라서 자신의 컴퓨터에 예를 들어 파이썬 기본 또는 아나콘다 팩키지가 깔려 있다면
-아래 명령문을 실행할 때 바로 그림 창이 하나 새로 나타나야 한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>             <span class="c1"># allows us to use the turtles library</span>
-<span class="n">wn</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>      <span class="c1"># creates a graphics window</span>
-<span class="n">alex</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>    <span class="c1"># create a turtle named alex</span>
-<span class="n">alex</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>         <span class="c1"># tell alex to move forward by 150 units</span>
-<span class="n">alex</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>             <span class="c1"># turn by 90 degrees</span>
-<span class="n">alex</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>          <span class="c1"># complete the second side of a rectangle</span>
+아래 명령문을 실행하면 그림 창이 하나 새로 나타나고 그 안에 정해진 그림을 그려야 한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="n">wn</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>      <span class="c1"># 캔버스 하나 생성</span>
+
+<span class="n">alex</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>    <span class="c1"># alex 란 이름의 거북이 하나 생성. 기본 모양은 화살촉</span>
+<span class="n">alex</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>         <span class="c1"># 바라보는 방향으로 150 픽셀 전진</span>
+<span class="n">alex</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>             <span class="c1"># 왼쪽으로 90도 회전</span>
+<span class="n">alex</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>          <span class="c1"># 바라보는 방향으로 75 픽셀 전진</span>
+
+<span class="n">wn</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>          <span class="c1"># 캔버스에 클릭할 때까지 대기</span>
 </pre></div>
 </div>
-<p><kbd><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="250"/></kbd></p>
-<p>반면에 구글 코랩 등 대부분의 온라인 사이트에서는 지원되지 않는다.
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="200"/></div><p>반면에 구글 코랩 등 대부분의 온라인 사이트에서는 지원되지 않는다.
 하지만 다행히도 <a class="reference external" href="https://trinket.io">트링킷<font size="2">Trinket</font></a>이 거북이 그래픽스를 지원한다.</p>
-<p>When you run this code, it should create a new window with small arrow that represents the turtle. Close the window.</p>
-<p>Create a file named <code class="docutils literal notranslate"><span class="pre">mypolygon.py</span></code> and type in the following code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
 <span class="n">bob</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bob</span><span class="p">)</span>

@@ -13,25 +13,25 @@
 # `turtle` 모듈은 간단한 그림을 그리는 다양한 도구를 제공하며, 
 # 파이썬에 기본 모듈로 포함되어 있다. 
 # 따라서 자신의 컴퓨터에 예를 들어 파이썬 기본 또는 아나콘다 팩키지가 깔려 있다면
-# 아래 명령문을 실행할 때 바로 그림 창이 하나 새로 나타나야 한다.
+# 아래 명령문을 실행하면 그림 창이 하나 새로 나타나고 그 안에 정해진 그림을 그려야 한다.
 
 # ```python
-# import turtle             # allows us to use the turtles library
-# wn = turtle.Screen()      # creates a graphics window
-# alex = turtle.Turtle()    # create a turtle named alex
-# alex.forward(150)         # tell alex to move forward by 150 units
-# alex.left(90)             # turn by 90 degrees
-# alex.forward(75)          # complete the second side of a rectangle
+# import turtle
+# 
+# wn = turtle.Screen()      # 캔버스 하나 생성
+# 
+# alex = turtle.Turtle()    # alex 란 이름의 거북이 하나 생성. 기본 모양은 화살촉
+# alex.forward(150)         # 바라보는 방향으로 150 픽셀 전진
+# alex.left(90)             # 왼쪽으로 90도 회전
+# alex.forward(75)          # 바라보는 방향으로 75 픽셀 전진
+# 
+# wn.exitonclick()          # 캔버스에 클릭할 때까지 대기
 # ```
 
-# <kbd><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="250"/></kbd>
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="200"/></div>
 
 # 반면에 구글 코랩 등 대부분의 온라인 사이트에서는 지원되지 않는다. 
 # 하지만 다행히도 [트링킷<font size="2">Trinket</font>](https://trinket.io)이 거북이 그래픽스를 지원한다.
-
-# When you run this code, it should create a new window with small arrow that represents the turtle. Close the window.
-# 
-# Create a file named `mypolygon.py` and type in the following code:
 
 # ```python
 # import turtle
