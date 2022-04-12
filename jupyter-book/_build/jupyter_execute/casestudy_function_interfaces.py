@@ -4,7 +4,9 @@
 # # 사례 연구: 함수 인터페이스
 
 # `turtle` 모듈을 이용하여 다양한 그림을 그리는 함수를 직접 구현하면서
-# 함수의 구현 과정과 활용을 좀 더 자세히 살펴본다.
+# 반복문과 함수의 활용을 좀 더 자세히 살펴본다.
+# 또한 클래스, 인스턴스, 메서드 등을 활용하는 객체 지향 프로그래밍(OOP)의
+# 기본 구성 요소를 소개한다.
 
 # ## `turtle` 모듈
 
@@ -14,9 +16,15 @@
 # 아래 명령문을 실행할 때 바로 그림 창이 하나 새로 나타나야 한다.
 
 # ```python
-# import turtle
-# bob = turtle.Turtle()
+# import turtle             # allows us to use the turtles library
+# wn = turtle.Screen()      # creates a graphics window
+# alex = turtle.Turtle()    # create a turtle named alex
+# alex.forward(150)         # tell alex to move forward by 150 units
+# alex.left(90)             # turn by 90 degrees
+# alex.forward(75)          # complete the second side of a rectangle
 # ```
+
+# <kbd><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="250"/></kbd>
 
 # 반면에 구글 코랩 등 대부분의 온라인 사이트에서는 지원되지 않는다. 
 # 하지만 다행히도 [트링킷<font size="2">Trinket</font>](https://trinket.io)이 거북이 그래픽스를 지원한다.
