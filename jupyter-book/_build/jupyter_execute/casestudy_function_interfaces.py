@@ -194,19 +194,39 @@
 # polygon(bob)
 # ```
 
-# ## 인터페이스 디자인
+# ## 함수의 인터페이스
 
-# The next step is to write circle, which takes a radius, r, as a parameter. Here is a simple solution that uses polygon to draw a 50-sided polygon:
+# 함수의 인터페이스는 함수 사용법의 요약문이다. 
+# 
+# - 어떤 매개변수 사용?
+# - 함수가 하는 일은?
+# - 함수의 반환값은?
+# 
+# 사용자가 함수를 적절하게 사용하기 위해 전혀 불편함이 없도록 인터페이스를 구현해야 한다.
+
+# 예를 들어, 반지름이 주어졌을 때 지정된 거북이가 원을 그리는 `circle()` 함수를 다음과 같이 구현할 수 있다.
+# 거북이는 원둘레를 50등분한 길이로 이루어진 다각형으로 표현한다.
+# 다각형은 `polygon()` 함수를 이용하여 그린다.
 # 
 # ```python
 # import math
 # 
 # def circle(t, r):
-#     circumference = 2 * math.pi * r
+#     circumference = 2 * math.pi * r  # 원둘레의 길이
+#     
 #     n = 50
-#     length = circumference / n
-#     polygon(t, n, length)
+#     length = circumference / n       # 다각형의 길이
+#     
+#     polygon(t, n, length)            # 다각형 그리기
 # ```
+
+# 반지름이 200 픽셀인 원은 다음과 같다.
+# 
+# ```python
+# circle(bob, 200)
+# ```
+
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle04.png" width="300"/></div>
 
 # The first line computes the circumference of a circle with radius r using the formula 2 π r. Since we use math.pi, we have to import math. By convention, import statements are usually at the beginning of the script.
 # 

@@ -327,7 +327,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
-     8.6. 인터페이스 디자인
+     8.6. 함수의 인터페이스
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -412,7 +412,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
-     8.6. 인터페이스 디자인
+     8.6. 함수의 인터페이스
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -634,18 +634,33 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="id6">
-<h2><span class="section-number">8.6. </span>인터페이스 디자인<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>The next step is to write circle, which takes a radius, r, as a parameter. Here is a simple solution that uses polygon to draw a 50-sided polygon:</p>
+<h2><span class="section-number">8.6. </span>함수의 인터페이스<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>함수의 인터페이스는 함수 사용법의 요약문이다.</p>
+<ul class="simple">
+<li><p>어떤 매개변수 사용?</p></li>
+<li><p>함수가 하는 일은?</p></li>
+<li><p>함수의 반환값은?</p></li>
+</ul>
+<p>사용자가 함수를 적절하게 사용하기 위해 전혀 불편함이 없도록 인터페이스를 구현해야 한다.</p>
+<p>예를 들어, 반지름이 주어졌을 때 지정된 거북이가 원을 그리는 <code class="docutils literal notranslate"><span class="pre">circle()</span></code> 함수를 다음과 같이 구현할 수 있다.
+거북이는 원둘레를 50등분한 길이로 이루어진 다각형으로 표현한다.
+다각형은 <code class="docutils literal notranslate"><span class="pre">polygon()</span></code> 함수를 이용하여 그린다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 
 <span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-    <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
+    <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>  <span class="c1"># 원둘레의 길이</span>
+    
     <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="n">circumference</span> <span class="o">/</span> <span class="n">n</span>
-    <span class="n">polygon</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">circumference</span> <span class="o">/</span> <span class="n">n</span>       <span class="c1"># 다각형의 길이</span>
+    
+    <span class="n">polygon</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>            <span class="c1"># 다각형 그리기</span>
 </pre></div>
 </div>
-<p>The first line computes the circumference of a circle with radius r using the formula 2 π r. Since we use math.pi, we have to import math. By convention, import statements are usually at the beginning of the script.</p>
+<p>반지름이 200 픽셀인 원은 다음과 같다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circle</span><span class="p">(</span><span class="n">bob</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle04.png" width="300"/></div><p>The first line computes the circumference of a circle with radius r using the formula 2 π r. Since we use math.pi, we have to import math. By convention, import statements are usually at the beginning of the script.</p>
 <p>n is the number of line segments in our approximation of a circle, so length is the length of each segment. Thus, polygon draws a 50-sided polygon that approximates a circle with radius r.</p>
 <p>One limitation of this solution is that n is a constant, which means that for very big circles, the line segments are too long, and for small circles, we waste time drawing very small segments. One solution would be to generalize the function by taking n as a parameter. This would give the user (whoever calls circle) more control, but the interface would be less clean.</p>
 <p>The interface of a function is a summary of how it is used: what are the parameters? What does the function do? And what is the return value? An interface is “clean” if it allows the caller to do what they want without dealing with unnecessary details.</p>
