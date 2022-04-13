@@ -120,7 +120,7 @@
 # 그러면 `square()` 함수를 `bob` 과 함께 호출하면 `bob` 지정된 크기의 정사각형을 그린다.
 # 
 # ```
-# square(bob)
+# >>> square(bob)
 # ```
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle02.png" width="300"/></div>
@@ -149,8 +149,8 @@
 # 그러면 다양한 크기의 정사각형을 그릴 수 있다.
 # 
 # ```python
-# square(bob, 100)
-# square(bob, 50)
+# >>> square(bob, 100)
+# >>> square(bob, 50)
 # ```
 
 # **다각형 그리기**
@@ -171,7 +171,7 @@
 # 다음은 정7각형을 그린다.
 # 
 # ```python
-# polygon(bob, 7, 70)
+# >>> polygon(bob, 7, 70)
 # ```
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle03.png" width="300"/></div>
@@ -193,7 +193,7 @@
 # 그러면 `n` 과 `length` 에 대한 값을 지정하지 않아도 동일한 정7각형을 얻는다.
 # 
 # ```python
-# polygon(bob)
+# >>> polygon(bob)
 # ```
 
 # ## 함수의 인터페이스
@@ -225,7 +225,7 @@
 # 반지름이 200 픽셀인 원은 다음과 같다.
 # 
 # ```python
-# circle(bob, 200)
+# >>> circle(bob, 200)
 # ```
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle04.png" width="300"/></div>
@@ -356,6 +356,9 @@
 # ```
 # 
 # ```python
+# Help on fuction polyline in module __main__:
+#     
+# polyline(t, n, length, angle)
 # t: 거북이 객체
 # n: 선분 그리기 반복 횟수
 # length: 선분의 길이
