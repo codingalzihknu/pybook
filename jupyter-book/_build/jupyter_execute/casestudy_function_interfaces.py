@@ -12,73 +12,62 @@
 
 # `turtle` 모듈은 간단한 그림을 그리는 다양한 도구를 제공하며, 
 # 파이썬에 기본 모듈로 포함되어 있다. 
-# 따라서 자신의 컴퓨터에 예를 들어 파이썬 기본 또는 아나콘다 팩키지가 깔려 있다면
-# 아래 명령문을 실행하면 그림 창이 하나 새로 나타나고 그 안에 정해진 그림을 그려야 한다.
+# [IDLE 를 이용](https://aisw.tistory.com/5)하여 아래 명령문을 실행하면 그림 창이 하나 새로 나타나고 
+# 그 안에 정해진 그림이 그려져야 한다.
 
 # ```python
 # import turtle
 # 
 # wn = turtle.Screen()      # 캔버스 하나 생성
 # 
-# alex = turtle.Turtle()    # alex 란 이름의 거북이 하나 생성. 기본 모양은 화살촉
-# alex.forward(150)         # 바라보는 방향으로 150 픽셀 전진
-# alex.left(90)             # 왼쪽으로 90도 회전
-# alex.forward(75)          # 바라보는 방향으로 75 픽셀 전진
+# bob = turtle.Turtle()    # bob 란 이름의 거북이 하나 생성. 기본 모양은 화살촉
+# bob.forward(150)         # 바라보는 방향으로 150 픽셀 전진
+# bob.left(90)             # 왼쪽으로 90도 회전
+# bob.forward(75)          # 바라보는 방향으로 75 픽셀 전진
 # 
 # wn.exitonclick()          # 캔버스에 클릭할 때까지 대기
+# # wn.mainloop()             # X 버튼을 눌러 창을 닫을 때까지 대기
 # ```
 
-# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="200"/></div>
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle01.png" width="300"/></div>
 
+# :::{admonition} Trinket 사이트
+# :class: info
+# 
 # 반면에 구글 코랩 등 대부분의 온라인 사이트에서는 지원되지 않는다. 
 # 하지만 다행히도 [트링킷<font size="2">Trinket</font>](https://trinket.io)이 거북이 그래픽스를 지원한다.
+# :::
 
-# ```python
-# import turtle
-# bob = turtle.Turtle()
-# print(bob)
-# turtle.mainloop()
-# ```
+# **캔버스와 거북이 객체**
+# 
+# `turtle.Screen()` 은 `Screen` 클래스의 인스턴스, 즉 캔버스 객체를 하나 생성한다.
+# 단, 캔버스 객체는 하나만 생성할 수 있다. 
+# 이렇게 하나의 인스턴스만 허용하는 클래스를 **싱글톤 클래스**<font size='2'>singleton class</font>라 한다.
+# 
+# 반면에 `Turtle` 클래스를 포함하여 파이썬의 클래스는 일반적으로 임의의 개수의 인스턴스 생성을 허용한다.
 
-# The `turtle` module (with a lowercase ’t’) provides a function called Turtle (with an uppercase ’T’) that creates a Turtle object, which we assign to a variable named bob. Printing bob displays something like:
+# **거북이 메서드**
 # 
-# ```python
-# <turtle.Turtle object at 0xb7bfbf4c>
-# ```
+# 거북이를 움직이게 하거나 거북이의 상태를 지정하는 많은 
+# [`Turtle` 클래스의 메서드](https://docs.python.org/3/library/turtle.html)가 존재한다.
+# 그중 일부는 단축어를 갖는데 가장 많이 사용되는 메서는 다음과 같다.
 # 
-# This means that bob refers to an object with type Turtle as defined in module turtle.
+# | 메서드 | 단축어 | 의미 |
+# | :---   | :---   | :--- |
+# | forward() | fd()    | 전진 |
+# | left()   | lt()     | 반시계방향 회전 |
+# | backward() | bd()   | 후진 |
+# | right()  | rt()     | 시계방향 회전 |
+# | pendown() | pd()/down() | 펜 내리기 |
+# | penup() | pu()/up() | 펜 들기 |
+# | showturtle() | st() | 거북이 보이기 |
+# | hideturtle() | ht() | 거북이 숨기기 |
 # 
-# `mainloop` tells the window to wait for the user to do something, although in this case there’s not much for the user to do except close the window.
+# 
 
-# Once you create a Turtle, you can call a method to move it around the window. A method is similar to a function, but it uses slightly different syntax. For example, to move the turtle forward:
-# 
-# ```python
-# bob.fd(100)
-# ```
+# ## 단순 반복
 
-# The method, fd, is associated with the turtle object we’re calling bob. Calling a method is like making a request: you are asking bob to move forward.
-# 
-# The argument of fd is a distance in pixels, so the actual size depends on your display.
-# 
-# Other methods you can call on a Turtle are bk to move backward, lt for left turn, and rt right turn. The argument for lt and rt is an angle in degrees.
-# 
-# Also, each Turtle is holding a pen, which is either down or up; if the pen is down, the Turtle leaves a trail when it moves. The methods pu and pd stand for “pen up” and “pen down”.
-# 
-# To draw a right angle, add these lines to the program (after creating bob and before calling mainloop):
-# 
-# ```python
-# bob.fd(100)
-# bob.lt(90)
-# bob.fd(100)
-# ```
-
-# When you run this program, you should see bob move east and then north, leaving two line segments behind.
-# 
-# Now modify the program to draw a square. Don’t go on until you’ve got it working!
-
-# ## 4.2  Simple repetition
-
-# Chances are you wrote something like this:
+# 아래 명령문은 정사각형을 그린다.
 # 
 # ```python
 # bob.fd(100)
@@ -91,27 +80,10 @@
 # bob.lt(90)
 # 
 # bob.fd(100)
+# bob.lt(90)
 # ```
 
-# We can do the same thing more concisely with a for statement. Add this example to mypolygon.py and run it again:
-# 
-# ```python
-# for i in range(4):
-#     print('Hello!')
-# ```
-
-# You should see something like this:
-# 
-# ```python
-# Hello!
-# Hello!
-# Hello!
-# Hello!
-# ```
-
-# This is the simplest use of the for statement; we will see more later. But that should be enough to let you rewrite your square-drawing program. Don’t go on until you do.
-# 
-# Here is a for statement that draws a square:
+# 하지만 다음과 같이 `for` 반복문을 이용하면 보다 효율적인 코드를 얻는다.
 # 
 # ```python
 # for i in range(4):
@@ -119,70 +91,73 @@
 #     bob.lt(90)
 # ```
 
-# The syntax of a for statement is similar to a function definition. It has a header that ends with a colon and an indented body. The body can contain any number of statements.
-# 
-# A for statement is also called a loop because the flow of execution runs through the body and then loops back to the top. In this case, it runs the body four times.
-# 
-# This version is actually a little different from the previous square-drawing code because it makes another turn after drawing the last side of the square. The extra turn takes more time, but it simplifies the code if we do the same thing every time through the loop. This version also has the effect of leaving the turtle back in the starting position, facing in the starting direction.
+# ## 캡슐화와 일반화
 
-# ## 4.3  Exercises
+# 프로그램을 구현에 가장 필수적인 요소는 
+# **캡슐화**<font size="2">encapsulation</font>와 
+# **일반화**<font size="2">generalization</font>이다.
+# 
+# 1. 함수를 사용하지 않는 간단한 프로그램 작성
+# 1. (캡슐화) 작성한 프로그램이 잘 작동하면 변수에 의존하지 않는 부분을 함수로 감싸 하나의 캡슐처럼 만든다.
+# 1. (일반화) 함수에 적절한 매개변수<font size='2'>parameter</font>를 
+#     추가하여 함수가 보다 다양한 기능을 갖도록 한다.
+# 1. 원하는 수준의 함수를 얻을 때까지 위 과정을 반복한다.
+# 1. (리팩토링) 프로그램에서 중복되는 부분을 캡슐화하여 함수로 만들 수 있는지 잘 살펴본다.
 
-# The following is a series of exercises using the turtle module. They are meant to be fun, but they have a point, too. While you are working on them, think about what the point is.
-# 
-# The following sections have solutions to the exercises, so don’t look until you have finished (or at least tried).
-# 
-# 1. Write a function called square that takes a parameter named t, which is a turtle. It should use the turtle to draw a square.
-# Write a function call that passes bob as an argument to square, and then run the program again.
-# 
-# 1. Add another parameter, named length, to square. Modify the body so length of the sides is length, and then modify the function call to provide a second argument. Run the program again. Test your program with a range of values for length.
-# 
-# 1. Make a copy of square and change the name to polygon. Add another parameter named n and modify the body so it draws an n-sided regular polygon. Hint: The exterior angles of an n-sided regular polygon are 360/n degrees.
-# 
-# 1. Write a function called circle that takes a turtle, t, and radius, r, as parameters and that draws an approximate circle by calling polygon with an appropriate length and number of sides. Test your function with a range of values of r.
-# Hint: figure out the circumference of the circle and make sure that length * n = circumference.
-# 
-# 1. Make a more general version of circle called arc that takes an additional parameter angle, which determines what fraction of a circle to draw. angle is in units of degrees, so when angle=360, arc should draw a complete circle.
+# 앞서 다룬 코드에서 출발하여 캡슐화와 일반화를 연습한다. 
 
-# ## 4.4  Encapsulation
+# ## 캡슐화
 
-# The first exercise asks you to put your square-drawing code into a function definition and then call the function, passing the turtle as a parameter. Here is a solution:
-
+# 거북이를 지정해서 사각형을 그리도록 하는 함수는 다음과 같다.
+# 
 # ```python
 # def square(t):
 #     for i in range(4):
 #         t.fd(100)
 #         t.lt(90)
+# ```
 # 
+# 그러면 `square()` 함수를 `bob` 과 함께 호출하면 `bob` 지정된 크기의 정사각형을 그린다.
+# 
+# ```
 # square(bob)
 # ```
 
-# The innermost statements, fd and lt are indented twice to show that they are inside the for loop, which is inside the function definition. The next line, square(bob), is flush with the left margin, which indicates the end of both the for loop and the function definition.
-# 
-# Inside the function, t refers to the same turtle bob, so t.lt(90) has the same effect as bob.lt(90). In that case, why not call the parameter bob? The idea is that t can be any turtle, not just bob, so you could create a second turtle and pass it as an argument to square:
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle02.png" width="300"/></div>
 
+# 다른 거북이를 지정하면 해당 거북이가 정사각형을 그린다.
+# 
 # ```python
 # alice = turtle.Turtle()
 # square(alice)
 # ```
 
-# Wrapping a piece of code up in a function is called encapsulation. One of the benefits of encapsulation is that it attaches a name to the code, which serves as a kind of documentation. Another advantage is that if you re-use the code, it is more concise to call a function twice than to copy and paste the body!
+# ## 일반화
 
-# ## 4.5  Generalization
-
-# The next step is to add a length parameter to square. Here is a solution:
-
+# **길이 매개변수 추가**
+# 
+# 정사각형의 길이를 지정할 수 있도록 하기위해 `length` 매개변수를 추가한다.
+# 위 함수와 다른 점은 한 변의 길이를 나타냈던 100 대신에 `length` 매개변수를 사용한다는 것 뿐이다.
+# 
 # ```python
 # def square(t, length):
 #     for i in range(4):
 #         t.fd(length)
 #         t.lt(90)
+# ```
 # 
+# 그러면 다양한 크기의 정사각형을 그릴 수 있다.
+# 
+# ```python
 # square(bob, 100)
+# square(bob, 50)
 # ```
 
-# Adding a parameter to a function is called generalization because it makes the function more general: in the previous version, the square is always the same size; in this version it can be any size.
+# **다각형 그리기**
 # 
-# The next step is also a generalization. Instead of drawing squares, polygon draws regular polygons with any number of sides. Here is a solution:
+# 다각형을 그리는 함수는 거북이와 길이를 지정하는 매개변수 이외의 몇 각형인가를 결정하는
+# 매개변수도 필요하다.
+# 다음 `polygon()` 함수가 `square()` 함수를 일반화한다.
 
 # ```python
 # def polygon(t, n, length):
@@ -190,25 +165,36 @@
 #     for i in range(n):
 #         t.fd(length)
 #         t.lt(angle)
+# ```
 # 
+# 다음은 정7각형을 그린다.
+# 
+# ```python
 # polygon(bob, 7, 70)
 # ```
 
-# This example draws a 7-sided polygon with side length 70.
-# 
-# If you are using Python 2, the value of angle might be off because of integer division. A simple solution is to compute angle = 360.0 / n. Because the numerator is a floating-point number, the result is floating point.
-# 
-# When a function has more than a few numeric arguments, it is easy to forget what they are, or what order they should be in. In that case it is often a good idea to include the names of the parameters in the argument list:
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle03.png" width="300"/></div>
 
+# **키워드 인자 활용**
+# 
+# 만약에 기본적으로 한 변의 길이가 70인 정7각을 그리고 경우에 따라 다른 값을 사용하고자 한다면
+# `n=7` 과 `length=70` 을 키워드 인자로 지정하면 된다.
+# 
 # ```python
-# polygon(bob, n=7, length=70)
+# def polygon(t, n=7, length=70):
+#     angle = 360 / n
+#     for i in range(n):
+#         t.fd(length)
+#         t.lt(angle)
+# ```
+# 
+# 그러면 `n` 과 `length` 에 대한 값을 지정하지 않아도 동일한 정7각형을 얻는다.
+# 
+# ```python
+# polygon(bob)
 # ```
 
-# These are called keyword arguments because they include the parameter names as “keywords” (not to be confused with Python keywords like while and def).
-# 
-# This syntax makes the program more readable. It is also a reminder about how arguments and parameters work: when you call a function, the arguments are assigned to the parameters.
-
-# ## 4.6  Interface design
+# ## 인터페이스 디자인
 
 # The next step is to write circle, which takes a radius, r, as a parameter. Here is a simple solution that uses polygon to draw a 50-sided polygon:
 # 
@@ -298,18 +284,6 @@
 # This process—rearranging a program to improve interfaces and facilitate code re-use—is called refactoring. In this case, we noticed that there was similar code in arc and polygon, so we “factored it out” into polyline.
 # 
 # If we had planned ahead, we might have written polyline first and avoided refactoring, but often you don’t know enough at the beginning of a project to design all the interfaces. Once you start coding, you understand the problem better. Sometimes refactoring is a sign that you have learned something.
-
-# ## 4.8  A development plan
-
-# A development plan is a process for writing programs. The process we used in this case study is “encapsulation and generalization”. The steps of this process are:
-# 
-# 1. Start by writing a small program with no function definitions.
-# 1. Once you get the program working, identify a coherent piece of it, encapsulate the piece in a function and give it a name.
-# 1. Generalize the function by adding appropriate parameters.
-# 1. Repeat steps 1–3 until you have a set of working functions. Copy and paste working code to avoid retyping (and re-debugging).
-# 1. Look for opportunities to improve the program by refactoring. For example, if you have similar code in several places, consider factoring it into an appropriately general function.
-# 
-# This process has some drawbacks—we will see alternatives later—but it can be useful if you don’t know ahead of time how to divide the program into functions. This approach lets you design as you go along.
 
 # # 4.9  docstring
 
