@@ -19,8 +19,8 @@
 # import turtle
 # 
 # wn = turtle.Screen()      # 캔버스 하나 생성
-# 
 # bob = turtle.Turtle()    # bob 란 이름의 거북이 하나 생성. 기본 모양은 화살촉
+# 
 # bob.forward(150)         # 바라보는 방향으로 150 픽셀 전진
 # bob.left(90)             # 왼쪽으로 90도 회전
 # bob.forward(75)          # 바라보는 방향으로 75 픽셀 전진
@@ -106,7 +106,7 @@
 
 # 앞서 다룬 코드에서 출발하여 캡슐화와 일반화를 연습한다. 
 
-# ## 캡슐화
+# ### 캡슐화
 
 # 거북이를 지정해서 사각형을 그리도록 하는 함수는 다음과 같다.
 # 
@@ -132,7 +132,7 @@
 # square(alice)
 # ```
 
-# ## 일반화
+# ### 일반화
 
 # **길이 매개변수 추가**
 # 
@@ -162,6 +162,7 @@
 # ```python
 # def polygon(t, n, length):
 #     angle = 360 / n
+# 
 #     for i in range(n):
 #         t.fd(length)
 #         t.lt(angle)
@@ -183,6 +184,7 @@
 # ```python
 # def polygon(t, n=7, length=70):
 #     angle = 360 / n
+# 
 #     for i in range(n):
 #         t.fd(length)
 #         t.lt(angle)
@@ -214,8 +216,8 @@
 # def circle(t, r):
 #     circumference = 2 * math.pi * r  # 원둘레의 길이
 #     
-#     n = 50
-#     length = circumference / n       # 다각형의 길이
+#     n = 50                           # 50-각형 그리기
+#     length = circumference / n       # 50-각형의 한 변의 길이
 #     
 #     polygon(t, n, length)            # 다각형 그리기
 # ```
@@ -228,50 +230,73 @@
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle04.png" width="300"/></div>
 
-# The first line computes the circumference of a circle with radius r using the formula 2 π r. Since we use math.pi, we have to import math. By convention, import statements are usually at the beginning of the script.
+# 원을 매우 큰 n 을 이용하여 n-각형으로 표현한다.
+# 다만 위 코드에서는 n=50 을 사용하며, 
+# n-각형 한 변의 길이를 원둘레를 50 등분한 값으로 지정한다.
+# 하지만 이렇게 하면 n-각형의 한 변의 길이가 반지름이 큰 원에 대해서는 너무 크고,
+# 작은 원에 대해서는 너무 작다.
 # 
-# n is the number of line segments in our approximation of a circle, so length is the length of each segment. Thus, polygon draws a 50-sided polygon that approximates a circle with radius r.
+# n 을 함수의 매개변수로 지정하여 따로 입력받게할 수도 있지만
+# 그보다는 다각형의 변의 개수를 반지름에 의존하게 하고,
+# n-각형의 한 변의 길이는 3 정도로 제한하는 게 보다 좋다.
+# 3픽셀은 부드러운 곡선을 갖는 원을 그리는 데 충분히 작으면서
+# 동시에 원을 효율적으로 그리는데 적절하다.
 # 
-# One limitation of this solution is that n is a constant, which means that for very big circles, the line segments are too long, and for small circles, we waste time drawing very small segments. One solution would be to generalize the function by taking n as a parameter. This would give the user (whoever calls circle) more control, but the interface would be less clean.
-
-# The interface of a function is a summary of how it is used: what are the parameters? What does the function do? And what is the return value? An interface is “clean” if it allows the caller to do what they want without dealing with unnecessary details.
-# 
-# In this example, r belongs in the interface because it specifies the circle to be drawn. n is less appropriate because it pertains to the details of how the circle should be rendered.
-# 
-# Rather than clutter up the interface, it is better to choose an appropriate value of n depending on circumference:
+# 아래 코드에 사용된 `circumference / n` 약 3 정도의 값을 갖는다.
+# 또한 n 값에 사용된 `+3`은 최소 3각형을 그리도록 보장하기 위함이다.
 
 # ```python
 # def circle(t, r):
 #     circumference = 2 * math.pi * r
-#     n = int(circumference / 3) + 3
-#     length = circumference / n
+#     
+#     n = int(circumference / 3) + 3  # 원둘레의 1/3 정도에 해당하는 선분 수
+#     length = circumference / n      # 약 3 정도의 값
+#     
 #     polygon(t, n, length)
 # ```
 
-# Now the number of segments is an integer near circumference/3, so the length of each segment is approximately 3, which is small enough that the circles look good, but big enough to be efficient, and acceptable for any size circle.
+# ## 리팩토링
+
+# 프로그램을 개선하기 위해 코드를 재배치 하거나 재구성 하는 기법이 
+# **리팩토링**<font size='2'>refactoring</font>이다. 
 # 
-# Adding 3 to n guarantees that the polygon has at least 3 sides.
-
-# ## 4.7  Refactoring
-
-# When I wrote circle, I was able to re-use polygon because a many-sided polygon is a good approximation of a circle. But arc is not as cooperative; we can’t use polygon or circle to draw an arc.
+# 프로젝트를 시작할 때 모든 것을 고려할 수 있다면 처음부터 모든 상황에 유연하게
+# 대처하는 프로그램을 작성할 수 있을 것이다.
+# 하지만 일반적으로는 그렇게 일이 진행되지는 못한다.
+# 따라서 문제에 대한 이해가 깊어지면서 처음에 구현된 프로그램을 개선하기 위해
+# 리팩토링을 진행하게 된다. 
 # 
-# One alternative is to start with a copy of polygon and transform it into arc. The result might look like this:
+# 여기서는 `circle()` 함수를 리팩토링 과정을 통해 원의 호<font size='2'>arc</font>를
+# 그리는 함수를 구현환다. 
+# 
+# 먼저 `circle()` 함수의 본문에 `polygon()` 함수가 사용됨에 주의한다.
+# 이유는 다각형은 원의 호를 그리는 데에 별로 도움되지 않기 때문이다.
+# 즉, `circle()` 과 `polygon()` 을 원의 호를 그리는 데에 사용할 수 없다. 
 
+# 원의 호는 원의 일부이다.
+# 따라서 원의 둘레를 그리는 과정을 호의 크기에 맞춰 멈추도록 해야 하며,
+# 이 방식으로 `circle()` 함수를 수정하면 
+# 다음 `arc()` 함수를 얻는다.
+# `angle` 매개변수는 호와 두 지름으로 구성된 부채꼴의 중심각을 입력받는다.
+# 
 # ```python
 # def arc(t, r, angle):
 #     arc_length = 2 * math.pi * r * angle / 360
-#     n = int(arc_length / 3) + 1
-#     step_length = arc_length / n
-#     step_angle = angle / n
+#     n = int(arc_length / 3) + 1   # 호의 길이의 1/3 에 해당
+#     step_length = arc_length / n  # 선분의 길이
+#     step_angle = angle / n        # 호의 중심각의 1/n 에 해당
 #     
 #     for i in range(n):
 #         t.fd(step_length)
 #         t.lt(step_angle)
 # ```
 
-# The second half of this function looks like polygon, but we can’t re-use polygon without changing the interface. We could generalize polygon to take an angle as a third argument, but then polygon would no longer be an appropriate name! Instead, let’s call the more general function polyline:
-
+# `arc()` 함수의 본체에 사용된 `for` 반복문은 
+# `polygon()` 함수의 본체와 매우 닮았다.
+# 차이점은 `n` 이 호의 길이, 즉 중심각에 의존한다는 점 뿐이다. 
+# 
+# 이 점에 착안하여 아래 폴리라인 함수 `polyline()` 를 구현한다.
+# 
 # ```python
 # def polyline(t, n, length, angle):
 #     for i in range(n):
@@ -279,101 +304,81 @@
 #         t.lt(angle)
 # ```
 
-# Now we can rewrite polygon and arc to use polyline:
+# 이제 `arc()` 함수와 `polygon()` 함수 모두 `polyline` 함수를 이용하여 다시 구현할 수 있다.
 # 
 # ```python
 # def polygon(t, n, length):
 #     angle = 360.0 / n
-#     polyline(t, n, length, angle)
+# 
+#     polyline(t, n, length, angle)  # 360 도를 n 등분하여 n 번 회전하면 360도 회전함
 # 
 # def arc(t, r, angle):
 #     arc_length = 2 * math.pi * r * angle / 360
 #     n = int(arc_length / 3) + 1
 #     step_length = arc_length / n
 #     step_angle = float(angle) / n
+#     
 #     polyline(t, n, step_length, step_angle)
 # ```
 
-# Finally, we can rewrite circle to use arc:
+# `circle()` 함수는 `arc()` 함수의 특별한 경우이다.
 # 
 # ```python
 # def circle(t, r):
 #     arc(t, r, 360)
 # ```
 
-# This process—rearranging a program to improve interfaces and facilitate code re-use—is called refactoring. In this case, we noticed that there was similar code in arc and polygon, so we “factored it out” into polyline.
-# 
-# If we had planned ahead, we might have written polyline first and avoided refactoring, but often you don’t know enough at the beginning of a project to design all the interfaces. Once you start coding, you understand the problem better. Sometimes refactoring is a sign that you have learned something.
+# ## 문서화 문자열
 
-# # 4.9  docstring
-
-# A docstring is a string at the beginning of a function that explains the interface (“doc” is short for “documentation”). Here is an example:
+# 함수의 인터페이스를 설명하는 주석을 **문서화 문자열**, 
+# 영어로는 독스트링<font size='2'>docstring</font>이라 한다.
+# 문서화 문자열은 함수의 본체가 시작되기 전에 세 개의 큰 따옴표로 감싼 주석으로 작성된다.
 
 # ```python
 # def polyline(t, n, length, angle):
-#     """Draws n line segments with the given length and
-#     angle (in degrees) between them.  t is a turtle.
+#     """t: 거북이 객체
+#     n: 선분 그리기 반복 횟수
+#     length: 선분의 길이
+#     angle: 회전 각도. 즉, 두 선분 사이의 각도
+#     
+#     지정된 크기와 각도를 이용하여 거북이 t 가 n 개의 선분을 그린다.
 #     """    
+# 
 #     for i in range(n):
 #         t.fd(length)
 #         t.lt(angle)
 # ```
 
-# By convention, all docstrings are triple-quoted strings, also known as multiline strings because the triple quotes allow the string to span more than one line.
+# 문서화 문자열은 함수의 정보를 확인하는 데에 사용된다.
 # 
-# It is terse, but it contains the essential information someone would need to use this function. It explains concisely what the function does (without getting into the details of how it does it). It explains what effect each parameter has on the behavior of the function and what type each parameter should be (if it is not obvious).
+# ```python
+# >>> help(polyline)
+# ```
 # 
-# Writing this kind of documentation is an important part of interface design. A well-designed interface should be simple to explain; if you have a hard time explaining one of your functions, maybe the interface could be improved.
+# ```python
+# t: 거북이 객체
+# n: 선분 그리기 반복 횟수
+# length: 선분의 길이
+# angle: 회전 각도. 즉, 두 선분 사이의 각도
+# 
+# 지정된 크기와 각도를 이용하여 거북이 t 가 n 개의 선분을 그린다.
+# ```
 
-# ## 4.10  Debugging
+# ## 사전조건 대 사후조건
 
-# An interface is like a contract between a function and a caller. The caller agrees to provide certain parameters and the function agrees to do certain work.
+# 함수를 호출하려면 적절한 인자를 사용해야 하며,
+# 그렇지 않으면 실행중에 오류가 발생한다.
+# 예를 들어, `arc()` 함수의 `t` 매개변수에는 거북이 객체를,
+# `n` 은 양의 정수,
+# `length` 와 `angle` 은 양수 이어야 한다.
 # 
-# For example, polyline requires four arguments: t has to be a Turtle; n has to be an integer; length should be a positive number; and angle has to be a number, which is understood to be in degrees.
+# 이런 조건들이 `arc()` 함수의 **사전 조건**<font size='2'>pre-condition</font>이다.
+# 즉, 선조건이 만족되게 하는 인자들을 사용해야만 함수가 제대로 실행된다.
+# 반면에 함수의 실행이 끝나면 만족해야 하는 조건은 **사후 조건**<font size='2'>post-condition</font>이다.
 # 
-# These requirements are called preconditions because they are supposed to be true before the function starts executing. Conversely, conditions at the end of the function are postconditions. Postconditions include the intended effect of the function (like drawing line segments) and any side effects (like moving the Turtle or making other changes).
-# 
-# Preconditions are the responsibility of the caller. If the caller violates a (properly documented!) precondition and the function doesn’t work correctly, the bug is in the caller, not the function.
-# 
-# If the preconditions are satisfied and the postconditions are not, the bug is in the function. If your pre- and postconditions are clear, they can help with debugging.
+# 만약에 사전 조건을 충족하는 인자가 사용되었지만 사후 조건이 성립하지 않는 결과를 얻게 된다면,
+# 함수가 제대로 구현되지 않았음을 의미한다.
 
-# ## 4.12  Exercises
+# ## 연습 문제
 
-# **문제 1**
-
-# Download the code in this chapter from http://thinkpython2.com/code/polygon.py.
-# 
-# 1. Draw a stack diagram that shows the state of the program while executing circle(bob, radius). You can do the arithmetic by hand or add print statements to the code.
-# 
-# 1. The version of arc in Section 4.7 is not very accurate because the linear approximation of the circle is always outside the true circle. As a result, the Turtle ends up a few pixels away from the correct destination. My solution shows a way to reduce the effect of this error. Read the code and see if it makes sense to you. If you draw a diagram, you might see how it works.
-# 
-# Figure 4.1: Turtle flowers.
-
-# **문제 2**
-
-# Write an appropriately general set of functions that can draw flowers as in Figure 4.1.
-# 
-# Solution: http://thinkpython2.com/code/flower.py, also requires http://thinkpython2.com/code/polygon.py.
-# 
-# 
-# Figure 4.2: Turtle pies.
-
-# **문제 3**
-
-# Write an appropriately general set of functions that can draw shapes as in Figure 4.2.
-# 
-# Solution: http://thinkpython2.com/code/pie.py.
-
-# **문제 4**
-
-# The letters of the alphabet can be constructed from a moderate number of basic elements, like vertical and horizontal lines and a few curves. Design an alphabet that can be drawn with a minimal number of basic elements and then write functions that draw the letters.
-# 
-# You should write one function for each letter, with names draw_a, draw_b, etc., and put your functions in a file named letters.py. You can download a “turtle typewriter” from http://thinkpython2.com/code/typewriter.py to help you test your code.
-# 
-# You can get a solution from http://thinkpython2.com/code/letters.py; it also requires http://thinkpython2.com/code/polygon.py.
-
-# **문제 6**
-
-# Read about spirals at http://en.wikipedia.org/wiki/Spiral; then write a program that draws an Archimedian spiral (or one of the other kinds). Solution: http://thinkpython2.com/code/spiral.py.
-# 
-# Buy this book at Amazon.com
+# 참고: [(실습) 사례 연구: 함수 인터페이스](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-casestudy_function_interfaces.ipynb)
