@@ -423,6 +423,41 @@ x.set_current_value(8)
 x.get_current_value()
 
 
+# ```python
+# import random
+# 
+# class MSDie:
+#     """
+#     다면체 주사위
+#     
+#     인스턴스 변수: 
+#         num_sides: 면 개수
+#         current_value: 주사위를 굴린 결과
+#     """
+# 
+#     def __init__(self, num_sides):
+#         self.__hidden1 = 3                  # 네임 맹글링
+#         self._hidden2 = 7
+#         self.num_sides = num_sides
+#         self.current_value = self.roll()    # 주사위 굴리기 먼저 실행
+# 
+#     def roll(self):   # 주사위 굴리기
+#         randNum = random.randrange(1, self.num_sides+1)
+#         self.current_value = (self.__hidden1 * randNum) % self._hidden2 
+#         return self.current_value
+# 
+#     @property
+#     def current_value(self):
+#         return self.current_value
+#     
+#     @current_value.setter
+#     def current_value(self, num):
+#         self.current_value = (self.__hidden1 * num) % self._hidden2
+#     
+#     def set_hidden2(self, num):
+#         self._hidden2 = num
+# ```
+
 # **`__dir__()`  매직 메서드**
 
 # 객체의 모든 속성과 메서드를 확인하기 위해 아래와 같이 실행한다. 
