@@ -91,6 +91,61 @@
 #     bob.lt(90)
 # ```
 
+# :::{prf:example} 객체 중심 프로그래밍(OOP)
+# :label: exp_oop
+# 
+# 클래스를 이용하여 생성한 객체(클래스의 인스턴스)들은 기본적으로 상호 독립적으로 활용된다. 
+# 하지만 경우에 따라 객체들 사이에 상호 교감도 가능하게 할 수 있다. 
+# 각각의 객체가 수행하는 기능과 객체들 사이의 교감을 중심으로 하는 일이
+# **객체 중심 프로그래밍**<font size='2'>Object-Oriented Programming</font>(OOP)의 핵심이다.
+# 
+# 여기서는 Turtle 클래스의 인스턴스를 두 개 생성하여, 생성된 두 객체를 상호 독립적으로 활용하는 방법을 설명한다. 객체들 사이의 교감을 구현하는 방식은 나중에 다룰 것이다.
+# 
+# 아래 코드에서 Turtle 클래스의 인스턴스가 두 번 생성되었다. 
+# `alice` 객체에 대해서만 인스턴스의 속성을 변경하는 메서드가 추가로 사용되었다.
+# `alice` 의 속성을 변경한다 하더라도 `bob` 의 속성은 전혀 변하지 않는다.
+# 
+# - `shape()` 메서드: 해당 인스턴스의 펜 모양을 지정된 모양으로 변경시킴
+# - `color()` 메서드: 해당 인스턴스의 선 색깔을 지정된 색깔로 변경시킴
+# 
+# 코드를 실행하면 `bob` 은 정사각형을, `alice`는 빨강 역삼각형을 그린다.
+# 
+# 
+# ```python
+# import turtle
+# 
+# wn = turtle.Screen()
+# wn.bgcolor("lightyellow")               # 배경화면 색깔 정하기
+# wn.title("Hello, Bob and Alice!")       # 그래픽 제목 정하기
+# 
+# # bob 생성
+# bob = turtle.Turtle()
+# 
+# # alice 생성
+# alice = turtle.Turtle()
+# alice.shape("turtle")                   # 펜 모양을 거북이로 변경
+# alice.color("red")                      # 선 색깔을 빨강으로 변경
+# 
+# alice.penup()                           # 펜 들기: 선 그리지 않음
+# alice.backward(100)                     # 뒤로 100픽셀 이동
+# alice.pendown()                         # 펜 내리기: 선 그리기 시작함
+# 
+# # bob 으로 사각형 그리기
+# for i in range(4):
+#     bob.forward(100)
+#     bob.left(90)
+# 
+# # alice로 삼각형 그리기
+# for i in range(3):
+#     alice.forward(100)
+#     alice.right(120)                    # 시계방향으로 회전
+# 
+# wn.mainloop()                           # X 버튼을 누를 때까지 캔버스 유지
+# ```
+# :::
+
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle05.png" width="300"/></div>
+
 # ## 캡슐화와 일반화
 
 # 프로그램을 구현에 가장 필수적인 요소는 
