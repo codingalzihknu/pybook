@@ -229,6 +229,15 @@
 # >>> polygon(bob, 7, 70)
 # ```
 
+# :::{admonition} 정 n-각형의 외각
+# :class: info
+# 
+# 정 n-각형의 외각은 180/n 도 이다.
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/ExternalAngles.png" width="200"/></div>
+# 
+# <그림 출처: [wikipedia.org](https://ko.wikipedia.org/wiki/내각과_외각)>
+# :::
+
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle03.png" width="300"/></div>
 
 # **키워드 인자 활용**
@@ -327,6 +336,10 @@
 # 먼저 `circle()` 함수의 본문에 `polygon()` 함수가 사용됨에 주의한다.
 # 이유는 다각형은 원의 호를 그리는 데에 별로 도움되지 않기 때문이다.
 # 즉, `circle()` 과 `polygon()` 을 원의 호를 그리는 데에 사용할 수 없다. 
+
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/circle_slices.png" width="200"/></div>
+# 
+# <그림 출처: [wikipedia.org](https://ko.wikipedia.org/wiki/원_(기하학))>
 
 # 원의 호는 원의 일부이다.
 # 따라서 원의 둘레를 그리는 과정을 호의 크기에 맞춰 멈추도록 해야 하며,
