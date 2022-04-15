@@ -4,8 +4,8 @@
 # (ch:inheritance)=
 # # 상속
 
-# **참고:** 아래 내용은 [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/ns/books/published/pythonds3/index.html)의 1.13 절을 
-# 일부 내용을 활용합니다.
+# **참고:** 아래 내용은 [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/ns/books/published/pythonds3/index.html)의 1.13 절 내용을 
+# 일부 활용한다.
 
 # __상속__(inheritance)은 객체 지향 프로그래밍의 또 다른 주요 요소이다. 
 # 클래스를 선언할 때 다른 클래스의 상태(state)와 메서드를 상속 받아 활용할 수 있다.

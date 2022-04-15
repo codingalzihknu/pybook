@@ -5,7 +5,7 @@
 # # 클래스의 기본 요소
 
 # **참고:** 아래 내용은 [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/ns/books/published/pythonds3/index.html)의 2장 내용을 
-# 일부 담고 있다. 
+# 일부 활용한다. 
 
 # ## 기본 클래스
 
@@ -230,13 +230,15 @@ print(x is y)    # 동일성
 
 # ## 공개 여부
 
-# 자바 언어의 클래스 선언에 사용되는 private, default, protected, public 등과 같은
-# 접근 제어자는 파이썬이 지원하지 않으며 파이썬 클래스의 모든 것은 원칙적으로 공개(public)되며
-# 접근 및 수정될 수 있다.
+# 자바<font size='2'>Java</font> 프로그래밍 언어의 클래스 선언에 사용되는 
+# private, default, protected, public 등과 같은
+# 접근 제어자는 파이썬에서 지원되지 않는다.
+# 
+# 파이썬 클래스의 모든 것은 원칙적으로 공개(public)되며 접근 및 수정될 수 있다.
 # 하지만 일부 변수와 메서드는 특별한 방식으로 이름을 지어 외부 노출을 최대한 줄인다. 
 # 
-# - 두 개의 밑줄(`__`)로 시작하기: 숨기고자 하는 속성 변수와 메서드 이름
-# - 한 개의 밑줄(`_`)로 시작하기: 굳이 사용자가 알 필요 없는 속성 변수와 메서드 이름
+# * 두 개의 밑줄("`__`")로 시작하기: 숨기고자 하는 속성 변수와 메서드 이름
+# * 한 개의 밑줄("`_`")로 시작하기: 굳이 사용자가 알 필요 없는 속성 변수와 메서드 이름
 # 
 # 아래 코드는 MSDie 클래스의 생성자를 조금 수정하였다.
 # 수정된 내용은 주사위를 굴렸을 때 나온 값에 `__hidden1`을 곱한 후에 `_hidden2`로 
@@ -257,12 +259,13 @@ class MSDie:
     """
 
     def __init__(self, num_sides):
-        self.__hidden1 = 3                  # 네임 맹글링
-        self._hidden2 = 7
+        self.__hidden1 = 3                  # 숨긴 변수: 네임 맹글링
+        self._hidden2 = 7                   # 숨긴 변수
+        
         self.num_sides = num_sides
-        self.current_value = self.roll()    # 주사위 굴리기 먼저 실행
+        self.current_value = self.roll()
 
-    def roll(self):   # 주사위 굴리기
+    def roll(self):
         randNum = random.randrange(1, self.num_sides+1)
         self.current_value = (self.__hidden1 * randNum) % self._hidden2 
         return self.current_value
@@ -280,11 +283,10 @@ x = MSDie(6)
 x.current_value
 
 
-# 그런데 두 밑줄로 시작하는 `__hidden1` 속성은 인스턴스 변수로 확인할 수 없다.
+# 그런데 두 밑줄로 시작하는 `__hidden1` 속성은 인스턴스 변수로 확인되지 않는다.
 
 # ```python
-# x.__hidden1
-# ---------------------------------------------------------------------------
+# >>> x.__hidden1
 # AttributeError                            Traceback (most recent call last)
 # <ipython-input-14-5b793c2c1cb0> in <module>
 # ----> 1 x.__hidden1
@@ -311,7 +313,7 @@ x._hidden2
 x.__dict__
 
 
-# 그런데 `__hidden1` 변수 대신에 `_MSDie__hidden1`과 속성값이 확인된다.
+# 그런데 `__hidden1` 변수 대신에 `_MSDie__hidden1` 이 확인된다.
 # 이처럼 두 개의 밑줄로 시작하는 변수의 이름이 내부적으로 클래스 이름이 붙는 방식으로 변경된다.
 # 이를 __네임 맹글링__(name mangling)이라 한다. 
 # 변경된 이름을 이용하면 속성이 확인된다.
@@ -322,18 +324,191 @@ x.__dict__
 x._MSDie__hidden1
 
 
-# ## 게터(getter)와 세터(setter)
+# ## 게터와 세터
 
 # 반면에 하나의 밑줄을 사용하는 `_hidden2`는 숨길 것 까지는 아니지만 클래스 내부에서만
 # 사용되는 것을 반영한 이름이다. 
-# 이런 변수와 메서드는 사용자가 직접 값을 수정하기 보다는 세터와 게터 메서드를 이용하여
+# 이런 변수와 메서드는 사용자가 직접 값을 수정하기 보다는 
+# **세터**<font size='2'>setter</font>와 
+# **게터**<font size='2'>getter</font> 메서드를 이용하여
 # 외부와 내부를 중개하는 역할을 수행하도록 하는 것이 좋다. 
 # 이유는 사용자 입장에서 최소한의 정보를 이용하여 객체 속성 정보를 확인하고 이용하도록 만들기 위해서이다. 
 # 
-# 아래 코드는 `current_value`를 지정하고 확인하는 세터와 게터,
-# 그리고 `_hidden2`를 지정하는 세터를 선언한다.
+# 아래 코드는 `current_value`를 지정하고 확인하는 게터,
+# 그리고 `_hidden2`를 확인하고 지정하는 게터와 세터를 선언한다.
 
 # In[17]:
+
+
+import random
+
+class MSDie:
+    """
+    다면체 주사위
+    
+    인스턴스 변수: 
+        num_sides: 면 개수
+        current_value: 주사위를 굴린 결과
+    """
+
+    def __init__(self, num_sides):
+        self.__hidden1 = 3
+        self._hidden2 = 7
+        
+        self.num_sides = num_sides
+        self.current_value = self.roll()
+
+    def roll(self):
+        randNum = random.randrange(1, self.num_sides+1)
+        self.current_value = (self.__hidden1 * randNum) % self._hidden2 
+        return self.current_value
+        
+    # 게터
+    def get_value(self):
+        return self.current_value
+    
+    # 게터
+    def get_hidden2(self):
+        return self._hidden2
+
+    # 세터
+    def set_hidden2(self, num):
+        self._hidden2 = num
+
+
+# In[18]:
+
+
+x = MSDie(6)
+
+
+# `current_value` 값을 직접 확인해보자.
+
+# In[19]:
+
+
+x.current_value
+
+
+# 게터 메서드를 이용할 수도 있다.
+
+# In[20]:
+
+
+x.get_value()
+
+
+# 현재의 `_hidden2` 속성 또한 게터 메서드로 확인해보자.
+
+# In[21]:
+
+
+x.get_hidden2()
+
+
+# `x._hidden2` 가 가리키는 값을 세터 메서드를 이용하여 11로 변경해보자.
+
+# In[22]:
+
+
+x.set_hidden2(11)
+print(x.get_hidden2())
+
+
+# ## 데코레이터
+
+# 게터 메서드와 세터 메서드는 인스턴스 속성을 확인하고 변경한다.
+# 따라서 마치 하나의 인스턴스 변수처럼 다룰 수 있으면 보다 편할 것이다.
+# 여기서는 파이썬의 데코레이터를 이용하면 이것이 가능하게 만드는 것을 보인다.
+# 
+# **데코레이터**<font size='2'>decorator</font>는 선언되는 함수에 다른 
+# 기능을 추가하는 도구이다.
+# 파이썬은 다양한 종류의 데코레이터를 제공한다.
+# 하지만 여기서는 게터와 세터를 지정하는 데코레이터만 소개한다.
+# 
+# 예를 들어, 게터 메서드 바로 이전에 `property` 데코레이터를 지정하면
+# 해당 게터 메서드는 인스턴스 변수처럼 사용될 수 있다.
+# 또한 세터 메서드 앞에 `게터메서드.setter` 형식의 데코레이터를 지정하면
+# 해당 세터 메서드를 인스턴스 변수를 업데이트 하듯이 값을 재할당할 수 있다.
+
+# In[23]:
+
+
+import random
+
+class MSDie:
+    """
+    다면체 주사위
+    
+    인스턴스 변수: 
+        num_sides: 면 개수
+        current_value: 주사위를 굴린 결과
+    """
+
+    def __init__(self, num_sides):
+        self.__hidden1 = 3
+        self._hidden2 = 7
+        
+        self.num_sides = num_sides
+        self.current_value = self.roll()
+
+    def roll(self):
+        randNum = random.randrange(1, self.num_sides+1)
+        self.current_value = (self.__hidden1 * randNum) % self._hidden2 
+        return self.current_value
+
+    # 게터
+    @property
+    def value_get(self):
+        return self.current_value
+        
+    # 게터
+    @property
+    def hidden2_get(self):
+        return self._hidden2
+
+    # 세터
+    @hidden2_get.setter
+    def hidden2_set(self, num):
+        self._hidden2 = num
+
+
+# In[24]:
+
+
+x = MSDie(6)
+
+
+# In[25]:
+
+
+x.current_value
+
+
+# In[26]:
+
+
+x.value_get
+
+
+# `x._hidden2` 가 가리키는 값을 11로 변경해보자.
+# 그에 맞게 다른 속성도 변한다.
+
+# In[27]:
+
+
+x.hidden2_set = 11  # x.hidden2_set(11) 에 해당
+
+
+# In[28]:
+
+
+x.hidden2_get       # x.hidden2 에 해당
+
+
+# 데코레이터를 사용하면 심지어 게터와 세터를 동일한 이름으로 지정할 수 있다.
+
+# In[29]:
 
 
 import random
@@ -357,98 +532,64 @@ class MSDie:
         randNum = random.randrange(1, self.num_sides+1)
         self.current_value = (self.__hidden1 * randNum) % self._hidden2 
         return self.current_value
-        
-    def get_current_value(self):
+
+    @property
+    def value_get(self):
         return self.current_value
-    
-    def set_current_value(self, num):
-        self.current_value = (self.__hidden1 * num) % self._hidden2
-    
-    def set_hidden2(self, num):
+
+    # _hidden2의 게터
+    @property
+    def hidden2(self):
+        return self._hidden2
+
+    # _hidden2의 세터
+    @hidden2.setter
+    def hidden2(self, num):
         self._hidden2 = num
 
 
-# In[18]:
+# In[30]:
 
 
 x = MSDie(6)
 
 
-# In[19]:
+# `x._hidden2` 의 값을 11로 바꾼다.
+
+# In[31]:
 
 
-x.current_value
+x.hidden2 = 11
 
 
-# In[20]:
+# 11로 변경된 것을 확인한다.
+
+# In[32]:
 
 
-x.set_current_value(5)
-x.get_current_value()
+x.hidden2
 
 
-# In[21]:
-
-
-x.set_current_value(8)
-x.get_current_value()
-
-
-# In[22]:
-
-
-x.set_hidden2(11)
-
-
-# In[23]:
-
-
-x.set_current_value(5)
-x.get_current_value()
-
-
-# In[24]:
-
-
-x.set_current_value(8)
-x.get_current_value()
-
-
+# :::{admonition} 주의 사항
+# :class: warning
+# 
+# 게터와 세터의 이름을 동일하게 적용하는 경우
+# 세터 메서드를 직접 호출하면 오류가 발생할 수 있다.
+# 
 # ```python
-# import random
+# >>> x.hidden2(11)
+# TypeError                                 Traceback (most recent call last)
+# /tmp/ipykernel_8430/3341417680.py in <module>
+# ----> 1 x.hidden2(11)
 # 
-# class MSDie:
-#     """
-#     다면체 주사위
-#     
-#     인스턴스 변수: 
-#         num_sides: 면 개수
-#         current_value: 주사위를 굴린 결과
-#     """
-# 
-#     def __init__(self, num_sides):
-#         self.__hidden1 = 3                  # 네임 맹글링
-#         self._hidden2 = 7
-#         self.num_sides = num_sides
-#         self.current_value = self.roll()    # 주사위 굴리기 먼저 실행
-# 
-#     def roll(self):   # 주사위 굴리기
-#         randNum = random.randrange(1, self.num_sides+1)
-#         self.current_value = (self.__hidden1 * randNum) % self._hidden2 
-#         return self.current_value
-# 
-#     @property
-#     def current_value(self):
-#         return self.current_value
-#     
-#     @current_value.setter
-#     def current_value(self, num):
-#         self.current_value = (self.__hidden1 * num) % self._hidden2
-#     
-#     def set_hidden2(self, num):
-#         self._hidden2 = num
+# TypeError: 'int' object is not callable
 # ```
+# 
+# 이유는 `hidden2` 가 인스턴스 변수처럼 작동하기 때문이며, 
+# 위의 경우 정수 11을 가리키며, 
+# `hidden2(11)` 은 따라서 `11(11)` 이라는 실행이 불가능한 함수 호출로 처리되기 때문이다.
+# :::
 
 # ## 연습문제
 
-# 참고: [(실습) 클래스](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-classes.ipynb)
+# 참고: [(실습) 클래스의 기본 요소](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-proper_classes.ipynb)

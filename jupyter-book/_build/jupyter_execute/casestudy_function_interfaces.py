@@ -229,16 +229,16 @@
 # >>> polygon(bob, 7, 70)
 # ```
 
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle03.png" width="300"/></div>
+
 # :::{admonition} 정 n-각형의 외각
 # :class: info
 # 
-# 정 n-각형의 외각은 180/n 도 이다.
+# 정 n-각형의 외각은 360/n 도 이다.
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/ExternalAngles.png" width="200"/></div>
 # 
 # <그림 출처: [wikipedia.org](https://ko.wikipedia.org/wiki/내각과_외각)>
 # :::
-
-# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle03.png" width="300"/></div>
 
 # **키워드 인자 활용**
 # 
@@ -435,20 +435,64 @@
 # 지정된 크기와 각도를 이용하여 거북이 t 가 n 개의 선분을 그린다.
 # ```
 
-# ## 사전조건 대 사후조건
+# ## 사전 조건과 사후 조건
 
 # 함수를 호출하려면 적절한 인자를 사용해야 하며,
 # 그렇지 않으면 실행중에 오류가 발생한다.
-# 예를 들어, `arc()` 함수의 `t` 매개변수에는 거북이 객체를,
-# `n` 은 양의 정수,
-# `length` 와 `angle` 은 양수 이어야 한다.
+# 예를 들어, `polygon()` 함수의 `t` 매개변수에는 거북이 객체를,
+# `n` 은 양의 정수, `length` 는 양수여야 한다.
 # 
-# 이런 조건들이 `arc()` 함수의 **사전 조건**<font size='2'>pre-condition</font>이다.
+# 이런 조건들이 `polygon()` 함수의 **사전 조건**<font size='2'>pre-condition</font>이다.
 # 즉, 사전 조건이 만족되게 하는 인자들을 사용해야만 함수가 제대로 실행된다.
 # 반면에 함수의 실행이 끝나면 만족해야 하는 조건은 **사후 조건**<font size='2'>post-condition</font>이다.
+
+# :::{prf:example} `polygon()` 함수의 사전 조건과 사후조건
+# :label: exp_polygon_pre_post
+# 
+# 파이썬은 사전 조건과 사후 조건을 명시해서 그런 값들만 입력 받도록 하는 방법을 제공하지 않는다.
+# 하지만 `assert` 명령문을 아래처럼 이용하여 조건에 맞지 않는 경우 예외가 발생하도록 강제할 수 있다. 
+# 
+# ```python
+# assert isinstance(t, turtle.Turtle)  # turtle.Turtle 클래스의 인스턴스
+# ```
 # 
 # 만약에 사전 조건을 충족하는 인자가 사용되었지만 사후 조건이 성립하지 않는 결과를 얻게 된다면,
 # 함수가 제대로 구현되지 않았음을 의미한다.
+# 
+# 예를 들어, 거북이가 다각형을 다 그렸다면 제 자리로 돌아와야 하는데 이것을 사후 조건으로 내걸 수도 있다.
+# 이를 위해 거북이의 출발지의 좌표(`start_position`)와
+# 도착지의 좌표(`final_position`)가 동일한지 여부를 판단한다.
+# 
+# ```python
+# assert start_position == final_position
+# ```
+# 
+# 아래 코드는 사전 조건과 사후 조건을 포함하는 `polygon()` 함수를 보여준다.
+# 
+# ```python
+# def polygon(t, n, length):
+#     # 사전 조건
+#     assert isinstance(t, turtle.Turtle)
+#     assert isinstance(n, int)
+#     assert n > 0
+#     assert length > 0
+#     
+#     angle = 360 / n
+# 
+#     # 출발지
+#     start_position = t.pos()
+#     
+#     for i in range(n):
+#         t.fd(length)
+#         t.lt(angle)
+#         
+#     # 도착지
+#     final_position = t.pos()
+#     
+#     # 사후 조건
+#     assert start_position == final_position
+# ```
+# :::
 
 # ## 연습 문제
 

@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # (ch:collections2)=
-# # 모음 자료형 2부: 집합, 사전
+# # 모음 자료형 2부: 집합, 사전, `range`, 조건제시법
 
 # 집합과 사전 두 개의 비순차 자료형을 살펴본다.
 
@@ -672,3 +672,150 @@ dict(data)
 
 dict(Hello = '안녕', World = '세계', Programming = '프로그래밍')
 
+
+# ## `range` 자료형
+
+# `range` 자료형은 리스트, 튜플 등과 매우 유사하며, `range()` 함수를 이용하여 생성한다.
+# 예를 들어, `range(3)`는 0부터 2까지의 정수를 포함하는 리스트 또는 튜플로 간주될 수 있다.
+# 하지만, `range()` 함수의 반환값은 `range` 이며 항목을 바로 확인할 수 없다.
+
+# In[69]:
+
+
+print(range(3))
+
+
+# `range` 자료형의 항목을 확인하려면 `for` 반복문을 사용하던가
+# 리스트 또는 튜플로 형변환을 해야 한다.
+
+# In[70]:
+
+
+for item in range(3):
+    print(item)
+
+
+# In[71]:
+
+
+list(range(3))
+
+
+# In[72]:
+
+
+tuple(range(3))
+
+
+# `range()` 함수는 최대 세 개의 인자를 받으며 각 인자의 기능은 리스트 또는 튜플의 슬라이싱에서의
+# 기능과 동일하다.
+
+# In[73]:
+
+
+list(range(1, 9, 2))
+
+
+# In[74]:
+
+
+tuple(range(0, 9, 3))
+
+
+# In[75]:
+
+
+list(range(9, 0, -2))
+
+
+# 하나의 인자만 하용하면 구간의 끝을 의미하며, 구간의 시작은 0이 된다.
+# 셋째 인자는 생략되면 1이 기본값으로 사용된다.
+
+# In[76]:
+
+
+range(3) == range(0, 3)
+
+
+# In[77]:
+
+
+range(3) == range(0, 3, 1)
+
+
+# ## 조건제시법
+
+# 조건제시법<font size = "2">comprehension</font>을 이용하여 
+# 리스트, 집합, 사전을 정의할 수 있다.
+
+# **리스트 조건제시법**
+
+# 수학에서 0과 10사이에 있는 홀수들의 제곱을 원소로 갖는 집합을 조건제시법으로 표현하면
+# 다음과 같다.
+# 
+# $$\{ x^2 \mid 0 \le x \le 10, \text{ 단 $x$는 홀수} \}$$
+
+# 0과 10 사이에 있는 홀수들의 제곱을 항목으로 갖는 리스트를 `for` 반복문으로 구현해 보자.
+
+# In[78]:
+
+
+zero2ten_odd = []
+
+for x in range(11):
+    if x%2 == 1:
+        zero2ten_odd.append(x**2)
+
+zero2ten_odd
+
+
+# 조건제시법을 이용하여 보다 간단하게 리스트를 생성할 수 있다.
+
+# In[79]:
+
+
+zero2ten_odd = [ x**2 for x in range(11) if x%2 == 1 ]
+zero2ten_odd
+
+
+# 위 두 코드를 비교하면 조건제시법의 작동원리를 이해할 수 있을 것이다. 
+
+# **집합 조건제시법**
+
+# 조건제시법을 이용한 집합 정의도 유사하다.
+
+# In[80]:
+
+
+words = 'Python is a general purpose language'.split()
+words
+
+
+# In[81]:
+
+
+unique_len = {len(x) for x in words}
+unique_len
+
+
+# **사전 조건제시법**
+
+# 조건제시법을 이용하여 사전을 생성하는 과정도 유사하다. 
+
+# In[82]:
+
+
+words = 'Python is a general purpose language'.split()
+words
+
+
+# In[83]:
+
+
+len_dict = {k : len(k) for k in words}
+len_dict
+
+
+# ## 연습문제
+
+# 참고: [(실습) 모음 자료형](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections.ipynb)
