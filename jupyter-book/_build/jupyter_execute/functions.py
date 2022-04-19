@@ -918,15 +918,12 @@ print(plus_10(10))
 print(plus_10(20))
 
 
-# 람다 함수를 사용하면, 아래와 같이 코드를 작성할 수 있다. 
+# 동일한 기능의 함수를 람다 함수를 사용하면, 아래와 같이 작성할 수 있다. 
 
 # In[41]:
 
 
-x = lambda a : a + 10
-
-print(x(10))
-print(x(20))
+lambda a : a + 10
 
 
 # 두 숫자를 인자로 받아 그 곱을 반환하는 함수는 아래와 같이 정의할 수 있다. 
@@ -934,15 +931,26 @@ print(x(20))
 # In[42]:
 
 
-y = lambda a, b : a * b
+lambda a, b : a * b
 
-print(y(2, 3))
-print(y(4, 5))
+
+# 람다 함수는 이름이 없기에 호출하려면 함수 전체를 사용해야 한다. 
+
+# In[43]:
+
+
+(lambda a : a + 10)(5)
+
+
+# In[44]:
+
+
+(lambda a, b : a * b)(2, 5)
 
 
 # 람다 함수는 `map(function, iterable)`함수의 인자 등 한 번만 사용할 함수를 정의할 때 사용하면 좋다. 예를 들어, 리스트 `[1, 2, 3, 4, 5]`의 각 항목을 제곱한 다음 5를 더한 값을 항목으로 갖는 리스트 `[6, 9, 14, 21, 30]`을 만들 때, 다음과 같이 코드를 작성할 수 있다. 
 
-# In[43]:
+# In[45]:
 
 
 list(map(lambda x : x ** 2 + 5, [1, 2, 3, 4, 5]))
@@ -959,7 +967,7 @@ list(map(lambda x : x ** 2 + 5, [1, 2, 3, 4, 5]))
 # 매개 변수 `hour`와 함수 본문에서 선언된 `minutes` 변수는 모두 지역 변수이다.
 # 반면에 `two_hour` `hour_to_min(2)`의 실행 결괏값을 가리키는 전역 변수이다. 
 
-# In[44]:
+# In[46]:
 
 
 def hour2min(hour):
@@ -971,7 +979,7 @@ two_hour = hour2min(2)
 
 # 위 코드의 실행 결과 `two_hour` 변수는 120을 가리킨다.
 
-# In[45]:
+# In[47]:
 
 
 print("2 시간은", two_hour, "분입니다.")
@@ -995,11 +1003,55 @@ print("2 시간은", two_hour, "분입니다.")
 # NameError: name 'hour' is not defined
 # ```
 
-# :::{admonition} 파이썬 튜터 활용: 지역 변수의 생존 주기
-# :class: info
-# 
-# [PythonTutor:지역 변수 전역 변수](http://pythontutor.com/visualize.html#code=def%20hour_to_min%28hour%29%3A%0A%20%20%20%20minutes%20%3D%20hour%20*%2060%0A%20%20%20%20return%20minutes%0A%0Atwo_hour%20%3D%20hour_to_min%282%29%0Aprint%28minutes%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
+# [PythonTutor:지역 변수와 전역 변수 1](http://pythontutor.com/visualize.html#code=def%20hour_to_min%28hour%29%3A%0A%20%20%20%20minutes%20%3D%20hour%20*%2060%0A%20%20%20%20return%20minutes%0A%0Atwo_hour%20%3D%20hour_to_min%282%29%0Aprint%28minutes%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
 # `hour`와 `minutes`의 생존주기, 즉, 언제 생성되고 언제 사라지는지를 시각적으로 확인할 수 있다.
+
+# :::{prf:example}
+# :label: local_global1
+# 
+# 아래 코드에서 `one_hour` 가 전역 변수와 지역 변수로 사용된다.
+# 하지만 두 변수는 서로 상관이 없으며
+# 맨 마지막에 호출되는 `print(one_hour)` 는 60을 출력한다. 
+# 
+# ```python
+# one_hour = 60       # 1시간은 60분
+# 
+# def hour2min(hour):
+#     one_hour = 600  # 600분으로 오타
+#     minutes = hour * one_hour
+#     return minutes
+# 
+# two_hour = hour2min(2)
+# 
+# print(one_hour)
+# ```
+# 
+# [PythonTutor:지역 변수와 전역 변수 2](https://pythontutor.com/visualize.html#code=one_hour%20%3D%2060%20%20%20%20%20%20%20%23%201%EC%8B%9C%EA%B0%84%EC%9D%80%2060%EB%B6%84%0A%0Adef%20hour2min%28hour%29%3A%0A%20%20%20%20one_hour%20%3D%20600%20%20%23%20600%EB%B6%84%EC%9C%BC%EB%A1%9C%20%EC%98%A4%ED%83%80%0A%20%20%20%20minutes%20%3D%20hour%20*%20one_hour%0A%20%20%20%20return%20minutes%0A%0Atwo_hour%20%3D%20hour2min%282%29%0A%0Aprint%28one_hour%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서 `one_hour` 의 두 역할을 시각적으로 확인할 수 있다.
+# :::
+
+# :::{prf:example}
+# :label: local_global2
+# 
+# 반면에 아래 코드에서 `one_hour` 는 하나의 전역 변수로만 사용된다.
+# 함수 내에서 `global` 명령문으로 변수를 지정한 후에 해당 전역 변수를
+# 함수 본체에서 수정하면 함수 밖에도 영향을 미친다. 
+# 따라서 맨 마지막에 호출되는 `print(one_hour)` 는 600을 출력한다. 
+# 
+# ```python
+# one_hour = 60  # 1시간은 60분
+# 
+# def hour2min(hour):
+#     global one_hour
+#     one_hour = 600
+#     minutes = hour * one_hour
+#     return minutes
+# 
+# two_hour = hour2min(2)
+# 
+# print(one_hour)
+# ```
+# [PythonTutor:지역 변수와 전역 변수 3](https://pythontutor.com/visualize.html#code=one_hour%20%3D%2060%20%20%20%20%20%20%20%23%201%EC%8B%9C%EA%B0%84%EC%9D%80%2060%EB%B6%84%0A%0Adef%20hour2min%28hour%29%3A%0A%20%20%20%20global%20one_hour%0A%20%20%20%20one_hour%20%3D%20600%20%20%23%20600%EB%B6%84%EC%9C%BC%EB%A1%9C%20%EC%98%A4%ED%83%80%0A%20%20%20%20minutes%20%3D%20hour%20*%20one_hour%0A%20%20%20%20return%20minutes%0A%0Atwo_hour%20%3D%20hour2min%282%29%0A%0Aprint%28one_hour%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서 `global one_hour` 의 의미를 
+# 시각적으로 확인할 수 있다.
 # :::
 
 # ## 프로그램 실행과 함수 호출
@@ -1030,7 +1082,7 @@ print("2 시간은", two_hour, "분입니다.")
 # 
 # 다음 코드를 이용하여 함수 호출과 프레임 생성 및 사멸의 관계를 알아보자.
 
-# In[46]:
+# In[48]:
 
 
 def hour2min(hour):
