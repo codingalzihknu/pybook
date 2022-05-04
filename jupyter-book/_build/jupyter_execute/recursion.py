@@ -377,4 +377,4 @@ print(collatz_count(129), "회")
 
 # ## 연습문제
 
-# 참고: [(실습) 재귀 함수](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/recursion.ipynb)
+# 참고: [(실습) 재귀 함수](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-recursion.ipynb)
