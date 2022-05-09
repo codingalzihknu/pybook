@@ -602,7 +602,7 @@ move_tower(4, "A", "B", "C")
 # ```
 
 # <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/draw_spiral.png" width="35%"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/draw_spiral.png" width="60%"></div>
 # </figure>
 
 # ### 프랙탈 트리
