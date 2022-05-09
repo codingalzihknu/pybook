@@ -37,19 +37,6 @@ countdown(3)
 # 함수 본문에 자신을 호출하는 함수를 기능을 **재귀**<font size="2">recursion</font>라 하며,
 # **재귀 함수**<font size="2">recursive function</font>는 재귀를 활용하는 함수이다.
 
-# ## 재귀 함수의 콜 스택
-
-# 재귀 함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생하여
-# 콜 스택의 변화가 경우에 따라 매우 복잡해지기도 한다.
-# 아래 그림은 `countdown(3)`을 호출했을 때의 콜 스택의 상태를 스택 다이어그램으로 보여준다.
-
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/count_down.jpg" style="width:300px;"></div>
-
-# 예를 들어,
-# [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
-# 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
-# 즉, 콜 스택의 변화를 살펴볼 수 있다.
-
 # ## 기저 조건과 무한 재귀
 
 # 재귀 함수의 실행이 멈추려면 재귀 호출 과정에서 언젠가는 더 이상 자신을 호출하지 않아야 한다.
@@ -190,9 +177,121 @@ print('반환값:', countdown_num(2))
 print('반환값:', countdown_num(3))
 
 
-# ## 재귀 수학 함수 예제
+# ## 재귀 함수 예제
 
-# 재귀 함수로 구현될 수 있는 세 개의 수학 함수를 살펴본다.
+# ### 리스트 항목의 합
+
+# 리스트 `[1, 3, 5, 7, 9]`에 포함된 수들의 합을 구해보자.
+# 먼저, `for` 반복문을 이용하면 다음과 같다.
+# 
+# - 합을 0으로 시작.
+# - 각 항목을 확인하여 합에 더하기
+
+# In[11]:
+
+
+def list_sum(num_list):
+    the_sum = 0
+    for i in num_list:
+        the_sum = the_sum + i
+    return the_sum
+
+
+# In[12]:
+
+
+print(list_sum([1, 3, 5, 7, 9]))
+
+
+# 위 코드의 `for` 반복문에서 항목을 확인할 때마다 업데이트되는
+# `the_sum` 변수는 아래 괄호가 묶인 순서대로 계산되는 값을 차례대로 가리킨다.
+
+# $$(((1 + 3) + 5) + 7) + 9$$
+
+# 그런데 이 경우 재귀를 이용하려면 아래와 같이 작동하는 항목의 합을 사용해야 한다. 
+
+# $$1 + (3 + (5 + (7 + 9)))$$
+
+# 위 방식을 `for` 반복문으로 구현하면 다음과 같다.
+
+# In[13]:
+
+
+def list_sum(num_list):
+    the_sum = 0
+    for i in num_list[::-1]:
+        the_sum = the_sum + i
+    return the_sum
+
+
+# In[14]:
+
+
+print(list_sum([1, 3, 5, 7, 9]))
+
+
+# 항목 더하기 문제를 재귀로 해결하려면 먼저 `the_sum`이 구해지는 과정을 역추적해야 한다.
+
+# $$
+# \begin{align*}
+# \text{the_sum} & = 1 + (3 + (5 + (7 + 9))) \\
+# \text{the_sum} & = 3 + (5 + (7 + 9)) \\
+# \text{the_sum} & = 5 + (7 + 9) \\
+# \text{the_sum} & = 7 + 9 \\
+# \text{the_sum} & = 9
+# \end{align*}
+# $$
+
+# `the_sum`의 값이 업데이트되는 과정을 번호를 붙히면 다음을 얻는다.
+
+# $$
+# \begin{align*}
+# \text{the_sum}_5 & = 1 + \text{the_sum}_4 \\
+# \text{the_sum}_4 & = 3 + \text{the_sum}_3 \\
+# \text{the_sum}_3 & = 5 + \text{the_sum}_2 \\
+# \text{the_sum}_2 & = 7 + \text{the_sum}_1 \\
+# \text{the_sum}_1 & = 9
+# \end{align*}
+# $$
+
+# **리스트의 머리와 꼬리 활용**
+
+# $\text{the_sum}_{i}$가 결정되는 방식은 모든 $i$에 대해 동일하게 아래 형식을 따른다.
+# 
+# ```python
+# list_sum(num_list) = num_list[0] + list_sum(num_list[1:])
+# ```
+# 위 식을 리스트의 머리와 꼬리 개념으로 이해하면 재귀 알고리즘의 작동과정을 보다 쉽게 이해할 수 있다.
+# 단, 큐(queue)에 사용되는 머리, 꼬리 개념과 다름에 주의해야 한다.
+# 
+# - **머리**(head): 리스트의 0번 인덱스 값, 즉 `num_list[0]`
+# - **꼬리**(tail): 0번 인덱스를 제외한 나머지, 즉 `num_list[1:]`
+# 
+# 현재 리스트에 포함된 항목의 합을 구하려면 
+# 먼저 꼬리에 재귀를 적용한 다음 얻어진 결과에 머리를 더하면 된다.
+# 이는 꼬리에 대한 재귀가 특정 값을 반환할 때까지 머리와의 합은 대기상태로 머물러야 함을 의미한다(아래 그림 참조).
+
+# <figure>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/sumlistIn.png" width="50%"></div>
+# </figure>
+
+# 앞서 설명한 재귀를 함수로 구현하면 다음과 같다.
+
+# In[15]:
+
+
+def list_sum(num_list):
+    if len(num_list) == 1:  # 항목이 1개 일때
+        return num_list[0]
+    else:                   # 항목이 2개 이상일 때
+        return num_list[0] + list_sum(num_list[1:])
+
+
+# In[16]:
+
+
+print(list_sum([1, 3, 5, 7, 9]))
+
 
 # ### 계승
 
@@ -211,7 +310,7 @@ print('반환값:', countdown_num(3))
 # - 기저 조건은 `n == 0`이고, 1을 반환한다. 
 # - `n`이 0보다 크면 `(n-1)`의 계승과 `n`을 곱합 값을 반환한다.
 
-# In[11]:
+# In[17]:
 
 
 def factorial(n):
@@ -244,7 +343,7 @@ def factorial(n):
 # 함수는 기본적으로 재귀로 쉽게 구현할 수 있다.
 # 피보나치 수열의 `n` 번째 값을 구하는 함수는 다음과 같다.
 
-# In[12]:
+# In[18]:
 
 
 def fibonacci(n):
@@ -258,7 +357,7 @@ def fibonacci(n):
 
 # 피보나치 수열의 처음 10개 항목은 다음과 같다.
 
-# In[13]:
+# In[19]:
 
 
 for n in range(10):
@@ -297,7 +396,7 @@ print('...')
 # - `num % 2 == 0`: 짝수인 경우. 2로 나누기
 # - 기타<font size="2">else</font>: 홀수 인 경우. 3배 더하기 1.
 
-# In[14]:
+# In[20]:
 
 
 def collatz(num):
@@ -311,19 +410,19 @@ def collatz(num):
         collatz(num*3 + 1)
 
 
-# In[15]:
+# In[21]:
 
 
 collatz(7)
 
 
-# In[16]:
+# In[22]:
 
 
 collatz(128)
 
 
-# In[17]:
+# In[23]:
 
 
 collatz(129)
@@ -335,7 +434,7 @@ collatz(129)
 # - 짝수인 경우: 2로 나눈 값에 대한 재귀 호출 횟수 더하기 1
 # - 홀수인 경우: 세 배 더하기 1에 대한 재귀 호출 횟수 더하기 1
 
-# In[18]:
+# In[24]:
 
 
 def collatz_count(num):
@@ -347,19 +446,19 @@ def collatz_count(num):
         return collatz_count(num*3 + 1) + 1
 
 
-# In[19]:
+# In[25]:
 
 
 print(collatz_count(7), "회")
 
 
-# In[20]:
+# In[26]:
 
 
 print(collatz_count(128), "회")
 
 
-# In[21]:
+# In[27]:
 
 
 print(collatz_count(129), "회")
@@ -374,6 +473,220 @@ print(collatz_count(129), "회")
 # 이렇게 증명도 부정되 되지 않은 콜라츠의 주장을 
 # **콜라츠 추측**<font size="2">Collatz conjecture</font>
 # 이라 부른다.
+
+# ## 재귀 함수의 콜 스택
+
+# 재귀 함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생하여
+# 콜 스택의 변화가 경우에 따라 매우 복잡해지기도 한다.
+# 아래 그림은 `countdown(3)`을 호출했을 때의 콜 스택의 상태를 스택 다이어그램으로 보여준다.
+
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/count_down.jpg" style="width:300px;"></div>
+
+# :::{prf:example} PythonTutor: 콜라츠 추측
+# :label: exp_collatz
+# 
+# [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
+# 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
+# 즉, 콜 스택의 변화를 살펴볼 수 있다.
+# :::
+
+# ## 재귀 시각화
+
+# 재귀를 이해하기 위해 재귀 알고리즘의 작동과정을 시각화 해보자.
+# 시각화를 위해 `turtle` 모듈을 이용한다.
+
+# :::{prf:example} 소용돌이
+# :label: exp_spiral
+# 
+# `draw_spiral()` 함수는 아래 그림과 같은 소용돌이를 그린다.
+# 
+# ```python
+# import turtle
+# 
+# def draw_spiral(my_turtle, line_len):
+#     if line_len > 0:
+#         my_turtle.forward(line_len)
+#         my_turtle.right(90)
+#         draw_spiral(my_turtle, line_len - 5)
+# 
+# 
+# my_turtle = turtle.Turtle()
+# my_win = turtle.Screen()
+# draw_spiral(my_turtle, 100)
+# my_win.exitonclick()
+# ```
+# 
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/draw_spiral.png" width="35%"></div>
+# </figure>
+# :::
+
+# ### 프랙탈 트리
+
+# 아래 이미지처럼 아무리 확대하더라도 항상 동일한 구조를 보여주는 사물이 
+# **프랙탈**<font size='2'>fractal</font>이다.
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/mandelbrot_fractal.png" width="70%"></div>
+# </figure>
+# 
+# **참고**: [YouTube: 만델브로트 프랙탈 줌](https://www.youtube.com/watch?v=8cgp2WNNKmQ&ab_channel=MathsTown)
+
+# 프랙탈의 구조는 재귀와 매우 밀접한 관계를 갖는다.
+# 예를 들어, `tree()` 함수는 아래 모양의 프랙탈 트리를 그린다.
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_2.png" width="35%"></div>
+# </figure>
+
+# **참고**: [Repl.it: 프랙탈 트리](https://replit.com/@codingrg/fractaltree)에서
+# 실행할 수 있다.
+
+# ```python
+# import turtle
+# # import time                    # 주의: repl.it 사이트에서 오류 발생
+# 
+# def tree(branch_len, t):
+#     if branch_len >= 15:           # 종료조건: branch_len < 15
+#         t.forward(branch_len)    # 전진
+#         # time.sleep(1)          
+#         t.right(20)              # 오른쪽 가지치기
+#         tree(branch_len - 15, t)
+#         t.left(40)               # 왼쪽 가지치기
+#         tree(branch_len - 15, t)
+#         t.right(20)              # 한 단계 후진
+#         t.backward(branch_len)
+# 
+# t = turtle.Turtle()
+# my_win = turtle.Screen()
+# t.left(90)
+# t.up()
+# t.backward(100)
+# t.down()
+# t.color("green")
+# tree(75, t)
+# my_win.exitonclick()
+# ```
+
+# `tree()` 함수는 오른쪽 가지를 먼저 그리며, 이 과정을 최대한 멀리 진행한다.
+# 가지치기를 할 때마다 가지의 길이를 15씩 줄이며,
+# 그려야 할 가지의 길이가 15 미만일 때 가지치기를 멈춘다.
+# 아래 이미지는 가지의 길이를 처음에 75로 시작해서 5번 오른쪽 가지치기를 수행한 후 
+# 더 이상의 가지치기가 불가능한 상태를 보여준다.
+
+# <figure>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree1.png" width="45%"></div>
+# </figure>
+
+# 더 이상 오른쪽 가지치기가 불가능하면 뒤로 한 단계 후진한 다음에 왼쪽 가지치기를 진행한다.
+# 왼쪽 가지치기 이후 오른쪽 가지치가 가능하면 이를 먼저 수행한다.
+# 아래 이미지는 그려야할 프랙탈 트리의 절반을 그린 상태를 보여준다.
+
+# <figure>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree2.png" width="45%"></div>
+# </figure>
+
+# ### 꼬리와 재귀 일반화
+
+# 리스트에 포함된 항목들의 합을 계산하는 `list_sum()`의 실행과정을 이해하기 
+# 위해 사용된 머리(head)와 꼬리(tail) 개념을 많은 재귀 알고리즘에 적용할 수 있다.
+# 
+# 프랙탈 트리의 경우 가지 하나를 그린 다음 가지치기가 이루어지며
+# 가지치기 이후에는 동일한 과정이 반복된다. 
+# 다만, 좌우 각 가지에서 완성되는 프랙탈 트리는
+# 완성되어야 하는 전체 프랙탈 트리의 일부분을 담당한다.
+# 그려진 하나의 가지를 머리, 그려져야 하는 좌우 두 개의 가지를 두 개의 꼬리로
+# 이해할 수 있다. 
+# 즉, 머리를 그린 다음에 나머지는 각각의 꼬리에 동일한 과제를 떠넘기는 과정의
+# 연속이 된다(아래 그림 참조).
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_1.png" width="35%"></div>
+# </figure>
+
+# ## 하노이의 탑
+
+# `for`, `while` 반복문을 이용하여 해결하기 어려운 문제를
+# 재귀 알고리즘으로 상대적으로 훨씬 간단하게 해결하는 예제로 하나이의 탑 문제를 다룬다.
+# 
+# **하노이의 탑**<font size='2'>Tower of Hanoi</font> 문제는 세 개의 기둥 중에
+# 하나의 기둥에 쌓여 있는 다양한 크기의 원판들을 다른 기둥으로 옮기는 게임이다.
+# 단, 원판 이동 중에 아래 제한조건들을 반드시 지켜야 한다.
+# 
+# - 한 번에 한개의 원판만 옮긴다.
+# - 큰 원판이 그보다 작은 원판 위에 위치할 수 없다.
+
+# <figure>
+# <div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tower_of_Hanoi_4.gif" width="45%"></div>
+# </figure>
+# 
+# <그림 출처: [위키백과: 하노이의 탑](https://ko.wikipedia.org/wiki/%ED%95%98%EB%85%B8%EC%9D%B4%EC%9D%98_%ED%83%91)>
+
+# **참고**: 일반적으로 원판이 $n$개 일 때, $2^n - 1$번의 이동으로 원판을 모두 옮길 수 있다.
+# 참고로 64개의 원판을 옮기는 데 총 $2^{64}-1$ 번 원판을 움직여야 하고, 
+# 1초에 하나의 원판을 옮긴다고 가정했을 때 5,849억년 정도 걸린다.
+
+# ### 재귀 알고리즘
+
+# 4개의 원판을 옮겨야 한다고 가정하자.
+# 아래 연속된 그림에서 볼 수 있듯이 3개의 원판을 옮기는 과정을 두 번 반복하면 된다.
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-1.png" width="50%"></div>
+# </figure>
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-2.png" width="50%"></div>
+# </figure>
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-3.png" width="50%"></div>
+# </figure>
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-4.png" width="50%"></div>
+# </figure>
+
+# 위 설명을 임의의 양의 정수 `n`에 대해 일반화하면 다음과 같다.
+# 
+# 1. `n-1` 개의 원판을 중간 지점의 위치에 옮긴다.
+# 1. 가장 큰 원판을 목적지로 옮긴다.
+# 1. 중간 지점에 위치한 `n-1` 개의 원판을 목적지로 옮긴다.
+# 
+# 위 재귀 알고리즘의 종료조건은 `n=1`일 때이며, 이때는 하나의 원판을 
+# 목적지로 옮기기만 하면 된다.
+# 이를 코드로 구현하면 다음과 같다.
+# 
+# - `height`: 원판 개수
+# - `from_pole`: 출발 기둥
+# - `with_pole`: 중간 지점 기둥
+# - `to_pole`: 목적지 기둥
+
+# In[28]:
+
+
+def move_tower(height, from_pole, to_pole, with_pole):
+    if height >= 1:
+        move_tower(height - 1, from_pole, with_pole, to_pole)
+        move_disk(from_pole, to_pole)                           # 탑 원판 옮기기
+        move_tower(height - 1, with_pole, to_pole, from_pole)
+
+def move_disk(from_p, to_p):
+    print(f"{from_p}에서 {to_p}로 탑 원판 옮기기")
+
+
+# In[29]:
+
+
+move_tower(4, "A", "B", "C")
+
+
+# ### 머리와 꼬리
+# 
+# 하노이의 탑 알고리즘에서 머리와 꼬리는 다음과 같다.
+# 
+# - 머리: 바닥에 위치한 원판. 지정된 목적지로 이동하면 끝.
+# - 꼬리: 머리를 제외한 나머지 원판으로 이루어진 탑. 따라서 하나의 꼬리에 대한 두 번의 재귀호출이 이뤄짐.
 
 # ## 연습문제
 
