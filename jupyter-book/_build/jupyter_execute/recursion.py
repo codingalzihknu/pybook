@@ -92,9 +92,9 @@ countdown(3)
 # 하나라도 충족되지 않거나 확인할 수 없다면 해당 재귀 함수의 활용에 매우 
 # 주의를 기울여야 한다.
 
-# ## `return` 명령문
+# ## 재귀 함수의 반환값
 
-# 함수의 본문에 함수의 반환값을 지정하는 `return 표현식`이 여러 번
+# 함수의 반환값을 지정하는 `return 표현식`이 여러 번
 # 사용될 수 있다.
 # 예를 들어 짝수이면 0, 홀수이면 1을 반환하는 함수는 다음과 같이 정의한다.
 
@@ -124,8 +124,9 @@ even_odd(3)
 # `표현식`의 값을 반환하면서 동시에 함수의 실행을 멈춘다.
 # 따라서 함수 본문에 `return` 명령문이 여러 번 사용되었다 하더라도
 # 한 번만 실행되며, 결국 하나의 반환값만 지정된다.
+# 재귀 함수에 대해서도 동일하게 적용되며 보통은 기저 조건이 성립할 때의 반환값과
+# 재귀 단계에서의 리턴값을 별도로 지정한다. 
 # 
-# 재귀 함수에 대해서도 동일하게 적용된다.
 # 다음 `countdown_num()` 함수는 카운트 다운 횟수를 반환한다.
 # 인자로 0을 사용하면 바로 0을 반환값으로 지정하고
 # 이후 명령문을 더 이상 실행하지 않고 바로 종료한다.
@@ -151,8 +152,9 @@ print('반환값:', countdown_num(0))
 # 하지만 `n`이 `0`보다 크면 `countdown_num(n-1)` 이 
 # 재귀적으로 호출되어 실행이 종료할 때까지 기다렸다가
 # 반환값을 받아 `result`가 가리키는 값을 지정한다.
+# 이런 방식으로 재귀 과정에서 반환된 값을 받아 새로운 값을 생성하는 데에 활용할 수 있다.
 # 
-# `n = 1`이면 재귀 호출이 한 번 발생하며
+# 예를들어 `n = 1`이면 재귀 호출이 한 번 발생하며
 # 재귀 호출된 `countdown_num(0)`은 `0`을 반환하며 종료된다.
 # 따라서 `result = 0 + 1`이 실행되어 최종적으로 `1`을 반환한다.
 
@@ -176,6 +178,22 @@ print('반환값:', countdown_num(2))
 
 print('반환값:', countdown_num(3))
 
+
+# ## 재귀 함수의 콜 스택
+
+# 재귀 함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생하여
+# 콜 스택의 변화가 경우에 따라 매우 복잡해지기도 한다.
+# 아래 그림은 `countdown(3)`을 호출했을 때의 콜 스택의 상태를 스택 다이어그램으로 보여준다.
+
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/count_down.jpg" style="width:300px;"></div>
+
+# :::{prf:example} PythonTutor: 콜라츠 추측
+# :label: exp_collatz
+# 
+# [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
+# 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
+# 즉, 콜 스택의 변화를 살펴볼 수 있다.
+# :::
 
 # ## 재귀 함수 예제
 
@@ -474,140 +492,10 @@ print(collatz_count(129), "회")
 # **콜라츠 추측**<font size="2">Collatz conjecture</font>
 # 이라 부른다.
 
-# ## 재귀 함수의 콜 스택
-
-# 재귀 함수의 실행과정 동안 많은 프레임의 생성과 소멸이 발생하여
-# 콜 스택의 변화가 경우에 따라 매우 복잡해지기도 한다.
-# 아래 그림은 `countdown(3)`을 호출했을 때의 콜 스택의 상태를 스택 다이어그램으로 보여준다.
-
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/count_down.jpg" style="width:300px;"></div>
-
-# :::{prf:example} PythonTutor: 콜라츠 추측
-# :label: exp_collatz
-# 
-# [PythonTutor: 콜라츠 추측](http://pythontutor.com/visualize.html#code=def%20collatz%28num%29%3A%0A%20%20%20%20if%20num%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20return%200%0A%20%20%20%20elif%20num%252%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num//2%29%20%2B%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28num,%20end%3D',%20'%29%0A%20%20%20%20%20%20%20%20return%20collatz%28num*3%20%2B%201%29%20%2B%201%0A%20%20%20%20%20%20%20%20%0Acollatz%287%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
-# 재귀 함수 호출 과정 동안 메모리에서 벌어지는 프레임의 생성과 소멸 과정,
-# 즉, 콜 스택의 변화를 살펴볼 수 있다.
-# :::
-
-# ## 재귀 시각화
-
-# 재귀를 이해하기 위해 재귀 알고리즘의 작동과정을 시각화 해보자.
-# 시각화를 위해 `turtle` 모듈을 이용한다.
-
-# :::{prf:example} 소용돌이
-# :label: exp_spiral
-# 
-# `draw_spiral()` 함수는 아래 그림과 같은 소용돌이를 그린다.
-# 
-# ```python
-# import turtle
-# 
-# def draw_spiral(my_turtle, line_len):
-#     if line_len > 0:
-#         my_turtle.forward(line_len)
-#         my_turtle.right(90)
-#         draw_spiral(my_turtle, line_len - 5)
-# 
-# 
-# my_turtle = turtle.Turtle()
-# my_win = turtle.Screen()
-# draw_spiral(my_turtle, 100)
-# my_win.exitonclick()
-# ```
-# 
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/draw_spiral.png" width="35%"></div>
-# </figure>
-# :::
-
-# ### 프랙탈 트리
-
-# 아래 이미지처럼 아무리 확대하더라도 항상 동일한 구조를 보여주는 사물이 
-# **프랙탈**<font size='2'>fractal</font>이다.
-
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/mandelbrot_fractal.png" width="70%"></div>
-# </figure>
-# 
-# **참고**: [YouTube: 만델브로트 프랙탈 줌](https://www.youtube.com/watch?v=8cgp2WNNKmQ&ab_channel=MathsTown)
-
-# 프랙탈의 구조는 재귀와 매우 밀접한 관계를 갖는다.
-# 예를 들어, `tree()` 함수는 아래 모양의 프랙탈 트리를 그린다.
-
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_2.png" width="35%"></div>
-# </figure>
-
-# **참고**: [Repl.it: 프랙탈 트리](https://replit.com/@codingrg/fractaltree)에서
-# 실행할 수 있다.
-
-# ```python
-# import turtle
-# # import time                    # 주의: repl.it 사이트에서 오류 발생
-# 
-# def tree(branch_len, t):
-#     if branch_len >= 15:           # 종료조건: branch_len < 15
-#         t.forward(branch_len)    # 전진
-#         # time.sleep(1)          
-#         t.right(20)              # 오른쪽 가지치기
-#         tree(branch_len - 15, t)
-#         t.left(40)               # 왼쪽 가지치기
-#         tree(branch_len - 15, t)
-#         t.right(20)              # 한 단계 후진
-#         t.backward(branch_len)
-# 
-# t = turtle.Turtle()
-# my_win = turtle.Screen()
-# t.left(90)
-# t.up()
-# t.backward(100)
-# t.down()
-# t.color("green")
-# tree(75, t)
-# my_win.exitonclick()
-# ```
-
-# `tree()` 함수는 오른쪽 가지를 먼저 그리며, 이 과정을 최대한 멀리 진행한다.
-# 가지치기를 할 때마다 가지의 길이를 15씩 줄이며,
-# 그려야 할 가지의 길이가 15 미만일 때 가지치기를 멈춘다.
-# 아래 이미지는 가지의 길이를 처음에 75로 시작해서 5번 오른쪽 가지치기를 수행한 후 
-# 더 이상의 가지치기가 불가능한 상태를 보여준다.
-
-# <figure>
-# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree1.png" width="45%"></div>
-# </figure>
-
-# 더 이상 오른쪽 가지치기가 불가능하면 뒤로 한 단계 후진한 다음에 왼쪽 가지치기를 진행한다.
-# 왼쪽 가지치기 이후 오른쪽 가지치가 가능하면 이를 먼저 수행한다.
-# 아래 이미지는 그려야할 프랙탈 트리의 절반을 그린 상태를 보여준다.
-
-# <figure>
-# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree2.png" width="45%"></div>
-# </figure>
-
-# ### 꼬리와 재귀 일반화
-
-# 리스트에 포함된 항목들의 합을 계산하는 `list_sum()`의 실행과정을 이해하기 
-# 위해 사용된 머리(head)와 꼬리(tail) 개념을 많은 재귀 알고리즘에 적용할 수 있다.
-# 
-# 프랙탈 트리의 경우 가지 하나를 그린 다음 가지치기가 이루어지며
-# 가지치기 이후에는 동일한 과정이 반복된다. 
-# 다만, 좌우 각 가지에서 완성되는 프랙탈 트리는
-# 완성되어야 하는 전체 프랙탈 트리의 일부분을 담당한다.
-# 그려진 하나의 가지를 머리, 그려져야 하는 좌우 두 개의 가지를 두 개의 꼬리로
-# 이해할 수 있다. 
-# 즉, 머리를 그린 다음에 나머지는 각각의 꼬리에 동일한 과제를 떠넘기는 과정의
-# 연속이 된다(아래 그림 참조).
-
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_1.png" width="35%"></div>
-# </figure>
-
-# ## 하노이의 탑
+# ### 하노이의 탑
 
 # `for`, `while` 반복문을 이용하여 해결하기 어려운 문제를
-# 재귀 알고리즘으로 상대적으로 훨씬 간단하게 해결하는 예제로 하나이의 탑 문제를 다룬다.
+# 재귀 알고리즘으로 상대적으로 훨씬 간단하게 해결하는 예제로 하노이의 탑 문제를 다룬다.
 # 
 # **하노이의 탑**<font size='2'>Tower of Hanoi</font> 문제는 세 개의 기둥 중에
 # 하나의 기둥에 쌓여 있는 다양한 크기의 원판들을 다른 기둥으로 옮기는 게임이다.
@@ -626,8 +514,8 @@ print(collatz_count(129), "회")
 # 참고로 64개의 원판을 옮기는 데 총 $2^{64}-1$ 번 원판을 움직여야 하고, 
 # 1초에 하나의 원판을 옮긴다고 가정했을 때 5,849억년 정도 걸린다.
 
-# ### 재귀 알고리즘
-
+# **재귀 알고리즘**
+# 
 # 4개의 원판을 옮겨야 한다고 가정하자.
 # 아래 연속된 그림에서 볼 수 있듯이 3개의 원판을 옮기는 과정을 두 번 반복하면 된다.
 
@@ -681,12 +569,125 @@ def move_disk(from_p, to_p):
 move_tower(4, "A", "B", "C")
 
 
-# ### 머리와 꼬리
+# **머리와 꼬리**
 # 
 # 하노이의 탑 알고리즘에서 머리와 꼬리는 다음과 같다.
 # 
 # - 머리: 바닥에 위치한 원판. 지정된 목적지로 이동하면 끝.
 # - 꼬리: 머리를 제외한 나머지 원판으로 이루어진 탑. 따라서 하나의 꼬리에 대한 두 번의 재귀호출이 이뤄짐.
+
+# ## 재귀 시각화
+
+# 재귀를 이해하기 위해 재귀 알고리즘의 작동과정을 시각화 해보자.
+# 시각화를 위해 `turtle` 모듈을 이용한다.
+
+# ### 소용돌이
+
+# 재귀로 정의된 `draw_spiral()` 함수는 아래 그림과 같은 소용돌이를 그린다.
+# 
+# ```python
+# import turtle
+# 
+# def draw_spiral(my_turtle, line_len):
+#     if line_len > 0:
+#         my_turtle.forward(line_len)
+#         my_turtle.right(90)
+#         draw_spiral(my_turtle, line_len - 5)
+# 
+# 
+# my_turtle = turtle.Turtle()
+# my_win = turtle.Screen()
+# draw_spiral(my_turtle, 100)
+# my_win.exitonclick()
+# ```
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/draw_spiral.png" width="35%"></div>
+# </figure>
+
+# ### 프랙탈 트리
+
+# 아래 이미지처럼 아무리 확대하더라도 항상 동일한 구조를 보여주는 사물이 
+# **프랙탈**<font size='2'>fractal</font>이다.
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/mandelbrot_fractal.png" width="70%"></div>
+# </figure>
+# 
+# <그림 출처: [YouTube: 만델브로트 프랙탈 줌](https://www.youtube.com/watch?v=8cgp2WNNKmQ&ab_channel=MathsTown)>
+
+# 프랙탈의 구조는 재귀와 매우 밀접한 관계를 갖는다.
+# 예를 들어, `tree()` 함수는 아래 모양의 프랙탈 트리를 그린다.
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_2.png" width="35%"></div>
+# </figure>
+
+# :::{admonition} 프랙탈 트리
+# :class: info
+# 
+# 아래 코드를 [Repl.it: 프랙탈 트리](https://replit.com/@codingrg/fractaltree)에서
+# 실행할 수 있다.
+# 
+# ```python
+# import turtle
+# # import time                    # 주의: repl.it 사이트에서 오류 발생
+# 
+# def tree(branch_len, t):
+#     if branch_len >= 15:           # 종료조건: branch_len < 15
+#         t.forward(branch_len)    # 전진
+#         # time.sleep(1)          
+#         t.right(20)              # 오른쪽 가지치기
+#         tree(branch_len - 15, t)
+#         t.left(40)               # 왼쪽 가지치기
+#         tree(branch_len - 15, t)
+#         t.right(20)              # 한 단계 후진
+#         t.backward(branch_len)
+# 
+# t = turtle.Turtle()
+# my_win = turtle.Screen()
+# t.left(90)
+# t.up()
+# t.backward(100)
+# t.down()
+# t.color("green")
+# tree(75, t)
+# my_win.exitonclick()
+# ```
+# :::
+
+# `tree()` 함수는 오른쪽 가지를 먼저 그리며, 이 과정을 최대한 멀리 진행한다.
+# 가지치기를 할 때마다 가지의 길이를 15씩 줄이며,
+# 그려야 할 가지의 길이가 15 미만일 때 가지치기를 멈춘다.
+# 아래 이미지는 가지의 길이를 처음에 75로 시작해서 5번 오른쪽 가지치기를 수행한 후 
+# 더 이상의 가지치기가 불가능한 상태를 보여준다.
+
+# <figure>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree1.png" width="45%"></div>
+# </figure>
+
+# 더 이상 오른쪽 가지치기가 불가능하면 뒤로 한 단계 후진한 다음에 왼쪽 가지치기를 진행한다.
+# 왼쪽 가지치기 이후 오른쪽 가지치가 가능하면 이를 먼저 수행한다.
+# 아래 이미지는 그려야할 프랙탈 트리의 절반을 그린 상태를 보여준다.
+
+# <figure>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree2.png" width="45%"></div>
+# </figure>
+
+# **머리와 꼬리**
+# 
+# 프랙탈 트리의 경우 가지 하나를 그린 다음 가지치기가 이루어지며
+# 가지치기 이후에는 동일한 과정이 반복된다. 
+# 다만, 좌우 각 가지에서 완성되는 프랙탈 트리는
+# 완성되어야 하는 전체 프랙탈 트리의 일부분을 담당한다.
+# 그려진 하나의 가지를 머리, 그려져야 하는 좌우 두 개의 가지를 두 개의 꼬리로
+# 이해할 수 있다. 
+# 즉, 아래 그림이 보여주는 것처럼 머리를 그린 다음에 나머지는 각각의 꼬리에 동일한 과제를 떠넘기는 과정의
+# 연속이 된다.
+
+# <figure>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_1.png" width="35%"></div>
+# </figure>
 
 # ## 연습문제
 
