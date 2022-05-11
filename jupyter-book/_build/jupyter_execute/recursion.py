@@ -492,6 +492,7 @@ print(collatz_count(129), "회")
 # **콜라츠 추측**<font size="2">Collatz conjecture</font>
 # 이라 부른다.
 
+# (sec-hanoi)=
 # ### 하노이의 탑
 
 # `for`, `while` 반복문을 이용하여 해결하기 어려운 문제를
@@ -519,21 +520,16 @@ print(collatz_count(129), "회")
 # 4개의 원판을 옮겨야 한다고 가정하자.
 # 아래 연속된 그림에서 볼 수 있듯이 3개의 원판을 옮기는 과정을 두 번 반복하면 된다.
 
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-1.png" width="50%"></div>
-# </figure>
-
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-2.png" width="50%"></div>
-# </figure>
-
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-3.png" width="50%"></div>
-# </figure>
-
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-4.png" width="50%"></div>
-# </figure>
+# <table> 
+# 	<tr> 
+# 		<td><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/hanoi-tower-1.png" width="100%"></td> 
+# 		<td><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-2.png" width="100%"></td> 
+# 	</tr> 
+# 	<tr> 
+# 		<td><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-3.png" width="100%"></td> 
+# 		<td><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-4.png" width="100%"></td> 
+# 	</tr> 
+# </table> 
 
 # 위 설명을 임의의 양의 정수 `n`에 대해 일반화하면 다음과 같다.
 # 

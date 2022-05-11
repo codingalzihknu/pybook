@@ -296,7 +296,7 @@ type(test)
 # :::{admonition} 형변환 함수
 # :class: info
 # 
-# `2.3 + 3`을 실행하면 파이썬 해석기<font size="2">interpreter</font>는
+# `2.3 + 3`을 실행하면 파이썬 실행기<font size="2">interpreter</font>는
 # 내부적으로 정수를 부동소수점으로 형변환하는 함수 `float()`를 이용하여
 # 정수 `3`을 부동소수점 `3.0`으로 유형을 변환한 후에
 # 덧셈을 처리한다. 
