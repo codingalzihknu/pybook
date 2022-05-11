@@ -818,4 +818,4 @@ len_dict
 
 # ## 연습문제
 
-# 참고: [(실습) 모음 자료형](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections.ipynb)
+# 참고: [(실습) 모음 자료형 2부: 집합, 사전, `range`, 조건제시법](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections2.ipynb)

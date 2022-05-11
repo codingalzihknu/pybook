@@ -1312,3 +1312,7 @@ for l, n, o in zip(letters, numbers, operators):
     print(f'숫자:   {n}')
     print(f'연산자: {o}')
 
+
+# ## 연습문제
+
+# 참고: [(실습) 모음 자료형 1부: 문자열, 리스트, 튜플](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections1.ipynb)

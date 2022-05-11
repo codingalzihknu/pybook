@@ -2,14 +2,14 @@
 # coding: utf-8
 
 # (ch:collections3)=
-# # 모음 자료형 3부: range, 조건제시법, 이터레이터, 제너레이터
+# # 모음 자료형 3부: 이터러블, 이터레이터, 제너레이터
 
-# ## 이터러블과 이터레이터
+# ## 이터러블
 
-# ### 이터러블
-
-# 이터러블<font size = "2">iterable</font> 또는 이터러블 객체는 값을 한 번에 하나씩 돌려줄 수 있는 반복 가능한 객체로, `for` 반복문과 함께 사용될 수 있다.   
-# 예를 들어, 모든 시퀀스 자료형(예, 리스트, 튜플, 문자열 등)은 이터러블하고, 시퀀스 자료형은 아니지만 사전 자료형도 이터러블하다.  
+# **이터러블**<font size = "2">iterable</font> 자료형의 값은
+# 필요한 경우 포함된 항목을 한 번에 하나씩 전달할 수 있는 기능을 제공하는 갖는 객체이다.
+# 예를 들어 `for` 반복문과 함께 사용될 수 있는
+# 모든 시퀀스 자료형(예, 리스트, 튜플, 문자열 등)과 사전 자료형이 이터러블 객체이다.
 
 # In[1]:
 
@@ -25,50 +25,175 @@ for k in {'a' : '에이', 'b' : '비'} :
     print(k)
 
 
-# 이터러블 객체는 `__iter__()` 메서드를 가지고 있다.
+# 이터러블 객체의 엄밀한 정의는 `__iter__()` 메서드를 갖는 클래스의 객체이다. 
+# `dir()` 함수를 사용하여 `__iter__()` 메서드의 포함여부를 확인할 수 있다.
 
 # In[3]:
 
 
 a_list = [1, 2, 3]
-print(dir(a_list)) #dir() 함수를 사용하여 a_list가 어떤 메서드를 가지고 있는지 확인할 수 있다. 
+
+'__iter__' in dir(a_list)
 
 
-# ### 이터레이터
+# :::{admonition} `dir()` 함수
+# :class: info
+# 
+# `dir()` 함수는 인자로 사용된 객체의 속성과 메서드의 리스트를 반환한다.
+# 
+# ```python
+# >>> dir(a_list)
+# ['__add__',
+#  ...
+#  '__iter__',
+#  ...
+#  'append',
+#  'clear',
+#  'copy',
+#  'count',
+#  'extend',
+#  'index',
+#  'insert',
+#  'pop',
+#  'remove',
+#  'reverse',
+#  'sort']
+# ```
+# :::
 
-# 이터레이터<font size = "2">iterator</font>는 값을 하나씩 꺼낼 수 있는 객체로, 이터러블의 `__iter__()` 메서드나 내장함수 `iter()`를 사용하여 이터레이터를 만들 수 있다. 
+# `a_list` 변수가 가리키는 값이 순차 자료형인 리스트이면서 동시에 이터러블 자료형의 객체인지 
+# 여부를 판단하기 위해 `isinstance()` 함수를 활용할 수도 있다.
+# 하지만 먼저 이터러블 자료형의 클래스인 `Iterable`과 순차 자료형의 클래스인 `Sequence` 을
+# 불러와야 한다. 
 
 # In[4]:
 
 
+from collections.abc import Sequence, Iterable
+
+
+# 아래 표현식은 리스트가 순차 자료형임을 확인해준다.
+
+# In[5]:
+
+
+isinstance(a_list, Sequence)
+
+
+# 아래 표현식은 리스트가 이터러블 자료형임을 확인해준다.
+
+# In[6]:
+
+
+isinstance(a_list, Iterable)
+
+
+# 반면에 사전은 이터러블이지만 순차 자료형은 아님을 확인할 수 있다.
+
+# In[7]:
+
+
+a_dict = {'a': 1, 'b': 2}
+
+
+# In[8]:
+
+
+isinstance(a_dict, Iterable)
+
+
+# In[9]:
+
+
+isinstance(a_dict, Sequence)
+
+
+# ## 이터레이터
+
+# **이터레이터**<font size = "2">iterator</font>는 값을 하나씩 꺼낼 수 있는 객체로, 
+# `__next__()` 메서드를 갖는다.
+# 예를 들어, 모든 이터러블 객체를 `__iter__()` 메서드를 이용하여 이터레이터로 변환시킬 수 있다.
+
+# 리스트는 이터러블 객체이기에 `__iter__()` 메서드를 호출할 수 있다.
+# 그러면 이터레이터 객체가 하나 생성된다.
+
+# In[10]:
+
+
 a_list = [1, 2, 3]
-a_iter = iter(a_list)
+a_iter = a_list.__iter__()
+
 type(a_iter)
 
 
-# 이터레이터의 `__next__()` 메서드나 내장함수 `next()`를 반복적으로 호출하면 값을 차례대로 돌려준다.    
+# 다음 방식으로도 이터레이터임을 확인할 수 있다.
 
-# In[5]:
+# In[11]:
+
+
+from collections.abc import Iterator
+
+
+# In[12]:
+
+
+isinstance(a_iter, Iterator)
+
+
+# 이터레시터는 `__next__()` 메서드를 갖는다.
+
+# In[13]:
+
+
+'__next__' in dir(a_iter)
+
+
+# 반면에 리스트 자체는 이터레이터가 아니다.
+
+# In[14]:
+
+
+'__next__' in dir(a_list)
+
+
+# In[15]:
+
+
+isinstance(a_list, Iterator)
+
+
+# 이터레이터는 값을 바로 보여주지 않는다. 이터레이터의 항목은 리스트로 형변환하면 쉽게 확인할 수 있다. 
+
+# In[16]:
+
+
+print(a_iter)
+
+
+# 이터레이터의 항목을 확인하거나 이용하려면 
+# `__next__()` 메서드를 호출해야 한다.
+# 그런데 `__next__()` 메서드가 호출될 때마다 포함된 항목이 차례대로 반환된다.
+
+# In[17]:
 
 
 a_iter.__next__() 
 
 
-# In[6]:
+# In[18]:
 
 
 a_iter.__next__()
 
 
-# In[7]:
+# In[19]:
 
 
 a_iter.__next__()
 
 
-# :::{admonition} 주의  
-# :class: caution  
-# 차례대로 이터레이터의 항목을 모두 꺼낸 다음에 `__next__()` 메서드를 실행하면 `StopIteration` 오류가 발생한다. 
+# 모든 항목이 반환되면 더 이상 `__next__()` 메서드를 사용할 수 있다.
+# 이유는 더 이상 반환해줄 항목이 없기에 실행하면 `StopIteration` 오류를 발생시키기 때문이다.
 # 
 # ```python
 # >>> a_iter.__next__()
@@ -78,42 +203,93 @@ a_iter.__next__()
 # 
 # StopIteration: 
 # ```
-# :::
+
+# 항목을 다시 확인하려면 이터레이터를 다시 생성해야 하고,
+# 그러면 다시 첫 항목부터 확인된다.
+
+# In[20]:
+
+
+a_iter = a_list.__iter__()
+
+a_iter.__next__()
+
+
+# **`for`반복문과 이터러블 자료형**
 # 
+# 리스트 자체는 이터레이터 자료형이 아니지만 `for` 반복문과 여러 번 사용할 수 있다.
 
-# 이터레이터는 값을 바로 보여주지 않는다. 이터레이터의 항목은 리스트로 형변환하면 쉽게 확인할 수 있다. 
-
-# In[8]:
-
-
-a_list = [1, 2, 3]
-a_iter = iter(a_list)
-print(a_iter)
-print(list(a_iter))
+# In[21]:
 
 
-# :::{admonition} 참고  
-# :class: info  
-# `for`반복문을 사용할때마다 이터러블의 `__iter__()`메서드는 새로운 이터레이터 객체를 자동으로 만들어주기 때문에 사용자가 직접 이터레이터를 만들 필요는 없다.  
-# 예를 들어, 아래와 같이 리스트를 이용하여 `for` 반복문을 실행하면 리스트의 `__iter__()` 메서드가 호출된다. 
-# ```python
-# >>> a_list = [1, 2, 3]
-# >>> for item in a_list :
-#         print(item)
-# 1
-# 2
-# 3
-# ```
-# :::
+for i in [1, 2, 3]:
+    print(i)
+
+
+# In[22]:
+
+
+for i in [1, 2, 3]:
+    print(i)
+
+
+# 이유는 `for` 반복문이 실행될 때마다 이터러블의 `__iter__()`메서드가
+# 먼저 호출되어 매번 새로 이터레이터 객체를 생성한다.
+# 그런 다음에 `__next__()` 메서드가 실행되는 방식으로 `for` 반복문이 작동한다. 
+
+# **`range` 객체는 이터러블**
 # 
+# `range()` 함수로 생성되는 `range` 객체도 리스트처럼 이터러블 자료형이지만 이터레이터는 아니다.
 
-# ### 제너레이터 
+# In[23]:
 
-# 제너레이터<font size = "2">generator</font>는 특별한 이터레이터로, `__iter__()`와 `__next__()` 메서드를 구체적으로 구현할 필요없이 간단하게 이터레이터를 정의할 수 있다. 제너레이터는 함수와 비슷한 방식으로 정의하지만 함수 안에 `return`키워드 대신 `yield` 키워드를 사용하여 생성해야 하는 값들을 지정한다는 점이 다르다.     
 
+a_range = range(5)
+
+
+# In[24]:
+
+
+isinstance(a_range, Iterable)
+
+
+# In[25]:
+
+
+isinstance(a_range, Iterator)
+
+
+# 항목을 미리 만들어 놓지 않기에 미리 보여주지 않는다.
+
+# In[26]:
+
+
+print(a_range)
+
+
+# 하지만 `range` 객체 또한 당연히 `for` 반복문과 함께 유용하게 사용된다.
+
+# In[27]:
+
+
+for item in a_range:
+    print(f"{item}의 제곱은 {item**2}.")
+
+
+# ## 제너레이터 
+
+# **제너레이터**<font size = "2">generator</font>는 특별한 이터레이터이다.
+# `__iter__()`와 `__next__()` 메서드를 구체적으로 구현할 필요없이 두 가지 방식으로 
+# 간단하게 제너레이터를 정의할 수 있다. 
+
+# **제너레이터 함수**
+# 
+# 제너레이터 함수는 일반 함수와 비슷한 방식으로 정의되는데, `return`키워드 대신 `yield` 키워드를 사용하여
+# `__next__()` 메서드가 반환해야 하는 값을 어떻게 생성할지 지정한다.   
+# 
 # 예를 들어, 1부터 n의 제곱을 생성하는 제너레이터는 아래와 같이 정의한다. 
 
-# In[9]:
+# In[28]:
 
 
 def squares(n) :
@@ -121,116 +297,123 @@ def squares(n) :
         yield i ** 2
 
 
-# In[10]:
+# `squares()` 는 제너레이터만을 생성한다. 
+# 예를 들어 `squares(5)` 가 제너레이터임을 다음과 같이 확인할 수 있다.
+
+# In[29]:
 
 
-gen = squares(5)
-type(gen)
+from collections.abc import Generator
+
+isinstance(squares(5), Generator)
 
 
-# 제너레이터는 지정된 값들을 바로 생성하지 않으며, 생성할 준비만 해두고 필요할 때 값을 생성하여 메모리를 보다 효율적으로 사용할 수 있다.   
-# `__next__()` 메서드나 `next()` 함수를 사용하여 항목을 차례대로 가져올 수 있다.  
+# 앞서 보았듯이 제너레이터는 항목을 미리 모두 만들지 않고 필요할 때마나 하나씩 만들어 반환한다. 
 
-# In[11]:
-
-
-gen.__next__()
+# In[30]:
 
 
-# In[12]:
+squares_5 = squares(5)
+print(squares_5)
 
 
-gen.__next__()
+# In[31]:
 
 
-# In[13]:
+squares_5.__next__()
 
 
-next(gen)
+# In[32]:
 
 
-# `for` 반복문에 사용하면 그때 필요한 항목을 하나씩 생성한다.  
-# 앞에서 `1, 4, 9` 항목을 가져왔기 때문에 `16`과 `25`만 출력된 것을 볼 수 있다. 
-
-# In[14]:
+squares_5.__next__()
 
 
-for x in gen :
-    print(x, end = ' ')
+# `next()` 함수를 사용하면 인자로 사용된 객체의 `__next__()` 메서드가 호출된다.
+
+# In[33]:
+
+
+next(squares_5) # squares_5.__next__()
 
 
 # :::{admonition} 주의   
 # :class: caution  
-# 제너레이터도 `__next__()` 메서드가 모든 항목을 순회하면 더 이상 가리키는 값이 없다. 따라서 한 번 더 `for` 반복문을 사용했을 때, 아무 것도 출력하지 않는다. 
-# 
-# ```python
-# >>> for x in gen :
-#         print(x, end = ' ')
-# ```
-# 
-# 동일한 제너레이터를 다시 사용하려면 제너레이터를 다시 생성해야 한다. 
-# ```python
-# >>> gen = squares(5)
-# >>> for x in gen :
-#         print(x, end = ' ')
-# 1 4 9 16 25 
-# ```
 # :::
 # 
-
-# **제너레이터 표현식**  
-# 제너레이터는 제너레이터 표현식을 사용하여 만들 수도 있다. 조건제시법과 유사하지만 소괄호(`( )`)로 감싸서 만든다. 
-
-# In[15]:
-
-
-squares = (i ** 2 for i in range(1, 6))
-type(squares)
-
-
-# :::{admonition} 주의  
-# :class: caution  
-# 소괄호로 감싸서 만들지만 튜플 자료형이 아니라 제너레이터이다. 
-# :::
+# `for` 반복문을 사용하더라도 
+# 이미 `__next__()` 메서드가 반환된 값의 다음 항목부터 사용됨에 주의하라.
 # 
+# ```python
+# >>> for x in squares_5:
+# >>>     print(x, end = ' ')
+# 16 25 
+# ```
+# :::
 
-# In[16]:
+# **제너레이터 표현식**
+# 
+# 조건제시법 방식을 튜플에 적용하면 제너레이터 표현식이 된다.
+# 예를 들어, 아래 코드는 튜플이 아닌 
+# 앞서 정의한 `squares_5`와 동일하게 작동하는 제너레이터를 생성한다. 
 
-
-print(next(squares))
-print(next(squares))
-print(next(squares))
-print(next(squares))
-print(next(squares))
-
-
-# In[17]:
-
-
-x = (x**2 for x in range(3))
-
-
-# In[18]:
+# In[34]:
 
 
-y = [z for z in x]
-y
+squares_5_new = (i ** 2 for i in range(1, 6))
+
+isinstance(squares_5_new, Generator)
 
 
-# ### 이터러블에 유용한 내장함수
+# In[35]:
 
-# #### `enumerate()` 함수  
-# `enumerate(iterable, start = 0)` : 카운트와 `iterable`의 항목을 튜플로 묶은 형태로 이터레이터를 만들어 반환한다. 카운트는 기본적으로 0부터 시작하고 다른 값부터 시작하고 싶다면 `start` 값을 변경해주면 된다. 
 
-# In[19]:
+for item in squares_5_new:
+    print(item, end=' ')
+
+
+# 제너레이터는 이터레이터이기에 두 번 연속 사용할 수 없다.
+
+# In[36]:
+
+
+for item in squares_5_new:
+    print(item, end=' ')
+
+
+# 다시 사용하려면 매번 다시 생성해야 한다.
+
+# In[37]:
+
+
+squares_5_new = (i ** 2 for i in range(1, 6))
+
+for item in squares_5_new:
+    print(item, end=' ')
+
+
+# ## 이터러블 자료형에 유용한 함수
+
+# **`enumerate()` 함수**
+# 
+# `enumerate(iterable, start = 0)` 함수는
+# 카운트와 `iterable`의 항목을 튜플로 묶은 형태로 이터레이터를 만들어 반환한다. 
+
+# In[38]:
 
 
 seasons = ['봄', '여름', '가을', '겨울']
-print(list(enumerate(seasons)))
-print(list(enumerate(seasons, start = 10)))
 
 
-# In[20]:
+# In[39]:
+
+
+list(enumerate(seasons))
+
+
+# 카운트는 기본적으로 0부터 시작하고 다른 값부터 시작하고 싶다면 `start` 값을 변경해주면 된다. 
+
+# In[40]:
 
 
 class_name = ['강현', '나현', '다현']
@@ -240,11 +423,12 @@ for num, name in class_name_enum :
     print(f'{num}번 학생은 {name}입니다.')
 
 
-# #### `zip()` 함수
+# **`zip()` 함수**
+# 
+# 여러 개의 이터러블 값을 인자로 받아 각 항목을 튜플로 묶은 형태로 짝짓기된 항목을
+# 생성하는 이터레이터를 만들어 반환한다. 
 
-# 여러 개의 이터러블을 인자로 받아 각 항목을 튜플로 묶은 형태로 이터레이터를 만들어 반환한다. 
-
-# In[21]:
+# In[41]:
 
 
 data_zip = zip(['3월', '2월', '9월'], ['강현', '나현', '다현'])
@@ -253,32 +437,74 @@ for month, name in data_zip :
     print(f'{name}은 {month}달에 태어났다.')
 
 
-# #### `all()` 함수    
+# 두 이터러블의 길이가 다르면 짧은 길이에 맞춰서 작동한다.
+
+# In[42]:
+
+
+data_zip = zip(['3월', '2월', '9월'], ['강현', '나현', '다현', '상우']) # '상우'는 무시됨.
+
+for month, name in data_zip :
+    print(f'{name}은 {month}달에 태어났다.')
+
+
+# 세 개 이상의 이터러블을 짝짓기 할 수도 있다.
+
+# In[43]:
+
+
+data_zip = zip(['3월', '2월', '9월'], ['강현', '나현', '다현', '상우'], ['7일', '23일'])
+
+for month, name, date in data_zip :
+    print(f'{name}은 {month} {date}에 태어났다.')
+
+
+# **`all()` 함수**
 # 
-# 이터러블의 모든 항목이 참이거나 비어있으면 `True`, 아니면 `False`를 반환한다. 
+# 이터러블의 모든 항목이 참이면 `True`, 아니면 `False`를 반환한다. 
 
-# In[22]:
-
-
-print(all([1, 3, 0, 2, 15])) # 0 == False를 실행하면 True다. 0이 아닌 수는 True이다. 
-print(all([1, 3, 2, 15]))
+# In[44]:
 
 
-# #### `any()` 함수  
+all([1 != 1+0, True, True, True])
+
+
+# In[45]:
+
+
+all([True, 1<=2, 3==2+1, True])
+
+
+# 0은 거짓, 나머지 수는 참으로 간주된다.
+
+# In[46]:
+
+
+all([1 < 2, 3, 0, 2, True])
+
+
+# **`any()` 함수**
 # 
 # 이터러블의 항목 중 어느 하나라도 참이면 `True`, 아니면 `False`를 반환한다. 
 
-# In[23]:
+# In[47]:
 
 
-print(any((False, 1, False, False)))
-print(any((False, 1 == 3, False, False)))
+any((False, 1, False, False))
 
 
-# #### `filter()` 함수  
-# `filter(function, iterable)`은 `function`이 참을 반환하는 `iterable`의 요소들로 이터레이터를 만들어 반환한다.   
+# In[48]:
 
-# In[24]:
+
+any((False, 1 == 3, False, False))
+
+
+# **`filter()` 함수**
+# 
+# `filter(function, iterable)` 함수는 `function`이 참을 반환하는 `iterable`의 항목들로 
+# 이터레이터를 만들어 반환한다.
+
+# In[49]:
 
 
 def is_even(n) :
@@ -287,35 +513,32 @@ def is_even(n) :
     else :
         return False
 
-print(is_even(5))
-print(is_even(10))
-
-
-# In[25]:
-
-
 num = [2, 8, 9, 3, 10, 12]
+
+
+# In[50]:
+
+
 num_iter = filter(is_even, num)
 
-
-# In[26]:
-
-
-for item in num_iter :
+for item in num_iter:
     print(item, end = ' ')
 
 
-# In[27]:
+# 아래처럼 간단하게 확인할 수도 있다.
+
+# In[51]:
 
 
-num_iter = filter(is_even, num)
-list(num_iter)
+list(filter(is_even, num))
 
 
-# #### `map()` 함수  
-# `map(function, iterable)` : `iterable`의 모든 항목에 `function`을 적용한 후 그 결과를 돌려주는 이터레이터를 반환한다.  
+# **`map()` 함수**
+# 
+# `map(function, iterable)` 함수는 `iterable`의 모든 항목에 
+# `function`을 적용한 후 그 결과를 돌려주는 이터레이터를 반환한다.  
 
-# In[28]:
+# In[52]:
 
 
 def is_even(n) :
@@ -324,19 +547,33 @@ def is_even(n) :
     else :
         return False
 
-
-# In[29]:
-
-
 num = [2, 8, 9, 3, 10, 12]
+
+
+# In[53]:
+
+
 num_map = map(is_even, num)
-
-
-# In[30]:
-
 
 for item in num_map :
     print(item, end = ' ')
 
 
+# 리스트의 각 항목을 제곱하려면 다음과 같이 한다.
+
+# In[54]:
+
+
+def square(x):
+    return x**2
+
+
+# In[55]:
+
+
+list(map(square, num))
+
+
 # ## 연습문제
+
+# 참고: [(실습) 모음 자료형 3부: 이터러블, 이터레이터, 제너레이터](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections3.ipynb)
