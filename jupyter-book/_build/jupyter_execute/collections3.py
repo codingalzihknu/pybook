@@ -573,6 +573,58 @@ def square(x):
 list(map(square, num))
 
 
+# ## 적극적 계산과 소극적 계산
+
+# `range` 객체처럼 모든 값을 미리 생성해서 준비해 놓는 대신에 필요할 때 필요한 항목을 생성하는 것을 
+# **소극적**<font size='2'>lazy</font> 계산이라 부른다. 
+# 반면에 호출 되자마자 바로 실행하는 것은 **적극적**<font size='2'>eager</font> 계산이다.
+# 파이썬은 기본적으로 적극적 계산을 사용하지만 제너레이터 경우와 같이 부분적으로
+# 소극적 계산을 지원한다.
+
+# **무한 수열 생성**
+# 
+# 제너레이터를 이용하면 무한 수열을 다룰 수 있다. 
+# 이유는 소극적 계산을 따르는 제너레이터는 항상 요구되는 만큼만 생성하기에
+# 절대로 무한히 많은 값들을 한꺼번에 다루지 않기 때문이다.
+# 
+# 예를 들어, 아래 `natural_numbers` 함수는 모든 자연수를 생성할 준비가 된 제너레이터이다.
+
+# In[56]:
+
+
+def natural_numbers():
+    """모든 자연수 생성 가능"""
+    n = 1
+    while True:
+        yield n
+        n += 1
+
+
+# 물론 위와 같이 무한 수열을 생성할 수 있는 제너레이터는 매우 조심해서 사용해야 한다.
+# 예를 들어 아래와 같이 사용하면 무한 반복(loop)이 발생한다.
+# 
+# ```python
+# for i in natural_numbers():
+#     print(i)
+# ```
+
+# 무한히 많은 값을 생성할 수 있는 제너레이터는 `break` 명령문 등을 적절히
+# 섞어서 사용해야 한다.
+# 예를 들어, 1부터 시작하는 자연수 5개를 항목으로 갖는 리스트는 다음과 생성한다. 
+
+# In[57]:
+
+
+list_5 = []
+
+for i in natural_numbers():
+    if i > 5:
+        break
+    list_5.append(i)
+    
+print(list_5)
+
+
 # ## 연습문제
 
 # 참고: [(실습) 모음 자료형 3부: 이터러블, 이터레이터, 제너레이터](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections3.ipynb)
