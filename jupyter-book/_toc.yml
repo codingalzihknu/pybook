@@ -21,6 +21,7 @@ chapters:
 - file: collections1
 - file: collections2
 - file: collections3
+- file: type_annotations
 - file: files
 - file: modules
 - file: oop
