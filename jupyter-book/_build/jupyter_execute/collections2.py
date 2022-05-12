@@ -743,6 +743,7 @@ range(3) == range(0, 3)
 range(3) == range(0, 3, 1)
 
 
+# (sec-comprehension)=
 # ## 조건제시법
 
 # 조건제시법<font size = "2">comprehension</font>을 이용하여 
