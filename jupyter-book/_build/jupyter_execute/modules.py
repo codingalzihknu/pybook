@@ -132,28 +132,31 @@ np.random.random()
 # 패키지나 모듈을 불러올 때 별칭을 지정하면 반드시 별칭으로 사용해야 한다.
 # 그렇지 않으면 오류가 발생한다.
 
-# In[8]:
-
-
-numpy.random.random()
-
+# ```python
+# >>> numpy.random.random()
+# NameError                                 Traceback (most recent call last)
+# /tmp/ipykernel_3215/3003934882.py in <module>
+# ----> 1 numpy.random.random()
+# 
+# NameError: name 'numpy' is not defined
+# ```
 
 # 원래의 패키지 또는 모듈의 이름을 사용하려면 한 번 불러와야 한다.
 # 그러면 원래 이름과 별칭 모두 사용할 수 있다.
 
-# In[ ]:
+# In[8]:
 
 
 import numpy
 
 
-# In[ ]:
+# In[9]:
 
 
 numpy.random.random()
 
 
-# In[ ]:
+# In[10]:
 
 
 np.random.random()
@@ -185,7 +188,7 @@ np.random.random()
 # 파이썬 명령어를 이용하여 현재 작업 디렉토리(current working directory, 줄임말: cwd)를
 # 확인하는 방법은 다음과 같다.
 
-# In[ ]:
+# In[11]:
 
 
 import os
@@ -195,7 +198,7 @@ print(cwd)
 
 # 현재 작업 디렉토리에 `codes`라는 디렉토리 포함여부 확인은 다음과 같다.
 
-# In[ ]:
+# In[12]:
 
 
 'codes' in os.listdir(cwd)
@@ -204,10 +207,10 @@ print(cwd)
 # `codes` 디렉토리에 포함된 파일들의 리스트 확인하면 `wc.py`와 `__init__.py` 두 파일이
 # 포함되어 있음을 볼 수 있다.
 
-# In[ ]:
+# In[13]:
 
 
-os.listdir("./codes")
+# os.listdir("./codes") # 해결 필요
 
 
 # ### 사용자 정의 모듈 불러오기
@@ -235,11 +238,14 @@ os.listdir("./codes")
 # 불러오기 과정이 좀 더 복잡하다. 
 # 단순히 `import wc` 명령어를 사용하면 모듈을 찾을 수 없다는 오류(`ModuleNotFoundError`)가 발생한다.
 
-# In[ ]:
-
-
-import wc
-
+# ```python
+# import wc
+# ModuleNotFoundError                       Traceback (most recent call last)
+# /tmp/ipykernel_3243/816188502.py in <module>
+# ----> 1 import wc
+# 
+# ModuleNotFoundError: No module named 'wc'
+# ```
 
 # 이와 같이 현재 작업디렉토리가 아닌 곳에 포함된 사용자 정의 모듈은 다른 방식으로 불러와야 한다.
 # 다양한 방식이 있지만 여기서는 __라이브러리 경로(library path)__에 특정 디렉토리를 추가하는 방식을 사용한다.
@@ -252,7 +258,7 @@ import wc
 # 먼저 파이썬이 기본적으로 사용하는 라이브러리들의 경로를 확인해보자.
 # `sys.path` 변수에 파이썬이 기본적으로 지원하는 라이브러리들의 경로가 리스트로 저장되어 있다.
 
-# In[ ]:
+# In[14]:
 
 
 import sys
@@ -266,7 +272,7 @@ sys.path
 # 여기서는 현재 작업디렉토리의 하위 폴더인 `codes`를 경로에 추가하며, 
 # 리스트에 항목을 추가하는 `append` 메소드를 활용한다.
 
-# In[ ]:
+# In[15]:
 
 
 sys.path.append(cwd + "/codes")
@@ -274,7 +280,7 @@ sys.path.append(cwd + "/codes")
 
 # 이제 새로운 경로가 추가된 것을 확인할 수 있다.
 
-# In[ ]:
+# In[16]:
 
 
 sys.path
@@ -284,7 +290,7 @@ sys.path
 
 # 라이브러리 경로에 포함된 디렉토리의 모듈은 현재 디렉토리에 포함된 모듈을 불러오는 것처럼 하면 된다.
 
-# In[ ]:
+# In[17]:
 
 
 import wc
