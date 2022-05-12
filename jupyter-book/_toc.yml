@@ -27,6 +27,6 @@ chapters:
 - file: proper_classes
 - file: inheritance
 - file: casestudy_game_programming
-- file: appendix-type_annotations
-- file: appendix-linear_algebra_basics
-- file: appendix-statistics_basics
+- file: type_annotations
+- file: linear_algebra_basics
+- file: statistics_basics
