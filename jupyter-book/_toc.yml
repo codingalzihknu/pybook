@@ -28,5 +28,3 @@ chapters:
 - file: inheritance
 - file: casestudy_game_programming
 - file: type_annotations
-- file: linear_algebra_basics
-- file: statistics_basics
