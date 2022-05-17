@@ -817,6 +817,151 @@ len_dict = {k : len(k) for k in words}
 len_dict
 
 
+# ## 모음 자료형과 `for` 반복문
+
+# 앞서 소개된 모든 모음 자료형은 `for` 반복문과 함께 사용될 수 있다.
+
+# * 문자열과 반복문
+
+# In[84]:
+
+
+aString = "Python is lovely!"
+
+for chr in aString:
+    print(chr, end=' ')
+
+
+# * 리스트와 반복문
+
+# In[85]:
+
+
+aList = list(aString)
+print(aList)
+
+
+# In[86]:
+
+
+for item in aList:
+    print(item, end=' ')
+
+
+# * 튜플과 반복문
+
+# In[87]:
+
+
+aTuple = tuple(aString)
+print(aTuple)
+
+
+# In[88]:
+
+
+for item in aTuple:
+    print(item, end=' ')
+
+
+# * 집합과 반복문
+
+# In[89]:
+
+
+aSet = set(aString)
+print(aSet)
+
+
+# 집합은 중복을 허용하지 않음에 주의하라.
+
+# In[90]:
+
+
+for item in aSet:
+    print(item, end=' ')
+
+
+# * 사전과 반복문
+
+# In[91]:
+
+
+words = 'Python is a general purpose language'.split()
+len_dict = {k : len(k) for k in words}
+len_dict
+
+
+# 사전에 대한 반복문은 키<font size='2'>key</font>에 대해 실행된다.
+
+# In[92]:
+
+
+for item in len_dict:
+    print(item, end=' ')
+
+
+# 키와 값의 쌍에 대해 반복문을 실행하려면 `items()` 메서드를 이용한다. 
+# 단, 키와 값 각각에 대해 변수를 지정하는 게 좋다.
+
+# In[93]:
+
+
+for key, value in len_dict.items():
+    print(f"{key:>8} 키의 값: {value}")
+
+
+# 하나의 변수만 사용하면 인덱싱으로 구분해야 한다.
+
+# In[94]:
+
+
+for item in len_dict.items():
+    key = item[0]
+    value = item[1]
+    print(f"{key:>8} 키의 값: {value}")
+
+
+# 값에 대해 반복문을 실행하려면 `values()` 메서드를 이용한다. 
+
+# In[95]:
+
+
+for item in len_dict.values():
+    print(item, end=' ')
+
+
+# * `zip` 과 반복문
+
+# In[96]:
+
+
+aZip = zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15])
+
+for item in aZip:
+    print(item)
+
+
+# 항목별로 변수를 지정하여 활용할 수도 있다.
+
+# In[97]:
+
+
+aZip = zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15])
+
+for chr, tup, lst in aZip:
+    print(f"({chr}, {tup}, {lst})")
+
+
+# * `range` 와 반복문
+
+# In[98]:
+
+
+for item in range(1, 10, 2):
+    print(f"{item}의 제곱: {item**2}")
+
+
 # ## 연습문제
 
 # 참고: [(실습) 모음 자료형 2부: 집합, 사전, `range`, 조건제시법](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections2.ipynb)
