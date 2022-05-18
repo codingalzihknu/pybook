@@ -4,21 +4,12 @@
 # (ch:files)=
 # # 파일
 
-# 데이터의 양이 많아지면 데이터를 처리하는 일도 어려워진다.
-# 일단 처리 시간이 기하급수적으로 늘 수 있으며,
-# 무엇보다도 **데이터셋**에서 원하는 정보를 얻어내기도 보다 복잡해진다.
+# 다이빙 선수 열 명의 5m 다이빙 경기의 점수 데이터를 저장한 파일
+# [results5m.txt](https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/results5m.txt)
+# 를 에서 필요한 정보를 추출하는 과정을 살펴본다.
 # 
-# **참고:** 데이터셋은 데이터의 모음(set)을 가리키는 전문용어이다.
-# 
-# 여기서는 다량의 데이터를 하나로 묶어서 처리할 수 있는 방법 두 가지를 소개한다.
-# 
-# * 데이터를 파일에 저장하고 불러오기
-# * 리스트로 다량의 데이터 다루기
-
-# ## 데이터셋 준비하기
-
-# [results5m.txt](https://raw.githubusercontent.com/liganega/ProgInPython/master/notebooks/data/results5m.txt) 파일은
-# 다이빙 선수 열 명의 5m 경기 점수를 담고 있다.
+# `results5m.txt` 파일의 내용은 다음과 같이 첫째 줄엔 '이름'과 '점수'라는 구분이 표시되어 있으며,
+# 둘째 줄부터 총 열 명의 이름과 점수가 기록되어 있다.
 # 
 # ```
 # 이름  점수
@@ -34,87 +25,125 @@
 # 한석준  8.93
 # ```
 
-# 첫째 줄은 선수이름과 점수라는 구분이 표시되어 있으며,
-# 둘째 줄부터 총 열 명의 이름과 점수가 기록되어 있다.
-# 위 파일의 내용을 아래와 같이 파이썬 코드로 확인할 수 있다.
-# 
-# **주의:** `results5m.txt` 파일이 `data`라는 하위 디렉토리에 저장되어 있다고 가정한다.
-# 
+# ## 파일 준비
+
 # 먼저 위에서 언급된 파일을 다운 받아서 파이썬 코딩을 실습하는 폴더에 저장한다.
-# 여기서는 `data`라는 하위폴더에 `results5m.txt`라는 파일로 저장하는 방식은 두 가지이다.
+# 여기서는 `data`라는 하위폴더에 `results5m.txt`라는 파일로 저장한다.
+
+# **`pathlib.Path` 클래스: 디렉토리 지정**
 # 
-# * 첫째 방식: 위 링크를 눌러 해당 파일을 다운로드 한 후 현재 폴더에 위치한 `data` 폴더에 저장한다.
-# * 둘째 방식: [인터넷에서 정보구하기](https://github.com/liganega/ProgInPython/blob/master/notebooks/PiPy02A-InfoFromInternet.ipynb)에서 사용했던 기법을 똑같이 사용할 수 있으며,
-#     단순히 아래 코드를 실행하면 된다. 
-#     아래 코드에 사용된 명령문 설명은 이후 차차 설명될 것이다.   
+# 파일을 저장할 디렉토리(폴더)를 지정하고 필요하면 새로 생성한다.
+# 이를 위해 `pathlib` 모듈의 `Path` 클래스를 이용한다.
+# 디렉토리의 경로를 지정하면 `Path` 클래스는 해당 디렉토리 또는 파일의 경로를 담은 객체를 생성한다.
+# 
+# - `Path()` : 현재 디렉토리를 나타내는 객체. `Path('.')` 과 동일한 의미임.
+# - 슬래시 연산자 `/`: 두 개의 경로를 이어붙히는 연산자. 왼쪽 인자는 `Path` 객체, 둘째 인자는 문자열.
 
 # In[1]:
 
 
-import urllib.request
-import os
+from pathlib import Path
 
-def myWget(dirPath, fileURL, fileName):
-    # dirPath 디렉토리 생성. 이미 존재하면 건너 뜀.
-    try:
-        os.mkdir(dirPath)
-    except FileExistsError:
-        pass
+Data_Path = Path() / "data"
 
-    # 파일 저장 주소에서 파일 내용을 가져오기.
-    contents = urllib.request.urlopen(fileURL).read().decode("utf8")
 
-    # 가져온 파일 내용을 텍스트 파일로 저장하기.
-    # words.txt 파일이 이미 존재할 경우 새파일로 생성됨.
-    # 즉, 기존 파일 내용을 덮어 씀.
-    with open(dirPath+'/'+fileName, 'w') as f_out:
-        for line in contents:
-            f_out.write(line)    
-            
-
+# `Path` 객체는 다양한 정보를 다루는 메서드와 속성을 제공한다.
+# 예를 들어, 현재 작업 디렉토리(current working directory)를 확인하려면 `cwd()` 메서드를 실행한다.
 
 # In[2]:
 
 
-path = './data'
-url = 'https://raw.githubusercontent.com/liganega/ProgInPython/master/notebooks/data/results5m.txt'
-fName = 'results5m.txt'
-
-myWget(path, url, fName)
+Data_Path.cwd()
 
 
-# ## 파일에 저장된 데이터 불러오기
-
-# 파일에 저장된 내용을 불러와서 확인하는 자세한 방법은 
-# [파일 다루기](https://github.com/liganega/ProgInPython/blob/master/notebooks/PiPy04B-Files.ipynb)를 참조한다.
-# 무엇보다도 파일 자료형의 `close` 메서드를 활용하여 
-# 더 이상 사용하지 않는 파일을 닫아주어야 하는 것을 명심해야 한다.
-# 그렇지 않으면 파일이 의도치 않게 오염될 수 있기 때문이다.
+# `name` 속성은 상위 디렉토리 이름을 제거한 디렉토리 또는 파일 이름을 저장한다. 
 
 # In[3]:
 
 
-try:
-    result_f = open("./data/results5m.txt", 'r') 
-except FileNotFoundError:
-    print("열고자 하는 파일이 존재하지 않습니다.")
-        
+Data_Path.name
 
 
-# **주의:** 
-# 저장된 파일 내용을 불러오는 `open` 함수를 적용할 때,
-# 지정된 파일이 존재하지 않은 경우을 대비해서
-# [예외처리](https://github.com/liganega/ProgInPython/blob/master/notebooks/PiPy04D-ErrorsAndExceptions.ipynb)를
-# 사용하였다. 
-# 열고자 하는 파일이 존재하지 않는다는 정보를 전달하는 것이 단순히 오류가 발생하면서 실행이 멈추는 것보다 훨씬 유익하기에
-# 이런 경우 보통 예외처리를 사용한다.
+# `parent` 속성은 부모 디렉토리의 이름을 저장한다.
 
-# ### 불러온 데이터 확인하기
+# In[4]:
+
+
+Data_Path.parent
+
+
+# **`Path.mkdir()` 메서드: 디렉토리 생성**
+# 
+# `Path` 객체의 `mkdir()` 메서드를 이용하여 지정된 디렉토리를 실제 생성한다. 
+# 다음 두 개의 옵션 인자를 사용한다.
+# 
+# - `parent=True`: 부모 디렉토리가 필요하면 생성할 것.
+# - `exist_ok = True`: 디렉토리 이미 존재하면 그대로 사용할 것. 
+
+# In[5]:
+
+
+Data_Path.mkdir(parents=True, exist_ok=True)
+
+
+# **`urllib.request.urlretrieve()` 함수: 파일 다운로드**
+# 
+# 인터넷에 존재하는 파일을 지정된 이름으로 다운로드 한다.
+# 이를 위해 `urllib.request` 모듈의 `urlretrieve()` 함수를 이용한다.
+# 
+# - 첫째 인자: 다운로드할 파일 주소
+# - 둘째 인자: 저장할 디렉토리와 파일명으로 구성된 경로
+# - 반환값: 저장된 파일의 경로와 다운로드한 웹브라우저 등에 대한 정로 구성된 튜플.
+#     파일 경로에 표시되는 
+#     `PosixPath` 또는 `WindowsPath` 는 각각 리눅스 계열 방식의 경로와 윈도우 방식의 경로를 가리킨다.
+
+# In[6]:
+
+
+import urllib.request
+
+source_url = "https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/results5m.txt"
+target_path = Data_Path / "results5m.txt"
+
+urllib.request.urlretrieve(source_url, target_path)
+
+
+# **`open()` 함수: 저장된 파일 불러오기**
+
+# 저장된 파일을 활용하려면 먼저 불러와야(loading) 한다.
+# 가장 기본적인 방식으로 `open()` 함수를 이용하여
+# 불러온 파일 객체를 변수에 할당한다.
+# 
+# ```python
+# file = open(파일경로) 
+# ```
+# 
+# 하지만 다운로드가 잘못 되었거나 다른 곳에 저장되어 있다면 오류가 발생한다.
+# 따라서 코드의 안전할 실행을 위해 많은 경우 다음처럼 `try-except` 명령문을 
+# 이용하여 예외처리를 하기도 한다. 
+# `FileNotFoundError` 는 지정된 파일이 존재하지 않을 때 발생하는 오류를 가리킨다.
+# 
+# ```python
+# try:
+#     file = open(파일경로) 
+# except FileNotFoundError:
+#     print("열고자 하는 파일이 존재하지 않습니다.")
+# ```
+# 
+# 여기서는 그냥 간단한 버전을 사용한다.
+
+# In[7]:
+
+
+result_f = open(target_path)
+
+
+# **불러온 파일 내용 확인**
 
 # `result_f` 변수가 가리키는 값의 자료형은 `_io.TextIOWrapper` 라는 
 # 이름도 생소한 자료형이다.
 
-# In[4]:
+# In[8]:
 
 
 type(result_f)
@@ -123,40 +152,89 @@ type(result_f)
 # 하지만 자료형은 전혀 중요하지 않다.
 # 다만 텍스트 파일의 내용을 저장하고 있다와
 # 저장된 내용을 확인하려면 아래와 같이 `for` 반복문을 
-# 사용해야 한다는 점을 기억해야 한다.
+# 사용해야 한다는 점은 기억해야 한다.
 
-# In[5]:
+# In[9]:
 
 
 for line in result_f:                   # 각 줄 내용 출력하기
     print(line)
 
-result_f.close()                        # 파일 닫기
+
+# 그런데 불러온 파일 객체는 한 번만 사용할 수 있는 이터레이터이다. 
+
+# In[10]:
 
 
-# 줄 사이가 넓은 이유는 파일을 작성하면서 줄바꾸기를 할 때 사용하는 엔터에 의해 줄바꾸기 기호(`\n`)이
-# 각 줄의 맨 끝에 포함되어 있는데, `print` 함수 자체가 출력할 때마다 기본적으로 줄바꿈을 수행하기에
-# 줄바꿈을 결국 두 번하기 때문이다. 
+from collections.abc import Iterator
+
+isinstance(result_f, Iterator)
+
+
+# In[11]:
+
+
+for line in result_f:                   # 각 줄 내용 출력하기
+    print(line)
+
+
+# 불러온 파일을 다 사용했으면 닫아 주어야 하며, 파일을 닫으면 더 이상 활용할 수 없다.
+
+# In[12]:
+
+
+result_f.close()
+
+
+# **`with-as` 키워드 활용**
 # 
-# 따라서 줄바꾸기를 한 번 더 하는 것을 방지하기 위해서 문자열 자료형의 `strip` 메소드를 활용하여
-# 문자열의 양 끝에 있는 공백과 줄바꿈 기호를 없애는 것이 좋다.
+# 파일을 불러오고 할 일을 다하면 파일 닫기를 자동으로 처리하는 다음 방식으로 진행하는 것이 권장된다.
 
-# In[6]:
-
-
-try:
-    result_f = open("./data/results5m.txt", 'r') 
-except FileNotFoundError:
-    print("열고자 하는 파일이 존재하지 않습니다.")
-        
-for line in result_f: 
-    print(line.strip())              # strip 메소드 활용하기
-
-result_f.close() 
+# In[13]:
 
 
-# **주의:** `strip` 메소드를 활용하여 데이터를 보다 깔끔하게 정리하는 것은 좋은 버릇이다.
-# 하지만 반드시 필요한 것은 아닐 수도 있기 때문에 사용여부를 판단해야 한다.
+with open("./data/results5m.txt") as result_f:
+    for line in result_f: 
+        print(line)
+
+
+# 줄 사이가 넓은 이유는 파일을 작성하면서 줄바꾸기를 할 때 사용하는 엔터에 의해 줄바꾸기 기호(`\n`)가
+# 각 줄의 맨 끝에 포함되어 있기 때문이다. 
+# `print()` 함수 자체가 출력할 때마다 기본적으로 줄바꿈을 수행하기에 이로 인해 결국 줄바꿈을 결국 
+# 두 번한다.
+# 따라서 줄바꾸기를 한 번 더 하는 것을 방지하기 위해서 문자열 자료형의 `strip()` 메소드를 활용하여
+# 문자열의 양 끝에 있는 공백과 줄바꿈 기호를 없앨 수도 있다.
+# 
+# 파일이 한글 문서를 담고 있다면 `open()` 메서드에 `encoding='utf-8'` 옵션 인자를 사용할 것을 추천한다.
+# 또한 `mode='r'` 옵션인자를 이용하여 읽기 모드임을 명시하는 게 좋다.
+
+# In[14]:
+
+
+with open("./data/results5m.txt", mode='r', encoding='utf-8') as result_f:
+    for line in result_f: 
+        print(line.strip())
+
+
+# **`Path.open()` 메서드: 저장된 파일 불러오기**
+# 
+# `Path` 객체의 `open()` 메서드를 이용하여 파일을 열 수도 있다.
+# 기본 사용법은 유사하다.
+# 실제로 `Path` 객체의 `open()` 메서드를 호출하면 `open()` 함수가 실행된다.
+
+# In[15]:
+
+
+with target_path.open(mode='r', encoding='utf-8') as result_f:
+    for line in result_f: 
+        print(line.strip())
+
+
+# 이제부터는 가급적 `Path` 객체의 메서드 위주로 사용할 것이다.
+
+# **`mode` 옵션 인자**
+
+# 다양한 모드 존재. ...
 
 # ## 리스트 활용
 
@@ -165,7 +243,7 @@ result_f.close()
 # 
 # 예를 들어, 둘째줄의 내용은 다음과 같다.
 
-# In[7]:
+# In[16]:
 
 
 secondLine = '권준기 7.13\n'
@@ -173,7 +251,7 @@ secondLine = '권준기 7.13\n'
 
 # 해당 줄을 `strip` 하면 줄바꿈 기호가 사라진다.
 
-# In[8]:
+# In[17]:
 
 
 secondLine.strip()
@@ -181,7 +259,7 @@ secondLine.strip()
 
 # 이제 `split` 메서드를 사용하여 공백 기준으로 쪼개면 다음과 같다.
 
-# In[9]:
+# In[18]:
 
 
 secondLine.strip().split()
@@ -193,7 +271,7 @@ secondLine.strip().split()
 # 
 # **주의:** 줄바꿈도 공백으로 간주된다.
 
-# In[10]:
+# In[19]:
 
 
 secondLine.split()
@@ -214,7 +292,7 @@ secondLine.split()
 
 # 리스트의 둘째 항목, 즉 1번 인덱스의 값이 바로 점수이다.
 
-# In[11]:
+# In[20]:
 
 
 secondLine.split()[1]
@@ -223,7 +301,7 @@ secondLine.split()[1]
 # 확인된 점수가 숫자가 아니라 실수 모양의 문자열임에 주의해야 한다.
 # 따라서 숫자로 다루고 싶다면 `float` 함수를 적용해야 한다.
 
-# In[12]:
+# In[21]:
 
 
 float(secondLine.split()[1])
@@ -237,7 +315,7 @@ float(secondLine.split()[1])
 # **주의:** 리스트의 색인도 문자열의 경우처럼 0부터 시작한다. 
 # 따라서 리스트의 둘째 항목의 색인은 1인다.
 
-# In[13]:
+# In[22]:
 
 
 try:
@@ -285,7 +363,7 @@ result_f.close()
 # [처음코딩: break와 continue](https://opentutorials.org/course/2991/18056)를
 # 참조한다.
 
-# In[14]:
+# In[23]:
 
 
 try:
@@ -321,7 +399,7 @@ print(f"1등은 {highst_score}점 입니다.")
 # 1, 2등 점수를 기억하는 변수의 값들을 
 # 업데이트 해야 한다.
 
-# In[15]:
+# In[24]:
 
 
 try:
@@ -355,7 +433,7 @@ print(f"2등은 {second_highst_score}점 입니다.")
 # 그런데 위와 같은 식으로 3등 점수까지 확인하려면 더 많은 변수와 조건문을 사용해야 하며,
 # 코드가 점점 길어진다.
 
-# In[16]:
+# In[25]:
 
 
 try:
@@ -431,7 +509,7 @@ print(f"3등은 {third_highst_score}점 입니다.")
 # 
 # 예를 들어, 권주기 선수의 경우 쪼개면 아래 결과이다.
 
-# In[17]:
+# In[26]:
 
 
 secondLine.split()
@@ -439,7 +517,7 @@ secondLine.split()
 
 # 따라서 리스트의 두 항목을 각각 두 개의 변수에 할당할 수 있다.
 
-# In[18]:
+# In[27]:
 
 
 nameKwon, scoreKwon = secondLine.split()
@@ -451,13 +529,13 @@ print(f"이름: {nameKwon}, 점수: {scoreKwon}")
 # 리스트의 항목들을 크기로 비교할 수 있다면 크기 순서대로 정렬할 수 있다.
 # 예를 들어, 숫자와 문자열은 크기 비교가 가능하다. 
 
-# In[19]:
+# In[28]:
 
 
 2.3 < 3.5
 
 
-# In[20]:
+# In[29]:
 
 
 2.3 > 3.5
@@ -465,7 +543,7 @@ print(f"이름: {nameKwon}, 점수: {scoreKwon}")
 
 # 문자열의 경우 사전식으로 크기비교를 한다.
 
-# In[21]:
+# In[30]:
 
 
 'hello' < 'python'
@@ -473,13 +551,13 @@ print(f"이름: {nameKwon}, 점수: {scoreKwon}")
 
 # 소문자가 대문자보다 크다고 판단한다.
 
-# In[22]:
+# In[31]:
 
 
 'a' < 'A'
 
 
-# In[23]:
+# In[32]:
 
 
 'Za' < 'b' 
@@ -488,7 +566,7 @@ print(f"이름: {nameKwon}, 점수: {scoreKwon}")
 # 따라서 숫자, 문자열 등으로 구성된 리스트는 정렬이 가능하다.
 # 이를 위해, `sort` 메서드를 활용하며, 기본은 오름차순 정렬이다.
 
-# In[24]:
+# In[33]:
 
 
 numList = [3, 7, 1, 10, 6.3, -3.1, -7]
@@ -496,7 +574,7 @@ numList.sort()
 print(numList)
 
 
-# In[25]:
+# In[34]:
 
 
 strList = ['python', 'languag', 'is', 'good', 'for', 'data', 'science']
@@ -506,7 +584,7 @@ print(strList)
 
 # 내림차순으로 정렬하려면, `sort` 메서드의 옵션변수 `reverse`의 인자값으로 `True`를 사용하면 된다.
 
-# In[26]:
+# In[35]:
 
 
 numList = [3, 7, 1, 10, 6.3, -3.1, -7]
@@ -514,7 +592,7 @@ numList.sort(reverse=True)
 print(numList)
 
 
-# In[27]:
+# In[36]:
 
 
 strList = ['python', 'languag', 'is', 'good', 'for', 'data', 'science']
@@ -526,7 +604,7 @@ print(strList)
 
 # 리스트 풀어헤치기와 리스트 정렬 기법을 이용하여 1, 2, 3등을 아래와 같이 확인할 수 있다.
 
-# In[28]:
+# In[37]:
 
 
 try:
@@ -594,7 +672,7 @@ print(f"3등: {score_list[2]}")             # 3등 점수 = 2번 인덱스 값
 
 # 따라서 아래와 같이 랭킹(`ranking`) 함수를 정의할 수 있다.
 
-# In[29]:
+# In[38]:
 
 
 def ranking(n):                                     # n등 점수 요구
@@ -620,13 +698,13 @@ def ranking(n):                                     # n등 점수 요구
 
 # 이제 모든 등수의 점수를 쉽게 확일할 수 있다.
 
-# In[30]:
+# In[39]:
 
 
 ranking(1)
 
 
-# In[31]:
+# In[40]:
 
 
 ranking(5)
@@ -644,7 +722,7 @@ ranking(5)
 # 아래 `ranking` 함수의 정의에서 `fileName`이 파일명을 인자로 받아 함수 본체에
 # 전달하는 매개변수이다.
 
-# In[32]:
+# In[41]:
 
 
 def ranking(n, fileName):                         # fileName 기록파일의 n등 점수 요구
@@ -672,26 +750,26 @@ def ranking(n, fileName):                         # fileName 기록파일의 n�
 # 
 # **주의:** 기록파일이 `data`라는 하위폴더에 들어있다고 가정한다.
 
-# In[33]:
+# In[42]:
 
 
 ranking(1,'./data/results5m.txt')
 
 
-# In[34]:
+# In[43]:
 
 
 ranking(7,'./data/results5m.txt')
 
 
-# [results10m.txt](https://raw.githubusercontent.com/liganega/ProgInPython/master/notebooks/data/results10m.txt)는
+# [results10m.txt](https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/results10m.txt)는
 # 동일한 선수들의 10m 다이빙 기록을 담고 있다.
 
-# In[35]:
+# In[44]:
 
 
 path = './data'
-url = 'https://raw.githubusercontent.com/liganega/ProgInPython/master/notebooks/data/results10m.txt'
+url = 'https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/results10m.txt'
 fName = 'results10m.txt'
 
 myWget(path, url, fName)
@@ -721,7 +799,7 @@ ranking(7,'./data/results10m.txt')
 # 내용을 참조합니다.
 
 # 1900년부터 1920년까지 매년 토끼(rabbit), 스라소니(lynx), 당근(carrot)의 개체수를 조사한 자료가 
-# [populations.txt](https://raw.githubusercontent.com/liganega/ProgInPython/master/notebooks/data/populations.txt)
+# [populations.txt](https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/populations.txt)
 # 파일에 저장되어 있다.
 # 파일 내용을 확인하면 다음과 같다.
 # 
@@ -732,7 +810,7 @@ ranking(7,'./data/results10m.txt')
 
 
 path = './data'
-url = 'https://raw.githubusercontent.com/liganega/ProgInPython/master/notebooks/data/populations.txt'
+url = 'https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/populations.txt'
 fName = 'populations.txt'
 
 myWget(path, url, fName)
