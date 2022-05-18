@@ -173,6 +173,14 @@ def myWget(filename):
     return urllib.request.urlretrieve(file_url, target_path)
 
 
+# 앞서의 긴 코드가 다음 한 줄 코드로 대체된다.
+
+# In[8]:
+
+
+myWget("results5m.txt")
+
+
 # **`open()` 함수: 저장된 파일 불러오기**
 
 # 저장된 파일을 활용하려면 먼저 불러와야<font size='2'>loading</font> 한다.
@@ -197,7 +205,7 @@ def myWget(filename):
 # 
 # 여기서는 그냥 간단한 버전을 사용한다.
 
-# In[8]:
+# In[9]:
 
 
 f = open(target_path_5m)
@@ -208,7 +216,7 @@ f = open(target_path_5m)
 # `f` 변수가 가리키는 값의 자료형은 `_io.TextIOWrapper` 라는 
 # 이름도 생소한 자료형이다.
 
-# In[9]:
+# In[10]:
 
 
 type(f)
@@ -218,7 +226,7 @@ type(f)
 # 다만 파일에 저장된 내용을 확인하려면 아래와 같이 `for` 반복문을 
 # 사용해야 한다는 점은 기억해야 한다.
 
-# In[10]:
+# In[11]:
 
 
 for line in f:                   # 각 줄 내용 출력하기
@@ -227,7 +235,7 @@ for line in f:                   # 각 줄 내용 출력하기
 
 # 불러온 파일 객체는 한 번만 사용할 수 있는 이터레이터이다. 
 
-# In[11]:
+# In[12]:
 
 
 from collections.abc import Iterator
@@ -237,7 +245,7 @@ isinstance(f, Iterator)
 
 # `for` 반복문을 다시 실행하면 더 이상 보여줄게 없다.
 
-# In[12]:
+# In[13]:
 
 
 for line in f:
@@ -246,7 +254,7 @@ for line in f:
 
 # 불러온 파일을 다 사용했으면 닫아 주어야 한다.
 
-# In[13]:
+# In[14]:
 
 
 f.close()
@@ -256,7 +264,7 @@ f.close()
 # 
 # 파일을 불러오고 할 일을 다하면 파일 닫기를 자동으로 처리하는 다음 방식으로 진행하는 것이 권장된다.
 
-# In[14]:
+# In[15]:
 
 
 with open("./data/results5m.txt") as f:
@@ -276,7 +284,7 @@ with open("./data/results5m.txt") as f:
 # 
 # 언급한 것을 모두 반영하여 파일을 불러오고 내용을 확인하는 코드는 다음과 같다.
 
-# In[15]:
+# In[16]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -288,7 +296,7 @@ with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
 # 
 # `read()` 메서드는 파일 내용을 전체를 하나의 문자열로 불러온다.
 
-# In[16]:
+# In[17]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -299,7 +307,7 @@ lines
 
 # `print()` 함수를 이용하면 줄바꿈 기호 등을 해석하여 보다 예쁘게 출력한다.
 
-# In[17]:
+# In[18]:
 
 
 print(lines)
@@ -307,7 +315,7 @@ print(lines)
 
 # `readline()` 메서드는 한 줄씩 반환한다. 일종의 이터레이터의 `__next__()` 메서드와 유사하다.
 
-# In[18]:
+# In[19]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -318,7 +326,7 @@ with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
 # `readlines()` 메서드는 파일 내용 전체를 리스트로 반환한한다.
 # 리스트의 각 항목은 한 줄씩 채워진다.
 
-# In[19]:
+# In[20]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -327,7 +335,7 @@ with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
 lines
 
 
-# In[20]:
+# In[21]:
 
 
 for line in lines:
@@ -340,7 +348,7 @@ for line in lines:
 # 기본 사용법은 기본적으로 동일하다.
 # 실제로 `Path` 객체의 `open()` 메서드를 호출하면 `open()` 함수가 실행된다.
 
-# In[21]:
+# In[22]:
 
 
 with target_path_5m.open(mode='r', encoding='utf-8') as f:
@@ -399,7 +407,7 @@ with target_path_5m.open(mode='r', encoding='utf-8') as f:
 
 # 먼저 `results10m.txt` 파일을 `results5m.txt` 와 동일한 방식으로 다운로드하여 저장한다.
 
-# In[22]:
+# In[23]:
 
 
 myWget("results10m.txt")
@@ -410,7 +418,7 @@ myWget("results10m.txt")
 # 이를 위해 파일을 불러오기 위해 `open()` 함수 또는 `Path` 객체의 메서드 둘 다 이용할 수 있지만 
 # 여기서는 메서드를 사용한다.
 
-# In[23]:
+# In[24]:
 
 
 with target_path_5m.open() as f:
@@ -423,7 +431,7 @@ with target_path_5m.open() as f:
 results_5m_dict
 
 
-# In[24]:
+# In[25]:
 
 
 with open("data/results10m.txt") as f:
@@ -438,7 +446,7 @@ results_10m_dict
 
 # 두 개의 점수로 이루어진 튜플을 값으로 사용하는 사전을 생성한다. 
 
-# In[25]:
+# In[26]:
 
 
 diving_results_dict = {}
@@ -449,7 +457,7 @@ for name in results_5m_dict:
     diving_results_dict[name] = (score_5m, score_10m)
 
 
-# In[26]:
+# In[27]:
 
 
 diving_results_dict
@@ -462,7 +470,7 @@ diving_results_dict
 # 앞서 생성된 사전의 키와 값을 적적히 조합하여 파일에 한 줄씩 추가한다.
 # 파일에 한 줄을 추가하는 기능은 `write()` 메서드를 이용한다.
 
-# In[27]:
+# In[28]:
 
 
 with open(data_path / "diving_results.txt", "w") as f:
@@ -471,10 +479,9 @@ with open(data_path / "diving_results.txt", "w") as f:
         score1, score2 = scores
         line = key + "  " + score1 + "  " + score2 + "\n"
         f.write(line)
-    
 
 
-# In[28]:
+# In[29]:
 
 
 with open("data/diving_results.txt", 'r') as f:
@@ -490,7 +497,7 @@ with open("data/diving_results.txt", 'r') as f:
 # **주의:** 리스트의 색인도 문자열의 경우처럼 0부터 시작한다. 
 # 따라서 리스트의 둘째 항목의 색인은 1인다.
 
-# In[29]:
+# In[30]:
 
 
 try:
@@ -538,7 +545,7 @@ f.close()
 # [처음코딩: break와 continue](https://opentutorials.org/course/2991/18056)를
 # 참조한다.
 
-# In[30]:
+# In[31]:
 
 
 try:
@@ -574,7 +581,7 @@ print(f"1등은 {highst_score}점 입니다.")
 # 1, 2등 점수를 기억하는 변수의 값들을 
 # 업데이트 해야 한다.
 
-# In[31]:
+# In[32]:
 
 
 try:
@@ -608,7 +615,7 @@ print(f"2등은 {second_highst_score}점 입니다.")
 # 그런데 위와 같은 식으로 3등 점수까지 확인하려면 더 많은 변수와 조건문을 사용해야 하며,
 # 코드가 점점 길어진다.
 
-# In[32]:
+# In[33]:
 
 
 try:
@@ -680,7 +687,7 @@ print(f"3등은 {third_highst_score}점 입니다.")
 
 # 리스트 풀어헤치기와 리스트 정렬 기법을 이용하여 1, 2, 3등을 아래와 같이 확인할 수 있다.
 
-# In[33]:
+# In[34]:
 
 
 try:
@@ -748,7 +755,7 @@ print(f"3등: {score_list[2]}")             # 3등 점수 = 2번 인덱스 값
 
 # 따라서 아래와 같이 랭킹(`ranking`) 함수를 정의할 수 있다.
 
-# In[34]:
+# In[35]:
 
 
 def ranking(n):                                     # n등 점수 요구
@@ -774,13 +781,13 @@ def ranking(n):                                     # n등 점수 요구
 
 # 이제 모든 등수의 점수를 쉽게 확일할 수 있다.
 
-# In[35]:
+# In[36]:
 
 
 ranking(1)
 
 
-# In[36]:
+# In[37]:
 
 
 ranking(5)
@@ -798,7 +805,7 @@ ranking(5)
 # 아래 `ranking` 함수의 정의에서 `fileName`이 파일명을 인자로 받아 함수 본체에
 # 전달하는 매개변수이다.
 
-# In[37]:
+# In[38]:
 
 
 def ranking(n, fileName):                         # fileName 기록파일의 n등 점수 요구
@@ -826,13 +833,13 @@ def ranking(n, fileName):                         # fileName 기록파일의 n�
 # 
 # **주의:** 기록파일이 `data`라는 하위폴더에 들어있다고 가정한다.
 
-# In[38]:
+# In[39]:
 
 
 ranking(1,'./data/results5m.txt')
 
 
-# In[39]:
+# In[40]:
 
 
 ranking(7,'./data/results5m.txt')
@@ -840,13 +847,13 @@ ranking(7,'./data/results5m.txt')
 
 # 10m 다이빙 시합에서 1등과 7등의 점수는 다음과 같다.
 
-# In[40]:
+# In[41]:
 
 
 ranking(1,'./data/results10m.txt')
 
 
-# In[41]:
+# In[42]:
 
 
 ranking(7,'./data/results10m.txt')
@@ -869,13 +876,13 @@ ranking(7,'./data/results10m.txt')
 # **주의:** `populations.txt` 파일이 `data`라는 하위 디렉토리에 저장되어 있다고 가정하며,
 # 아래 코드를 실행하면 자동으로 지정된 폴더에 저장된다.
 
-# In[42]:
+# In[43]:
 
 
 myWget("populations.txt")
 
 
-# In[43]:
+# In[44]:
 
 
 with open('./data/populations.txt', 'r') as pop_file:
@@ -886,13 +893,13 @@ with open('./data/populations.txt', 'r') as pop_file:
 # 위 코드에서, 예를 들어, `47.2e3`는 47.2 곱하기 10의 3승이다.
 # 즉,
 
-# In[44]:
+# In[45]:
 
 
 47.2e3
 
 
-# In[45]:
+# In[46]:
 
 
 47.2e3 == 47.2 * 1000
@@ -914,7 +921,7 @@ with open('./data/populations.txt', 'r') as pop_file:
 #     풀어헤치기를 하려면, 예를 들어, year, rabbit, lynx, carrot 등 
 #     네 개의 변수를 사용해야 한다.
 
-# In[46]:
+# In[47]:
 
 
 with open('./data/populations.txt') as pop_file:
@@ -944,7 +951,7 @@ print(f"토끼 개체수의 최대값은 {populations[0]}이다.")
 #     * 따라서 특정 년도의 토끼 개체수가 위치하는 항목의 인덱스는 
 #         해당 연도에서 1900을 빼야 한다.
 
-# In[47]:
+# In[48]:
 
 
 def rabbitNumber(yr):
@@ -961,19 +968,19 @@ def rabbitNumber(yr):
     return populations[yr-1900]      # 연도에서 1900을 빼야 해당연도의 인덱스가 됨
 
 
-# In[48]:
+# In[49]:
 
 
 rabbitNumber(1900)
 
 
-# In[49]:
+# In[50]:
 
 
 rabbitNumber(1920)
 
 
-# In[50]:
+# In[51]:
 
 
 rabbitNumber(1911)
