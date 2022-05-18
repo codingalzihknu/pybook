@@ -466,6 +466,7 @@ diving_results_dict
 
 
 with open(data_path / "diving_results.txt", "w") as f:
+    f.write("이름  5m점수  10m점수\n")
     for key, scores in diving_results_dict.items():
         score1, score2 = scores
         line = key + "  " + score1 + "  " + score2 + "\n"
