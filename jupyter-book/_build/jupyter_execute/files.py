@@ -597,3 +597,5 @@ for item in sorted_scores_5m:
 
 
 # ## 연습문제
+
+# 참고: [(실습) 파일](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-files.ipynb)
