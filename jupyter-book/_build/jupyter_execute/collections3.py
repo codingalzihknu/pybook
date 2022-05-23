@@ -108,6 +108,7 @@ isinstance(a_dict, Iterable)
 isinstance(a_dict, Sequence)
 
 
+# (sec:iterators)=
 # ## 이터레이터
 
 # **이터레이터**<font size = "2">iterator</font>는 값을 하나씩 꺼낼 수 있는 객체로, 
