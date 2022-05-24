@@ -166,10 +166,14 @@ urlretrieve(file_url_5m, target_path_5m)
 
 
 def myWget(filename):
-    base_url = "https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/"
+    # 다운로드 대상 파일 경로
     file_url = base_url + filename
 
+    # 저장위치 지정과 생성
     data_path = Path() / "data"
+    data_path.mkdir(parents=True, exist_ok=True)
+    
+    # 저장 경로와 파일명
     target_path = data_path / filename
 
     return urlretrieve(file_url, target_path)
@@ -490,11 +494,10 @@ with open("data/diving_results.txt", 'r') as f:
         print(line.strip())
 
 
-# ## 파일 활용 예제
+# (sec:exp-diving-5m)=
+# ## 활용 예제: 종목별 등수 확인
 
 # 선수들의 5미터 다이빙 점수를 기준으로 등수를 확인해보자.
-
-# ### 종목별 등수 확인
 
 # **리스트 활용**
 
