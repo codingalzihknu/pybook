@@ -137,7 +137,7 @@ data_path.mkdir(parents=True, exist_ok=True)
 # In[6]:
 
 
-import urllib.request
+from urllib.request import urlretrieve
 
 # 파일 서버 기본 주소
 base_url = "https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/"
@@ -150,7 +150,7 @@ file_url_5m = base_url + file_name_5m
 target_path_5m = data_path / "results5m.txt"
 
 # 다운로드와 저장 실행
-urllib.request.urlretrieve(file_url_5m, target_path_5m)
+urlretrieve(file_url_5m, target_path_5m)
 
 
 # **파일 다운로드 함수**
@@ -169,9 +169,10 @@ def myWget(filename):
     base_url = "https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/data/"
     file_url = base_url + filename
 
+    data_path = Path() / "data"
     target_path = data_path / filename
 
-    return urllib.request.urlretrieve(file_url, target_path)
+    return urlretrieve(file_url, target_path)
 
 
 # 앞서의 긴 코드가 다음 한 줄 코드로 대체된다.
@@ -368,7 +369,7 @@ with target_path_5m.open(mode='r', encoding='utf-8') as f:
 # | 'r' | 파일 처음부터 읽기 |
 # | 'w' | 새 파일 생성 후 쓰기 또는 기존 파일 내용 삭제 후 새로 쓰기 |
 # | 'a' | 기존 파일 끝에 추가하기 |
-# | 'r+' | 새파일 생성 후 쓰기와 읽기. 기존 파일 내용 삭제 |
+# | 'r+' | 기존 파일 읽기 및 쓰기. 기존 파일 없으면 새로 생성|
 # | 'a+' | 기존 파일 끝에 추가와 읽기 |
 
 # ## 텍스트 파일 생성
