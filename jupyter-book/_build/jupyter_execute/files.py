@@ -40,24 +40,53 @@
 # 여기서는 텍스트 파일만을 대상으로 파이썬 코드를 이용하여 
 # 파일 다운로드, 열기, 수정하기 등을 살펴본다.
 
-# **경로**
-# 
-# 경로는 특정 디렉토리(폴더) 또는 파일의 위치를 나타내는 문자열이다. 
-# 사용하는 운영체제마다 표현 방법이 다르기에 조심해야 한다.
-# 예를 들어 현재 파이썬 코드가 실행되는 디렉토리의 경로는 
-# 리눅스와 윈도우의 경우 다음과 같이 다르게 표현된다.
-# 
-# - 리눅스의 경우: '/home/gslee/Documents/GitHub/pybook'
-# - 윈도우의 경우: 'C:\Users\gslee\Documents\GitHub\pybook'
-# 
-# 하지만 `pathlib` 모듈의 `Path` 자료형을 이용하면 운영체제를 신경쓰지 않고 경로를 다룰 수 있다.
-
 # **디렉토리와 폴더**
 # 
 # 디렉토리<font size='2'>directory</font>와 폴더<font size='2'>folder</font>는 동일한 개념이다. 
 # 다만 리눅스 계열 운영체제에서는 디렉토리를, 윈도우 운영체제에서는 폴더를 선호한다.
 # 그리고 리눅스 계열 운영체제에서는 디렉토리를 파일이라고 부르기도 한다.
 # 하지만 여기서는 디렉토리를 폴더 개념으로만 사용하며 파일과는 구분한다.
+
+# **경로**
+# 
+# 경로는 특정 디렉토리 또는 파일의 위치를 나타내는 문자열이다. 
+# 사용하는 운영체제마다 표현 방법이 다르기에 조심해야 한다.
+# 예를 들어 현재 파이썬 코드가 실행되는 디렉토리의 경로는 
+# 리눅스와 윈도우의 경우 다음과 같이 다르게 표현된다.
+# 
+# - 리눅스의 경우: '/home/gslee/Documents/GitHub/pybook/jupyter-book'
+# - 윈도우의 경우: 'C:\Users\gslee\Documents\GitHub\pybook\jupyter-book'
+# 
+# 하지만 `pathlib` 모듈의 `Path` 자료형을 이용하면 운영체제를 신경쓰지 않고 경로를 다룰 수 있다.
+
+# **현재 작업 디렉토리**
+# 
+# 보통 `cwd` 라고 줄여서 사용되는 **현재 작업 디렉토리**(current working directory)는
+# 현재 파이썬이 실행되는 디렉토리를 가리킨다. 
+# 현재 작업 디렉토리를 다음과 같이 확인할 수 있다.
+
+# In[1]:
+
+
+import os
+
+os.getcwd()
+
+
+# **절대경로와 상대경로**
+# 
+# 앞서 언급한 두 개의 경로는 
+# 운영체제의 맨 상위 디렉토리를 기준으로 하는 경로라는 의미에서 **절대경로**라 부른다.
+# 반면에 **상대경로**는 현재 작업 디렉토리(cwd)를 기준으로 경로를 작성한다. 
+# 만약에 cwd가 `Documents` 라면, 위 두 개의 경로의 상대경로는 다음과 같다.
+# 
+# - 리눅스의 경우: 'GitHub/pybook/jupyter-book'
+# - 윈도우의 경우: 'GitHub\pybook\jupyter-book'
+# 
+# 아래와 같이 사용할 수 있다. 점(`.`)이 현재 작업 디렉토리를 가리킨다.
+# 
+# - 리눅스의 경우: './GitHub/pybook/jupyter-book'
+# - 윈도우의 경우: '.\GitHub\pybook\jupyter-book'
 
 # ## 파일 준비
 
@@ -70,10 +99,10 @@
 # 이를 위해 `pathlib` 모듈의 `Path` 클래스를 이용한다.
 # `Path` 클래스는 지정된 디렉토리 또는 파일의 경로를 담은 객체를 생성한다.
 # 
-# - `Path()` : 현재 디렉토리를 나타내는 객체. `Path('.')` 과 동일한 의미임.
+# - `Path()` : 현재 작업 디렉토리를 나타내는 객체. `Path('.')` 과 동일한 의미임.
 # - 슬래시 연산자 `/`: 두 개의 경로를 이어붙히는 연산자. 왼쪽 인자는 `Path` 객체, 둘째 인자는 문자열.
 
-# In[1]:
+# In[2]:
 
 
 from pathlib import Path
@@ -84,7 +113,7 @@ data_path = Path() / "data"
 # `Path` 객체는 다양한 정보를 다루는 메서드와 속성을 제공한다.
 # 예를 들어, 현재 작업 디렉토리(current working directory)의 경로를 확인하려면 `cwd()` 메서드를 실행한다.
 
-# In[2]:
+# In[3]:
 
 
 data_path.cwd()
@@ -92,7 +121,7 @@ data_path.cwd()
 
 # `name` 속성은 경로가 가리키는 디렉토리 또는 파일 이름을 저장한다. 
 
-# In[3]:
+# In[4]:
 
 
 data_path.name
@@ -102,7 +131,7 @@ data_path.name
 # `data_path` 가 현재 디렉토리의 하위 디렉토리인 `data`를 가리키기에
 # 그것의 부모 디렉토리인 현재 디렉토리를 가리키는 점(`'.'`) 이 저장된다.
 
-# In[4]:
+# In[5]:
 
 
 data_path.parent
@@ -116,7 +145,7 @@ data_path.parent
 # - `parent=True`: 부모 디렉토리가 필요하면 생성할 것.
 # - `exist_ok = True`: 디렉토리 이미 존재하면 그대로 사용할 것. 
 
-# In[5]:
+# In[6]:
 
 
 data_path.mkdir(parents=True, exist_ok=True)
@@ -134,7 +163,7 @@ data_path.mkdir(parents=True, exist_ok=True)
 #     각각 리눅스 계열 방식의 경로와 윈도우 방식의 경로를 가리키며
 #     사용하는 운영체제 마다 둘 중에 한 방식으로 보여질 것이다.
 
-# In[6]:
+# In[7]:
 
 
 from urllib.request import urlretrieve
@@ -162,7 +191,7 @@ urlretrieve(file_url_5m, target_path_5m)
 # 아래 `myWget()` 함수의 인자는 다운로드할 파일명을 사용할 것이기에 위 코드에서 파일명을 제외한 
 # 나머지는 거의 동일하게 사용된다.
 
-# In[7]:
+# In[8]:
 
 
 def myWget(filename):
@@ -181,7 +210,7 @@ def myWget(filename):
 
 # 앞서의 긴 코드가 다음 한 줄 코드로 대체된다.
 
-# In[8]:
+# In[9]:
 
 
 myWget("results5m.txt")
@@ -211,7 +240,7 @@ myWget("results5m.txt")
 # 
 # 하지만 여기서는 그냥 간단한 버전을 사용한다.
 
-# In[9]:
+# In[10]:
 
 
 f = open(target_path_5m)
@@ -222,7 +251,7 @@ f = open(target_path_5m)
 # `f` 변수가 가리키는 값의 자료형은 `_io.TextIOWrapper` 라는 
 # 이름도 생소한 자료형이다.
 
-# In[10]:
+# In[11]:
 
 
 type(f)
@@ -231,7 +260,7 @@ type(f)
 # 자료형은 전혀 중요하지 않지만 파일에 저장된 내용을 확인하려면 아래와 같이 `for` 반복문을 
 # 사용해야 한다는 점은 기억해야 한다.
 
-# In[11]:
+# In[12]:
 
 
 for line in f:                   # 한줄씩 내용 출력하기
@@ -240,7 +269,7 @@ for line in f:                   # 한줄씩 내용 출력하기
 
 # 불러온 파일 객체는 한 번만 사용할 수 있는 {ref}`이터레이터 <sec:iterators>`이다. 
 
-# In[12]:
+# In[13]:
 
 
 from collections.abc import Iterator
@@ -250,7 +279,7 @@ isinstance(f, Iterator)
 
 # `for` 반복문을 다시 실행하면 더 이상 보여주는 게 없다.
 
-# In[13]:
+# In[14]:
 
 
 for line in f:
@@ -259,7 +288,7 @@ for line in f:
 
 # 불러온 파일을 다 사용했으면 닫아 주어야 한다.
 
-# In[14]:
+# In[15]:
 
 
 f.close()
@@ -269,7 +298,7 @@ f.close()
 # 
 # 파일을 불러오고 할 일을 다하면 파일 닫기를 자동으로 처리하는 다음 방식으로 진행하는 것이 권장된다.
 
-# In[15]:
+# In[16]:
 
 
 with open("./data/results5m.txt") as f:
@@ -289,7 +318,7 @@ with open("./data/results5m.txt") as f:
 # 
 # 언급한 것을 모두 반영하여 파일을 불러오고 내용을 확인하는 코드는 다음과 같다.
 
-# In[16]:
+# In[17]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -301,7 +330,7 @@ with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
 # 
 # `read()` 메서드는 파일 내용을 전체를 하나의 문자열로 불러온다.
 
-# In[17]:
+# In[18]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -312,7 +341,7 @@ lines
 
 # `print()` 함수를 이용하면 줄바꿈 기호 등을 해석하여 보다 예쁘게 출력한다.
 
-# In[18]:
+# In[19]:
 
 
 print(lines)
@@ -320,7 +349,7 @@ print(lines)
 
 # `readline()` 메서드는 한 줄씩 반환한다. 일종의 이터레이터의 `__next__()` 메서드와 유사하다.
 
-# In[19]:
+# In[20]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -331,7 +360,7 @@ with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
 # `readlines()` 메서드는 파일 내용 전체를 리스트로 반환한한다.
 # 리스트의 각 항목은 한 줄씩 채워진다.
 
-# In[20]:
+# In[21]:
 
 
 with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
@@ -340,7 +369,7 @@ with open("./data/results5m.txt", mode='r', encoding='utf-8') as f:
 lines
 
 
-# In[21]:
+# In[22]:
 
 
 for line in lines:
@@ -353,7 +382,7 @@ for line in lines:
 # 기본 사용법은 기본적으로 동일하다.
 # 실제로 `Path` 객체의 `open()` 메서드를 호출하면 `open()` 함수가 실행된다.
 
-# In[22]:
+# In[23]:
 
 
 with target_path_5m.open(mode='r', encoding='utf-8') as f:
@@ -412,7 +441,7 @@ with target_path_5m.open(mode='r', encoding='utf-8') as f:
 
 # 먼저 `results10m.txt` 파일을 `results5m.txt` 와 동일한 방식으로 다운로드하여 저장한다.
 
-# In[23]:
+# In[24]:
 
 
 myWget("results10m.txt")
@@ -423,7 +452,7 @@ myWget("results10m.txt")
 # 이를 위해 파일을 불러오기 위해 `open()` 함수 또는 `Path` 객체의 메서드 둘 다 이용할 수 있지만 
 # 여기서는 메서드를 사용한다.
 
-# In[24]:
+# In[25]:
 
 
 with target_path_5m.open() as f:
@@ -436,7 +465,7 @@ with target_path_5m.open() as f:
 results_5m_dict
 
 
-# In[25]:
+# In[26]:
 
 
 with open("data/results10m.txt") as f:
@@ -451,7 +480,7 @@ results_10m_dict
 
 # 두 개의 점수로 이루어진 튜플을 값으로 사용하는 사전을 생성한다. 
 
-# In[26]:
+# In[27]:
 
 
 diving_results_dict = {}
@@ -462,7 +491,7 @@ for name in results_5m_dict:
     diving_results_dict[name] = (score_5m, score_10m)
 
 
-# In[27]:
+# In[28]:
 
 
 diving_results_dict
@@ -475,7 +504,7 @@ diving_results_dict
 # 앞서 생성된 사전의 키와 값을 적적히 조합하여 파일에 한 줄씩 추가한다.
 # 파일에 한 줄을 추가하는 기능은 `write()` 메서드를 이용한다.
 
-# In[28]:
+# In[29]:
 
 
 with open(data_path / "diving_results.txt", "w") as f:
@@ -486,7 +515,7 @@ with open(data_path / "diving_results.txt", "w") as f:
         f.write(line)
 
 
-# In[29]:
+# In[30]:
 
 
 with open("data/diving_results.txt", 'r') as f:
@@ -507,7 +536,7 @@ with open("data/diving_results.txt", 'r') as f:
 # 
 # 아래 코드의 `scores_5m` 변수가 선수들의 5미터 다이빙 경기의 점수를 담는다.
 
-# In[30]:
+# In[31]:
 
 
 # 5m 점수 저장
@@ -524,7 +553,7 @@ with open("data/diving_results.txt", 'r') as f:
 
 # 모든 선수의 5미터 다이빙 점수는 다음과 같다.
 
-# In[31]:
+# In[32]:
 
 
 scores_5m
@@ -532,7 +561,7 @@ scores_5m
 
 # 점수를 내림차순으로 정렬하면 쉽게 1, 2, 3 등의 점수를 얻는다.
 
-# In[32]:
+# In[33]:
 
 
 scores_5m.sort(reverse=True)             # 리스트를 크기 기준 내림차순으로 정렬
@@ -547,7 +576,7 @@ print(f"3등: {scores_5m[2]}")             # 3등 점수 = 2번 인덱스 값
 # 선수 이름과 점수 사이의 관계를 담은 정보가 리스트에 포함되지 않기 때문인데,
 # 사전을 이용하면 해당 정보를 함께 담을 수 있다.
 
-# In[33]:
+# In[34]:
 
 
 # 5m 다이빙 점수 저장. 
@@ -568,7 +597,7 @@ with open("data/diving_results.txt", 'r') as f:
 
 # 모든 선수의 5미터 다이빙 점수는 다음과 같다.
 
-# In[34]:
+# In[35]:
 
 
 scores_5m
@@ -580,7 +609,7 @@ scores_5m
 # `key` 키워드 인자를 이용해서 아이텀의 둘째 인자인 점수를 기준으로 정렬하려면
 # 다음과 같이 정의된 익명 함수를 지정한다.
 
-# In[35]:
+# In[36]:
 
 
 sorted_scores_5m = sorted(scores_5m.items(), key = lambda item: item[1], reverse=True)
@@ -589,7 +618,7 @@ sorted_scores_5m
 
 # 5미터 다이빙 경기 결과는 다음과 같다.
 
-# In[36]:
+# In[37]:
 
 
 print("5미터 다이빙 경기 결과\n")
