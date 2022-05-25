@@ -25,7 +25,7 @@
 # 포함해야 한다. 
 # `__init__.py` 모듈은 해당 패키지가 사용될 때 필요한 기본 설정을 담당한다. 
 
-# <div align="center"><img src="https://pythongeeks.org/wp-content/uploads/2021/12/structure-of-packages.webp" style="width:500px;"></div>
+# <div align="center"><img src="https://pythongeeks.org/wp-content/uploads/2021/12/structure-of-packages.webp" style="width:450px;"></div>
 # 
 # <그림 출처: [Python Packages with Examples](https://pythongeeks.org/python-packages/)>
 
@@ -55,17 +55,18 @@
 # 이용하려면 추가적으로 설치해야 한다. 
 # 설치는 일반적으로 `pip` 이라는 파이썬 패키지 인스톨러를 
 # 터미널에서 실행하는 방식을 사용한다.
-# 예를 들어 넘파이 모듈을 설치하려면 다음 명령을 실행한다. 
+# 예를 들어 넘파이 모듈을 설치하려면 다음 명령을 실행한다.
+# 달러 기호(`$`) 터미널의 프롬프트를 가리키며 실제로 입력하지는 않음에 주의하라.
 # 
 # ```bash
-# pip install numpy
+# $ pip install numpy
 # ```
 # 
 # 주피터 노트북에서도 동일한 방식으로 설치할 수 있다.
 # 단, 아래 처럼 느낌표로 시작해야 한다.
 # 
-# ```python
-# !pip install numpy
+# ```
+# >>> !pip install numpy
 # ```
 
 # 모듈, 패키지, 라이브러리, 프레임워크 중에서 가장 작은 단위인 모듈만 
@@ -73,7 +74,7 @@
 # 모듈을 불러오는 기본 방식은 다음과 같다.
 # 
 # ```python
-# import 모듈명
+# >>> import 모듈명
 # ```
 # 
 # 반면에 모듈이 아닌 패키지를 불러올 수도 있지만 그러려면 패키지 폴더에 있는 `__init__.py` 모듈에 
@@ -356,7 +357,7 @@ sys.path
 code_path.absolute()
 
 
-# 위 경로를 문자열로 변환한 다음에 라이브러리 경로에 추가하자.
+# 위 경로를 문자열로 변환한 다음에 라이브러리 경로에 추가하지.
 
 # In[17]:
 
