@@ -239,18 +239,6 @@ import numpy as np
 np.random.random()
 
 
-# In[13]:
-
-
-import numpy.random as np_random
-
-
-# In[14]:
-
-
-np_random.random()
-
-
 # 패키지나 모듈을 불러올 때 별칭을 지정하면 반드시 별칭으로 사용해야 한다.
 # 그렇지 않으면 오류가 발생한다.
 
@@ -262,6 +250,29 @@ np_random.random()
 # 
 # NameError: name 'numpy' is not defined
 # ```
+
+# `numpy.random` 도 하나의 모듈이기에 그 안에 포함된 `random()` 함수만 따로 불러올 수 있다.
+
+# In[13]:
+
+
+from numpy.random import random
+
+
+# 그러면 `random()` 함수를 바로 호출할 수 있다.
+
+# In[14]:
+
+
+random()
+
+
+# :::{admonition} `numpy.random` 모듈과 `numpy.ranom.random()` 함수
+# :class: warning
+# 
+# 함수와 모듈이 이름이 동일하지만 함수와 모듈은 당연히 다른 객체이다.
+# 기본적으로 소괄호(`()`) 사용여부로 구분하면 된다.
+# :::
 
 # **클래스 불러오기**
 
@@ -289,6 +300,7 @@ np_random.random()
 # 
 # `Turtle` 클래스의 인스턴스를 생성할 때 `Turtle()` 처럼 마치 하나의 함수를 호출하듯이 표현한다.
 # 실제로 객체를 생성할 때 클래스에 포함된 `__init__()` 라는 특별한 메서드가 실행된다.
+# 또한 클래스는 보통 대문자로 시작하기에 함수 호출과도 쉽게 구분된다.
 # :::
 
 # ## 사용자 정의 모듈
@@ -391,7 +403,7 @@ myWget('__init__.py')
 
 
 # `os` 모듈의 `listdir()` 함수를 이용하여
-# `codes` 디렉토리에 두 개의 파일이 있음을 확인한다.
+# `codes` 디렉토리에 두 개의 파일이 포함되어 있음을 확인한다.
 
 # In[19]:
 
@@ -400,6 +412,13 @@ import os
 
 os.listdir(code_path)
 
+
+# :::{admonition} `__pycache__` 디렉토리
+# :class: info
+# 
+# 파이썬 코드를 실행하면 파이썬 실행기<font size='2'>interpreter</font>가 실행에 필요한 
+# 파일들을 생성해서 보관하는 디렉토리로 사용한다.
+# :::
 
 # **라이브러리 경로**
 
