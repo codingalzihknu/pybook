@@ -81,7 +81,14 @@
 # ```
 # 
 # 반면에 모듈이 아닌 패키지를 불러올 수도 있지만 그러려면 패키지 폴더에 있는 `__init__.py` 모듈에 
-# 해당 패키지를 불러올 때 기본적으로 함께 불러오는 모듈이 지정되어 있어야 한다. 
+# 해당 패키지를 불러올 때 기본적으로 함께 불러오는 모듈이 지정되어 있어야 한다.
+# 예를 들어 `numpy` 는 패키지이지만 아래 방식으로 불러올 수 있다.
+# 
+# ```python
+# >>> import numpy
+# ```
+# 
+# 그러면 `__init__().py` 모듈에 지정된 방식으로 필요한 다른 모듈과 패키지가 함께 불려오게 된다.
 # 보다 자세한 사항은 
 # [코딩도장: 패키지에서 from import 응용하기](https://dojang.io/mod/page/view.php?id=2450)를 참고할 수 있다.
 
@@ -232,6 +239,18 @@ import numpy as np
 np.random.random()
 
 
+# In[13]:
+
+
+import numpy.random as np_random
+
+
+# In[14]:
+
+
+np_random.random()
+
+
 # 패키지나 모듈을 불러올 때 별칭을 지정하면 반드시 별칭으로 사용해야 한다.
 # 그렇지 않으면 오류가 발생한다.
 
@@ -289,7 +308,7 @@ np.random.random()
 
 # `wc.py` 파일을 직접 생성하거나 아래 `myWget`파일을 이용하여 다운로드한다.
 
-# In[13]:
+# In[15]:
 
 
 from urllib.request import urlretrieve
@@ -311,7 +330,7 @@ def myWget(filename):
 # 아래 코드를 실행하면 현재 디렉토리에 `codes` 라는 하위 디렉토리가 생성되고
 # 그 안에 `wc.py` 파일이 저장된다.
 
-# In[14]:
+# In[16]:
 
 
 myWget('wc.py')
@@ -319,7 +338,7 @@ myWget('wc.py')
 
 # 다운로드된 파일의 내용을 확인하면 다음과 같이 앞서 언급한 내용과 동일하다.
 
-# In[15]:
+# In[17]:
 
 
 with open(code_path / "wc.py") as f:
@@ -365,7 +384,7 @@ with open(code_path / "wc.py") as f:
 # 비어 있는 `__init__.py` 파일을 생성해서 `codes` 디렉토리에 저장하거나 아래 명령문을 실행해서
 # 해당 파일을 다운로드 한다.
 
-# In[16]:
+# In[18]:
 
 
 myWget('__init__.py')
@@ -374,7 +393,7 @@ myWget('__init__.py')
 # `os` 모듈의 `listdir()` 함수를 이용하여
 # `codes` 디렉토리에 두 개의 파일이 있음을 확인한다.
 
-# In[17]:
+# In[19]:
 
 
 import os
@@ -397,7 +416,7 @@ os.listdir(code_path)
 
 # 파이썬이 기본적으로 지원하는 라이브러리들의 경로들의 리스트를 `sys.path` 변수가 가리킨다.
 
-# In[18]:
+# In[20]:
 
 
 import sys
@@ -408,7 +427,7 @@ sys.path
 # 따라서 `sys.path` 가 가리키는 리스트에 원하는 디렉토리의 경로를 추가만 하면 된다.
 # `Path` 객체의 `absolute()` 메서드가 지정된 경로의 절대경로를 반환한다.
 
-# In[19]:
+# In[21]:
 
 
 code_path.absolute()
@@ -416,7 +435,7 @@ code_path.absolute()
 
 # 위 경로를 문자열로 변환한 다음에 라이브러리 경로에 추가하지.
 
-# In[20]:
+# In[22]:
 
 
 sys.path.append(str(code_path.absolute()))
@@ -424,7 +443,7 @@ sys.path.append(str(code_path.absolute()))
 
 # 이제 새로운 경로가 추가된 것을 확인할 수 있다.
 
-# In[21]:
+# In[23]:
 
 
 sys.path
@@ -433,7 +452,7 @@ sys.path
 # 라이브러리 경로에 포함된 디렉토리의 파이썬 파일은 
 # 바로 불러올 수 있다.
 
-# In[22]:
+# In[24]:
 
 
 import wc
@@ -442,7 +461,7 @@ import wc
 # 이제 `linecount()` 함수를 사용하면 된다.
 # 아래 코드는 `wc.py` 파일이 총 6개의 줄을 담고 있음을 확인해준다.
 
-# In[23]:
+# In[25]:
 
 
 wc.linecount(code_path / "wc.py")
