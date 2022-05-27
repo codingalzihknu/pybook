@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (ch:casestudy-function-interface)=
 # # 사례 연구: 함수 인터페이스
 
 # `turtle` 모듈을 이용하여 다양한 그림을 그리는 함수를 직접 구현하면서
