@@ -499,4 +499,4 @@ x.__class__
 
 # ## 연습문제
 
-# 참고: [(실습) 객체 지향 프로그래밍](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-oop.ipynb)
+# 참고: [(실습) 클래스와 객체](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-classes_and_objects.ipynb)
