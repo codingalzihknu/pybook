@@ -24,6 +24,7 @@ chapters:
 - file: files
 - file: modules
 - file: oop
+- file: classes_and_objects
 - file: proper_classes
 - file: inheritance
 - file: casestudy_game_programming

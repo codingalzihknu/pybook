@@ -379,7 +379,7 @@ with open(code_path / "wc.py") as f:
 # 단순히 아래 방식을 사용하면 된다.
 # 
 # ```python
-# import wc
+# >>> import wc
 # ```
 # 
 # 하지만 여기서는 그렇지 않기에 좀 더 복잡하다. 

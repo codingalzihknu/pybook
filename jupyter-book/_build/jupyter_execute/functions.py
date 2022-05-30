@@ -305,7 +305,7 @@ math.sqrt(2)
 math.exp(1)
 
 
-# ::::{prf:example}
+# :::{prf:example}
 # :label: degree2radian
 # 
 # 일반각의 각도<font size="2">degree</font>를 
@@ -326,6 +326,7 @@ math.exp(1)
 # >>> math.sin(radian)
 # 1.0
 # ```
+# :::
 
 # ### NumPy 패키지
 
