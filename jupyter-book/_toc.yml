@@ -20,7 +20,7 @@ chapters:
 - file: iterations
 - file: collections1
 - file: collections2
-- file: collections3
+- file: casestudy_collections
 - file: files
 - file: modules
 - file: classes_instances_objects
