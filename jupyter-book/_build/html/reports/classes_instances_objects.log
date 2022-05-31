@@ -17,14 +17,27 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-f35 = Fraction(3, 5)
+f1 = Fraction(1, 4)
+f2 = Fraction(1, 2)
+f3 = f1 + f2
+print(f3)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1713/167241582.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mf35[0m [0;34m=[0m [0mFraction[0m[0;34m([0m[0;36m3[0m[0;34m,[0m [0;36m5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;31mNameError[0m: name 'Fraction' is not defined
-NameError: name 'Fraction' is not defined
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/tmp/ipykernel_3060/4216153219.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mf1[0m [0;34m=[0m [0mFraction[0m[0;34m([0m[0;36m1[0m[0;34m,[0m [0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mf2[0m [0;34m=[0m [0mFraction[0m[0;34m([0m[0;36m1[0m[0;34m,[0m [0;36m2[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mf3[0m [0;34m=[0m [0mf1[0m [0;34m+[0m [0mf2[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0mprint[0m[0;34m([0m[0mf3[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/tmp/ipykernel_3060/499535648.py[0m in [0;36m__add__[0;34m(self, other_fraction)[0m
+[1;32m     14[0m [0;34m[0m[0m
+[1;32m     15[0m     [0;32mdef[0m [0m__add__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mother_fraction[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 16[0;31m         [0mnew_num[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mtop[0m [0;34m*[0m [0mother_fraction[0m[0;34m.[0m[0mden[0m [0;34m+[0m[0;31m [0m[0;31m\[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     17[0m                      [0mself[0m[0;34m.[0m[0mbottom[0m [0;34m*[0m [0mother_fraction[0m[0;34m.[0m[0mnum[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m         [0mnew_den[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mbottom[0m [0;34m*[0m [0mother_fraction[0m[0;34m.[0m[0mden[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'Fraction' object has no attribute 'den'
+AttributeError: 'Fraction' object has no attribute 'den'
 

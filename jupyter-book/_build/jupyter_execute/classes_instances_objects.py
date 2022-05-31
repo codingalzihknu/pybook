@@ -94,9 +94,7 @@ f35 = Fraction(3, 5)
 
 # 메모리 상에서 `f35` 변수가 가리키는 분수 객체는 아래와 같이 구성된다.
 
-# <figure>
-# <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction1.png" width="80%">
-# </figure>
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction1.png" width="80%"></div>
 
 # :::{admonition} `self`의 역할
 # :class: info
@@ -113,161 +111,368 @@ f35 = Fraction(3, 5)
 
 # ### 인스턴스 변수와 속성
 
-# 클래스 내부에서 선언된 `self.top` 과 `self.bottom` 은 
-# **인스턴스 변수**<font size='2'>instance variable</font>다.
-# 인스턴스 변수는 해당 클래스의 영역 내에서만 의미를 갖는다.
-# 일반적으로 생성자가 실행되는 동안 선언되지만
-# 클래스 내부에서 다른 방식으로 선언될 수도 있다.
-# **인스턴스 속성**<font size="2">instance attribute</font>은 
-# 인스턴스 변수에 할당된 값이며,
-# 생성된 객체의 속성을 나타낸다.
-
-# :::{admonition} 클래스 변수
-# :class: info
+# **인스턴스 변수**<font size='2'>instance variable</font>는
+# 클래스 내부에서 `self`와 함께 선언된 변수를 가리킨다.
+# `Fraction` 클래스의 인스턴스 변수는 `self.top` 과 `self.bottom` 두 개다.
+# 인스턴스 변수는 해당 클래스의 영역<font size='2'>scope</font> 내에서만 의미를 갖는다.
+# 인스턴스 변수는 일반적으로 생성자가 실행되는 동안 선언되지만
+# 클래스 내부 어딘가에서 일반 전역 변수처럼 선언될 수도 있다.
 # 
-# 클래스 내부에서 선언되는 변수는
-# `self` 와 함께 선언되는 인스턴스 변수와
-# `self` 를 사용하지 않는 **클래스 변수**<font size='2'>class variable</font> 로
-# 구분된다.
-# 여기서는 인스턴스 변수만 다루며 클래스 변수는 나중에 자세히 소개한다.
-# :::
+# 클래스의 인스턴스는 인스턴스 변수가 가리키는 값을 속성을 갖게 되며,
+# 이런 의미에서 인스턴스 변수가 가리키는 값을 
+# **인스턴스 속성**<font size="2">instance attribute</font>이라 부른다.
+# 인스턴스 속성은 따라서 클래스의 인스턴스가 생성되어야만 의미를 갖는다.
+# 
+# 인스턴스 변수 이외에 `self` 를 사용하지 않는 
+# **클래스 변수**<font size='2'>class variable</font> 가 선언될 수도 있지만
+# 이에 대해서는 나중에 자세히 소개한다.
+# 
+# `f35` 가 가리키는 객체의 인스턴스 변수와 인스턴스 속성을 각각 키와 값으로 갖는 
+# 항목들의 사전을 `__dict__` 의 속성으로 확인한다.
+# `__dict__` 는 모든 객체에 기본으로 포함되는 속성 중에 하나다.
 
-# ## 메서드
+# In[4]:
+
+
+f35.__dict__
+
+
+# 모든 객체에 기본으로 포함된 속성 중에 해당 객체의 클래스 정보를 가리키는 `__class__` 속성도 
+# 종종 사용된다.
+
+# In[5]:
+
+
+f35.__class__
+
+
+# `__main__` 은 현재 실행되는 코드가 저장된 모듈을 가리킨다.
+# 따라서 `__main__.Fraction` 는 현재 파일에서 정의된 `Fraction` 클래스의 객체라는
+# 사실을 확인해준다.
+
+# ## 인스턴스 메서드
+
+# 클래스 내부에 선언된 함수를 메서드라 부른다. 
+# 이중에 첫째 매개변수로 `self` 를 사용하는 함수가 인스턴스 메서드다.
+# 인스턴스 메서드는 클래스의 인스턴스가 생성되어야만 활용될 수 있다.
+# 인스턴스 메서드 이외에 클래스 메서드, 정적 메서드 등이 있지만 여기서는 다루지 않는다.
 
 # ### 매직 메서드
 
+# 매직 메서드<font size='2'>magic method</font>는 클래스에 기본적으로 포함되는 메서드다.
+# 매직 메서드의 이름은 밑줄 두 개로 감싸지며, 
+# 클래스가 기본적으로 갖춰야 하는 기능을 제공한다.
+# 
+# 클래스에 기본으로 포함된 매직 메서드를 `dir()` 함수를 이용하여 확인할 수 있다.
+# 그러면 `__class__`, `__dict__` 등과 같은 기본 속성과 함께 다른 다양한 기본 속성과
+# 매직 메서드의 리스트를 확인할 수 있다.
+
+# In[6]:
+
+
+dir(f35)
+
+
+# 이중에 중요한 매직 메서드 몇 개를 살펴본다.
+
 # **`__str__()` 메서드**
 # 
-# `my_frantion`이 가리키는 분수는 '3/5'에 해당하는 분수이다. 
+# `f35` 는 '3/5'에 해당하는 분수를 가리킨다.
 # 그런데 `print()` 함수를 이용하여 이 사실을 확인하려면 
 # 이상한 결과만 확인한다.
 
-# print(f35)
+# In[7]:
+
+
+print(f35)
+
 
 # 이유는 `Fraction` 클래스가 자신의 인스턴스를 소개하는 기능을 제공하지 않았기 때문이다. 
-# 결국 `f35` 입장에서는 자신이 어떤 클래스의 인스턴스이며 
-# 자신이 저장된 메모리 주소만을 알려준다. 
-
-# 파이썬의 모든 클래스는 생성자와 함께 기본적으로 포함하는 메서드 목록이 있다. 
-# 이유는 파이썬의 모든 클래스는 기본적으로 최상위 클래스인 `object` 클래스를 
-# 상속한다.
-# 따라서 `Fraction` 클래스의 엄밀한 정의는 다음과 같다. 
-
-# class Fraction(object):
-#     """Fraction 클래스"""
+# 이런 상황에서 `f35` 입장에서는 자신이 어떤 클래스의 인스턴스이며 
+# 자신이 저장된 메모리 주소만을 알려주게 된다.
 # 
-#     def __init__(self, top, bottom):
-#         """생성자 메서드
-#         top: 분자
-#         bottom: 분모
-#         """
-#         self.top = top
-#         self.bottom = bottom
-
-# 상속을 통해 `__init__()` 등 기본으로 지정된 메서드를 여러 개 함께 상속한다.
-# 이렇게 자동으로 상속받으며 두 개의 밑줄이 양쪽을 감싼느 메서드를 __매직 메서드__(magic method)라 부르며,
-# 이중에 `__str__()` 메서드도 포함된다.
-# 이 사실을  `dir()` 함수를 이용하여 확인할 수 있다.
-
-# dir(Fraction)
-
-# 언급된 매직메서드 각자는 고유의 역할을 수행하기에 준비되었지만 대부분 본체가 없는,
-# 즉 제대로 정의되지 않은 채로 상속된다. 
-# 이 중에 `__str__()` 메서드는 해당 클래스의 인스턴스를 `print()` 함수를 통해
+# 클래스의 인스턴스가 제대로 자신을 소개하도록 하려면 `__str__()` 메서드를
+# 사용하가 직접 정의해야 한다. 
+# 즉, `__str__()` 메서드는 해당 클래스의 인스턴스를 `print()` 함수를 통해
 # 어떻게 보여줄 것인가를 문자열로 지정하는 함수로 활용된다.
 
 # `Fraction` 클래스를 선언할 때 `__str__()` 메서드를 아래처럼 재정의(overriding) 해보자.
 
-# class Fraction:
-#     """Fraction 클래스"""
-# 
-#     def __init__(self, top, bottom):
-#         """생성자 메서드
-#         top: 분자
-#         bottom: 분모
-#         """
-#         self.top = top
-#         self.bottom = bottom
-# 
-#     def __str__(self):
-#         return f"{self.top}/{self.bottom}"
+# In[8]:
 
-# f35 = Fraction(3, 5)
 
-# 이제 `print()` 함수가 원했던 대로 작동한다.
+class Fraction:
+    """Fraction 클래스"""
 
-# print(f35)
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __str__(self):
+        return f"{self.top}/{self.bottom}"  # 3/5, 1/2 형식으로 출력
+
+
+# 클래스를 재정의 했으면 객체로 새로 생성해야 한다.
+
+# In[9]:
+
+
+f35 = Fraction(3, 5)
+
+
+# 이제 `print()` 함수를 실행하면
+# 3/5, 1/2 등의 형식으로 출력한다.
+
+# In[10]:
+
+
+print(f35)
+
+
+# In[11]:
+
+
+print(f"피자의 {f35}를 먹었다.")
+
 
 # `__str__()` 메서드를 직접 호출해도 동일한 결과를 얻는다. 
 
-# f35.__str__()
+# In[12]:
 
-# print(f"피자의 {f35}를 먹었다.")
+
+f35.__str__()
+
 
 # `str()` 함수는 인자로 사용된 객체가 제공하는 `__str__()` 메서드를 내부에서 호출한다.
 
-# str(f35)
+# In[13]:
+
+
+str(f35) # f35.__str__()
+
+
+# **`__repr__()` 메서드**
+# 
+# `print()` 함수는 잘 작동한다.
+# 하지만 그냥 `f35` 를 확인하려하면 여전히 제대로 보여지지 않는다.
+
+# In[14]:
+
+
+f35
+
+
+# 이를 해결하려면 `__repr__()` 메서드를 `__str__()` 메서드처럼 추가해야 한다.
+
+# In[15]:
+
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __str__(self):
+        return f"{self.top}/{self.bottom}"  # 3/5, 1/2 형식으로 출력
+    
+    def __repr__(self):
+        return f"{self.top}/{self.bottom}"  # 3/5, 1/2 형식으로 출력
+
+
+# In[16]:
+
+
+f35 = Fraction(3, 5)
+
+
+# In[17]:
+
+
+f35
+
+
+# `__repr__()` 를 `__str__()` 와 다르게 정의해도 된다.
+
+# In[18]:
+
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __str__(self):
+        return f"{self.top}/{self.bottom}"  # 3/5, 1/2 형식으로 출력
+    
+    def __repr__(self):
+        return f"{self.bottom}분의 {self.top}"  # 5분의 3 형식으로 출력
+
+
+# In[19]:
+
+
+f35 = Fraction(3, 5)
+
+
+# In[20]:
+
+
+f35
+
+
+# In[21]:
+
+
+print(f35)
+
+
+# `__repr__()` 메서드를 `__str__()` 대신 사용할 수 있다.
+
+# In[22]:
+
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+#     def __str__(self):
+#         return f"{self.top}/{self.bottom}"  # 3/5, 1/2 형식으로 출력
+    
+    def __repr__(self):
+        return f"{self.bottom}분의 {self.top}"  # 5분의 3 형식으로 출력
+
+
+# In[23]:
+
+
+f35 = Fraction(3, 5)
+
+
+# In[24]:
+
+
+f35
+
+
+# In[25]:
+
+
+print(f35)
+
+
+# 따라서 `__repr__()` 와 `__str__()` 를 동일하게 작동하게 하려면
+# `__repr__()` 메서드 하나만 구현하면 된다.
+
+# In[26]:
+
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __repr__(self):
+        return f"{self.top}/{self.bottom}"  # 3/5, 1/2 형식으로 출력
+
 
 # **`__add__()` 메서드**
 # 
-# 분수의 덧셈을 시도하면 오류가 발생한다.
-# 
-# ```python
-# f1 = Fraction(1, 4)
-# f2 = Fraction(1, 2)
-# 
-# f1 + f2
-# ---------------------------------------------------------------------------
+# 아래 두 개의 이용하여 분수의 덧셈이 가능한지 확인해보자.
+
+# In[27]:
+
+
+f14 = Fraction(1, 4)
+f12 = Fraction(1, 2)
+
+
+# 그런데 분수의 덧셈을 시도하면 오류가 발생한다.
+
+# ```>>> f1 + f2
 # TypeError                                 Traceback (most recent call last)
 # <ipython-input-13-ad0256b81ae0> in <module>
 # ----> 1 f1 + f2
 # 
 # TypeError: unsupported operand type(s) for +: 'Fraction' and 'Fraction'
 # ```
-# 
+
 # 이유는 덧셈 연산자 `+`가 `Fraction` 클래스의 인스턴스에 대해 지원되지 않기 때문이다. 
 # 
 # 덧셈, 뺄셈 등 사칙연산에 대해 일반적으로 사용되는 기호를 사용하려면
 # 각각의 기호에 해당하는 매직 메서드를 선언해야 한다. 
 # 예를 들어 분수의 덧셈을 위해 `+` 연산자를 사용하려면 
 # `Fraction` 클래스에 `__add__()` 메서드가 적절하게 정의되어 있어야 한다.
-# 그러면 아래 표현식은 `f1 + f2`에 해당하는 값을 가리키게 된다.
-# 
-# ```python
-# f1.__add__(f2)
-# ```
 
+# :::{admonition} 분수의 덧셈
+# :class: info
+# 
 # 분수의 덧셈은 아래와 같이 정의된다.
 # 
 # $$\frac {a}{b} + \frac {c}{d} = \frac {ad}{bd} + \frac {cb}{bd} = \frac{ad+cb}{bd}$$
+# :::
 # 
-# 이를 구현하는 `__add__()` 메서드를 `Fraction` 클래스에 추가하자.
+# 분수의 덧셈을 지원하는 `__add__()` 메서드를 `Fraction` 클래스에 추가하자.
 
-# class Fraction:
-#     """Fraction 클래스"""
-# 
-#     def __init__(self, top, bottom):
-#         """생성자 메서드
-#         top: 분자
-#         bottom: 분모
-#         """
-#         self.top = top
-#         self.bottom = bottom
-# 
-#     def __str__(self):
-#         return f"{self.top}/{self.bottom}"
-# 
-#     def __add__(self, other_fraction):
-#         new_num = self.top * other_fraction.den + \
-#                     self.bottom * other_fraction.num
-#         new_den = self.bottom * other_fraction.den
-# 
-#         return Fraction(new_num, new_den)
+# In[28]:
 
-# f1 = Fraction(1, 4)
-# f2 = Fraction(1, 2)
-# f3 = f1 + f2
-# print(f3)
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __str__(self):
+        return f"{self.top}/{self.bottom}"
+
+    def __add__(self, other_fraction):
+        new_top = self.top * other_fraction.bottom + self.bottom * other_fraction.top
+        new_bottom = self.bottom * other_fraction.bottom
+
+        return Fraction(new_top, new_bottom)
+
+
+# In[29]:
+
+
+f14 = Fraction(1, 4)
+f12 = Fraction(1, 2)
+print(f14 + f12)
+
 
 # 덧셈이 잘 작동하지만 결과값이 기약분수의 형태가 아니다. 
 # 기약분수를 계산하려면 최대공약수(gcd)를 계산하는 알고리즘이 필요하다.
@@ -283,37 +488,48 @@ f35 = Fraction(3, 5)
 
 # 위 기법을 구현하면 다음과 같다.
 
-# def gcd(m, n):
-#     while m % n != 0:
-#         m, n = n, m % n
-#     return n
+# In[30]:
 
-# print(gcd(20, 10))
-# print(gcd(20, 30))
+
+def gcd(m, n):
+    while m % n != 0:
+        m, n = n, m % n
+    return n
+
+
+# In[31]:
+
+
+print(gcd(20, 10))
+print(gcd(20, 30))
+
 
 # `gcd()` 함수를 `__add__()` 함수의 정의에 활용하자. 
 
-# class Fraction:
-#     """Fraction 클래스"""
-# 
-#     def __init__(self, top, bottom):
-#         """생성자 메서드
-#         top: 분자
-#         bottom: 분모
-#         """
-#         self.top = top
-#         self.bottom = bottom
-# 
-#     def __str__(self):
-#         return f"{self.top}/{self.bottom}"
-# 
-#     def __add__(self, other_fraction):
-#         new_num = self.top * other_fraction.den + \
-#                      self.bottom * other_fraction.num
-#         new_den = self.bottom * other_fraction.den
-#         common = gcd(new_num, new_den)
-#         
-#         return Fraction(new_num // common, new_den // common)
+# In[32]:
+
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __str__(self):
+        return f"{self.top}/{self.bottom}"
+
+    def __add__(self, other_fraction):
+        new_num = self.top * other_fraction.den +                      self.bottom * other_fraction.num
+        new_den = self.bottom * other_fraction.den
+        common = gcd(new_num, new_den)
+        
+        return Fraction(new_num // common, new_den // common)
+
 
 # 이제 `Fraction`의 인스턴스는 생성자를 제외하고 두 개의 메서드를 더 갖는다.
 
@@ -323,10 +539,14 @@ f35 = Fraction(3, 5)
 
 # 이제 8/6이 아니라 3/4를 반환한다.
 
-# f1 = Fraction(1, 4)
-# f2 = Fraction(1, 2)
-# f3 = f1 + f2
-# print(f3)
+# In[33]:
+
+
+f1 = Fraction(1, 4)
+f2 = Fraction(1, 2)
+f3 = f1 + f2
+print(f3)
+
 
 # **`__eq__()` 메서드: 객체의 동등성과 동일성**
 # 
