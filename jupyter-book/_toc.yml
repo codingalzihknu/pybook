@@ -23,8 +23,8 @@ chapters:
 - file: collections3
 - file: files
 - file: modules
+- file: classes_instances_objects
 - file: oop
-- file: classes_and_objects
 - file: proper_classes
 - file: inheritance
 - file: casestudy_game_programming
