@@ -417,7 +417,8 @@ f12 = Fraction(1, 2)
 
 # 그런데 분수의 덧셈을 시도하면 오류가 발생한다.
 
-# ```>>> f1 + f2
+# ```python
+# >>> f1 + f2
 # TypeError                                 Traceback (most recent call last)
 # <ipython-input-13-ad0256b81ae0> in <module>
 # ----> 1 f1 + f2
@@ -456,7 +457,7 @@ class Fraction:
         self.top = top
         self.bottom = bottom
 
-    def __str__(self):
+    def __repr__(self):
         return f"{self.top}/{self.bottom}"
 
     def __add__(self, other_fraction):
@@ -466,19 +467,26 @@ class Fraction:
         return Fraction(new_top, new_bottom)
 
 
+# 이제 `Fraction`의 인스턴스는 생성자를 제외하고 두 개의 메서드를 더 갖는다.
+
+# <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction2.png" width="80%"></div>
+
+# 덧셈도 잘 작동한다.
+
 # In[29]:
 
 
 f14 = Fraction(1, 4)
 f12 = Fraction(1, 2)
-print(f14 + f12)
+
+f14 + f12
 
 
-# 덧셈이 잘 작동하지만 결과값이 기약분수의 형태가 아니다. 
+# 그런데 덧셈의 결과가 기약분수의 형태가 아니다. 
 # 기약분수를 계산하려면 최대공약수(gcd)를 계산하는 알고리즘이 필요하다.
 
-# :::{prf:example} 유클리드 호젯법
-# :label: euclid_gcd
+# :::{admonition} 유클리드 호젯법
+# :class: info
 # 
 # 두 개의 정수 $m$과 $n$의 최대공약수를 가장 빠르고 효율적으로 계산하는 기법은 유클리드 호젯법이다.
 # 
@@ -486,7 +494,7 @@ print(f14 + f12)
 # - 그렇지 않으면 $n$과 $m\,\%\, n$의 최대공약수가 원하는 최대공약수이다.
 # :::
 
-# 위 기법을 구현하면 다음과 같다.
+# 아래 `gcd()` 함수는 유클리드 호젯섭을 구현한다.
 
 # In[30]:
 
@@ -500,13 +508,102 @@ def gcd(m, n):
 # In[31]:
 
 
-print(gcd(20, 10))
-print(gcd(20, 30))
+print(gcd(6, 14))
+print(gcd(8, 20))
 
 
 # `gcd()` 함수를 `__add__()` 함수의 정의에 활용하자. 
 
 # In[32]:
+
+
+class Fraction:
+    """Fraction 클래스"""
+
+    def __init__(self, top, bottom):
+        """생성자 메서드
+        top: 분자
+        bottom: 분모
+        """
+        self.top = top
+        self.bottom = bottom
+
+    def __repr__(self):
+        return f"{self.top}/{self.bottom}"
+
+    def __add__(self, other_fraction):
+        new_top = self.top * other_fraction.bottom +                      self.bottom * other_fraction.top
+        new_bottom = self.bottom * other_fraction.bottom
+        common = gcd(new_top, new_bottom)
+        
+        return Fraction(new_top // common, new_bottom // common)
+
+
+# 이제 8/6 이 아니라 3/4 을 반환한다.
+
+# In[33]:
+
+
+f14 = Fraction(1, 4)
+f12 = Fraction(1, 2)
+
+f14 + f12
+
+
+# **`__eq__()` 메서드: 객체의 동등성과 동일성**
+# 
+# 두 객체의 __동일성__(identity) 여부는 비교되는 두 객체가 동일한 메모리 주소에 저장되었는가에 따라 결정된다.
+# 반면에 메모리의 주소가 아니라 객체가 표현하는 값의 동일성 여부에 따라
+# 두 값을 비교 판정하는 것은 __동등성__(equality) 여부이다. 
+# 
+# 예를 들어, 아래 두 객체 모두 분수 1/2를 객체를 가리키지만 서로 독립적으로 생성되었기에
+# 서로 다른 메모리에 저장되며, 따라서 두 변수 `x`와 `y`는 서로 다른 객체를 참조한다.
+# 따라서 두 변수가 참조하는 값은 동등하지 않다고 판정된다.
+# 이와같이 두 값의 동등성을 판단하는 것을 __얕은 동등성__(shallow equality)이라 부른다.
+
+# In[34]:
+
+
+x = Fraction(1, 2)
+y = Fraction(1, 2)
+x == y
+
+
+# 물론 두 객체가 동일하지 않다고 판단된다.
+
+# In[35]:
+
+
+x is y
+
+
+# __참고__: [PythonTutor-얕은 동등성](https://pythontutor.com/visualize.html#code=class%20Fraction%3A%0A%20%20%20%20%22%22%22Fraction%20%ED%81%B4%EB%9E%98%EC%8A%A4%22%22%22%0A%0A%20%20%20%20def%20__init__%28self,%20top,%20bottom%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22%EC%83%9D%EC%84%B1%EC%9E%90%20%EB%A9%94%EC%84%9C%EB%93%9C%0A%20%20%20%20%20%20%20%20top%3A%20%EB%B6%84%EC%9E%90%0A%20%20%20%20%20%20%20%20bottom%3A%20%EB%B6%84%EB%AA%A8%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20self.top%20%3D%20top%0A%20%20%20%20%20%20%20%20self.bottom%20%3D%20bottom%0A%0A%20%20%20%20def%20__str__%28self%29%3A%0A%20%20%20%20%20%20%20%20return%20f%22%7Bself.top%7D/%7Bself.bottom%7D%22%0A%0A%20%20%20%20def%20__add__%28self,%20other_fraction%29%3A%0A%20%20%20%20%20%20%20%20new_num%20%3D%20self.top%20*%20other_fraction.den%20%2B%20%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20self.bottom%20*%20other_fraction.num%0A%20%20%20%20%20%20%20%20new_den%20%3D%20self.bottom%20*%20other_fraction.den%0A%20%20%20%20%20%20%20%20common%20%3D%20gcd%28new_num,%20new_den%29%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20return%20Fraction%28new_num%20//%20common,%20new_den%20//%20common%29%0A%0Ax%20%3D%20Fraction%281,%202%29%0Ay%20%3D%20Fraction%281,%202%29%0Aprint%28x%20%3D%3D%20y%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)
+
+# 반면에 아래처럼 두 변수가 참조하는 객체를 동일(identical)하게 하면 당연히 다른 결과가 나온다.
+
+# In[36]:
+
+
+x = Fraction(1, 2)
+y = x
+print(x == y)
+print(x is y)
+
+
+# <figure>
+# <img src="https://raw.githubusercontent.com/codingalzi/problem_solving_with_algorithms/master/_sources/Introduction/Figures/fraction3.png" width="80%">
+# </figure>
+
+# 반면에 __깊은 동등성__(deep equality)은 두 객체가 (의도된) 동일한 값을
+# 가리키는가 여부를 결정하며, 이를 위해 
+# `__eq__` 매직 메서드를 이용한다.
+# 두 분수의 동등성은 아래와 같이 정의된다.
+# 
+# $$\frac {a}{b} = \frac {c}{d} \Longleftrightarrow ad = bc$$
+# 
+# 이를 구현하는 `__eq__()` 메서드를 `Fraction` 클래스에 추가하자.
+
+# In[37]:
 
 
 class Fraction:
@@ -530,92 +627,12 @@ class Fraction:
         
         return Fraction(new_num // common, new_den // common)
 
+    def __eq__(self, other_fraction):
+        first_num = self.top * other_fraction.den
+        second_num = other_fraction.num * self.bottom
 
-# 이제 `Fraction`의 인스턴스는 생성자를 제외하고 두 개의 메서드를 더 갖는다.
+        return first_num == second_num
 
-# <figure>
-# <img src="https://raw.githubusercontent.com/codingalzi/problem_solving_with_algorithms/master/_sources/Introduction/Figures/fraction2.png" width="50%">
-# </figure>
-
-# 이제 8/6이 아니라 3/4를 반환한다.
-
-# In[33]:
-
-
-f1 = Fraction(1, 4)
-f2 = Fraction(1, 2)
-f3 = f1 + f2
-print(f3)
-
-
-# **`__eq__()` 메서드: 객체의 동등성과 동일성**
-# 
-# 두 객체의 __동일성__(identity) 여부는 비교되는 두 객체가 동일한 메모리 주소에 저장되었는가에 따라 결정된다.
-# 반면에 메모리의 주소가 아니라 객체가 표현하는 값의 동일성 여부에 따라
-# 두 값을 비교 판정하는 것은 __동등성__(equality) 여부이다. 
-# 
-# 예를 들어, 아래 두 객체 모두 분수 1/2를 객체를 가리키지만 서로 독립적으로 생성되었기에
-# 서로 다른 메모리에 저장되며, 따라서 두 변수 `x`와 `y`는 서로 다른 객체를 참조한다.
-# 따라서 두 변수가 참조하는 값은 동등하지 않다고 판정된다.
-# 이와같이 두 값의 동등성을 판단하는 것을 __얕은 동등성__(shallow equality)이라 부른다.
-
-# x = Fraction(1, 2)
-# y = Fraction(1, 2)
-# x == y
-
-# 물론 두 객체가 동일하지 않다고 판단된다.
-
-# x is y
-
-# __참고__: [PythonTutor-얕은 동등성](https://pythontutor.com/visualize.html#code=class%20Fraction%3A%0A%20%20%20%20%22%22%22Fraction%20%ED%81%B4%EB%9E%98%EC%8A%A4%22%22%22%0A%0A%20%20%20%20def%20__init__%28self,%20top,%20bottom%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22%EC%83%9D%EC%84%B1%EC%9E%90%20%EB%A9%94%EC%84%9C%EB%93%9C%0A%20%20%20%20%20%20%20%20top%3A%20%EB%B6%84%EC%9E%90%0A%20%20%20%20%20%20%20%20bottom%3A%20%EB%B6%84%EB%AA%A8%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20self.top%20%3D%20top%0A%20%20%20%20%20%20%20%20self.bottom%20%3D%20bottom%0A%0A%20%20%20%20def%20__str__%28self%29%3A%0A%20%20%20%20%20%20%20%20return%20f%22%7Bself.top%7D/%7Bself.bottom%7D%22%0A%0A%20%20%20%20def%20__add__%28self,%20other_fraction%29%3A%0A%20%20%20%20%20%20%20%20new_num%20%3D%20self.top%20*%20other_fraction.den%20%2B%20%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20self.bottom%20*%20other_fraction.num%0A%20%20%20%20%20%20%20%20new_den%20%3D%20self.bottom%20*%20other_fraction.den%0A%20%20%20%20%20%20%20%20common%20%3D%20gcd%28new_num,%20new_den%29%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20return%20Fraction%28new_num%20//%20common,%20new_den%20//%20common%29%0A%0Ax%20%3D%20Fraction%281,%202%29%0Ay%20%3D%20Fraction%281,%202%29%0Aprint%28x%20%3D%3D%20y%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)
-
-# 반면에 아래처럼 두 변수가 참조하는 객체를 동일(identical)하게 하면 당연히 다른 결과가 나온다.
-
-# x = Fraction(1, 2)
-# y = x
-# print(x == y)
-# print(x is y)
-
-# <figure>
-# <img src="https://raw.githubusercontent.com/codingalzi/problem_solving_with_algorithms/master/_sources/Introduction/Figures/fraction3.png" width="80%">
-# </figure>
-
-# 반면에 __깊은 동등성__(deep equality)은 두 객체가 (의도된) 동일한 값을
-# 가리키는가 여부를 결정하며, 이를 위해 
-# `__eq__` 매직 메서드를 이용한다.
-# 두 분수의 동등성은 아래와 같이 정의된다.
-# 
-# $$\frac {a}{b} = \frac {c}{d} \Longleftrightarrow ad = bc$$
-# 
-# 이를 구현하는 `__eq__()` 메서드를 `Fraction` 클래스에 추가하자.
-
-# class Fraction:
-#     """Fraction 클래스"""
-# 
-#     def __init__(self, top, bottom):
-#         """생성자 메서드
-#         top: 분자
-#         bottom: 분모
-#         """
-#         self.top = top
-#         self.bottom = bottom
-# 
-#     def __str__(self):
-#         return f"{self.top}/{self.bottom}"
-# 
-#     def __add__(self, other_fraction):
-#         new_num = self.top * other_fraction.den + \
-#                      self.bottom * other_fraction.num
-#         new_den = self.bottom * other_fraction.den
-#         common = gcd(new_num, new_den)
-#         
-#         return Fraction(new_num // common, new_den // common)
-# 
-#     def __eq__(self, other_fraction):
-#         first_num = self.top * other_fraction.den
-#         second_num = other_fraction.num * self.bottom
-# 
-#         return first_num == second_num
 
 # 이제 동등성이 의도한대로 작동한다.
 
