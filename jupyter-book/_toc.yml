@@ -26,6 +26,7 @@ chapters:
 - file: classes_instances_objects
 - file: casestudy_oop
 - file: proper_classes
+- file: classVariables_and_classMethods
 - file: inheritance
 - file: type_annotations
 - file: webapp_flask

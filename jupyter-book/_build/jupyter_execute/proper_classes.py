@@ -590,34 +590,6 @@ x.hidden2
 # `hidden2(11)` 은 따라서 `11(11)` 이라는 실행이 불가능한 함수 호출로 처리되기 때문이다.
 # :::
 
-# ## 클래스 변수 대 인스턴스 변수
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# ## 인스턴스 메서드, 클래스 메서드, 스태틱 메서드
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
 # ## 연습문제
 
 # 참고: [(실습) 클래스의 기본 요소](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-proper_classes.ipynb)
