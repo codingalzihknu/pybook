@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # (ch-type-annotation)=
-# # 부록: 자료형 힌트
+# # (부록) 자료형 힌트
 
 # ## 동적 타이핑 vs  정적 타이핑
 
