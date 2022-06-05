@@ -115,6 +115,10 @@ isinstance(a_dict, Sequence)
 # `__next__()` 메서드를 갖는다.
 # 예를 들어, 모든 이터러블 객체를 `__iter__()` 메서드를 이용하여 이터레이터로 변환시킬 수 있다.
 
+# <div align="center"><img src="https://nvie.com/img/iterable-vs-iterator.png" style="width:600px;"></div>
+# 
+# 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
+
 # 리스트는 이터러블 객체이기에 `__iter__()` 메서드를 호출할 수 있다.
 # 그러면 이터레이터 객체가 하나 생성된다.
 
@@ -279,9 +283,17 @@ for item in a_range:
 
 # ## 제너레이터 
 
-# **제너레이터**<font size = "2">generator</font>는 특별한 이터레이터이다.
-# `__iter__()`와 `__next__()` 메서드를 구체적으로 구현할 필요없이 두 가지 방식으로 
-# 간단하게 제너레이터를 정의할 수 있다. 
+# **제너레이터**<font size = "2">generator</font>는 간단한 방식으로 구현할 수 있는 이터레이터이며,
+# 크게 두 가지 방식으로 생성된다.
+# 
+# - 제너레이터 함수 활용
+# - 제너레이터 표현식 활용
+# 
+# 이터러블, 이터레이터, 제너레이터 사이의 관계는 다음과 같다.
+
+# <div align="center"><img src="https://nvie.com/img/relationships.png" style="width:700px;"></div>
+# 
+# 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 
 # **제너레이터 함수**
 # 
@@ -624,6 +636,63 @@ for i in natural_numbers():
     list_5.append(i)
     
 print(list_5)
+
+
+# **무한 피보나찌 수열 생성**
+# 
+# 아래 코드는 피보나찌 수열을 무한정 생성하는 제너레이터를 정의한다.
+
+# In[58]:
+
+
+def fib():
+    prev, curr = 0, 1
+    while True:
+        yield curr
+        prev, curr = curr, prev + curr
+
+
+# 피보나찌 수열의 처음 10개 항목은 다음과 같다.
+
+# In[59]:
+
+
+count = 0
+
+for item in fib():
+    if count >= 10:
+        break
+        
+    print(item, end=' ')
+    count += 1
+
+
+# 피보나찌 수열의 처음 n개의 항목을 출력하는 함수는 다음과 같다.
+
+# In[60]:
+
+
+def fibo(n):
+    count = 0
+
+    for item in fib():
+        if count >= n:
+            break
+
+        print(item, end=' ')
+        count += 1
+
+
+# In[61]:
+
+
+fibo(3)
+
+
+# In[62]:
+
+
+fibo(10)
 
 
 # ## 연습문제
