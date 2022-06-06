@@ -814,9 +814,9 @@ f3 = Fraction(2, 3)
 f3.to_float()
 
 
-# :::{prf:example} 라이프니츠 공식
-# 
-# 원주율을 아래 라이프니츠 공식으로 구할 수 있다.
+# **예제: 라이프니츠 공식**
+
+# 라이프니츠 공식을 이용하여 원주율을 임의로 정밀한 수준까지 계산할 수 있다.
 # 
 # $$
 # \begin{align*}
@@ -825,9 +825,10 @@ f3.to_float()
 # & = \sum_{k=0}^{\infty}  \frac{8}{(4k + 1)(4k + 3)} \\
 # \end{align*}
 # $$
-# :::
 
-# 라이프니츠 공식을 이용하여 원주율을 임의로 정밀한 수준까지 원주율을 계산할 수 있다.
+# 아래 `leibniz()` 함수는 `Fraction` 객체를 이용하여
+# 라이프니츠 공식을 구현한다.
+# `leibniz(n)` 은 처음 `n` 개의 분수를 더한다.
 
 # In[47]:
 
@@ -835,7 +836,7 @@ f3.to_float()
 def leibniz(n):
     pi_sum = Fraction(0, 1)
     for k in range(n):
-        kth_item = Fraction(8, (4*k + 1) * (4*k + 3))
+        kth_item = Fraction(8, (4*k + 1) * (4*k + 3))  # 분수 연산
         pi_sum += kth_item
         
     return pi_sum.to_float()
@@ -875,7 +876,7 @@ leibniz(1000)
 def leibniz_float(n):
     pi_sum = 0
     for k in range(n):
-        kth_item = 8/((4*k + 1) * (4*k + 3))
+        kth_item = 8/((4*k + 1) * (4*k + 3))  # 부동소수점 연산
         pi_sum += kth_item
         
     return pi_sum
@@ -884,10 +885,16 @@ def leibniz_float(n):
 # In[52]:
 
 
-leibniz_float(10000)
+leibniz_float(1000)
 
 
 # In[53]:
+
+
+leibniz_float(10000)
+
+
+# In[54]:
 
 
 leibniz_float(1000000)
