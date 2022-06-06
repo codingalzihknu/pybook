@@ -4,6 +4,11 @@
 # (ch:classes)=
 # # 클래스의 기본 요소
 
+# **수정해야할 사항**
+# 
+# - {ref}`ch:classes_instances_objects` 의 `MSDie` 클래스 대신 `Fraction` 클래스를 이용하여 설명할 것.
+# - 많은 연산자가 [연습문제](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-classes_instances_objects.ipynb) 에서 해결되었음. 활용할 것.
+
 # **참고:** 아래 내용은 [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/ns/books/published/pythonds3/index.html)의 2장 내용을 
 # 일부 활용한다. 
 

@@ -100,7 +100,7 @@ f35 = Fraction(3, 5)
 # :class: info
 # 
 # `f35 = Fraction(3, 5)` 방식으로 변수 할당이 실행되면
-# 파이썬 해석기는 다음을 싱행한다.
+# 파이썬 실행기<font size='2'>interpreter</font>는 다음을 싱행한다.
 # 
 # ```python
 # >>> __init__(f35, 3, 5)
@@ -114,9 +114,9 @@ f35 = Fraction(3, 5)
 # **인스턴스 변수**<font size='2'>instance variable</font>는
 # 클래스 내부에서 `self`와 함께 선언된 변수를 가리킨다.
 # `Fraction` 클래스의 인스턴스 변수는 `self.top` 과 `self.bottom` 두 개다.
-# 인스턴스 변수는 해당 클래스의 영역<font size='2'>scope</font> 내에서만 의미를 갖는다.
-# 인스턴스 변수는 일반적으로 생성자가 실행되는 동안 선언되지만
-# 클래스 내부 어딘가에서 일반 전역 변수처럼 선언될 수도 있다.
+# 인스턴스 변수는 해당 클래스의 영역<font size='2'>scope</font>에서만 의미를 가지며,
+# 일반적으로 생성자가 실행되는 동안 선언되지만
+# 클래스 내부 어디에서도 일반 전역 변수처럼 선언될 수도 있다.
 # 
 # 클래스의 인스턴스는 인스턴스 변수가 가리키는 값을 속성을 갖게 되며,
 # 이런 의미에서 인스턴스 변수가 가리키는 값을 
@@ -125,7 +125,7 @@ f35 = Fraction(3, 5)
 # 
 # 인스턴스 변수 이외에 `self` 를 사용하지 않는 
 # **클래스 변수**<font size='2'>class variable</font> 가 선언될 수도 있지만
-# 이에 대해서는 나중에 자세히 소개한다.
+# 여기서는 다루지 않는다.
 # 
 # `f35` 가 가리키는 객체의 인스턴스 변수와 인스턴스 속성을 각각 키와 값으로 갖는 
 # 항목들의 사전을 `__dict__` 의 속성으로 확인한다.
@@ -460,14 +460,14 @@ class Fraction:
     def __repr__(self):
         return f"{self.top}/{self.bottom}"
 
-    def __add__(self, other_fraction):
-        new_top = self.top * other_fraction.bottom + self.bottom * other_fraction.top
-        new_bottom = self.bottom * other_fraction.bottom
+    def __add__(self, other):
+        new_top = self.top * other.bottom + self.bottom * other.top
+        new_bottom = self.bottom * other.bottom
 
         return Fraction(new_top, new_bottom)
 
 
-# 이제 `Fraction`의 인스턴스는 생성자를 제외하고 두 개의 메서드를 더 갖는다.
+# 이제 `Fraction`의 인스턴스는 생성자 이외에 `__repr__()` 와 `__add__()` 두 개의 메서드를 더 갖는다.
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction2.png" width="80%"></div>
 
@@ -481,6 +481,26 @@ f12 = Fraction(1, 2)
 
 f14 + f12
 
+
+# 실제로는 `__add__()` 메서드가 다음처럼 호출된다.
+
+# In[30]:
+
+
+f14.__add__(f12)
+
+
+# :::{admonition} `self` 와 `other`
+# 
+# `f14.__add__(f12)` 이  실행되면 실제로는 `__add__()` 메서드가 다음과 같이 호출된다.
+# 
+# ```python
+# __add__(f14, f12)
+# ```
+# 
+# 즉, `self=f14`, `other=f12` 가 인자로 사용되며,
+# 이는 `f14` 를 중심(self)으로 해서 다른 값(other)과의 연산을 실행한다는 의미이다. 
+# :::
 
 # 그런데 덧셈의 결과가 기약분수의 형태가 아니다. 
 # 기약분수를 계산하려면 최대공약수(gcd)를 계산하는 알고리즘이 필요하다.
@@ -496,7 +516,7 @@ f14 + f12
 
 # 아래 `gcd()` 함수는 유클리드 호젯섭을 구현한다.
 
-# In[30]:
+# In[31]:
 
 
 def gcd(m, n):
@@ -505,7 +525,7 @@ def gcd(m, n):
     return n
 
 
-# In[31]:
+# In[32]:
 
 
 print(gcd(6, 14))
@@ -514,7 +534,7 @@ print(gcd(8, 20))
 
 # `gcd()` 함수를 `__add__()` 함수의 정의에 활용하자. 
 
-# In[32]:
+# In[33]:
 
 
 class Fraction:
@@ -531,9 +551,9 @@ class Fraction:
     def __repr__(self):
         return f"{self.top}/{self.bottom}"
 
-    def __add__(self, other_fraction):
-        new_top = self.top * other_fraction.bottom +                      self.bottom * other_fraction.top
-        new_bottom = self.bottom * other_fraction.bottom
+    def __add__(self, other):
+        new_top = self.top * other.bottom +                      self.bottom * other.top
+        new_bottom = self.bottom * other.bottom
         common = gcd(new_top, new_bottom)
         
         return Fraction(new_top // common, new_bottom // common)
@@ -541,7 +561,7 @@ class Fraction:
 
 # 이제 8/6 이 아니라 3/4 을 반환한다.
 
-# In[33]:
+# In[34]:
 
 
 f14 = Fraction(1, 4)
@@ -561,7 +581,7 @@ f14 + f12
 # 서로 다른 메모리에 저장되며, 따라서 두 변수 `f1`와 `f2`는 서로 다른 객체를 참조한다.
 # 따라서 두 변수가 가리키는 값은 서로 동일하지 않다고 판정된다.
 
-# In[34]:
+# In[35]:
 
 
 f1 = Fraction(1, 2)
@@ -575,7 +595,7 @@ print(f1 is f2)
 
 # 반면에 아래처럼 두 변수가 참조하는 객체를 동일(identical)하게 하면 당연히 다른 결과가 나온다.
 
-# In[35]:
+# In[36]:
 
 
 f1 = Fraction(1, 2)
@@ -599,7 +619,7 @@ print(f1 is f2)
 
 # 분수의 동등성을 구현한 `__eq__()` 메서드를 `Fraction` 클래스에 추가하자.
 
-# In[36]:
+# In[37]:
 
 
 class Fraction:
@@ -616,23 +636,23 @@ class Fraction:
     def __repr__(self):
         return f"{self.top}/{self.bottom}"
 
-    def __add__(self, other_fraction):
-        new_top = self.top * other_fraction.bottom +                      self.bottom * other_fraction.top
-        new_bottom = self.bottom * other_fraction.bottom
+    def __add__(self, other):
+        new_top = self.top * other.bottom +                      self.bottom * other.top
+        new_bottom = self.bottom * other.bottom
         common = gcd(new_top, new_bottom)
         
         return Fraction(new_top // common, new_bottom // common)
 
-    def __eq__(self, other_fraction):
-        first_top = self.top * other_fraction.bottom
-        second_top = other_fraction.top * self.bottom
+    def __eq__(self, other):
+        first_top = self.top * other.bottom
+        second_top = other.top * self.bottom
 
         return first_top == second_top
 
 
 # 이제 동등성이 의도한대로 작동한다.
 
-# In[37]:
+# In[38]:
 
 
 f1 = Fraction(1, 2)
@@ -642,7 +662,32 @@ print(f1 == f2)
 print(f1 is f2)
 
 
+# `f1 == f2` 는 `__eq__()` 메서드를 다음과 같이 호출한다.
+
+# In[39]:
+
+
+f1.__eq__(f2)
+
+
 # 보다 다양한 매직 메서드에 대해서는 연습문제를 참고한다.
+
+# :::{admonition} `self` 와 `other`
+# 
+# `f14.__add__(f12)` 이  실행되면 실제로는 `__add__()` 메서드가 다음과 같이 호출된다.
+# 
+# ```python
+# __add__(f14, f12)
+# ```
+# 
+# 즉, `self=f14`, `other=f12` 가 인자로 사용된다.
+# 하지만 `f14` 를 기준(self)으로 해서 다른 값(other)과의 연산을 실행한다는 의미를
+# 강조하기 위해 관행적으로 `self` 와 `other` 를 매개변수로 사용한다.
+# 
+# 이런 관행은 덧셈과 동등성 비교 등 모든 이항 연산자를 정의할 때 활용된다.
+# 예를 들어 `f1 == f2`, 
+# 즉 `f1.__eq__(f2)`는 파이썬 실행기의 내부에서 `__eq__(f1, f2)` 로 처리된다.
+# :::
 
 # ### 일반 인스턴스 메서드
 
@@ -654,7 +699,7 @@ print(f1 is f2)
 # `Fraction` 클래스의 객체인 분수로부터 분자와 분모를 반환하는 `numerator()` 메서드와
 # `denominator()` 메서드를 구현하자.
 
-# In[38]:
+# In[40]:
 
 
 class Fraction:
@@ -671,16 +716,16 @@ class Fraction:
     def __repr__(self):
         return f"{self.top}/{self.bottom}"
 
-    def __add__(self, other_fraction):
-        new_top = self.top * other_fraction.bottom +                      self.bottom * other_fraction.top
-        new_bottom = self.bottom * other_fraction.bottom
+    def __add__(self, other):
+        new_top = self.top * other.bottom +                      self.bottom * other.top
+        new_bottom = self.bottom * other.bottom
         common = gcd(new_top, new_bottom)
         
         return Fraction(new_top // common, new_bottom // common)
 
-    def __eq__(self, other_fraction):
-        first_top = self.top * other_fraction.bottom
-        second_top = other_fraction.top * self.bottom
+    def __eq__(self, other):
+        first_top = self.top * other.bottom
+        second_top = other.top * self.bottom
 
         return first_top == second_top
     
@@ -691,7 +736,7 @@ class Fraction:
         return self.bottom
 
 
-# In[39]:
+# In[41]:
 
 
 f3 = Fraction(2, 3)
@@ -699,7 +744,7 @@ f3 = Fraction(2, 3)
 
 # 2/3의 분자는 2.
 
-# In[40]:
+# In[42]:
 
 
 f3.numerator()
@@ -707,7 +752,7 @@ f3.numerator()
 
 # 2/3의 분모는 3.
 
-# In[41]:
+# In[43]:
 
 
 f3.denominator()
@@ -717,7 +762,7 @@ f3.denominator()
 
 # 분수를 부동소수점으로 변환하는 `to_float()` 메서드를 구현해보자.
 
-# In[42]:
+# In[44]:
 
 
 class Fraction:
@@ -734,16 +779,16 @@ class Fraction:
     def __repr__(self):
         return f"{self.top}/{self.bottom}"
 
-    def __add__(self, other_fraction):
-        new_top = self.top * other_fraction.bottom +                      self.bottom * other_fraction.top
-        new_bottom = self.bottom * other_fraction.bottom
+    def __add__(self, other):
+        new_top = self.top * other.bottom +                      self.bottom * other.top
+        new_bottom = self.bottom * other.bottom
         common = gcd(new_top, new_bottom)
         
         return Fraction(new_top // common, new_bottom // common)
 
-    def __eq__(self, other_fraction):
-        first_top = self.top * other_fraction.bottom
-        second_top = other_fraction.top * self.bottom
+    def __eq__(self, other):
+        first_top = self.top * other.bottom
+        second_top = other.top * self.bottom
 
         return first_top == second_top
     
@@ -757,16 +802,95 @@ class Fraction:
         return self.numerator() / self.denominator()
 
 
-# In[43]:
+# In[45]:
 
 
 f3 = Fraction(2, 3)
 
 
-# In[44]:
+# In[46]:
 
 
 f3.to_float()
+
+
+# :::{prf:example} 라이프니츠 공식
+# 
+# 원주율을 아래 라이프니츠 공식으로 구할 수 있다.
+# 
+# $$
+# \begin{align*}
+# \pi & = 4 \left( \frac 1 1 - \frac 1 3 + \frac 1 5 - \frac 1 7 + \frac 1 9 - \frac{1}{11} + \frac{1}{13} - \frac{1}{15} + \frac{1}{17} - \frac{1}{19} + \cdots \right) \\
+# & = 4 \sum_{k=0}^{\infty} \left( \frac{1}{4k + 1} - \frac{1}{4k + 3} \right) \\
+# & = \sum_{k=0}^{\infty}  \frac{8}{(4k + 1)(4k + 3)} \\
+# \end{align*}
+# $$
+# :::
+
+# 라이프니츠 공식을 이용하여 원주율을 임의로 정밀한 수준까지 원주율을 계산할 수 있다.
+
+# In[47]:
+
+
+def leibniz(n):
+    pi_sum = Fraction(0, 1)
+    for k in range(n):
+        kth_item = Fraction(8, (4*k + 1) * (4*k + 3))
+        pi_sum += kth_item
+        
+    return pi_sum.to_float()
+
+
+# In[48]:
+
+
+leibniz(10)
+
+
+# In[49]:
+
+
+leibniz(100)
+
+
+# In[50]:
+
+
+leibniz(1000)
+
+
+# 하지만 더 이상의 계산은 매우 어렵다. 
+# 예를 들어 `leibniz(10000)` 은 언제 끝날지 모른다.
+# 이유는 이런 분수 형식의 계산이
+# 너무 오래 걸리기 때문이다. 
+# 실제로 분수 덧셈의 통분에 사용되는 시간과 메모리 사용량이 
+# 매우 크다.
+# 
+# 반면에 지난 수 십년동안 부동소수점 연산의 정확도와 속도를 최적하는 노력의 결과로
+# 부동소수점을 사용하는 연산은 매우 빠르고 보다 많은 반복무의 실행을 지원한다.
+
+# In[51]:
+
+
+def leibniz_float(n):
+    pi_sum = 0
+    for k in range(n):
+        kth_item = 8/((4*k + 1) * (4*k + 3))
+        pi_sum += kth_item
+        
+    return pi_sum
+
+
+# In[52]:
+
+
+leibniz_float(10000)
+
+
+# In[53]:
+
+
+leibniz_float(1000000)
 
 
 # ## 연습문제
