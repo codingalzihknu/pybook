@@ -25,7 +25,7 @@ chapters:
 - file: modules
 - file: classes_instances_objects
 - file: casestudy_oop
-- file: proper_classes
 - file: inheritance
+- file: proper_classes
 - file: type_annotations
 - file: webapp_flask
