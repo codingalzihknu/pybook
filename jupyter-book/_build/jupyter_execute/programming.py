@@ -47,8 +47,7 @@
 # 사람이 이해하기 쉽게 이해할 수 있는 명령문과 
 # **구문**<font size='2'>syntax</font>을 제공하는 프로그래밍 언어다.
 # 파이썬<font size="2">python</font>, C, C++, C#, 자바<font size="2">Java</font>, 
-# 자바스크립트<font size="2">Javascript</font>, 스위프트<font size="2">Swift</font>  등 
-# 사람들에게 잘 알려진 대부분의 프로그래밍 언어들이 고수준 언어다.
+# 자바스크립트<font size="2">Javascript</font>, 스위프트<font size="2">Swift</font>  등 잘 알려진 대부분의 프로그래밍 언어들이 고수준 언어다.
 # 고수준 언어로 만들어진 프로그램은 번역기 또는 실행기를 이용하여
 # 기계어로 변경해야만 컴퓨터에서 실행될 수 있다.
 
@@ -67,52 +66,61 @@
 
 # ## 파이썬
 
-# 파이썬<font size="1">Python</font> 은 고수준 프로그래밍 언어이며 
-# 1991년 귀도 반 로섬<font size="1">Guido van Rossum</font>이 소개했다.
-# 파이썬은 실행기를 사용하며 컴퓨터가 다루는 모든 문제의 해결에 사용될 수 있는 
-# **범용 프로그래밍 언어**<font size="1">general-purpose programming language</font>다.
+# 파이썬<font size="1">Python</font>은 실행기를 사용하는 고수준 프로그래밍 언어다.
+# 컴퓨터로 다루는 모든 문제의 해결에 사용될 수 있는 
+# **범용 프로그래밍 언어**<font size="1">general-purpose programming language</font>로 1991년 귀도 반 로섬<font size="1">Guido van Rossum</font>에 의해 소개되었다.
+# 
+# :::{admonition} 도메인 특화 언어
+# :class: info
+# 
+# 범용 프로그래밍 언어와는 다르게 특정 영역(도메인)의 문제 해결에만 사용되는
+# 프로그래밍 언어를 **도메인 특화 언어**<font size='2'>domain-specific language</font>라
+# 부른다. 웹페이지 구현에 사용되는 HTML, CSS 등이 대표적인 도메인 특화 언어다.
+# :::
+
 # 기존 프로그래밍 언어들의 한계를 극복하고자 만들어진 파이썬은 
 # 자연어와 유사할 정도로 간결하고 쉬운 문법을 제공한다.
-
-# 예를 들어, 아래의 파이썬 코드는 `name`이 `members` 목록에 없다면 
-# 회원가입을 하라는 문구를 출력한다.
+# 예를 들어, 아래의 파이썬 코드는 0과 9 사이의 숫자 중에 3을 입력하면
+# '맞았습니다'를, 아니면 '틀렸습니다'를 출력하는 숫자맞히기 게임을 구현한다.
 # 
 # ```python
-# name = '강현'
-# members = ['민경', '재석', '윤진', '태연']
+# print("숫자맞히기 게임에 환영합니다.")
 # 
-# if name not in members :
-#     print('회원가입 하세요.')
+# secret = '3'
+# guess = input("0부터 9 사이의 숫자 하나를 입력하세요: ")
+# 
+# if guess == secret:
+#     print("맞았습니다!")
+# else:
+#     print("틀렸습니다!")
+# 
+# print("게임 종료!")
 # ```
 # 
-# 프로그래밍에 대한 경험이 전혀 없는 사람도 
-# 위 파이썬 코드의 의미를 대략적으로 유추할 수 있다.
-# 이렇듯 파이썬 언어는 자연어와 유사하여
-# 입문자 교육용으로도 많이 사용된다.
+# 프로그래밍에 대한 경험이 전혀 없는 사람도 위 파이썬 코드의 의미를 대략적으로 
+# 유추할 수 있다.
+# 이렇듯 파이썬 언어는 자연어와 유사하여 입문자 교육용으로도 많이 사용된다.
 
-# 이뿐만 아니라 파이썬은 다양한 분야에서 사용할 수 있는 수많은 라이브러리를 제공하고 있다.
+# 이뿐만 아니라 파이썬은 다양한 분야에서 사용할 수 있는 수 많은 라이브러리를 제공한다.프로그래밍 언어의 라이브러리는 필요에 따라 언제든 활용할 수 있는 코드들의 모음집이다. 
 # 파이썬이 제공하는 강력한 라이브러리는 더 적은 코드로 더 많은 프로그램을
 # 효율적으로 구현할 수 있도록 도와준다.
 # 
-# - 데이터 과학: Numpy, SciPy, Pandas, Matplotlib 등
-# - 인공지능: Scikit-learn, Keras, TensorFlow, PyTorch 등
-# - 웹 프레임워크: Django, Flask, Pylongs, Pyramid, web2py 등
-# - 게임: Turtle, PyGame 등
+# - 데이터 과학: Numpy, SciPy, Pandas, Matplotlib
+# - 머신러닝: Scikit-learn, Keras, TensorFlow, PyTorch
+# - 데이터베이스: PyMySQL, mysql-connector-python
+# - 웹 프레임워크: Django, Flask, Pylongs, Pyramid, web2py
+# - 게임: Turtle, PyGame
 
-# ### 객체 지향 프로그래밍
-
-# 파이썬은 C++, C#, 자바 등과 같이 OOP,  즉
-# **객체 지향 프로그래밍**<font size="1">Object-Oriented Programming</font>을 지원한다.
-# OOP는 프로그램을 구성하는 객체와 객체들 사이의 관계를 구현하는 
-# 프로그래밍 기법이다. 
-# 파이썬은 모든 것이 객체로 설계되어 있으며 
-# OOP를 쉽게 적용할 수 있는 매우 편리하고 강력한 기능을 제공한다. 
-# 따라서 데이터 분석, 머신러닝, 데이터베이스 관리, 웹 개발, 웹 스크래핑, 
-# GUI 프로그래밍<font size="1">Graphical User Interface programming</font> 등 
+# 파이썬은 OOP,  즉 **객체 지향 프로그래밍**<font size="1">Object-Oriented Programming</font>을 지원한다.
+# OOP는 객체들 사이의 유기적 관계를 중시하는 프로그래밍 기법이다. 
+# 파이썬이 다루는 모든 대상은 객체로 설계되어 있어서 
+# OOP를 쉽게 적용할 수 있고,
+# 따라서 데이터 분석, 머신러닝, 데이터베이스, 웹 프레임워크, 게임 등 
 # 다양한 분야에서 유용하게 활용된다.
-# 
-# 보통 OOP와 대비하여 **절차 지향 프로그래밍**<font size="2">procedural programming</font>을 언급한다. 
-# 절차 지향 프로그래밍은 문제 해결과정의 순차적 묘사가 가장 중요하다.
+# 파이썬 이외에 C++, C#, 자바, 자바스크립트, 스위프트 등도
+# OOP를 지원한다.
+# OOP와 대비하여 보통 문제 해결과정의 순차적 묘사를 중시하는 
+# **절차 지향 프로그래밍**<font size="2">procedural programming</font>을 언급한다. 
 # 대표적인 절차 지향 프로그래밍 언어로 C와 HTML이 있다.
 
 # ### 동적 타이핑
