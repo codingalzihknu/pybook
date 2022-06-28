@@ -123,24 +123,12 @@
 # **절차 지향 프로그래밍**<font size="2">procedural programming</font>을 언급한다. 
 # 대표적인 절차 지향 프로그래밍 언어로 C와 HTML이 있다.
 
-# ### 동적 타이핑
-
-# 파이썬은 **동적 타이핑**<font size="2">dynamic typing</font>을 지원한다. 
-# 동적 타이핑은 선언되는 변수의 자료형을 미리 지정하지 않고
-# 변수에 할당된 값을 실행기가 확인하여 프로그램 실행 중에
-# 허용되는 것과 그러지 않는 것이 구분되도록 한다.
-
-# 반면에 변수를 사용하기 전 미리 할당받을 수 있는 값의 자료형을 지정해야 하는 것을
-# **정적 타이핑**<font size="2">static typing</font>이라 한다.
-# C, C++, C#, 자바 등 주로 번역기를 사용하는 언어가 정적 타이핑을 사용한다.
-
-# ### 파이썬 인기도
-
 # 지금까지 살펴본 파이썬의 특징으로 인해  파이썬의 인기는 날이 갈수록 높아지고 있다. 
 # 프로그래밍 언어들의 인기도를 측정하는 
 # [TIOBE 인덱스](https://www.tiobe.com/tiobe-index)에 
-# 따르면, 2022년 2월 기준으로 파이썬은 가장 인기있는 프로그래밍 언어이다. 
+# 따르면, 2022년 6월 기준으로 파이썬은 가장 인기있는 프로그래밍 언어다.
 
+#  
 # <div align="center">
-#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/tiobe_index2202.jpg" style="width:500px;">
+#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/tiobe_index2206.png" style="width:500px;">
 # </div>
