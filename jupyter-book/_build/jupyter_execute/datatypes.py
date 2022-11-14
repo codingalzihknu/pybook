@@ -485,7 +485,7 @@ print(' 1\n2\t3')
 # Hello\n World
 # 
 # >>> print("Hello\\t World")
-# Hello\5 World
+# Hello\t World
 # ```
 # :::
 
