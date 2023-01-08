@@ -12,7 +12,7 @@
 # **참고:** 아래 내용은 [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/ns/books/published/pythonds3/index.html)의 2장 내용을 
 # 일부 활용한다. 
 
-# ## 기본 클래스
+# ## 출력 가능 클래스
 
 # 클래스를 선언할 때 아래 사항들을 기본적으로 지원하도록 해야 한다. 
 # 

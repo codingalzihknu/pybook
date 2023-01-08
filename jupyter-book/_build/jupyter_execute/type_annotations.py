@@ -193,7 +193,7 @@ def dot_product(x: Vector, y: Vector) -> float:
 
 # ### 자료형 힌트 사용법
 
-# `int`, `bool`, `float`, `str` 등의 기본 자료형은 그대로 사용한다.
+# `int`, `bool`, `float`, `str` 등의 기초 자료형은 그대로 사용한다.
 
 # In[11]:
 

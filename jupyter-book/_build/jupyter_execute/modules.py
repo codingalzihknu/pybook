@@ -47,7 +47,7 @@
 # **프레임워크**<font size='2'>framework</font>는 라이브러리 보다 포괄적인 개념이다.
 # 라이브러리가 필요한 도구와 도구 모음집을 제공하는 반면에
 # 프레임워크는 라이브러리를 적용하는 전반적인 틀<font size='2'>frame</font>과 
-# 기본 구조<font size='2'>architecture</font>를 제공한다.
+# 아키텍처<font size='2'>architecture</font>를 제공한다.
 # 
 # 예를 들어, 플라스크<font size='2'>Flask</font> 프레임워크는 웹서버 개발에 적절한 틀과 구조를,
 # 장고<font size='2'>Django</font> 프레임워크는 웹 어플리케이션 구현에 최적의 틀과 구조를 제공한다.

@@ -47,7 +47,7 @@ greetings = '안녕하세요!'
 num = 17
 pi = 3.1415926535897932
 scores = (92, 87, 100)
-languages = ["파이썬", "자바스크립트", "스칼라", "루비"]
+languages = ["Python", "JavaScript", "Rust", "C++"]
 
 
 # - `greetings` 변수: `'안녕하세요!'` 라는 문장을 가리킨다.
