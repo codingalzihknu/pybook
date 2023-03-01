@@ -57,7 +57,7 @@
 # 
 # - Anaconda Prompt (anaconda3) 터미널
 # 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt_start.jpg" style="width:750px"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/anaconda_prompt_start.jpg" style="width:750px"></div>
 # :::
 
 # ## 오프라인 개발 환경: 아나콘다
