@@ -92,21 +92,19 @@
 
 # ## 오프라인 통합 개발 환경(IDE)
 
-# 보다 복잡한 파이썬 프로그래밍을 위해서는 코드 편집과 실행, 디버깅 등 
+# 시스템 개발 프로젝트를 진행하면 많은 코드 파일을 
+# 작성하고 관리해야 한다.
+# 이때 코드 편집과 실행, 디버깅, 파일 관리 등 
 # 프로그래밍 관련 모든 작업을 통합해서 지원하는 
 # 통합 개발 환경을 사용한다.
 # 일명 **IDE**<font size="2">Interactive Development Environment</font>라고 불리는
-# 통합 개발 환경을 지원하는 대표적인 앱은 다음과 같다.
+# 통합 개발 환경을 지원하는 대표적인 상용 앱과 무료 앱은 다음과 같다.
 # 
-# * [스파이더<font size="2">Spyder</font>](https://www.spyderide.org/): 아나콘다 패키지에 포함됨.
 # * [파이참<font size="2">Pycharm</font>](https://www.jetbrains.com/pycharm): 가장 인기있는 상용 프로그램.
 #     Pro 와 Community 두 버전을 지원하며 입문자는 무료 버전인 Community 추천.
 # * [비주얼 스튜디오 코드<font size="2">Visual Studio Code</font>](https://code.visualstudio.com/docs/languages/python): 
 #     마이크로소프트에서 지원하며, 현재 가장 인기 있는 무료 프로그램.
 #     파이썬 뿐만 아니라 거의 모든 프로그래밍 언어를 위한 통합 개발 환경 지원.
-# * [아톰<font size="2">Atom</font>](https://atom.io): 소스코드 저장소로 가장 유명한 
-#     [깃허브<font size="2">GitHub</font>](https://github.com/)에서 개발한 IDE. 
-#     거의 모든 프로그래밍 언어 지원.
 # 
 # 여기서는 일명 **VS Code**라 불리는 
 # 비주얼 스튜디오 코드를 사용할 것을 추천한다.
