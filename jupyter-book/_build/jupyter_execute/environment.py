@@ -128,7 +128,7 @@
 # [IPython](https://ipython.org)을 활용한다.
 # Anaconda Prompt (anaconda3) 터미널에서 IPython 콘솔을 사용하는 방식은 다음과 같다.
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt-4.jpg" style="width:750px"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/anaconda_ipython.jpg" style="width:750px"></div>
 
 # 아래 사진은 주피터 노트북의 코드 셀에서 IPython이 작동하는 형식을 보여준다.
 
@@ -136,7 +136,7 @@
 
 # 반면에 파이썬이 기본으로 지원하는 python 콘솔은 다음 모양의 대화식 코딩을 지원한다.
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt-5.jpg" style="width:750px"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/anaconda_python.jpg" style="width:750px"></div>
 
 # ### 매직 명령어
 
