@@ -47,10 +47,17 @@
 # 반면에 터미널<font size='2'>terminal</font>은 쉘 스크립트를 작성하고 실행시킬 수 있는 
 # 사용자 인터페이스<font size='2'>user interface</font>(UI)이며
 # 콘솔<font size='2'>console</font>이라고도 불린다.
-# 
 # 윈도우 사용자의 경우 아나콘다 패키지와 함께 설치된 `Anaconda Prompt (anaconda3)` 터미널을 이용할 수 있다.
 # 
+# - Anaconda Prompt (anaconda3) 실행하기
+# 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt.jpg" style="width:750px"></div>
+# 
+# <br>
+# 
+# - Anaconda Prompt (anaconda3) 터미널
+# 
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt_start.jpg" style="width:750px"></div>
 # :::
 
 # ## 오프라인 개발 환경: 아나콘다
@@ -116,23 +123,24 @@
 
 # ### 대화식 프로그래밍
 
-# 주피터 노트북의 코드 셀<font size="2">code cell</font>은 대화식 프로그래밍<font size="2">interactive programming</font>을 지원하는 
-# [IPython](https://ipython.org) 활용한다.
-# Anaconda Prompt (anaconda3) 터미널에서 `IPython` 콘솔을 사용하는 방식은 다음과 같다.
+# 주피터 노트북의 코드 셀<font size="2">code cell</font>은 
+# 대화식 프로그래밍<font size="2">interactive programming</font>을 지원하는 
+# [IPython](https://ipython.org)을 활용한다.
+# Anaconda Prompt (anaconda3) 터미널에서 IPython 콘솔을 사용하는 방식은 다음과 같다.
 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt-4.jpg" style="width:750px"></div>
 
-# 아래 사진은 주피터 노트북의 코드 셀에서 `IPython`이 작동하는 형식을 보여준다.
+# 아래 사진은 주피터 노트북의 코드 셀에서 IPython이 작동하는 형식을 보여준다.
 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/jupyter-1.png" style="width:750px"></div>
 
-# 반면에 파이썬 자체가 지원하는 `python` 콘솔은 다음 모양의 대화식 코딩을 지원한다.
+# 반면에 파이썬이 기본으로 지원하는 python 콘솔은 다음 모양의 대화식 코딩을 지원한다.
 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/anaconda_prompt-5.jpg" style="width:750px"></div>
 
 # ### 매직 명령어
 
-# `IPython` 콘솔은 파이썬 프로그래밍 이외에 보다 다양한 기능을 지원한다.
+# IPython 콘솔은 파이썬 프로그래밍 이외에 보다 다양한 기능을 지원한다.
 # 예를 들어 매직 명령어<font size='2'>magic commands</font>라는 명령어를
 # 이용하여 파이썬 프로그래밍을 도와주는 특별한 기능을 수행할 수 있다.
 # 

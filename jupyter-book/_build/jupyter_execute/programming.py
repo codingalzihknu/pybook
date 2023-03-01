@@ -105,8 +105,8 @@
 # 파이썬이 제공하는 강력한 라이브러리는 더 적은 코드로 더 많은 프로그램을
 # 효율적으로 구현할 수 있도록 도와준다.
 # 
-# - 데이터 과학: Numpy, SciPy, Pandas, Matplotlib
-# - 머신러닝: Scikit-learn, Keras, TensorFlow, PyTorch
+# - 데이터 과학: SciPy, Numpy, Pandas, Matplotlib
+# - 머신러닝: Scikit-learn, TensorFlow, Keras, PyTorch
 # - 데이터베이스: PyMySQL, mysql-connector-python
 # - 웹 프레임워크: Django, Flask, Pylongs, Pyramid, web2py
 # - 게임: Turtle, PyGame
@@ -126,12 +126,9 @@
 # 지금까지 살펴본 파이썬의 특징으로 인해  파이썬의 인기는 날이 갈수록 높아지고 있다. 
 # 프로그래밍 언어들의 인기도를 측정하는 
 # [TIOBE 인덱스](https://www.tiobe.com/tiobe-index)에 
-# 따르면, 2022년 6월 기준으로 파이썬은 가장 인기있는 프로그래밍 언어다.
+# 따르면, 2023년 2월 기준으로 파이썬은 가장 인기있는 프로그래밍 언어다.
 
-#  
-# <div align="center">
-#     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/tiobe_index2206.png" style="width:500px;">
-# </div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/tiobe-index.jpg" style="width:750px"></div>
 
 # ## 파이썬 명령문
 
@@ -162,4 +159,7 @@
 # 작업을 통해 자연스럽게 명령문에 친숙해지는 것이 일반적이다.
 # 하지만 실행기<font size='2'>interpreter</font>, 
 # 번역기<font size='2'>compiler</font> 등을 직접 구현해야 하는 
-# 일을 하려면 반드시 알아야 한다. 
+# 전문가는 이런 내용을 정확히 알아야 한다.
+# 
+# 앞으로 다양한 파이썬 명령문을 작성하는 방식을 하나씩 소개한다. 
+# 프로그래밍을 잘한다 함은 바로 문제 해결에 적절한 명령문을 작성한다는 의미이다. 
