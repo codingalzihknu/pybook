@@ -11,13 +11,12 @@ chapters:
 - file: environment
 - file: starting
 - file: variables_expressions
-- file: casestudy_planning
 - file: datatypes
 - file: functions
 - file: casestudy_function_interfaces
 - file: conditionals
-- file: recursion
 - file: iterations
+- file: casestudy_planning
 - file: collections1
 - file: collections2
 - file: casestudy_collections
@@ -27,5 +26,6 @@ chapters:
 - file: casestudy_oop
 - file: inheritance
 - file: proper_classes
+- file: recursion
 - file: type_annotations
 - file: webapp_flask
