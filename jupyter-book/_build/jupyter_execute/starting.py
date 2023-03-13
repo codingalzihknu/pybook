@@ -968,6 +968,7 @@ secret = 2
 guess = randint(1, 5)
 
 if guess == secret:
+    print("guess")
     print("맞았습니다!")
 else:
     print("틀렸습니다!")
