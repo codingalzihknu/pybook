@@ -958,13 +958,20 @@ x[0][1]
 # 특정 조건의 성립여부에 따라 다른 일을 실행하게 만드는 명령문을 **조건문**이라 부른다. 
 # 예를 들어 `guess` 와 `secret` 두 변수가 가리키는 값의 등가 여부에 따라
 # 다른 문장을 출력하도록 하려면 아래와 같이 한다.
-# 
-# ```python
-# if guess == secret:
-#     print("맞았습니다!")
-# else:
-#     print("틀렸습니다!")
-# ```
+
+# In[99]:
+
+
+from random import randint
+
+secret = 2
+guess = randint(1, 5)
+
+if guess == secret:
+    print("맞았습니다!")
+else:
+    print("틀렸습니다!")
+
 
 # (sec:for_loop)=
 # ### `for` 반복문
@@ -1031,7 +1038,7 @@ x[0][1]
 # 차례대로 가리키며 `sum`은 그만큼씩 증가한다.
 # :::
 
-# :::{prf:example} 짝수항목의 합
+# :::{prf:example} 짝수 항목의 합
 # :label: for-loop_even-sum
 # 
 # 정수 리스트에 포함된 항목 중에서 짝수들만의 합을 계산하는 코드는 다음과 같다.
