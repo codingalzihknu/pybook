@@ -842,7 +842,7 @@ type(d)
 # if a > b and a > c:
 #     print(a)
 # elif a > b and not a > c:
-#         print(c)
+#     print(c)
 # elif not a > b and b > c:
 #     print(b)
 # else:
