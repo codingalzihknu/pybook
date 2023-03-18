@@ -67,16 +67,16 @@ type(2.37)
 # 현재 사용가능한 함수 또는 변수의 목록을 반환한다.
 # 
 # ```python
-# >>> dir()
-# ['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__']
+# In [17]: dir()
+# out[17]: ['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__']
 # ```
 # 
 # 반면에 괄호를 사용하지 않으면 함수 자체에 대한 정보를 확인해준다.
 # 예를 들어 다음과 같이 `dir` 가 내장 함수임을 확인해준다.
 # 
 # ```python
-# >>> dir
-# <built-in function dir>
+# In [18]: dir
+# Out[18]: <built-in function dir>
 # ```
 # 
 # **내장 함수**<font size="2">built-in function</font>란 파이썬에서 기본으로 제공하는 함수라는 의미이다. 
@@ -90,10 +90,11 @@ type(2.37)
 # 오류가 발생한다.
 # 
 # ```python
-# >>> type()
-# Traceback (most recent call last):
-#   File "<stdin>", line 1, in <module>
-# TypeError: type() takes 1 or 3 arguments
+# In [19]: type()
+#         ---------------------------------------------------------------------------
+#          Traceback (most recent call last):
+#            File "<stdin>", line 1, in <module>
+#          TypeError: type() takes 1 or 3 arguments
 # ```
 
 # :::{admonition} 세 개의 인자를 사용하는 `type()` 함수
@@ -114,7 +115,7 @@ type(2.37)
 # 예를 들어 `int(3.14)`는 정수 `3`을, 
 # `type(2.37)`은 부동소수점의 자료형인 `float`를
 # 함수 실행의 결괏값으로 반환하며,
-# 반환된 값은 다른 연산에 재활용될 수 있다.
+# 반환된 값은 저장되거나 다른 연산에 재활용될 수 있다.
 
 # In[4]:
 
@@ -140,11 +141,12 @@ y + 1
 # 즉, 아무런 기능을 수행하지 못한다. 
 # 
 # ```python
-# >>> x = None
-# >>> x + 1
-# Traceback (most recent call last):
-#   File "<stdin>", line 1, in <module>
-# TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
+# In [20]: x = None
+#          x + 1
+#          ---------------------------------------------------------------------------
+#          Traceback (most recent call last):
+#            File "<stdin>", line 1, in <module>
+#          TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
 # ```
 
 # 반면에 `print()` 함수에 의해 
@@ -170,72 +172,27 @@ x = print(3.14)
 print(x)
 
 
-# :::{admonition} 함수 호출과 표현식
-# :class: info
-# 
-# `int(3.14)` 와 같은 함수 호출은 구문상 명령문이 아닌 표현식이며,
-# `int()` 함수가 반환하는 값을 가리킨다.
-# 따라서 `y = int(3.14)` 가 변수 할당 명령문으로 인정된다.
-# 
-# 반면에 `x = print(3.14)` 에서 알 수 있듯이 `print(3.14)` 자체는 `None` 값을 가리키는 함수 호출 표현식이지만
-# `print()` 함수는 "화면에 지정된 값을 출력하라" 라는 명령문도 함께 수행한다. 
-# 바로 이 부분이 수학에서의 함수와의 차이를 잘 보여준다.
-# :::
+# ### 함수 호출과 표현식
 
-# ## 형변환 함수
-
-# 부동소수점 또는 정수 모양의 문자열을 정수로 변환하는 `int()` 함수는
-# 하나의 자료형을 다른 자료형으로 변환된 값을 반환한다.
-# 이처럼 자료형을 변환하는 것을 **형변환**<font size="2">type casting 또는 type conversion</font>라 하며
-# 파이썬은 다양한 형변환 함수를 제공한다.
-# `int()` 이외에 대표적으로 정수 또는 부동소수점 모양의 문자열을 부동소수점으로
-# 변환하는 `float()` 함수,
-# 모든 값을 문자열로 변환하는 `str()` 함수가 있다. 
+# `f(x1, ..., xn)`와 같은 함수 호출 표현식이 가리키는 값은 해당 함수의 반환값이다.
+# 예를 들어 아래 코드에서 변수 `x` 가 가리키는 값은 `str()` 함수가
+# `int(3.14)`를 인자로 사용해서 계산된 반환값을 가리킨다.
 
 # In[7]:
 
 
-int(3.14)
+x = str(int(3.14))
+print(f"x가 가리키는 값은 {x}이며 자료형은 {type(x)}이다.")
 
 
-# In[8]:
-
-
-int('3')
-
-
-# In[9]:
-
-
-float(27)
-
-
-# In[10]:
-
-
-float('27.25')
-
-
-# In[11]:
-
-
-str(3.15)
-
-
-# In[12]:
-
-
-str(22)
-
-
-# ## 수학 함수
+# ## 수식 계산 함수
 
 # $\sin x$, $\cos x$, $\sqrt{x}$, $\log x$, $e^x$ 등
-# 수학에서 많이 사용되는 함수를 파이썬에서 기본으로 제공한다. 
+# 수식 계산에 많이 사용되는 함수를 파이썬에서 기본으로 제공한다. 
 
 # ### `math` 모듈
 
-# 파이썬에서 기본으로 제공하는 다양한 수학 함수를 사용하려면 먼저
+# 파이썬에서 기본으로 제공하는 다양한 수식 계산 함수를 사용하려면 먼저
 # `math` 라는 모듈<font size="2">module</font>을 
 # 불러와야<font size="2">import</font> 한다.
 # 모듈은 {numref}`%s 장 <ch:module>`에서 자세히 살펴볼 것이며, 
@@ -243,7 +200,7 @@ str(22)
 # 사실 정도만 기억하면 된다.
 # `math` 모듈을 불러오는 방식은 다음과 같다.
 
-# In[13]:
+# In[8]:
 
 
 import math
@@ -258,8 +215,9 @@ import math
 # `module` 자료형에 속한다.
 # 
 # ```python
-# >>> type(math)
-# <class 'module'>
+# In [17]: x = math
+#          type(x)
+# Out[17]: module
 # ```
 # :::
 
@@ -267,13 +225,13 @@ import math
 # 예를 들어 정수 10을 밑으로 하는 상용로그 함수 $\log_{10}$에 해당하는 
 # `log10()` 함수를 사용하는 방법은 다음과 같다.
 
-# In[14]:
+# In[9]:
 
 
 math.log10(10)
 
 
-# In[15]:
+# In[10]:
 
 
 10 ** math.log10(100)
@@ -281,13 +239,13 @@ math.log10(10)
 
 # `math.log()`는 자연로그 함수($\ln = \log_e$)를 가리킨다.
 
-# In[16]:
+# In[11]:
 
 
 math.log(10)
 
 
-# In[17]:
+# In[12]:
 
 
 math.log(2.718281828459045)
@@ -295,7 +253,7 @@ math.log(2.718281828459045)
 
 # `math.sqrt()`는 제곱근 함수 $\sqrt{x}$를 가리킨다.
 
-# In[18]:
+# In[13]:
 
 
 math.sqrt(2)
@@ -303,7 +261,7 @@ math.sqrt(2)
 
 # `math.exp()`는 지수 함수 $e^x$를 가리킨다.
 
-# In[19]:
+# In[14]:
 
 
 math.exp(1)
@@ -325,10 +283,10 @@ math.exp(1)
 # `math.pi`는 원주율을 가리킨다.
 # 
 # ```python
-# >>> degree = 90
-# >>> radian = degree / 180.0 * math.pi
-# >>> math.sin(radian)
-# 1.0
+# In [45]: degree = 90
+#          radian = degree / 180.0 * math.pi
+#          math.sin(radian)
+# Out[45]: 1.0
 # ```
 # :::
 
@@ -336,31 +294,17 @@ math.exp(1)
 
 # [넘파이<font size="2">NumPy</font>](https://numpy.org)는 
 # 행렬, 다차원 배열 등을 효율적으로 빠르게 
-# 처리하는 많은 수학 함수를 지원하는 파이썬 라이브러리 패키지이며
+# 처리하는 많은 수식 계산 함수를 지원하는 파이썬 라이브러리이며
 # 데이터분석, 계산과학 등 컴퓨터를 이용한 계산이 필요한 영역에서 많이 활용된다.
 # 파이썬의 기본 패키지에는 포함되지 않지만
-# 계산과학 툴킷인 
-# [아나콘다 파이썬 배포판<font size="2">Anaconda Python distribution</font>](https://www.anaconda.com)은
-# 함께 지원한다.
+# [아나콘다 파이썬 배포판<font size="2">Anaconda Python distribution</font>](https://www.anaconda.com)에는 포함되어 있다.
 
-# :::{admonition} 모듈과 패키지
-# :class: info
-# 
-# 패키지<font size="2">package</font>는 일종의 모듈 모음집이다.
-# 즉, 많이 활용되는 함수 등을 기능과 분야별로 여러 개의 모듈로 분류해서 모아놓은 것을 가리킨다.
-# 패키지와 모듈은 하나의 폴더 안에 내용에 따라 여러 개의 파일로 정리하는 개념과 유사하다.
-# 파일이 많아지면 폴더를 여러 개의 하위 폴더로 분류해서 파일을 분류하는 것처럼
-# 패키지를 여러 개의 하위 패키지로 구분하기도 한다.
-# 하위 패키지에 포함된 모듈의 활용법도 기본적으로 모듈의 함수를 사용하는 방법과 동일하다.
-# 나중에 그래프를 그릴 때 필요한 패키지와 모듈을 사용해야 할 때 활용 예제를 보게 될 것이다.
-# :::
-
-# 넘파이 패키지는 앞서 언급한 `math` 모듈에서 지원하는 함수들을 포함해서 보다 많은 함수와 기능을 지원한다.
+# 넘파이는 앞서 언급한 `math` 모듈에서 지원하는 함수들을 포함해서 보다 많은 함수와 기능을 지원한다.
 # 앞으로 필요할 때마다 하나씩 넘파이가 제공하는 기능을 활용할 것이다. 
 # 넘파이를 사용하려면 먼저 `numpy` 모듈을 불러오면 된다.
 # 그런데 `numpy`를 보통 `np`라는 약칭으로 아래처럼 불러온다.
 
-# In[20]:
+# In[15]:
 
 
 import numpy as np
@@ -371,31 +315,31 @@ import numpy as np
 # 
 # `math` 모듈에 포함된 함수의 이름이 `numpy` 모듈에서 거의 동일하게 사용되었다.
 
-# In[21]:
+# In[16]:
 
 
 np.log10(10)
 
 
-# In[22]:
+# In[17]:
 
 
 np.log(2.72)
 
 
-# In[23]:
+# In[18]:
 
 
 np.sqrt(2)
 
 
-# In[24]:
+# In[19]:
 
 
 np.exp(1)
 
 
-# In[25]:
+# In[20]:
 
 
 degree = 90
@@ -412,8 +356,8 @@ np.sin(radian)
 # 
 # 동일한 기능을 수해하는 함수라 하더라도 
 # 각 함수의 본문에 사용된 명령문은 기본적으로 다르다.
-# 실제로 `numpy` 모듈이 제공하는 수학 함수가 `math` 모듈이
-# 제공하는 동일 이름의 수학 함수보다 실행속도가 빠른 경우가 많다. 
+# 실제로 `numpy` 모듈이 제공하는 수식 계산 함수가 `math` 모듈이
+# 제공하는 동일 이름의 수식 계산 함수보다 실행속도가 빠른 경우가 많다. 
 # 
 # 하나의 모듈에서 동일한 이름의 두 함수를 지원하는 기능을 
 # **함수 중복 정의** 또는 **함수 오버로딩**<font size="2">function overloading</font>이라 한다.
@@ -452,6 +396,26 @@ np.sin(radian)
 # 
 # 위 `return` 명령문이 실행되는 순간
 # 지정된 `표현식`이 가리키는 값이 반환되면서 함수의 실행이 멈춘다.
+
+# :::{prf:example} `return` 명령문이 없는 함수
+# :label: no-returns
+# 
+# 아래에 정의된 `double_print()` 함수는 반환값을 지정하지 않는다.
+# 
+# ```
+# def double_print(s):
+#     print(s*2)
+# ```
+# 
+# 그러면 아래처럼 `return None`이 자동으로 추가된다고 생각하면 된다.
+# 
+# ```
+# def double_print(s):
+#     print(s*2)
+#     
+#     return None
+# ```
+# :::
 
 # ### 매개 변수와 인자
 
@@ -497,51 +461,6 @@ np.sin(radian)
 # 
 # 결국 `sum`은 정수 `3`을 가리키게 되어 함수의 실행은 3을 
 # 반환하면서 종료한다.
-# 
-# 함수의 반환값은 아래 코드에서처럼 다른 변수의 할당 또는 다른 함수의 인자로 사용될 수 있다.
-# 
-# ```python
-# >>> m2p5 = myAdd(-2, 5)
-# >>> print("-2와 5의 합은", m2p5, "입니다.")
-# -2와 5의 합은 3 입니다.
-# ```
-# :::
-
-# :::{prf:example} 인자 없는 함수
-# :label: no-parameters
-# 
-# 아래 코드에서 정의된 `grid2()` 함수는 인자를 받지 않으며, 반환값도 없다.
-# 
-# ```python
-# pm = "+ - - "
-# ps = "|     "
-# plus = "+"
-# bar = "|"
-# 
-# def print_p(s):
-#     print(s)
-# 
-# def grid2():
-#     for num1 in [1, 2]:
-#         print_p(pm * 2 + plus)
-#         for num2 in [1, 2]:
-#             print_p(ps * 2 + bar)
-# 
-#     print_p(pm*2 + plus)
-# ```
-# 
-# `grid2()` 함수를 호출하면 아래 모양의 격자가 그려진다.
-# 
-# ```python
-# >>> grid2()
-# + - - + - - +
-# |     |     |
-# |     |     |
-# + - - + - - +
-# |     |     |
-# |     |     |
-# + - - + - - +
-# ```
 # :::
 
 # ### 1종 객체 
@@ -571,53 +490,44 @@ np.sin(radian)
 # **함수 활용: 변수 할당**
 # 
 # 함수가 하나의 값이기에 예를 들어 다음과 같이 
-# `myPrint()` 함수를 변수 할당에 사용할 수 있다.
+# `print()` 함수를 변수 할당에 사용할 수 있다.
 # 단, 함수를 하나의 값으로 취급할 때는 괄호를 전혀 
 # 사용하지 않는다.
-# 
-# ```python
-# >>> a_function = myPrint
-# >>> a_function
-# <function myPrint at 0x7f1c890a2af0>
-# ```
-# 
-# 괄호을 사용하면 함수 호출을 의미하깅 아래 코드는 `myPrint()` 함수가
-# 호출된 후에 반환한 `None`이 변수 할당에 사용된다.
-# 
-# ```python
-# >>> a_return_value = myPrint()
-# 인자 없어요!
-# >>> a_return_value
-# ```
 
-# :::{admonition} C 언어의 포인터 활용
-# :class: info
-# 
-# C 언어는 1종 객체의 범위가 매우 제한적이다. 
-# 반면에 파이썬, 
-# C++, C#, 
-# 자바<font size="2">Java</font>, 
-# 자바스크립트<font size="2">Javascript</font>, 
-# 스위프트<font size="2">Swift</font> 등
-# 보다 현대적인 프로그래밍 언어는
-# 이미 또는 거의 모든 객체를 1종 객체로 지원한다.
-# 
-# C 언어는 포인터<font size="2">pointer</font>를 이용하여 
-# 함수, 구조체 등 1종 객체가 아닌 대상을 다루며, 
-# 포인터가 C 언어에서 핵심적인 역할을 수행하는 이유가 바로 여기에 있다.
-# :::
+# In[21]:
+
+
+a_function = print
+print(a_function)
+
+
+# 괄호을 사용하면 함수 호출을 의미하기에 아래 코드는 `print()` 함수가
+# 호출된 후에 반환한 `None`이 변수 할당에 사용된다.
+
+# In[22]:
+
+
+no_return_value = print("반환값 없어요!")
+
+
+# In[23]:
+
+
+print("반환값:", no_return_value)
+
 
 # **함수 활용: 인자**
 # 
 # 함수를 다른 함수의 인자로 사용할 수 있다. 
 # 예를 들어 아래 `do_twice()` 함수를 살펴보자.
 
-# In[26]:
+# In[24]:
 
 
-def do_twice(func, arg):
-    x = func(arg)
-    return func(x)
+def do_twice(fn, arg):
+    x1 = fn(arg)
+    x2 = fn(x1)
+    return x2
 
 
 # 위 함수의 인자와 반환값은 다음과 같다.
@@ -625,12 +535,10 @@ def do_twice(func, arg):
 # * 첫째 인자: 하나의 인자를 받는 함수
 # * 둘째 인자: 첫째 인자로 사용된 함수의 인자로 사용될 값
 # * 반환값: 둘째 인자로 들어온 값에 대해 첫째 인자 함수를 두 번 연속 적용한 값
-# 
-# 함수 `f`를 인자 `x`에 두 번 연속 적용한다는 의미는`f(f(x))`를 의미한다.
 
 # 다음 `three_times()` 함수는 인자의 세 배를 계산하여 반환한다.
 
-# In[27]:
+# In[25]:
 
 
 def three_times(num):
@@ -641,7 +549,7 @@ def three_times(num):
 # 실제로 2의 세 배는 6, 6의 세 배는 18이다.
 # 다음과 같이 확인할 수 있다.
 
-# In[28]:
+# In[26]:
 
 
 three_times(three_times(2))
@@ -649,7 +557,7 @@ three_times(three_times(2))
 
 # `do_twice()` 함수를 이용하여 동일한 결과를 얻는다.
 
-# In[29]:
+# In[27]:
 
 
 do_twice(three_times, 2)
@@ -660,7 +568,7 @@ do_twice(three_times, 2)
 # 함수를 반환하는 함수를 정의할 수 있다.
 # 예를 들어 다음 `adding_n_func(n)`를 호출하면 `n`을 더하는 함수 `myAdd_n()`을 반환한다.
 
-# In[30]:
+# In[28]:
 
 
 def adding_n_func(n):
@@ -681,7 +589,7 @@ def adding_n_func(n):
 # 이 성질을 이용하여 입력값에 10을 더한 값을 반환하는 함수 `myAdd10()` 를 다음과 같이 정의하여
 # 활용할 수 있다.
 
-# In[31]:
+# In[29]:
 
 
 myAdd10 = adding_n_func(10)  # 10 을 더하는 함수
@@ -701,8 +609,8 @@ myAdd10(3)                   # 10 + 3
 # `myAdd10()` 함수를 `map()` 함수의 인자로 다음과 같이 사용하면 된다.
 # 
 # ```python
-# >>> list(map(myAdd10, [3, 4, 5, 6]))
-# [13, 14, 15, 16]
+# In [77]: list(map(myAdd10, [3, 4, 5, 6]))
+# Out[77]: [13, 14, 15, 16]
 # ```
 # :::
 
@@ -713,7 +621,7 @@ myAdd10(3)                   # 10 + 3
 # 그러면 각 인자를 공백<font size="2">space</font>으로 구분하여
 # 함께 한 줄에 출력한다.
 
-# In[32]:
+# In[30]:
 
 
 print('Hello,', 'Python', '!')
@@ -721,7 +629,7 @@ print('Hello,', 'Python', '!')
 
 # 그런데 각각의 인자를 서로 다른 줄에 출력하려면 아래와 같이 해야 한다.
 
-# In[33]:
+# In[31]:
 
 
 print('Hello,', 'Python', '!', sep='\n')
@@ -743,31 +651,11 @@ print('Hello,', 'Python', '!', sep='\n')
 # ```
 # 
 # - 둘째 매개 변수 자리에 위치한 말줄임표(`...`)는 
-#     여러 개의 값이 인자로 사용될 수 있음을 의미한다.
+#     여러 개의 인자를 사용할 수 있음을 의미한다.
 # - `end='\n'` 매개 변수는 지정된 인자들을 출력한 후에 
 #     기본적으로 줄바꿈을 실행하는 것을 의미한다.
 #     `end=''`로 설정하면 줄바꿈을 하지 않게 된다. 
 #     아래 두 경우를 비교하면 차이점을 확인할 수 있다.
-# 
-#     먼저 `end='\n'` 기본값을 그대로 사용하는 경우엔 굳이 언급하지 않는다.
-# 
-#     ```python
-#     >>> print('Hello,', 'Python', '!', sep='\n')
-#     Hello,
-#     Python
-#     !
-#     >>>
-#     ```
-# 
-#     다음은 줄바꿈을 나타내는 문자열 `'\n'` 대신 
-#     아무런 문자도 포함하지 않는 빈 문자열 `''`를 `end` 매개 변수의 인자로 사용한다.
-# 
-#     ```python
-#     >>> print('Hello,', 'Python', '!', sep='\n', end='')
-#     Hello,
-#     Python
-#     !>>>
-#     ```
 
 # :::{admonition} `file`과 `flush` 매개 변수
 # :class: info
@@ -775,6 +663,33 @@ print('Hello,', 'Python', '!', sep='\n')
 # `print()` 함수의 `file`과 `flush` 두 매개 변수는 특별한 경우에 활용되며
 # 간단한 예제는 [이곳](https://velog.io/@janeljs/python-print-sep-end-file-flush)에서 확인할 수 있다.
 # :::
+
+# 키워드 인자를 굳이 지정하지 않으면 기본값이 사용된다.
+
+# In[32]:
+
+
+print('Hello,', 'Python', '!')
+print('===')
+
+
+# `sep='\n'`으로 지정하면 항목을 출력할 때마다 줄바꿈이 실행된다.
+
+# In[33]:
+
+
+print('Hello,', 'Python', '!', sep='\n')
+print('===')
+
+
+# 아무런 문자도 포함하지 않는 빈 문자열 `''`를 `end` 매개 변수의 인자로 사용하면 다른 효과를 볼 수 있다.
+
+# In[34]:
+
+
+print('Hello,', 'Python', '!', sep='\n', end='')
+print('===')
+
 
 # ::::{prf:example}
 # :label: keyword_argument
@@ -791,50 +706,22 @@ print('Hello,', 'Python', '!', sep='\n')
 # 둘째 인자가 생략되면 자동으로 10이 대신 사용된다.
 # 
 # ```python
-# >>> myAdd10(5) # right=10
-# 15
+# In [17]: myAdd10(5) # right=10
+# Out[17]: 15
 # ```
 # 
 # 둘째 인자를 별도로 지정하면 지정된 값이 사용된다.
 # 
 # ```python
-# >>> myAdd10(5, right=20)
-# 25
+# In [18]: myAdd10(5, right=20)
+# Out[18]: 25
 # ```
 # ::::
 
-# ### 함수 합성
-
-# 수학에서 $f$, $g$ 두 개의 함수를 합성해서 새로운 함수 $f\circ g$ 를 
-# 다음과 같이 정의한다.
-# 
-# $$
-# (f\circ g) (x) := f(g(x))
-# $$
-# 
-# 동일한 방식으로 파이썬 함수를 합성하여 새로운 표현식을 정의할 수 있다.
-# 다음은 곱셈, 나눗셈, 사인 함수의 합성을 활용한 표현식이다.
-# 
-# ```python
-# math.sin(degree / 360.0 * 2 * math.pi)
-# ```
-# 
-# `f(x1, ..., xn)` 등의 함수 호출 표현식이 가리키는 값은
-# 함수 본문에 지정된 명령문이 
-# 실행되는 도중에 만나는 `return 표현식` 명령문의 `표현식`이 가리키는 값이다.
-# 예를 들어 아래 코드에서 변수 `x` 가 가리키는 값은 지수승 함수 `np.exp()`가
-# `np.log(2)`를 인자로 사용해서 계산된 반환값을 가리킨다.
-
-# In[34]:
-
-
-x = np.exp(np.log(2))
-
-
 # (sec:boolean_functions)=
-# ## 부울값 함수
+# ## 부울값 함수와 논리식
 
-# 부울값을 반환하는 함수를 이용하면 복잡한 테스트를 쉽게 진행할 수 있다.
+# 부울값을 반환하는 함수는 논리식에 사용되며 복잡한 테스트를 진행할 때 활용하면 좋다.
 # 예를 들어 아래 함수는 두 정수를 대상으로 약수, 배수의 관계가 있는지 여부를 판단할 때
 # 사용될 수 있다.
 
@@ -869,7 +756,7 @@ def is_divisible(x, y):
     return x % y == 0
 
 
-# 부울값 함수를 조건문 등에 쉽게 활용할 수 있다.
+# 부울값 함수 호출을 조건문 등에 바로 사용해도 된다.
 
 # In[39]:
 
@@ -903,9 +790,9 @@ if is_divisible(x, y):
 # ```
 # :::
 
-# ## 익명함수(람다함수)
+# ## 람다 함수
 
-# 파이썬은 익명함수 또는 lambda 함수라고 하는, 값을 반환하는 단순한 한 문장으로 이루어진 함수를 지원한다. 람다 함수를 사용하면 간결하게 코드를 작성할 수 있다. 람다 함수의 형식은 아래와 같다.  
+# 파이썬은 람다<font size='2'>lambda</font> 함수를 사용하면 간결하게 코드를 작성할 수 있다. 람다 함수의 형식은 아래와 같다.  
 # 
 # ```
 # lambda arguments : expression
@@ -931,13 +818,15 @@ print(plus_10(20))
 lambda a : a + 10
 
 
-# 두 숫자를 인자로 받아 그 곱을 반환하는 함수는 아래와 같이 정의할 수 있다. 
+# 두 인자의 곱을 반환하는 함수는 아래와 같이 정의할 수 있다. 
 
 # In[42]:
 
 
 lambda a, b : a * b
 
+
+# **람다 함수 호출**
 
 # 람다 함수는 이름이 없기에 호출하려면 함수 전체를 사용해야 한다. 
 
@@ -953,7 +842,11 @@ lambda a, b : a * b
 (lambda a, b : a * b)(2, 5)
 
 
-# 람다 함수는 `map(function, iterable)`함수의 인자 등 한 번만 사용할 함수를 정의할 때 사용하면 좋다. 예를 들어, 리스트 `[1, 2, 3, 4, 5]`의 각 항목을 제곱한 다음 5를 더한 값을 항목으로 갖는 리스트 `[6, 9, 14, 21, 30]`을 만들 때, 다음과 같이 코드를 작성할 수 있다. 
+# **람다 함수 활용**
+
+# 람다 함수는 한 번만 사용할 함수를 정의할 때 사용하면 좋다. 
+# 예를 들어, 리스트 `[1, 2, 3, 4, 5]`의 각 항목을 제곱한 다음 5를 더한 값을 항목으로 갖는 리스트 `[6, 9, 14, 21, 30]`을 만들 때, 
+# 다음과 같이 코드를 작성할 수 있다. 
 
 # In[45]:
 
@@ -995,17 +888,19 @@ print("2 시간은", two_hour, "분입니다.")
 # `NameError` 오류가 발생한다. 
 
 # ```python
-# >>> print(minutes)
-# Traceback (most recent call last):
-#   File "<stdin>", line 1, in <module>
-# NameError: name 'minutes' is not defined
+# In [21]: print(minutes)
+#          ---------------------------------------------------------------------------
+#          Traceback (most recent call last):
+#            File "<stdin>", line 1, in <module>
+#          NameError: name 'minutes' is not defined
 # ```
 
 # ```python
-# >>> print(hour)
-# Traceback (most recent call last):
-#   File "<stdin>", line 1, in <module>
-# NameError: name 'hour' is not defined
+# In [22]: print(hour)
+#          ---------------------------------------------------------------------------
+#          Traceback (most recent call last):
+#            File "<stdin>", line 1, in <module>
+#          NameError: name 'hour' is not defined
 # ```
 
 # [PythonTutor:지역 변수와 전역 변수 1](http://pythontutor.com/visualize.html#code=def%20hour_to_min%28hour%29%3A%0A%20%20%20%20minutes%20%3D%20hour%20*%2060%0A%20%20%20%20return%20minutes%0A%0Atwo_hour%20%3D%20hour_to_min%282%29%0Aprint%28minutes%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
@@ -1059,7 +954,7 @@ print("2 시간은", two_hour, "분입니다.")
 # 시각적으로 확인할 수 있다.
 # :::
 
-# ## 프로그램 실행과 함수 호출
+# ## 프레임과 콜 스택
 
 # 파이썬 프로그램의 실행은 기본적으로 
 # "위에서 아래로"와 "왼쪽에서 오른쪽으로"의 두 기준으로
@@ -1076,7 +971,7 @@ print("2 시간은", two_hour, "분입니다.")
 # 다행히도 파이썬 해석기가 프로그램의 실행 과정을 철저하게 
 # 추적하고 관리한다. 
 
-# ### 콜 스택: 프레임의 생성과 사멸
+# **프레임**
 
 # 함수가 실행되는 동안 발생하는 모든 정보는 컴퓨터 메모리 상에서
 # **프레임**<font size="2">frame</font> 형식으로 관리된다.
@@ -1122,6 +1017,8 @@ print("2 시간은", hour2sec(2), "초입니다.")
 # [PythonTutor: 프레임의 생성과 사멸](https://pythontutor.com/visualize.html#code=def%20hour2min%28hour%29%3A%0A%20%20%20%20min%20%3D%20hour%20*%2060%0A%20%20%20%20return%20min%0A%0Adef%20hour2sec%28hour%29%3A%0A%20%20%20%20min%20%3D%20hour2min%28hour%29%0A%20%20%20%20sec%20%3D%2060%20*%20min%0A%20%20%20%20return%20sec%0A%0Aprint%28%222%20%EC%8B%9C%EA%B0%84%EC%9D%80%22,%20hour2sec%282%29,%20%22%EC%B4%88%EC%9E%85%EB%8B%88%EB%8B%A4.%22%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)에서
 # 확인해 보면 함수 호출이 발생할 때마다 프레임이 생성되고 또 함수의 실행이 완료될 때마다
 # 해당 함수의 프레임이 사멸하는 것을 확인할 수 있다.
+
+# **콜 스택**
 
 # 프레임은 생성된 순서 역순으로 사멸한다.
 # 즉, 가장 나중에 생성된 프레임이 가장 먼저,
