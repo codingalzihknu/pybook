@@ -24,10 +24,15 @@
 # 해당 명령문을 실행하려면 지정된 함수를 
 # **호출**<font size="2">call</font>하면 된다.
 
+# **슬라이드**
+
+# 본문 내용을 요약한 [슬라이드](https://github.com/codingalzi/pybook/raw/master/slides/slides-functions.pdf)를 
+# 다운로드할 수 있다.
+
 # ## 함수 호출
 
 # **함수 호출**<font size="2">function call</font>은
-# 함수 이름과 연관된 명령문을 실행하도록 하는 방법이다.
+# 함수 이름과 연결된 명령문을 실행하도록 하는 방법이다.
 # 함수 호출의 일반적인 형식은 다음과 같다. 
 # 
 # ```python
@@ -439,18 +444,17 @@ print(f"x가 가리키는 값은 {x}이며 자료형은 {type(x)}이다.")
 # 매개변수n = 인자n
 # ```
 
-# :::{prf:example}
-# :label: myAdd
-# 
-# 두 숫자의 합을 계산하는 함수 `myAdd`를 아래와 같이 직접 정의할 수 있다.
+# 예를 들어, 두 숫자의 합을 계산하는 함수 `myAdd`를 아래와 같이 직접 정의할 수 있다.
 # 더해야 할 두 개의 값을 입력받아야 하기에 두 개의 매개 변수가 필요하다.
-# 
-# ```python
-# def myAdd(left, right):
-#     sum = left + right
-#     return sum
-# ```
-# 
+
+# In[21]:
+
+
+def myAdd(left, right):
+    sum = left + right
+    return sum
+
+
 # 이제 `myAdd(-2, 5)`를 실행하면 아래 명령문이 실행된다.
 # 
 # ```python
@@ -461,7 +465,12 @@ print(f"x가 가리키는 값은 {x}이며 자료형은 {type(x)}이다.")
 # 
 # 결국 `sum`은 정수 `3`을 가리키게 되어 함수의 실행은 3을 
 # 반환하면서 종료한다.
-# :::
+
+# In[22]:
+
+
+myAdd(-2, 5)
+
 
 # ### 1종 객체 
 
@@ -494,26 +503,21 @@ print(f"x가 가리키는 값은 {x}이며 자료형은 {type(x)}이다.")
 # 단, 함수를 하나의 값으로 취급할 때는 괄호를 전혀 
 # 사용하지 않는다.
 
-# In[21]:
+# In[23]:
 
 
-a_function = print
-print(a_function)
+a_function = myAdd
+print("함수:", a_function)
 
 
 # 괄호을 사용하면 함수 호출을 의미하기에 아래 코드는 `print()` 함수가
 # 호출된 후에 반환한 `None`이 변수 할당에 사용된다.
 
-# In[22]:
+# In[24]:
 
 
-no_return_value = print("반환값 없어요!")
-
-
-# In[23]:
-
-
-print("반환값:", no_return_value)
+a_return_value = myAdd(-2, 5)
+print("반환값:", a_return_value)
 
 
 # **함수 활용: 인자**
@@ -521,7 +525,7 @@ print("반환값:", no_return_value)
 # 함수를 다른 함수의 인자로 사용할 수 있다. 
 # 예를 들어 아래 `do_twice()` 함수를 살펴보자.
 
-# In[24]:
+# In[25]:
 
 
 def do_twice(fn, arg):
@@ -538,7 +542,7 @@ def do_twice(fn, arg):
 
 # 다음 `three_times()` 함수는 인자의 세 배를 계산하여 반환한다.
 
-# In[25]:
+# In[26]:
 
 
 def three_times(num):
@@ -549,7 +553,7 @@ def three_times(num):
 # 실제로 2의 세 배는 6, 6의 세 배는 18이다.
 # 다음과 같이 확인할 수 있다.
 
-# In[26]:
+# In[27]:
 
 
 three_times(three_times(2))
@@ -557,7 +561,7 @@ three_times(three_times(2))
 
 # `do_twice()` 함수를 이용하여 동일한 결과를 얻는다.
 
-# In[27]:
+# In[28]:
 
 
 do_twice(three_times, 2)
@@ -568,7 +572,7 @@ do_twice(three_times, 2)
 # 함수를 반환하는 함수를 정의할 수 있다.
 # 예를 들어 다음 `adding_n_func(n)`를 호출하면 `n`을 더하는 함수 `myAdd_n()`을 반환한다.
 
-# In[28]:
+# In[29]:
 
 
 def adding_n_func(n):
@@ -589,7 +593,7 @@ def adding_n_func(n):
 # 이 성질을 이용하여 입력값에 10을 더한 값을 반환하는 함수 `myAdd10()` 를 다음과 같이 정의하여
 # 활용할 수 있다.
 
-# In[29]:
+# In[30]:
 
 
 myAdd10 = adding_n_func(10)  # 10 을 더하는 함수
@@ -599,8 +603,8 @@ myAdd10(3)                   # 10 + 3
 # :::{prf:example} `map()` 함수
 # :label: map_function
 # 
-# `map()` 함수는 하나의 함수 `f` 와 하나의 리스트 또는 튜플 등을 모음 자료형 값 `iter` 을 인자로 받는다.
-# 그러면 함수 `f` 를 `iter` 에 포함된 각 항목에 적용하여 반환된 값들로 이루어진
+# `map()` 함수는 하나의 함수 `fn`과  하나의 리스트 또는 튜플 등 모음 자료형 값 `iter`를 인자로 받는다.
+# 그러면 함수 `fn`을 `iter`에 포함된 각 항목에 적용하여 반환된 값들로 이루어진
 # `map` 자료형의 값을 반환한다.
 # 
 # `map` 자료형은 리스트 또는 튜플과 매우 유사하며, `list()` 함수를 이용하여
@@ -621,7 +625,7 @@ myAdd10(3)                   # 10 + 3
 # 그러면 각 인자를 공백<font size="2">space</font>으로 구분하여
 # 함께 한 줄에 출력한다.
 
-# In[30]:
+# In[31]:
 
 
 print('Hello,', 'Python', '!')
@@ -629,7 +633,7 @@ print('Hello,', 'Python', '!')
 
 # 그런데 각각의 인자를 서로 다른 줄에 출력하려면 아래와 같이 해야 한다.
 
-# In[31]:
+# In[32]:
 
 
 print('Hello,', 'Python', '!', sep='\n')
@@ -666,7 +670,7 @@ print('Hello,', 'Python', '!', sep='\n')
 
 # 키워드 인자를 굳이 지정하지 않으면 기본값이 사용된다.
 
-# In[32]:
+# In[33]:
 
 
 print('Hello,', 'Python', '!')
@@ -675,7 +679,7 @@ print('===')
 
 # `sep='\n'`으로 지정하면 항목을 출력할 때마다 줄바꿈이 실행된다.
 
-# In[33]:
+# In[34]:
 
 
 print('Hello,', 'Python', '!', sep='\n')
@@ -684,7 +688,7 @@ print('===')
 
 # 아무런 문자도 포함하지 않는 빈 문자열 `''`를 `end` 매개 변수의 인자로 사용하면 다른 효과를 볼 수 있다.
 
-# In[34]:
+# In[35]:
 
 
 print('Hello,', 'Python', '!', sep='\n', end='')
@@ -725,7 +729,7 @@ print('===')
 # 예를 들어 아래 함수는 두 정수를 대상으로 약수, 배수의 관계가 있는지 여부를 판단할 때
 # 사용될 수 있다.
 
-# In[35]:
+# In[36]:
 
 
 def is_divisible(x, y):
@@ -735,13 +739,13 @@ def is_divisible(x, y):
         return False
 
 
-# In[36]:
+# In[37]:
 
 
 is_divisible(6, 4)
 
 
-# In[37]:
+# In[38]:
 
 
 is_divisible(6, 3)
@@ -749,7 +753,7 @@ is_divisible(6, 3)
 
 # 위 함수를 다음과 같이 보다 간단하게 정의할 수도 있다.
 
-# In[38]:
+# In[39]:
 
 
 def is_divisible(x, y):
@@ -758,7 +762,7 @@ def is_divisible(x, y):
 
 # 부울값 함수 호출을 조건문 등에 바로 사용해도 된다.
 
-# In[39]:
+# In[40]:
 
 
 x = 16
@@ -800,7 +804,7 @@ if is_divisible(x, y):
 # 
 # 예제와 함께 살펴보자. 예를 들어, 숫자를 인자로 받아 5를 더한 값을 반환하는 함수는 아래와 같이 정의할 수 있다. 
 
-# In[40]:
+# In[41]:
 
 
 def plus_10(n) :
@@ -812,7 +816,7 @@ print(plus_10(20))
 
 # 동일한 기능의 함수를 람다 함수를 사용하면, 아래와 같이 작성할 수 있다. 
 
-# In[41]:
+# In[42]:
 
 
 lambda a : a + 10
@@ -820,7 +824,7 @@ lambda a : a + 10
 
 # 두 인자의 곱을 반환하는 함수는 아래와 같이 정의할 수 있다. 
 
-# In[42]:
+# In[43]:
 
 
 lambda a, b : a * b
@@ -830,13 +834,13 @@ lambda a, b : a * b
 
 # 람다 함수는 이름이 없기에 호출하려면 함수 전체를 사용해야 한다. 
 
-# In[43]:
+# In[44]:
 
 
 (lambda a : a + 10)(5)
 
 
-# In[44]:
+# In[45]:
 
 
 (lambda a, b : a * b)(2, 5)
@@ -848,7 +852,7 @@ lambda a, b : a * b
 # 예를 들어, 리스트 `[1, 2, 3, 4, 5]`의 각 항목을 제곱한 다음 5를 더한 값을 항목으로 갖는 리스트 `[6, 9, 14, 21, 30]`을 만들 때, 
 # 다음과 같이 코드를 작성할 수 있다. 
 
-# In[45]:
+# In[46]:
 
 
 list(map(lambda x : x ** 2 + 5, [1, 2, 3, 4, 5]))
@@ -865,7 +869,7 @@ list(map(lambda x : x ** 2 + 5, [1, 2, 3, 4, 5]))
 # 매개 변수 `hour`와 함수 본문에서 선언된 `minutes` 변수는 모두 지역 변수이다.
 # 반면에 `two_hour` `hour_to_min(2)`의 실행 결괏값을 가리키는 전역 변수이다. 
 
-# In[46]:
+# In[47]:
 
 
 def hour2min(hour):
@@ -877,7 +881,7 @@ two_hour = hour2min(2)
 
 # 위 코드의 실행 결과 `two_hour` 변수는 120을 가리킨다.
 
-# In[47]:
+# In[48]:
 
 
 print("2 시간은", two_hour, "분입니다.")
@@ -977,12 +981,12 @@ print("2 시간은", two_hour, "분입니다.")
 # **프레임**<font size="2">frame</font> 형식으로 관리된다.
 # 프레임은 하나의 함수가 실행되는 동안 발생하는 지역 변수의 생성 및 값 할당, 
 # 할당된 값 업데이트 등을 관리한다.
-# 함수의 실행과 함께 생성된 프레임은 함수의 실행이 종료되면 스택에서 사라진다.
+# 함수의 실행과 함께 스택<font size='2'>stack</font> 메모리 영역에서 생성된 프레임은 함수의 실행이 종료되면 스택에서 사라진다.
 # 하지만 함수의 반환값은 지정된 변수에 할당되거나 다른 함수의 인자로 전달된다.
 # 
 # 다음 코드를 이용하여 함수 호출과 프레임 생성 및 사멸의 관계를 알아보자.
 
-# In[48]:
+# In[49]:
 
 
 def hour2min(hour):
