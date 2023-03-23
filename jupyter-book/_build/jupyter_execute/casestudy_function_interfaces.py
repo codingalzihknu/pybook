@@ -9,9 +9,14 @@
 # 또한 클래스, 인스턴스, 메서드 등을 활용하는 객체 지향 프로그래밍(OOP)의
 # 기본 구성 요소를 한 번 살펴본다.
 
+# **슬라이드**
+
+# 본문 내용을 요약한 [슬라이드](https://github.com/codingalzi/pybook/raw/master/slides/slides-casestudy_function_interfaces.pdf)를 
+# 다운로드할 수 있다.
+
 # ## `turtle` 모듈
 
-# `turtle` 모듈은 간단한 2차원 그림을 그리는 다양한 도구를 제공하며, 
+# `turtle` 모듈은 간단한 2차원 컴퓨터 그래픽스를 지원하는 다양한 도구를 제공하며, 
 # 파이썬에 기본 모듈로 포함되어 있다. 
 # [IDLE 를 이용](https://aisw.tistory.com/5)하여 아래 명령문을 실행하면 그림 창이 하나 새로 나타나고 
 # 그 안에 정해진 그림이 그려져야 한다.
@@ -66,7 +71,7 @@
 # 
 # 
 
-# ## 반복문의 중요성
+# ## 반복문 활용
 
 # 아래 명령문은 정사각형을 그린다.
 # 
@@ -84,7 +89,8 @@
 # bob.lt(90)
 # ```
 
-# 하지만 다음과 같이 `for` 반복문을 이용하면 보다 효율적인 코드를 얻는다.
+# 그런데 코드를 복붙(copy-and-paste)로 작성하였다.
+# 대신에 다음과 같이 `for` 반복문을 이용하면 보다 효율적인 코드를 얻는다.
 # 
 # ```python
 # for i in range(4):
@@ -136,9 +142,11 @@
 # 
 # # wn.mainloop()                           # X 버튼을 누를 때까지 캔버스 유지
 # ```
-# :::
-
+# 
+# <br>
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle05.png" width="300"/></div>
+# :::
+# 
 
 # ## 함수화와 일반화
 
@@ -165,18 +173,11 @@
 # 
 # 그러면 `square()` 함수를 `bob` 과 함께 호출하면 `bob` 지정된 크기의 정사각형을 그린다.
 # 
-# ```
-# >>> square(bob)
+# ```python
+# square(bob)
 # ```
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle02.png" width="300"/></div>
-
-# 다른 거북이를 지정하면 해당 거북이가 정사각형을 그린다.
-# 
-# ```python
-# alice = turtle.Turtle()
-# square(alice)
-# ```
 
 # ### 일반화
 
@@ -195,8 +196,8 @@
 # 그러면 다양한 크기의 정사각형을 그릴 수 있다.
 # 
 # ```python
-# >>> square(bob, 100)
-# >>> square(bob, 50)
+# square(bob, 100)
+# square(bob, 50)
 # ```
 
 # **다각형 그리기**
@@ -217,7 +218,7 @@
 # 다음은 정7각형을 그린다.
 # 
 # ```python
-# >>> polygon(bob, 7, 70)
+# polygon(bob, 7, 70)
 # ```
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle03.png" width="300"/></div>
@@ -248,10 +249,10 @@
 # 그러면 `n` 과 `length` 에 대한 값을 지정하지 않아도 동일한 정7각형을 얻는다.
 # 
 # ```python
-# >>> polygon(bob)
+# polygon(bob)
 # ```
 
-# ## 함수의 인터페이스
+# ## 함수 인터페이스
 
 # 함수의 인터페이스는 함수 사용법의 요약문이다. 
 # 
@@ -280,7 +281,7 @@
 # 반지름이 200 픽셀인 원은 다음과 같다.
 # 
 # ```python
-# >>> circle(bob, 200)
+# circle(bob, 200)
 # ```
 
 # <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/turtle04.png" width="300"/></div>
@@ -299,6 +300,7 @@
 # 
 # 아래 코드에 사용된 `circumference / n` 약 3 정도의 값을 갖는다.
 # 또한 n 값에 사용된 `+3`은 최소 3각형을 그리도록 보장하기 위함이다.
+# 반환값은 원을 그릴 때 사용된 직선의 개수로 지정한다.
 
 # ```python
 # def circle(t, r):
@@ -308,6 +310,8 @@
 #     length = circumference / n      # 약 3 정도의 값
 #     
 #     polygon(t, n, length)
+#     
+#     return n                        # 사용된 직선의 개수 반환
 # ```
 
 # ## 리팩토링: 코드 재구성
@@ -340,10 +344,10 @@
 # 
 # ```python
 # def arc(t, r, angle):
-#     arc_length = 2 * math.pi * r * angle / 360
-#     n = int(arc_length / 3) + 1   # 호의 길이의 1/3 에 해당
-#     step_length = arc_length / n  # 선분의 길이
-#     step_angle = angle / n        # 호의 중심각의 1/n 에 해당
+#     arc_length = 2 * math.pi * r * angle / 360 # 호의 길이
+#     n = int(arc_length / 3) + 1                # 호의 길이의 1/3 에 해당
+#     step_length = arc_length / n               # 선분의 길이
+#     step_angle = angle / n                     # 호의 중심각의 1/n 에 해당
 #     
 #     for i in range(n):
 #         t.fd(step_length)
@@ -354,7 +358,7 @@
 # `polygon()` 함수의 본체와 매우 닮았다.
 # 차이점은 `n` 이 호의 길이, 즉 중심각에 의존한다는 점 뿐이다. 
 # 
-# 이 점에 착안하여 아래 폴리라인 함수 `polyline()` 를 구현한다.
+# 이 점에 착안하여 아래 `polyline()` 함수를 구현해서 활용한다.
 # 
 # ```python
 # def polyline(t, n, length, angle):
@@ -411,7 +415,7 @@
 # 독스트링은 함수의 정보를 확인하는 데에 사용된다.
 # 
 # ```python
-# >>> help(polyline)
+# help(polyline)
 # ```
 # 
 # ```python
