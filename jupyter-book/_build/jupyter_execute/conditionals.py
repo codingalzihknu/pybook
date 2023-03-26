@@ -26,6 +26,11 @@
 #     명령문
 # ```
 
+# **슬라이드**
+
+# 본문 내용을 요약한 [슬라이드](https://github.com/codingalzi/pybook/raw/master/slides/slides-conditionals.pdf)를 
+# 다운로드할 수 있다.
+
 # ## `if-else` 조건문
 
 # 변수 `x`가 가리키는 값이 음수가 아닐 때에는 음수가 아니다 라는 내용도 출력하는
