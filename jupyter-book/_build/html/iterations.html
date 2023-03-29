@@ -448,15 +448,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>이는 <a class="reference internal" href="datatypes.html#sec-boolean-expression"><span class="std std-numref">5.4.2절</span></a>에서 설명한대로 하나의 등호 기호 <code class="docutils literal notranslate"><span class="pre">=</span></code> 는
-두 값의 등가 여부가 아니라 왼편에 위치한 변수가 오른 편에 위치한 값을 가리키도록 하는
-명령문에 사용되는 특별한 의미를 갖기 때문이다.
-<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span></code> 가 실행될 당시에 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 5를 가리키고 있었기 때문에
+<p><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span></code> 가 실행될 당시에 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 5를 가리키고 있었기 때문에
 <code class="docutils literal notranslate"><span class="pre">y</span></code> 또한 5를 가리키도록 지정되었다.
-이후에 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 가리키는 값을 변경해도 <code class="docutils literal notranslate"><span class="pre">y</span></code>에게는 전혀 영향을 주지 않는다.
+하지만 이후에 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 가리키는 값을 변경해도 <code class="docutils literal notranslate"><span class="pre">y</span></code>에게는 전혀 영향을 주지 않는다.
 메모리 상에서의 변화를 <a class="reference external" href="https://pythontutor.com/visualize.html#code=x%20%3D%205%0Ay%20%3D%20x%0Ax%20%3D%207%0Az%20%3D%20x%20%2B%20y&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 변수 재할당</a>에서 확인할 수 있다.</p>
 <p><strong>변수 업데이트</strong></p>
-<p>반복문의 핵심은 변수가 가리키던 값을 이용하여 새로운 값을 생성한 후에 그 값을
+<p>반복문의 핵심은
+변수가 가리키던 값을 이용하여 새로이 생성한 값을 다시
 동일한 변수에 재할당하는 것이며, 이를
 <strong>변수 업데이트</strong><font size="2">variable update</font>라 한다.
 대표적으로 아래와 같은 표현식이 반복문에 자주 사용된다.</p>
@@ -473,7 +471,7 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><strong>간편 변수 업데이트</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x+1</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">x</span></code> 등과 같은 간단한 변수 업데이트는 보다 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*=</span> <span class="pre">2</span></code> 등으로
+<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x+1</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">x</span></code> 등과 같은 간단한 변수 업데이트는 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*=</span> <span class="pre">2</span></code> 등으로
 간편하게 나타낼 수 있다.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -537,7 +535,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">명령문</span>
 </pre></div>
 </div>
-<p>위 명령문의 실행은 아래 세 단계로 이루어진다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/while-loop.png" style="width:250px"></div><p>위 명령문의 실행은 아래 세 단계로 이루어진다.</p>
 <ol class="simple">
 <li><p>헤더의 <code class="docutils literal notranslate"><span class="pre">논리식</span></code>의 참, 거짓 여부를 확인한다.</p></li>
 <li><p>헤더의 <code class="docutils literal notranslate"><span class="pre">논리식</span></code> 이 <code class="docutils literal notranslate"><span class="pre">False</span></code> 인 경우: <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문 전체를 건너 뛰고 다음 명령문을 실행한다.</p></li>
@@ -545,8 +543,8 @@ const thebe_selector_output = ".output, .cell_output"
 본문에 위치한 명령문을 실행한 후에
 다시 1단계로 이동한다.</p></li>
 </ol>
-<p>아래 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문은 <code class="docutils literal notranslate"><span class="pre">n</span></code> 이 0보다 큰 동안 계속해서 <code class="docutils literal notranslate"><span class="pre">n</span></code>을 출력한 다음에
-마지막에 ‘발사’를 추가로 출력한다.</p>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문은 <code class="docutils literal notranslate"><span class="pre">n</span></code> 이 0보다 큰 동안은 계속해서 <code class="docutils literal notranslate"><span class="pre">n</span></code>을 출력한 다음에
+마지막에 ‘발사’를 추가로 출력한다. 단, <code class="docutils literal notranslate"><span class="pre">n</span></code>은 반복할 때마다 1씩 줄어든다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
@@ -615,59 +613,29 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="id3">
 <h2><span class="section-number">9.3. </span>무한 루프<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>헤더의 조건을 나타내는 논리식이 계속해서 참이면 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문의 본문이 무한히 반복되어 실행된다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_infinitely</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">count_finitely</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">count_infinitely(n)</span></code> 이 실행되면 다음 두 가지 일이 실행된다.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code> 을 출력한다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>을 1 키운 후 재귀를 실행한다.</p></li>
-</ul>
-<p>따라서 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문을 다음과 같이 이용하여 <code class="docutils literal notranslate"><span class="pre">count_infinitely()</span></code> 함수를 구현할 수 있다.</p>
+<p>헤더의 조건을 나타내는 논리식이 계속해서 참이면 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문이 무한정 반복되어 실행될 수 있다.</p>
+<p>예를 들어 다음 함수를 살펴보자.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_infinitely</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>재귀 함수로 정의했을 때 기저 조건이 없었기에 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> 이 거짓인 경우에
-실행될 명령문이 없다.
-따라서 <code class="docutils literal notranslate"><span class="pre">count_infinitely(1)</span></code>을 호출하면 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문이 무한 반복되며
+<p><code class="docutils literal notranslate"><span class="pre">count_infinitely(1)</span></code>을 호출하면 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문이 무한 반복된다.
+이유는 <code class="docutils literal notranslate"><span class="pre">n</span></code>이 무한정 커지기 때문이다.
 이런 현상을 <strong>무한 루프</strong><font size="2">infinite loop</font>라 한다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문으로 인해 무한 루프가 발생하는지 여부를
 경우에 따라 판단하기 매우 어렵거나 불가능할 수 있다.
 여기서는 콜라츠 추측에 사용된 알고리즘을 이용하여
 판단이 매우 어려운 경우를 소개한다.</p>
-<div class="proof example admonition" id="exp:collatz_while">
-<p class="admonition-title"><span class="caption-number">Example 9.1 </span> (콜라츠 추측과 무한 루프)</p>
-<div class="example-content section" id="proof-content">
-<p><a class="reference internal" href="recursion.html#sec-collatz"><span class="std std-numref">20.4.4절</span></a>에서 재귀로 구현한 <code class="docutils literal notranslate"><span class="pre">collatz()</span></code> 함수는 다음과 같다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                        <span class="c1"># 기저 조건</span>
-        <span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">num</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                    <span class="c1"># 짝수인 경우</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; -&gt; &#39;</span><span class="p">)</span>
-        <span class="n">collatz</span><span class="p">(</span><span class="n">num</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>                               <span class="c1"># 홀수인 경우</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; -&gt; &#39;</span><span class="p">)</span>
-        <span class="n">collatz</span><span class="p">(</span><span class="n">num</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>함수 본문에서 반복되는 내용은 다음과 같다.</p>
-<ul class="simple">
-<li><p>기저 조건: <code class="docutils literal notranslate"><span class="pre">1</span></code> 출력</p></li>
-<li><p>짝수인 경우: 자신 출력 후 2로 나눈 값에 대해 재귀 적용</p></li>
-<li><p>홀수인 경우: 자신 출력 후 세 배 더하기 1한 값에 대해 재귀 적용</p></li>
-</ul>
-<p>따라서 <code class="docutils literal notranslate"><span class="pre">n</span></code>을 출력한 후에 짝수 또는 홀수인 경우에 따라 <code class="docutils literal notranslate"><span class="pre">n</span></code>의 값을 업데이트하는
-과정을 반복하는 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문으로 재귀를 대신할 수 있다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<p><strong>콜라츠 추측과 무한 루프</strong></p>
+<p>아래 함수를 인자 <code class="docutils literal notranslate"><span class="pre">n</span></code>과 함께 호출하면 <code class="docutils literal notranslate"><span class="pre">n</span></code>을 출력한 후에 짝수 또는 홀수인 경우에 따라 <code class="docutils literal notranslate"><span class="pre">n</span></code>의 값을 업데이트하는 과정을 반복한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">while</span> <span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; -&gt; &quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>          <span class="c1"># 짝수인 경우</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">2</span> == 0:          # 짝수인 경우
             <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>                 <span class="c1"># 홀수인 경우</span>
             <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span>
@@ -675,12 +643,51 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                  <span class="c1"># 기저 조건</span>
 </pre></div>
 </div>
-<p>이미 <a class="reference internal" href="recursion.html#sec-collatz"><span class="std std-numref">20.4.4절</span></a>에서 언급하였듯이 콜라츠 추측은 여전히 미해결 문제로
-남아 있다.
-즉, <code class="docutils literal notranslate"><span class="pre">collatz()</span></code> 함수의 본문에 사용된 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문이 경우에 따라
-무한 루프를 유발하는지 여부가 아직 알려지지 않았다.</p>
 </div>
-</div><p><strong>무한루프와 <code class="docutils literal notranslate"><span class="pre">break</span></code> 명령문</strong></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collatz</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 -&gt; 10 -&gt; 5 -&gt; 16 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collatz</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 -&gt; 22 -&gt; 11 -&gt; 34 -&gt; 17 -&gt; 52 -&gt; 26 -&gt; 13 -&gt; 40 -&gt; 20 -&gt; 10 -&gt; 5 -&gt; 16 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collatz</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111 -&gt; 334 -&gt; 167 -&gt; 502 -&gt; 251 -&gt; 754 -&gt; 377 -&gt; 1132 -&gt; 566 -&gt; 283 -&gt; 850 -&gt; 425 -&gt; 1276 -&gt; 638 -&gt; 319 -&gt; 958 -&gt; 479 -&gt; 1438 -&gt; 719 -&gt; 2158 -&gt; 1079 -&gt; 3238 -&gt; 1619 -&gt; 4858 -&gt; 2429 -&gt; 7288 -&gt; 3644 -&gt; 1822 -&gt; 911 -&gt; 2734 -&gt; 1367 -&gt; 4102 -&gt; 2051 -&gt; 6154 -&gt; 3077 -&gt; 9232 -&gt; 4616 -&gt; 2308 -&gt; 1154 -&gt; 577 -&gt; 1732 -&gt; 866 -&gt; 433 -&gt; 1300 -&gt; 650 -&gt; 325 -&gt; 976 -&gt; 488 -&gt; 244 -&gt; 122 -&gt; 61 -&gt; 184 -&gt; 92 -&gt; 46 -&gt; 23 -&gt; 70 -&gt; 35 -&gt; 106 -&gt; 53 -&gt; 160 -&gt; 80 -&gt; 40 -&gt; 20 -&gt; 10 -&gt; 5 -&gt; 16 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>콜라츠 추측</strong><font size='2'>Collatz cojecture</font>은
+위 함수가 임의의 양의 정수 <code class="docutils literal notranslate"><span class="pre">n</span></code>에 대해
+항상 언젠가는 1을 출력하고 실행을 멈춘다는 가정이다.
+그런데 <code class="docutils literal notranslate"><span class="pre">collatz()</span></code> 함수의 실행이 항상 멈춘다는 증명도,
+멈추지 않는 경우가 있다는 증명도 아직 없다.
+즉, 콜라츠 추측은 여전히 미해결 문제로 남아 있다.</p>
+<p><strong>무한루프와 <code class="docutils literal notranslate"><span class="pre">break</span></code> 명령문</strong></p>
 <p>사용자로부터 <code class="docutils literal notranslate"><span class="pre">'중지'</span></code> 단어가 입력될 때 까지
 단어를 입력 받는 프로그램은 다음과 같다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -711,6 +718,11 @@ const thebe_selector_output = ".output, .cell_output"
 이와 같이 반복 횟수를 미리 지정할 수 없지만
 특별한 상황이 발생하면 무한 루프를 중지시켜야 할 때
 <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True</span></code>와 <code class="docutils literal notranslate"><span class="pre">break</span></code>를 함께 활용한다.</p>
+<div class="info admonition">
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">1</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True</span></code> 대신에 <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">1</span></code>을 사용하곤 한다.
+이유는 <code class="docutils literal notranslate"><span class="pre">while</span></code> 다음에는 논리식이 위치해야 하기에 <code class="docutils literal notranslate"><span class="pre">1</span></code>이 참으로 간주되기 때문이다.</p>
+</div>
 </div>
 <div class="section" id="id4">
 <h2><span class="section-number">9.4. </span>무한 루프 활용: 뉴튼 방법<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
@@ -727,8 +739,8 @@ x_{n+1} &amp; = \frac{x_n + \frac{a}{x_n}}{2}
 \end{align*}
 \end{split}\]</div>
 <p>파이썬에서 위 점화식은 아래와 같은 변수 업데이트로 구현된다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="o">/</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="o">/</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <p>예를 들어 <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> 를 뉴튼 방법으로 계산해보자.
@@ -869,22 +881,31 @@ x_{n+1} &amp; = \frac{x_n + \frac{a}{x_n}}{2}
     <span class="k">return</span> <span class="n">y</span>
 </pre></div>
 </div>
-<div class="warning admonition">
-<p class="admonition-title">부동소수점 비교</p>
-<p><code class="docutils literal notranslate"><span class="pre">x</span></code> 와 <code class="docutils literal notranslate"><span class="pre">y</span></code> 가 각각 부동소수점을 가리킬 때,
-<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">!=</span> <span class="pre">y</span></code> 처럼
-부동소수점<font size="2">floating point</font>의 등가성을
-비교하는 일은 매우 조심해서 사용해야 한다.
-예를 들어 아래와 기대와 다른 결과를 얻을 수 있기 때문이다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
-<span class="go">False</span>
+<p>그런데 이렇게 해도 무한루프에 빠질 가능성이 높다.
+이유는 아래 조건문에서 사용되는 두 부동소수점의 비교가
+참이될 가능성이 높지 않기 때문이다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+    <span class="k">break</span>
 </pre></div>
 </div>
-<p>이에 대한 이유는 이 강의노트의 수준을 많이 벗어나기에 더 이상 설명하지 않는다.</p>
+<p>일반적으로 두 부동소수점<font size="2">floating point</font>의 등가성을
+비교하는 일은 매우 조심해서 사용해야 한다.
+예를 들어 아래와 기대와 다른 결과를 얻을 수 있기 때문이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
+</pre></div>
 </div>
-<p>두 부동소수점의 등가성 여부를 판단해야 하는 경우
-보통은 두 수의 오차가 일정 범위 안에 있는지 여부를 판단하는 하는 것으로 대신한다.
-즉, 오차가 충분히 작아지면 알고리즘의 실행을 멈추도록 하는 게 일반적이다.
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>이에 대한 이유는 이 강의노트의 수준을 많이 벗어나기에 더 이상 설명하지 않는다.</p>
+<p>부동소수점의 등가성 대신 보통은 두 수의 오차가 충분히 작으면
+실행을 멈추도록 한다.
 이 아이디어를 <code class="docutils literal notranslate"><span class="pre">my_sqrt()</span></code> 함수에 적용하면 다음과 같다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">abs()</span></code> 함수는 절댓값을 반환한다.</p></li>
