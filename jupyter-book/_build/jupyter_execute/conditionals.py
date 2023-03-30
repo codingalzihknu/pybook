@@ -27,7 +27,7 @@
 # ```
 
 # **슬라이드**
-
+# 
 # 본문 내용을 요약한 [슬라이드](https://github.com/codingalzi/pybook/raw/master/slides/slides-conditionals.pdf)를 
 # 다운로드할 수 있다.
 
