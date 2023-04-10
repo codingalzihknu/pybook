@@ -1270,12 +1270,23 @@ for i, v in enumerate(some_list):
         print(v)
 
 
+# `enumerate()` 함수를 사용하지 않으면서 동일한 기능을 구현하려면
+# 인덱스를 직접 이용해야 한다.
+
+# In[126]:
+
+
+for i in range(len(some_list)):
+    if i & 2 == 0:
+        print(some_list[i])
+
+
 # **예제**
 
 # 아래 코드는 인덱스와 리스트의 항목의 순서를 바꾼 튜플의 
 # 리스트를 생성한다.
 
-# In[126]:
+# In[127]:
 
 
 mapping = []
@@ -1286,13 +1297,27 @@ for i, v in enumerate(some_list):
 mapping
 
 
+# `enumerate()` 함수를 사용하지 않으면서 동일한 기능을 구현하려면
+# 인덱스를 직접 이용해야 한다.
+
+# In[128]:
+
+
+mapping = []
+
+for i in range(len(some_list)):
+    mapping.append((some_list[i], i))
+
+mapping
+
+
 # ### `zip()` 함수
 
 # 문자열, 리스트, 튜플 등 순차 자료형 여러 개를 묶어 하나의 값으로 만든다.
 # 이때, 각 순차 자료형의 값에 사용된 순서를 반영한다.
 # 단, `zip()` 함수의 반환값은 구체적으로 명시되지 않는다. 
 
-# In[127]:
+# In[129]:
 
 
 zip("abc", [1, 2, 3])
@@ -1300,7 +1325,7 @@ zip("abc", [1, 2, 3])
 
 # `for` 반복문을 이용하여 항목을 확인할 수는 있다.
 
-# In[128]:
+# In[130]:
 
 
 for item in zip("abc", [1, 2, 3]):
@@ -1309,7 +1334,7 @@ for item in zip("abc", [1, 2, 3]):
 
 # 아니면 `list()`함수를 이용하여 튜플 리스트로 변환할 수도 있다.
 
-# In[129]:
+# In[131]:
 
 
 list(zip("abc", [1, 2, 3]))
@@ -1318,7 +1343,7 @@ list(zip("abc", [1, 2, 3]))
 # 여러 개의 모음 자료형을 짝짓는 것도 가능하다.
 # 단. 길이가 다르면 가장 짧은 길이에 맞춰서 짝을 짓고, 나머지는 버린다.
 
-# In[130]:
+# In[132]:
 
 
 list(zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15]))
@@ -1328,26 +1353,54 @@ list(zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15]))
 
 # `zip()` 을 이용하면 여러 개의 리스트, 튜플을 대상으로 동시에 반복문을 돌릴 수 있다.
 
-# In[131]:
+# In[133]:
 
 
 letters = ['a', 'b', 'c']
 numbers = [0, 1, 2]
 for l, n in zip(letters, numbers):
-    print(f'문자: {l}')
+    print(f'문자: {l}', end=', ')
     print(f'숫자: {n}')
 
 
-# In[132]:
+# `zip()` 함수를 사용하지 않으면 2중으로 중첩된 `for` 반복문과
+# 인덱싱을 함께 이용해야 한다.
+
+# In[134]:
+
+
+for idx1 in range(len(letters)):
+    for idx2 in range(len(numbers)):
+        if idx1 == idx2:
+            print(f'문자: {letters[idx1]}', end=', ')
+            print(f'숫자: {numbers[idx2]}')
+
+
+# In[135]:
 
 
 letters = ['a', 'b', 'c']
 numbers = [0, 1, 2]
 operators = ['*', '/', '+']
 for l, n, o in zip(letters, numbers, operators):
-    print(f'문자:   {l}')
-    print(f'숫자:   {n}')
+    print(f'문자: {l}', end=', ')
+    print(f'숫자: {n}', end=', ')
     print(f'연산자: {o}')
+
+
+# `zip()` 함수를 사용하지 않으면 3중으로 중첩된 `for` 반복문과
+# 인덱싱을 함께 이용해야 한다.
+
+# In[136]:
+
+
+for idx1 in range(len(letters)):
+    for idx2 in range(len(numbers)):
+        for idx3 in range(len(numbers)):
+            if idx1 == idx2 and idx2 == idx3:
+                print(f'문자: {letters[idx1]}', end=', ')
+                print(f'숫자: {numbers[idx2]}', end=', ')
+                print(f'연산자: {numbers[idx3]}')                
 
 
 # ## 연습문제
