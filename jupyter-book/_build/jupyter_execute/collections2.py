@@ -13,6 +13,11 @@
 # - 리스트/사전 조건제시법
 # - 모음 자료형과 `for` 반복문
 
+# **슬라이드**
+# 
+# 본문 내용을 요약한 [슬라이드](https://github.com/codingalzi/pybook/raw/master/slides/slides-collections2.pdf)를 
+# 다운로드할 수 있다.
+
 # ## 집합
 
 # 집합 자료형은 수학에서 다루는 집합처럼 작동하도록 만든 비순차 모음 자료형이며
@@ -842,6 +847,7 @@ zero2ten_odd_set
 # **사전 조건제시법**
 
 # 조건제시법을 이용하여 사전을 생성하는 과정도 유사하다. 
+# 아래 코드는 문장에 포함된 단어를 키로, 단어의 길이를 값으로 갖는 항목들로 구성된 사전을 생성한다.
 
 # In[84]:
 
@@ -859,13 +865,22 @@ len_dict = {k : len(k) for k in words}
 len_dict
 
 
+# 아래 코드는 0부터 10 사이의 홀수를 키로, 홀수의 제곱은 값으로 갖는 항목으로 구성된 사전을 생성한다.
+
+# In[86]:
+
+
+odd_squares = {x : x**2 for x in range(11) if x%2 == 1}
+odd_squares
+
+
 # ## 모음 자료형과 `for` 반복문
 
 # 앞서 소개된 모든 모음 자료형은 `for` 반복문과 함께 사용될 수 있다.
 
 # * 문자열과 반복문
 
-# In[86]:
+# In[87]:
 
 
 aString = "Python is lovely!"
@@ -876,14 +891,14 @@ for chr in aString:
 
 # * 리스트와 반복문
 
-# In[87]:
+# In[88]:
 
 
 aList = list(aString)
 print(aList)
 
 
-# In[88]:
+# In[89]:
 
 
 for item in aList:
@@ -892,14 +907,14 @@ for item in aList:
 
 # * 튜플과 반복문
 
-# In[89]:
+# In[90]:
 
 
 aTuple = tuple(aString)
 print(aTuple)
 
 
-# In[90]:
+# In[91]:
 
 
 for item in aTuple:
@@ -908,7 +923,7 @@ for item in aTuple:
 
 # * 집합과 반복문
 
-# In[91]:
+# In[92]:
 
 
 aSet = set(aString)
@@ -917,7 +932,7 @@ print(aSet)
 
 # 집합은 중복을 허용하지 않음에 주의하라.
 
-# In[92]:
+# In[93]:
 
 
 for item in aSet:
@@ -926,7 +941,7 @@ for item in aSet:
 
 # * 사전과 반복문
 
-# In[93]:
+# In[94]:
 
 
 words = 'Python is a general purpose language'.split()
@@ -936,7 +951,7 @@ len_dict
 
 # 사전에 대한 반복문은 키<font size='2'>key</font>에 대해 실행된다.
 
-# In[94]:
+# In[95]:
 
 
 for item in len_dict:
@@ -946,7 +961,7 @@ for item in len_dict:
 # 키와 값의 쌍에 대해 반복문을 실행하려면 `items()` 메서드를 이용한다. 
 # 단, 키와 값 각각에 대해 변수를 지정하는 게 좋다.
 
-# In[95]:
+# In[96]:
 
 
 for key, value in len_dict.items():
@@ -955,7 +970,7 @@ for key, value in len_dict.items():
 
 # 항목을 쪼개서 사용할 수도 있다.
 
-# In[96]:
+# In[97]:
 
 
 for item in len_dict.items():
@@ -966,7 +981,7 @@ for item in len_dict.items():
 
 # 값에 대해 반복문을 실행하려면 `values()` 메서드를 이용한다. 
 
-# In[97]:
+# In[98]:
 
 
 for item in len_dict.values():
@@ -975,7 +990,7 @@ for item in len_dict.values():
 
 # * `zip` 과 반복문
 
-# In[98]:
+# In[99]:
 
 
 aZip = zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15])
@@ -986,7 +1001,7 @@ for item in aZip:
 
 # 항목별로 변수를 지정하여 활용할 수도 있다.
 
-# In[99]:
+# In[100]:
 
 
 aZip = zip("abcdefgh",(1, 2, 3, 4, 5), [5, 10, 15])
@@ -997,7 +1012,7 @@ for chr, tup, lst in aZip:
 
 # * `range` 와 반복문
 
-# In[100]:
+# In[101]:
 
 
 for item in range(1, 10, 2):
