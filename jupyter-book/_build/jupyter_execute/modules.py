@@ -31,6 +31,12 @@
 # 
 # <p><div style="text-align: center">&lt;그림 출처: <a href="https://pythongeeks.org/python-packages/">파이썬 패키지 구조</a>&gt;</div></p>
 
+# 아래 그림은 패키지와 단순히 모듈을 포함하는 디렉토리(폴더)의 차이점을 잘 보여준다.
+
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/packages-vs-directories.png" style="width:520px;"></div>
+# 
+# <p><div style="text-align: center">&lt;그림 출처: <a href="https://pythongeeks.org/python-packages/">파이썬 패키지 구조</a>&gt;</div></p>
+
 # **라이브러리**
 
 # **라이브러리**<font size='2'>library</font>는
