@@ -27,9 +27,9 @@
 # `__init__.py` 모듈은 해당 패키지가 사용될 때 필요한 기본 설정이 저장되어 있고 자동 실행된다.
 # 아래 그림이 전형적인 패키지 구조를 보여준다.
 
-# <div align="center"><img src="https://pythongeeks.org/wp-content/uploads/2021/12/structure-of-packages.webp" style="width:450px;"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/structure-of-packages.png" style="width:500px;"></div>
 # 
-# <p><div style="text-align: center">&lt;그림 출처: <a href="https://pythongeeks.org/python-packages/">파이썬 패키지 예제</a>&gt;</div></p>
+# <p><div style="text-align: center">&lt;그림 출처: <a href="https://pythongeeks.org/python-packages/">파이썬 패키지 구조</a>&gt;</div></p>
 
 # **라이브러리**
 
