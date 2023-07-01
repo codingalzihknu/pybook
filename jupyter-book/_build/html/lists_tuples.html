@@ -389,27 +389,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소개</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시퀀스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">시퀀스</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-list">리스트</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">리스트 연산</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">리스트 인덱싱/슬라이싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">리스트 메서드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">리스트 연산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">인덱싱과 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for">리스트와 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">리스트 메서드</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-tuple">튜플</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">튜플 연산</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">튜플 인덱싱/슬라이싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">튜플 메서드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">튜플 연산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">튜플 인덱싱/슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">튜플 메서드</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">순차 자료형 해체</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">순차 자료형에 유용한 함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">순차 자료형 해체</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">순차 자료형에 유용한 함수</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> 함수</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zip"><code class="docutils literal notranslate"><span class="pre">zip()</span></code> 함수</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -424,7 +424,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="ch-lists-tuples">
 <span id="id1"></span><h1>리스트와 튜플<a class="headerlink" href="#ch-lists-tuples" title="Permalink to this heading">#</a></h1>
 <section id="id2">
-<h2>소개<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>시퀀스<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>아래 표에 여섯 명의 이름, 전화번호, 나이, 키, 출생지 정보를 담겨 있다.</p>
 <table class="table">
 <thead>
@@ -507,20 +507,18 @@ document.write(`
 <strong>내장 자료구조</strong><font size='2'>built-in data structure</font>
 리스트, 튜플, 사전, 그리고 집합을 제공한다.
 여기서 내장이라 함은 코드를 작성할 때 다른 추가 설정 없이 사용할 수 있음을 의미한다.</p>
-<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/built-in-types.png" width="500"/></div><p>리스트, 튜플, 사전, 집합은 각자 고유의 방식으로 여러 개의 값을 묶어 하나의 값으로 다룰 수 있는 기능을 제공한다.
-이런 의미에서 이들을 <strong>모음 자료형</strong>이라 부르며 경우에 따라
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/built-in-types.png" width="350"/></div><br>
+리스트, 튜플, 사전, 집합은 각자 고유의 방식으로 여러 개의 값을 묶어 하나의 값으로 다룰 수 있는 기능을 제공한다.
+이런 의미에서 이들을 **모음 자료형**이라 부르며 경우에 따라
 컬렉션<font size='2'>collection</font>, 컨테이너<font size='2'>container</font> 등으로도 불린다.
 반면에 정수, 부동소수점, 불리언 등은 하나의 값으로만 구성되었다는 의미에서
-<strong>스칼라</strong><font size='2'>scalar</font> 자료형이라 부른다.</p>
+**스칼라**<font size='2'>scalar</font> 자료형이라 부른다.
 <p>자료구조는 보통 여러 종률의 자료형의 값으로 구성된 보다 복잡한 구조의 대상을 가리킨다.
 하지만 파이썬에서는 리스트, 튜플, 사전, 집합 또한 하나의 값으로 처리된다.
 이것이 가능한 이유는 파이썬에서 다루는 모든 것이 <strong>객체</strong><font size='2'>object</font>로 정의되기 때문이다.
 파이썬 객체는 일반적으로 특정의 값들과, 그리고 값들과 관련된 속성을 저장하며, 저장된 값과 속성을 다룰 수 있는 기능을 제공한다.객체의 엄밀한 정의는 나중에 클래스를 설명할 때 다룬다.
 여기서는 변수에 할당될 수 있는 하나의 값으로 선언될 수 있는 대상 정도로 기억해 둔다.
 따라서 리스트 객체, 튜플 객체, 사전 객체, 집합 객체 모두 하나의 값으로 변수에 할당될 수 있다.</p>
-</section>
-<section id="id3">
-<h2>시퀀스<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>모음 자료형을 일반적으로 다음 두 가지 기준으로 구분한다.</p>
 <p>첫째, 항목의 순서와 중복 허용 여부</p>
 <ul class="simple">
@@ -549,101 +547,108 @@ document.write(`
 </div>
 </div>
 <p>파이썬의 또 다른 순차 자료형은 <code class="xref std std-numref docutils literal notranslate"><span class="pre">%s장</span></code>에서 살펴 본 문자열이다.
-그리고 문자열에 대해서처럼 리스트, 튜플 등 순차 자료형에 대해서도 다음 세 가지를 기억해두면 좋다.</p>
+그리고 문자열에 대해서처럼 리스트, 튜플 등 순차 자료형에 대해서도 다음 세 가지 기능을 거의 동일하게 적용할 수 있다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문에 사용</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자를 이용한 항목 여부 판단</p></li>
-<li><p>인덱싱과 슬라이싱을 이용한 항목 활용</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자</p></li>
+<li><p>인덱싱과 슬라이싱</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문</p></li>
 </ul>
 <p>여기서는 리스트와 튜플을 생성하고 수정하고 활용하는 다양한 방식을 살펴보고,
-다음 장에서는 비순차 자료형인 사전과 집합을 자세히 알아본다.</p>
+다음 장에서는 비순차 자료형인 사전과 집합에 대해 자세히 알아본다.</p>
 </section>
 <section id="sec-list">
-<span id="id4"></span><h2>리스트<a class="headerlink" href="#sec-list" title="Permalink to this heading">#</a></h2>
-<p>리스트는 유한개의 값들을 모아서 하나의 값으로 취급하는 자료형이다.
-대괄호(<code class="docutils literal notranslate"><span class="pre">[]</span></code>)를 사용하고, 각 항목은 콤마(<code class="docutils literal notranslate"><span class="pre">,</span></code>)로 구분한다.</p>
+<span id="id3"></span><h2>리스트<a class="headerlink" href="#sec-list" title="Permalink to this heading">#</a></h2>
+<p>리스트는 보통 관련된 유한개의 값들을 모아서 하나의 값으로 취급하는 자료형이다.
+대괄호(<code class="docutils literal notranslate"><span class="pre">[]</span></code>)로 항목들의 목록을 감싸고, 각각의 항목은 쉼표(<code class="docutils literal notranslate"><span class="pre">,</span></code>)로 구분한다.
+예를 들어, 1부터 5까지의 정수로 구성된 리스트를 가리키는 변수를 다음과 같이 선언한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one2five</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>리스트는 수열과 달리 임의의 값을 항목으로 가질 수 있다.
+아래 리스트는 영어 알파벳 a부터 c까지로 구성된다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>리스트는 아래와 같이 서로 다른 자료형의 항목들을 포함할 수 있다.</p>
+<p>리스트의 항목이 반드시 동일한 자료형을 가질 필요는 없으며,
+서로 다른 자료형의 항목이 사용될 수도 있다.
+예를 들어 아래 리스트는 김강현의 이름, 전화번호, 나이, 키, 출생지로 구성된
+리스트를 정의한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mixed_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>리스트는 순차 자료형이며, 따라서 항목의 순서 또는 개수가 다르면 서로 다른 리스트로 처리된다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;김강현&#39;</span><span class="p">,</span> <span class="s1">&#39;010-1234-5678&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">172.3</span><span class="p">,</span> <span class="s1">&#39;제주&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><strong>빈 리스트</strong></p>
 <p>빈 리스트<font size = "2">empty list</font>는 아무것도 포함하지 않는 리스트를 의미한다.
-빈 리스트를 만드는 방법은 아래와 같다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">empty_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>아래 <code class="docutils literal notranslate"><span class="pre">a_singleton</span></code>은 빈 리스트가 아니라 빈 리스트를 포함하는 리스트를 가리킨다.</p>
+다음 두 가지 방식으로 빈 리스트를 선언할 수 있다.</p>
+<ul class="simple">
+<li><p>방법 1: 대괄호 활용</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_singleton</span> <span class="o">=</span> <span class="p">[[]]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a_singleton</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>방법 2: <code class="docutils literal notranslate"><span class="pre">list()</span></code> 함수 활용</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>리스트는 시퀀스!</strong></p>
+<p>리스트는 시퀀스이기에 항목의 순서가 다르거나 특정 항목의 개수가 다르면 서로 다른 리스트로 간주된다.</p>
+<ul class="simple">
+<li><p>순서가 다른 경우</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one2five</span> <span class="o">!=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[]]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
-<section id="id5">
-<h3>리스트 연산<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>특정 항목의 개수가 다른 경우</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span> <span class="o">!=</span> <span class="p">[</span><span class="s1">&#39;김강현&#39;</span><span class="p">,</span> <span class="s1">&#39;010-1234-5678&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">172.3</span><span class="p">,</span> <span class="s1">&#39;제주&#39;</span><span class="p">,</span> <span class="s1">&#39;제주&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id4">
+<h3>리스트 연산<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>문자열, 리스트, 튜플, 사전, 집합 등의 모음 자료형은 모두 항목의 포함 여부를 판단하는 <code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자와
+항목의 개수를 확인해주는 <code class="docutils literal notranslate"><span class="pre">len()</span></code> 함수의 인자로 사용된다.</p>
 <p><strong><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자</strong></p>
-<p>리스트의 항목으로 등장하는지 여부를 알려주는 논리 연산자이다.</p>
+<p>예를 들어 3은 <code class="docutils literal notranslate"><span class="pre">one2five</span></code> 리스트에 포함되어 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
@@ -656,9 +661,10 @@ document.write(`
 </div>
 </div>
 </div>
+<p>반면에 이강현이란 이름은 김강현의 정보를 담은 리스트인 <code class="docutils literal notranslate"><span class="pre">kgh</span></code>에 포함되어 있지 않다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;이강현&#39;</span> <span class="ow">in</span> <span class="n">kgh</span>
 </pre></div>
 </div>
 </div>
@@ -668,9 +674,10 @@ document.write(`
 </div>
 </div>
 </div>
+<p>물론 김강현은 들어 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;a&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;김강현&#39;</span> <span class="ow">in</span> <span class="n">kgh</span>
 </pre></div>
 </div>
 </div>
@@ -680,8 +687,39 @@ document.write(`
 </div>
 </div>
 </div>
-<p><strong>이어붙이기/복제</strong></p>
-<p>문자열의 경우처럼 리스트도 이어붙이기와 복제 연산을 사용한다.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">len()</span></code> 함수</strong></p>
+<p>리스트의 길이, 즉 리스트에 포함된 항목의 개수를 확인하려면 <code class="docutils literal notranslate"><span class="pre">len()</span></code> 함수를 적용한다.
+예를 들어 <code class="docutils literal notranslate"><span class="pre">one2five</span></code> 리스트는 5개의 항목을 갖는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">one2five</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>김강현의 정보를 담은 리스트의 길이도 5이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">kgh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">+</span></code>와 <code class="docutils literal notranslate"><span class="pre">*</span></code> 연산자</strong></p>
+<p>문자열, 리스트, 튜플 세 종류의 시퀀스 모두 이어붙이기 연산(<code class="docutils literal notranslate"><span class="pre">+</span></code>)과 복제 연산(<code class="docutils literal notranslate"><span class="pre">*</span></code>)을 지원한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자: 리스트 두 개를 이어붙여서 새로운 리스트 생성</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
@@ -694,226 +732,445 @@ document.write(`
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> 연산자: 리스트를 지정된 정수 만큼 복젝해서 이어붙이는 방식으로 새로운 리스트 생성</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2c</span> <span class="o">*</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;a&#39;, &#39;b&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="n">one2five</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;a&#39;, &#39;b&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">min()</span></code>/<code class="docutils literal notranslate"><span class="pre">max()</span></code> 함수</strong></p>
-<p>항목 중에서 최솟값 또는 최댓값을 확인한다.
-단, 기본적으로 모든 값의 자료형이 갖고 크기 비교가 가능해야 한다.</p>
+</section>
+<section id="id5">
+<h3>인덱싱과 슬라이싱<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>문자열, 리스트, 튜플 등 모든 시퀀스는 대괄호와 정수를 사용하는 인덱싱과 슬라이싱을 지원하며,
+사용 방식도 거의 동일하다.</p>
+<p><strong>인덱싱</strong></p>
+<p>리스트 인덱싱은 정수 인덱스가 가리키는 위치의 항목을 확인하거나 수정할 때 사용한다.
+예를 들어 김강현의 정보를 담은 리스트 <code class="docutils literal notranslate"><span class="pre">kgh</span></code> 에서 이름은 0번 인덱스에 위치한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">max</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 이름. 0번 인덱스</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;김강현&#39;
 </pre></div>
 </div>
 </div>
 </div>
+<p>김강현의 전화번호는 1번 인덱스에 위치한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">min</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># 전화번호. 1번 인덱스</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;010-1234-5678&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">len()</span></code>함수</strong></p>
-<p>리스트의 길이, 즉 리스트에 포함된 항목의 개수를 반환한다.</p>
+<p>-1, -2, -3 등 음수 인덱스는 리스트 오른쪽에서부터 위치를 찾는다.
+따라서 김강현의 출생지는 -1번 인덱스로 확인한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># 출생지. 오른쪽 끝에서 첫번째</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;제주&#39;
 </pre></div>
 </div>
 </div>
 </div>
+<p>-1 인덱스는 리스트의 길이에서 1을 뺀 인덱스와 동일한 위치를 가리킨다.
+즉, 다음이 성립한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh_last</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">kgh</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># kgh의 마지막 인덱스</span>
+<span class="n">kgh</span><span class="p">[</span><span class="n">kgh_last</span><span class="p">]</span> <span class="o">==</span> <span class="n">kgh</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>김강현의 키는 오른쪽 끝에서 두 번째 항목이기에 -2 인덱스로 확인된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 키. 오른쪽 끝에서 두번째</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>172.3
+</pre></div>
+</div>
+</div>
+</div>
+<p>문자열, 튜플과는 달리 리스트는 항목을 수정할 수 있는 가변 자료형이며
+인덱싱을 이용하여 특정 위치의 항목을 수정할 수 있다.
+예를 들어 아래 코드는 김강현의 출생지를 제주가 아닌 제주시로 수정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="n">kgh_last</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;제주시&#39;</span> <span class="c1"># kgh의 마지막 인덱스에 &#39;제주시&#39;를 수정</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>물론 -1 인덱스도 사용해도 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;제주시&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>김강현의 출생지 정보가 제주시로 변경되었다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3, &#39;제주시&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>리스트의 길이 이상의 큰 정수 등 허용되지 않는 인덱스를 사용하면 오류가 발생한다.
+예를 들어 김강현의 정보를 담은 리스트의 길이가 5이기 5보가 같거나 큰 정수 또는
+-5보다 작은 음의 정수를 인덱스로 사용하면 <code class="docutils literal notranslate"><span class="pre">IndexError</span></code>오류가 발생하며
+동시에 지정된 인덱스의 범위를 벗어났다(list index out of range)라고 알려준다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">kgh</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">IndexError</span>: <span class="n">list index out of range</span>
+</pre></div>
+</div>
+<p><strong>슬라이싱</strong></p>
+<p>슬라이싱은 두 개의 인덱스로 지정된 구간에 포함된 항목들을 확인하거나 수정할 때 사용한다.
+경우에 따라 몇 계단씩 건너뛸지 지정하기도 한다.</p>
+<ul class="simple">
+<li><p>시작 인덱스: 슬라이싱 구간 시작 인덱스. 생략되면 0을 기본값으로 사용.</p></li>
+<li><p>끝 인덱스: 슬라이싱 구간 끝 인덱스. 이 인덱스 이전 인덱스까지 항목 확인. 생략되면 오른쪽 끝까지를 의미함.</p></li>
+<li><p>계단 크기: 구간 시작부터 몇 계단씩 건너뛰며 항목을 확인할지 결정. 계단의 크기가 1이면 생략 가능.</p></li>
+</ul>
+<p>예를 들어 김강현의 이름, 전화번호, 나이, 키는 0번부터 3번 인덱스에 위치하기에
+대괄호 안에 <code class="docutils literal notranslate"><span class="pre">0:4</span></code>를 입력하여 0번 인덱스부터 4번 인덱스 이전인 3번 인덱스의 항목으로
+구성된 리스트가 확인된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>계단의 크기가 1인 경우와 동일하다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>시작 인덱스가 0이면 생략해도 된다. 단 콜론은 그대로 둬야 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>슬라이싱의 결과는 항상 리스트이다.
+구간의 크기가 1이라 해도 그렇다.
+예를 들어 아래 코드는 김강현의 전화번호로만 구성되어 길이가 1인 리스트가 확인된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;010-1234-5678&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>계단 크기를 1보다 크게 지정하면 지정된 계단 크기만큼 건너 뛰며 항목을 확인한 결과를 리스트로 보여준다.
+예를 들어 김강현의 전화번오와 키를 함께 확인하려면 1번과 3번 인덱스를 확인해야 하기에
+인덱스 구간을 다음과 같이 계단 크기를 2로 작성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;010-1234-5678&#39;, 172.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>이름과 키를 확인하려면 0번부터 끝까지를 구간으로 하면서 계단 크기를 3으로 지정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, 172.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>시작 인덱스를 생략해도 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[::</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, 172.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>리스트 전체를 대상으로 슬라이싱하려면 아래와 같이 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[:]</span> <span class="c1"># kgh 전체 대상 슬라이싱</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3, &#39;제주시&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>또는</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[::]</span> <span class="c1"># kgh 전체 대상 슬라이싱. 스텝은 1이 기본값.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3, &#39;제주시&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>리스트의 크기를 벗어나는 인덱스를 사용하더라도 슬라이싱은 오류를 발생시키지 않는다.
+이유는 확인할 수 있는 인덱스의 항목만 사용하고 확인할 수 없으면 무시하기 때문이다.
+아래 코드는 5번 인덱스부터 9번 인덱스까지 확인하려 하지만 해당 인덱스의 위치를
+찾을 수 없기에 빈 리스트를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 코드는 0번 인덱스부터 7번 인덱스까지 확인하려 하지만 결국엔 4번 인덱스까지만 확인하게 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.3, &#39;제주시&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>계단 크기를 2 이상으로 지정해도 동일하게 작동한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, 20, &#39;제주시&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>역순 슬라이싱</strong></p>
+<p>슬라이싱은 기본적으로 작은 인덱스에서 큰 인덱스 방향으로 확인한다. 하지만 역순으로 확인하고자 한다면 음의 정수를 계단 크기로 지정하면 된다.
+계단이 -1이고, 시작 인덱스와 끝 인덱스를 생략하면 문자열 전체를 역순으로 확인하며,
+리스트 항목들의 순서를 뒤집는 기술로 자주 활용된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[::</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;제주시&#39;, 172.3, 20, &#39;010-1234-5678&#39;, &#39;김강현&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>계단 크기가 음수이면 시작 인덱스가 끝 인덱스보다 커야 한다. 그렇지 않으면 빈 리스트가 생성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>시작 인덱스가 보다 크면 구간의 시작이 오른쪽이라는 점만 다를 뿐 앞서 설명한 슬라이싱과 동일하게 작동한다.
+아래 코드는 -2번 인덱스부터 역순으로 2계단씩 건너 뛰며 슬라이싱을 진행한다.
+역순 인덱싱에서 끝 인덱스가 생략되면 왼쪽 끝까지를 의미힌다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[172.3, &#39;010-1234-5678&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>구간 수정</strong></p>
+<p>리스트는 가변 자료형이기에 슬라이싱을 이용하여 지정된 구간을 다른 리스트로 대체할 수 있다.
+아래 코드는 김강현의 키와 출생지를 동시에 수정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">172.5</span><span class="p">,</span> <span class="s1">&#39;제주&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>키와 출생지가 172.3과 제주시에서  172.5와 제주로 바뀐것을 확인할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;010-1234-5678&#39;, 20, 172.5, &#39;제주&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>슬라이싱 구간의 크기와 새롭게 대체하는 리스트의 크기가 다를 수 있다.
+설명을 위해 다음 리스트를 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2f</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>소문자 c와 d를 대문자 C와 D로 수정하고 곧바로 대문자 X를 추가하고자 한다면
+2번, 3번 인덱스 구간을 슬라이싱하면서 동시에 값을 다음과 같이 3개 지정하면 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2f</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]</span>
+<span class="n">a2f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;C&#39;, &#39;D&#39;, &#39;Z&#39;, &#39;e&#39;, &#39;f&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>만약 계단 크기를 2이상으로 지정하면 슬라이싱된 항목의 개수와 새롭게 지정된 리스트의 길이가 같아야 한다.
+아래 코드는 홀수 인덱스에 위치한 항목을 모두 해당 인덱스로 대체한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2f</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a2f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, 1, &#39;C&#39;, 3, &#39;Z&#39;, 5, &#39;f&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>계단 크기가 1이 아닌 경우
+대체 리스트의 길이가 슬라이싱된 항목의 개수와 다르면 두 리스트의 크기가 다르다는 설명과 함께 <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>가 발생한다.
+아래 코드는 슬라이싱된 항목은 2개이지만 길이가 3인 리스트를 대체 리스트로 지정하기에 오류가 발생한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2f</span><span class="p">[:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">attempt to assign sequence of size 3 to extended slice of size 2</span>
+</pre></div>
+</div>
+</section>
+<section id="for">
+<h3>리스트와 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문<a class="headerlink" href="#for" title="Permalink to this heading">#</a></h3>
+<p>리스트를 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문과 함께 사용해면 리스트의 모든 항목에 대해 동일한 코드를 반복 적용한다.
+적용 순서는 리스트의 맨 왼편에 ….</p>
 </section>
 <section id="id6">
-<h3>리스트 인덱싱/슬라이싱<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
-<p>리스트도 문자열처럼 인덱싱과 슬라이싱을 지원하며
-사용방식도 거의 동일하다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">2</span> <span class="p">:</span> <span class="mi">5</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9, 12, 7]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">2</span> <span class="p">:</span> <span class="mi">6</span> <span class="p">:</span> <span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9, 7]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[::</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 14, 7, 12, 9, 15, 3]
-</pre></div>
-</div>
-</div>
-</div>
-<p>리스트는 가변 자료형이라 값을 변경할 수 있다.
-예를 들어, 인덱싱을 사용하여 <code class="docutils literal notranslate"><span class="pre">a_list[3]</span></code>을 <code class="docutils literal notranslate"><span class="pre">12</span></code>에서 <code class="docutils literal notranslate"><span class="pre">100</span></code>으로 변경할 수 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 15, 9, 100, 7, 14, 10]
-</pre></div>
-</div>
-</div>
-</div>
-<p>이번에는 슬라이싱을 사용하여 2번 인덱스 값부터 5번 인덱스 값 전까지를 1과 11로 변경해보자.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">2</span> <span class="p">:</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 15, 1, 11, 14, 10]
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">del</span></code> 명령어</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">del</span></code> 명령어를 사용하여 리스트의 일부 또는 전체를 삭제할 수 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 15, 1, 11, 14, 10]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">a_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[15, 1, 11, 14, 10]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="caution admonition">
-<p class="admonition-title">주의</p>
-<p><code class="docutils literal notranslate"><span class="pre">del</span></code> 명령어로 리스트를 메모리에서 삭제할 수 있다.
-이런 경우 리스트를 사용하려 하면 오류가 발생한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">a_list</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
-<span class="go">---------------------------------------------------------------------------</span>
-<span class="go">NameError                                 Traceback (most recent call last)</span>
-<span class="go">/tmp/ipykernel_647/65709556.py in &lt;module&gt;</span>
-<span class="go">----&gt; 1 print(a_list)</span>
-
-<span class="go">NameError: name &#39;a_list&#39; is not defined</span>
-</pre></div>
-</div>
-</div>
-</section>
-<section id="id7">
-<h3>리스트 메서드<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3>리스트 메서드<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>리스트 자료형이 제공하는 주요 메서드는 아래와 같다.</p>
 <table class="table">
 <thead>
@@ -1226,7 +1483,7 @@ document.write(`
 </section>
 </section>
 <section id="sec-tuple">
-<span id="id8"></span><h2>튜플<a class="headerlink" href="#sec-tuple" title="Permalink to this heading">#</a></h2>
+<span id="id7"></span><h2>튜플<a class="headerlink" href="#sec-tuple" title="Permalink to this heading">#</a></h2>
 <p>튜플은 리스트와 거의 비슷하지만, 변경 불가능<font size = "2">immutable</font>하다는 점이 다르다.
 따라서 튜플을 활용하는 메서드가 많이 제공되지 않는다.
 소괄호 <code class="docutils literal notranslate"><span class="pre">()</span></code>를 사용하고, 각 항목은 콤마(<code class="docutils literal notranslate"><span class="pre">,</span></code>)로 구분한다.</p>
@@ -1316,8 +1573,8 @@ document.write(`
 <span class="n">empty_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">()</span>
 </pre></div>
 </div>
-<section id="id9">
-<h3>튜플 연산<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<section id="id8">
+<h3>튜플 연산<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p><strong><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자</strong></p>
 <p>튜플의 항목으로 등장하는지 여부를 알려주는 논리 연산자이다.</p>
 <div class="cell docutils container">
@@ -1424,8 +1681,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id10">
-<h3>튜플 인덱싱/슬라이싱<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<section id="id9">
+<h3>튜플 인덱싱/슬라이싱<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <p>튜플도 문자열과 리스트처럼 인덱싱과 슬라이싱이 가능하다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1518,8 +1775,8 @@ document.write(`
 <div align="center">
     <img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/hj617kim/ch04/tuple02.png" style="width:300px;">
 </div></section>
-<section id="id11">
-<h3>튜플 메서드<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<section id="id10">
+<h3>튜플 메서드<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p>튜플 자료형의 메서드는 많지 않다. 많이 사용되는 두 개의 메소드를 살펴보자.</p>
 <table class="table">
 <thead>
@@ -1571,8 +1828,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="id12">
-<h2>순차 자료형 해체<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<section id="id11">
+<h2>순차 자료형 해체<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
 <p>순자 자료형의 항목 각각에 대해 변수 할당을 진행할 수 있다.
 단, 사용되는 변수의 수는 항목의 수와 일치해야 한다.</p>
 <div class="cell docutils container">
@@ -1721,8 +1978,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id13">
-<h2>순차 자료형에 유용한 함수<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h2>
+<section id="id12">
+<h2>순차 자료형에 유용한 함수<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
 <p>문자열, 튜플, 리스트처럼 항목들의 순서가 중요한 순차 자료형과 함께 유용하게 사용되는 네 개의 함수를 소개한다.</p>
 <section id="enumerate">
 <h3><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> 함수<a class="headerlink" href="#enumerate" title="Permalink to this heading">#</a></h3>
@@ -1746,7 +2003,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate at 0x7f2acb761e80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate at 0x7fbed429ef80&gt;
 </pre></div>
 </div>
 </div>
@@ -1855,7 +2112,7 @@ thon
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x7f2acb762a00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x7fbed429f1c0&gt;
 </pre></div>
 </div>
 </div>
@@ -1987,8 +2244,8 @@ thon
 </div>
 </section>
 </section>
-<section id="id14">
-<h2>연습문제<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h2>
+<section id="id13">
+<h2>연습문제<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h2>
 <p>참고: <a class="reference external" href="https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-lists_tuples.ipynb">(실습) 리스트와 튜플</a></p>
 </section>
 </section>
@@ -2042,27 +2299,27 @@ thon
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소개</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시퀀스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">시퀀스</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-list">리스트</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">리스트 연산</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">리스트 인덱싱/슬라이싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">리스트 메서드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">리스트 연산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">인덱싱과 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for">리스트와 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">리스트 메서드</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-tuple">튜플</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">튜플 연산</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">튜플 인덱싱/슬라이싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">튜플 메서드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">튜플 연산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">튜플 인덱싱/슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">튜플 메서드</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">순차 자료형 해체</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">순차 자료형에 유용한 함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">순차 자료형 해체</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">순차 자료형에 유용한 함수</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> 함수</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zip"><code class="docutils literal notranslate"><span class="pre">zip()</span></code> 함수</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">연습문제</a></li>
 </ul>
   </nav></div>
 
