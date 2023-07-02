@@ -17,8 +17,9 @@ chapters:
 - file: conditionals
 - file: iterations
 - file: casestudy_planning
-- file: collections1
-- file: collections2
+- file: strings
+- file: lists_tuples
+- file: dicts_sets
 - file: casestudy_collections
 - file: files
 - file: modules

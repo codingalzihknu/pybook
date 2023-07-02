@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>문자열 &#8212; 파이썬 프로그래밍 기초</title>
+    <title>11. 문자열 &#8212; 파이썬 프로그래밍 기초</title>
   
   
   
@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'strings';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="12. 리스트와 튜플" href="lists_tuples.html" />
+    <link rel="prev" title="10. 사례 연구: 프로그램 구상" href="casestudy_planning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -141,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="programming.html">1. 컴퓨터 프로그래밍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="environment.html">2. 프로그래밍 개발 환경</a></li>
 <li class="toctree-l1"><a class="reference internal" href="starting.html">3. 프로그래밍 시작하기</a></li>
@@ -152,19 +154,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="conditionals.html">8. 조건문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iterations.html">9. 반복문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="casestudy_planning.html">10. 사례 연구: 프로그램 구상</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collections1.html">11. 모음 자료형 1부: 문자열, 리스트, 튜플</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collections2.html">12. 모음 자료형 2부: 집합, 사전, <code class="docutils literal notranslate"><span class="pre">range</span></code>, 조건제시법</a></li>
-<li class="toctree-l1"><a class="reference internal" href="casestudy_collections.html">13. 사례 연구: 이터러블, 이터레이터, 제너레이터</a></li>
-<li class="toctree-l1"><a class="reference internal" href="files.html">14. 파일</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">15. 모듈</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes_instances_objects.html">16. 클래스, 인스턴스, 객체</a></li>
-<li class="toctree-l1"><a class="reference internal" href="casestudy_oop.html">17. 사례 연구: 객체 지향 프로그래밍</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inheritance.html">18. 상속</a></li>
-<li class="toctree-l1"><a class="reference internal" href="casestudy_inheritance.html">19. 사례 연구: 상속</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proper_classes.html">20. (부록) 클래스의 기본 요소</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">21. (부록) 재귀 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type_annotations.html">22. (부록) 자료형 힌트</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webapp_flask.html">23. (부록) 웹앱: Flask</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. 문자열</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists_tuples.html">12. 리스트와 튜플</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dicts_sets.html">13. 사전과 집합</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_collections.html">14. 사례 연구: 이터러블, 이터레이터, 제너레이터</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">15. 파일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">16. 모듈</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes_instances_objects.html">17. 클래스, 인스턴스, 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_oop.html">18. 사례 연구: 객체 지향 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inheritance.html">19. 상속</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_inheritance.html">20. 사례 연구: 상속</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proper_classes.html">21. (부록) 클래스의 기본 요소</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">22. (부록) 재귀 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="type_annotations.html">23. (부록) 자료형 힌트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webapp_flask.html">24. (부록) 웹앱: Flask</a></li>
 </ul>
 
     </div>
@@ -389,14 +392,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소개</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">문자열 연산</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문자열 인덱싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">문자열 슬라이싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">문자열 메서드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">11.1. 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">11.1.1. 문자열 연산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">11.1.2. 문자열 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">11.1.3. 문자열 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">11.1.4. 문자열 메서드</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">11.2. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -409,9 +412,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ch-strings">
-<span id="id1"></span><h1>문자열<a class="headerlink" href="#ch-strings" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">11. </span>문자열<a class="headerlink" href="#ch-strings" title="Permalink to this heading">#</a></h1>
 <section id="id2">
-<h2>소개<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>소개<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>문자들을 나열한 값들을 일컫는 자료형으로 작은 따옴표(<code class="docutils literal notranslate"><span class="pre">'</span></code>) 또는 큰 따옴표(<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>)를 사용한다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hello, Python!&#39;</span>
 </pre></div>
@@ -453,7 +456,7 @@ document.write(`
 </pre></div>
 </div>
 <section id="id3">
-<h3>문자열 연산<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.1.1. </span>문자열 연산<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p><strong><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자</strong></p>
 <p>문자열의 일부로 포함된 부분 문자열인지 여부를 판단하는 논리 연산자이다.</p>
 <div class="cell docutils container">
@@ -621,7 +624,7 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h3>문자열 인덱싱<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.1.2. </span>문자열 인덱싱<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>문자열에 포함된 모든 문자는 인덱스<font size = "2">index</font>라는 고유한 번호를 갖는다.
 인덱스는 0부터 시작하며, 오른쪽으로 한 문자씩 이동할 때마다 증가한다.
 <strong>인덱싱</strong><font size = "2">indexing</font>은 인덱스를 활용하여 문자열에 포함된 특정 문자를 확인한다.</p>
@@ -695,7 +698,7 @@ document.write(`
 </div>
 </section>
 <section id="id5">
-<h3>문자열 슬라이싱<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.1.3. </span>문자열 슬라이싱<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>인덱스의 특정 구간에 해당하는 부분 문자열을 확인하려 할 때는
 <strong>슬라이싱</strong><font size = "2">slicing</font>을 사용한다.
 슬라이싱은 다음과 같이 실행한다.</p>
@@ -826,7 +829,7 @@ document.write(`
 </div>
 </section>
 <section id="id6">
-<h3>문자열 메서드<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">11.1.4. </span>문자열 메서드<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>문자열 자료형에만 사용하는 함수들이 있다. 이와같이 특정 자료형에만 사용하는 함수들을 메서드<font size = "2">method</font>라 부른다.
 메서드는 일반적인 함수들과는 달리, 특정 자료형의 값을 먼저 언급하고 바로 이어서 점(<code class="docutils literal notranslate"><span class="pre">.</span></code>)을 찍은 다음 호출한다.</p>
 <p>문자열 자료형이 제공하는 주요 메서드는 아래 표와 같다.</p>
@@ -1025,7 +1028,7 @@ document.write(`
 </section>
 </section>
 <section id="id7">
-<h2>연습문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.2. </span>연습문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <p>참고: <a class="reference external" href="https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-strings.ipynb">(실습) 문자열</a></p>
 </section>
 </section>
@@ -1061,6 +1064,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="casestudy_planning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>사례 연구: 프로그램 구상</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lists_tuples.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>리스트와 튜플</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -1079,14 +1100,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소개</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">문자열 연산</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문자열 인덱싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">문자열 슬라이싱</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">문자열 메서드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">11.1. 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">11.1.1. 문자열 연산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">11.1.2. 문자열 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">11.1.3. 문자열 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">11.1.4. 문자열 메서드</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">11.2. 연습문제</a></li>
 </ul>
   </nav></div>
 
