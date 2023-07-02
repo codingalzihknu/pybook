@@ -558,7 +558,7 @@ document.write(`
 </section>
 <section id="sec-list">
 <span id="id3"></span><h2>리스트<a class="headerlink" href="#sec-list" title="Permalink to this heading">#</a></h2>
-<p>리스트는 보통 관련된 유한개의 값들을 모아서 하나의 값으로 취급하는 자료형이다.
+<p>리스트는 보통 관련된 값들을 모아서 하나의 값으로 취급하는 자료형이다.
 대괄호(<code class="docutils literal notranslate"><span class="pre">[]</span></code>)로 항목들의 목록을 감싸고, 각각의 항목은 쉼표(<code class="docutils literal notranslate"><span class="pre">,</span></code>)로 구분한다.
 예를 들어, 1부터 5까지의 정수로 구성된 리스트를 가리키는 변수를 다음과 같이 선언한다.</p>
 <div class="cell docutils container">
@@ -573,6 +573,19 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a2c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>앞서 언급한 <code class="docutils literal notranslate"><span class="pre">name_list</span></code>는 표에 언급된 사람들의 이름, 즉 문자열로 구성된 리스트를 가리킨다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;김강현&#39;, &#39;황훈&#39;, &#39;남궁수현&#39;, &#39;최흥선&#39;, &#39;김선주&#39;, &#39;함중아&#39;]
 </pre></div>
 </div>
 </div>
@@ -614,7 +627,7 @@ document.write(`
 <p><strong>리스트는 시퀀스!</strong></p>
 <p>리스트는 시퀀스이기에 항목의 순서가 다르거나 특정 항목의 개수가 다르면 서로 다른 리스트로 간주된다.</p>
 <ul class="simple">
-<li><p>순서가 다른 경우</p></li>
+<li><p>순서가 다른 경우: 항목의 순서가 다르면 서로 다른 리스트로 간주된다.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,11 +642,11 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>특정 항목의 개수가 다른 경우</p></li>
+<li><p>특정 항목의 개수가 다른 경우: <code class="docutils literal notranslate"><span class="pre">name_list</span></code>에는 김강현이 한 번 사용되었기에 두 번 사용된 리스트와는 다른 리스트로 간주된다.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span> <span class="o">!=</span> <span class="p">[</span><span class="s1">&#39;김강현&#39;</span><span class="p">,</span> <span class="s1">&#39;010-1234-5678&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">172.3</span><span class="p">,</span> <span class="s1">&#39;제주&#39;</span><span class="p">,</span> <span class="s1">&#39;제주&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name_list</span> <span class="o">!=</span> <span class="p">[</span><span class="s1">&#39;김강현&#39;</span><span class="p">,</span> <span class="s1">&#39;김강현&#39;</span><span class="p">,</span> <span class="s1">&#39;황훈&#39;</span><span class="p">,</span> <span class="s1">&#39;남궁수현&#39;</span><span class="p">,</span> <span class="s1">&#39;최흥선&#39;</span><span class="p">,</span> <span class="s1">&#39;김선주&#39;</span><span class="p">,</span> <span class="s1">&#39;함중아&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -664,7 +677,7 @@ document.write(`
 <p>반면에 이강현이란 이름은 김강현의 정보를 담은 리스트인 <code class="docutils literal notranslate"><span class="pre">kgh</span></code>에 포함되어 있지 않다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;이강현&#39;</span> <span class="ow">in</span> <span class="n">kgh</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;이강현&#39;</span> <span class="ow">in</span> <span class="n">name_list</span>
 </pre></div>
 </div>
 </div>
@@ -677,7 +690,7 @@ document.write(`
 <p>물론 김강현은 들어 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;김강현&#39;</span> <span class="ow">in</span> <span class="n">kgh</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;김강현&#39;</span> <span class="ow">in</span> <span class="n">name_list</span>
 </pre></div>
 </div>
 </div>
@@ -702,15 +715,15 @@ document.write(`
 </div>
 </div>
 </div>
-<p>김강현의 정보를 담은 리스트의 길이도 5이다.</p>
+<p>표에는 6명의 정보가 들어 있다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">kgh</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -718,22 +731,23 @@ document.write(`
 <p><strong><code class="docutils literal notranslate"><span class="pre">+</span></code>와 <code class="docutils literal notranslate"><span class="pre">*</span></code> 연산자</strong></p>
 <p>문자열, 리스트, 튜플 세 종류의 시퀀스 모두 이어붙이기 연산(<code class="docutils literal notranslate"><span class="pre">+</span></code>)과 복제 연산(<code class="docutils literal notranslate"><span class="pre">*</span></code>)을 지원한다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자: 리스트 두 개를 이어붙여서 새로운 리스트 생성</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자: 리스트 두 개를 이어붙여서 새로운 리스트를 생성한다.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> 연산자: 리스트를 지정된 정수 만큼 복젝해서 이어붙이는 방식으로 새로운 리스트 생성</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> 연산자: 리스트와 정수를 대상으로 하며 리스트를 지정된 정수 만큼 복제해서 이어붙이는 방식으로 새로운 리스트를 생성한다.
+정수와 리스트의 순서는 상관 없다.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2003,7 +2017,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate at 0x7fbed429ef80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate at 0x7fd73824cfc0&gt;
 </pre></div>
 </div>
 </div>
@@ -2112,7 +2126,7 @@ thon
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x7fbed429f1c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x7fd7382312c0&gt;
 </pre></div>
 </div>
 </div>
