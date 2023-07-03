@@ -479,13 +479,13 @@ document.write(`
 </table>
 <p>예를 들어 김강현, 최흥선 등의 전화번호를 알고 싶으면 이름 칸에서
 김강현과 최흥선이 위치한 행을 찾아 전화번호를 확인하면 된다.
-그런데 만약에 여섯 명이 아니라 수천, 수만명의 정보를 담겨 있다면
-특정인의 전화번호, 나이, 키, 출생지 등을 확인하는 일이 그렇게 간단하지는 않고
-경우에 따라 매우 오랫동안 검색해야 한다.
-컴퓨터를 이용하면 이런 종류의 검색은 매우 빠르고 정확하게 처리될 수 있다.
-물론 그것이 가능하려면 먼저 위 표의 내용을 컴퓨터 프로그램으로
-다룰 수 있어야 한다.</p>
-<p>표에 사용된 이름, 전화번호, 나이, 키 각각은
+하지만 만약에 여섯 명이 아니라 수천, 수만명의 정보를 담겨 있다면
+특정인의 전화번호, 나이, 키, 출생지 등을 확인하는 일이 더 이상 간단하지 않다.
+그럴 때는 컴퓨터를 활용해서 검색해야 하는데
+컴퓨터는 일런 일을 매우 빠르고 정확하게 처리한다.</p>
+<p>컴퓨터로 정보를 검색하려면 먼저 위 표의 내용을 컴퓨터 프로그램으로
+다룰 수 있어야 한다.
+표에 사용된 이름, 전화번호, 나이, 키 각각은
 앞서 소개한 파이선 기초 자료형을 이용하여 다룰 수 있다.
 한 사람의 이름, 전화번호, 출생지는 각기 하나의 문자열로,
 나이는 하나의 정수로, 키는 하나의 부동소수점으로 처리한다.
@@ -510,12 +510,12 @@ document.write(`
 <strong>내장 자료구조</strong><font size='2'>built-in data structure</font>
 리스트, 튜플, 사전, 그리고 집합을 제공한다.
 여기서 내장이라 함은 코드를 작성할 때 다른 추가 설정 없이 사용할 수 있음을 의미한다.</p>
-<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/built-in-types.png" width="350"/></div><br>
-리스트, 튜플, 사전, 집합은 각자 고유의 방식으로 여러 개의 값을 묶어 하나의 값으로 다룰 수 있는 기능을 제공한다.
-이런 의미에서 이들을 **모음 자료형**이라 부르며 경우에 따라
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/built-in-types.png" width="350"/></div>
+<br><p>리스트, 튜플, 사전, 집합은 각자 고유의 방식으로 여러 개의 값을 묶어 하나의 값으로 다룰 수 있는 기능을 제공한다.
+이런 의미에서 이들을 <strong>모음 자료형</strong>이라 부르며 경우에 따라
 컬렉션<font size='2'>collection</font>, 컨테이너<font size='2'>container</font> 등으로도 불린다.
 반면에 정수, 부동소수점, 불리언 등은 하나의 값으로만 구성되었다는 의미에서
-**스칼라**<font size='2'>scalar</font> 자료형이라 부른다.
+<strong>스칼라</strong><font size='2'>scalar</font> 자료형이라 부른다.</p>
 <p>자료구조는 보통 여러 종률의 자료형의 값으로 구성된 보다 복잡한 구조의 대상을 가리킨다.
 하지만 파이썬에서는 리스트, 튜플, 사전, 집합 또한 하나의 값으로 처리된다.
 이것이 가능한 이유는 파이썬에서 다루는 모든 것이 <strong>객체</strong><font size='2'>object</font>로 정의되기 때문이다.
@@ -1060,7 +1060,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>걸음 수를 2 이상으로 지정해도 동일하게 작동한다.</p>
+<p>걸음 수를 2 이상으로 지정해도 범위를 벗어난 인덱스는 무시된다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
@@ -1197,10 +1197,10 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one2five</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 
-<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>               <span class="c1"># 왼쪽 항목에 대해서부터 차례대로 누적합을 저장할 변수</span>
 
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">one2five</span><span class="p">:</span>
-    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">item</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">one2five</span><span class="p">:</span> <span class="c1"># item이 one2five의 항목을 하나씩 가리킴</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">item</span>       <span class="c1"># sum에 item이 가리키는 값 더하기</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 </pre></div>
@@ -1228,7 +1228,38 @@ document.write(`
 <p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/visualize.html#code=one2five%20%3D%20%5B1,%202,%203,%204,%205%5D%0A%0Asum%20%3D%200%0Afor%20item%20in%20one2five%3A%0A%20%20%20%20sum%20%2B%3D%20item%0A%0Aprint%28sum%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><p>반복문이 계속 실행되어 <code class="docutils literal notranslate"><span class="pre">item</span></code>이 리스트의 마지막 항목인 5를 가리키면 <code class="docutils literal notranslate"><span class="pre">sum</span></code>은 15를 가리키며 반복문이 종료된다.
 그러면 다음 명령문인 <code class="docutils literal notranslate"><span class="pre">print(sum)</span></code>이 실행되어 15가 출력된다(아래 그림 참고).</p>
 <div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/list-for-03.png" width="800"/></div>
-<p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/visualize.html#code=one2five%20%3D%20%5B1,%202,%203,%204,%205%5D%0A%0Asum%20%3D%200%0Afor%20item%20in%20one2five%3A%0A%20%20%20%20sum%20%2B%3D%20item%0A%0Aprint%28sum%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><div class="proof example admonition" id="odd-sum-upto-10">
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/visualize.html#code=one2five%20%3D%20%5B1,%202,%203,%204,%205%5D%0A%0Asum%20%3D%200%0Afor%20item%20in%20one2five%3A%0A%20%20%20%20sum%20%2B%3D%20item%0A%0Aprint%28sum%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문과 리스트 인덱싱</strong></p>
+<p>리스트의 항목을 대상으로 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문을
+실행하려면 인덱싱을 활용한다.
+이유는 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문과는 달리 <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문은 리스트의 항목을
+직접 가리키는 기능을 제공하지 않기 때문이다.
+아래 코드는 위 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문과 동일한 기능을 수행한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one2five</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>                    <span class="c1"># one2five의 항목을 가리키는 인덱스. 0부터 시작.</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">one2five</span><span class="p">):</span> <span class="c1"># i가 one2five의 마지막 인덱스를 가리킬 때까지 반복</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">one2five</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>   <span class="c1"># sum에 one2five의 i번째 항목 더하기</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>               <span class="c1"># i를 1 증가시키기</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+<p>위 코드에서 인덱스를 가리키는 변수 <code class="docutils literal notranslate"><span class="pre">i</span></code>의 값을
+반복문이 한 번 실행될 때마다 인위적으로 1씩 키워줘야 하고
+언제 언제 반복이 멈춰야 하는지를 조건식으로 명시해줘야 하는 점이
+리스트를 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문과 함께 사용할 때와 다르다.</p>
+<div class="proof example admonition" id="odd-sum-upto-10">
 <p class="admonition-title"><span class="caption-number">Example 12.1 </span> (홀수들의 합)</p>
 <section class="example-content" id="proof-content">
 <p>1부터 10까지의 정수 중에서 홀수들의 합을 계산하라.
@@ -1311,7 +1342,14 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="proof example admonition" id="list-items-sum">
+<p class="admonition-title"><span class="caption-number">Example 12.2 </span> (리스트 항목 합)</p>
+<section class="example-content" id="proof-content">
+<p>리스트에 포함된 모든 항목들의 합을 구하는 함수 <code class="docutils literal notranslate"><span class="pre">sum_of_list_items()</span></code> 함수를 정의하라.
+단, 리스트의 항목은 정수, 부동소수점, 문자열, 리스트 중에 한 종류의 자료형으로만 구성된다고
+가정하며 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문을 반드시 적용한다.</p>
 </section>
+</div></section>
 <section id="id6">
 <h3><span class="section-number">12.2.4. </span>리스트 메서드<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>리스트 자료형이 제공하는 주요 메서드는 아래와 같다.</p>
@@ -2146,7 +2184,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate at 0x7f8cac1934c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate at 0x7f3be41d7c40&gt;
 </pre></div>
 </div>
 </div>
@@ -2255,7 +2293,7 @@ thon
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x7f8cac204ec0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x7f3be41d5a40&gt;
 </pre></div>
 </div>
 </div>
