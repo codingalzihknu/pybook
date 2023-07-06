@@ -17,14 +17,16 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-sum_of_list_items(one2five)
+food.insert(1, 'blueberry')
+food
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[60], line 1[0m
-[0;32m----> 1[0m [43msum_of_list_items[49m(one2five)
+Cell [0;32mIn[98], line 1[0m
+[0;32m----> 1[0m [43mfood[49m[38;5;241m.[39minsert([38;5;241m1[39m, [38;5;124m'[39m[38;5;124mblueberry[39m[38;5;124m'[39m)
+[1;32m      2[0m food
 
-[0;31mNameError[0m: name 'sum_of_list_items' is not defined
-NameError: name 'sum_of_list_items' is not defined
+[0;31mNameError[0m: name 'food' is not defined
+NameError: name 'food' is not defined
 
