@@ -2121,7 +2121,63 @@ Hello world!
 \[
 \mathrm{bmi} = \frac{\mathrm{몸무게(kg)}}{\mathrm{키(m)}^2}
 \]</div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">append()</span></code> 메서드</strong></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드</strong></p>
+<p>리스트는 가변 자료형이기에 인덱싱, 슬라이싱을 포함하여 아래에서 소개하는 많은 메서드에 의해
+수정될 수 있다.
+하지만 경우에 따라 주어진 리스트는 전혀 건드리지 않으면서 리스트를 이용할 필요가 있다.
+그럴 때 <code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드로 사본을 만들어 이용하면 된다.</p>
+<p>예를 들어, 아래 코드는 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 가리키는 리스트의 사본을 만들어 변수 <code class="docutils literal notranslate"><span class="pre">y</span></code>에 할당한다.
+그 다음에 <code class="docutils literal notranslate"><span class="pre">y</span></code>가 가리키는 리스트의 0번 인덱스 항목을 수정하지만 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>가
+가리키는 리스트는 전혀 변하지 않음을 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1"># 0번 인데스 항목 수정</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x: [1, 2, 3]
+y: [10, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 그림은 두 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>와 <code class="docutils literal notranslate"><span class="pre">y</span></code>가 선언된 순간의 메모리 상태를 보여준다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/list-copy-01.png" width="800"/></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/render.html#code=x%20%20%3D%20%5B1,%202,%203%5D%0Ay%20%3D%20x.copy%28%29%0Ay%5B0%5D%20%3D%2010&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><p>아래 그림은 <code class="docutils literal notranslate"><span class="pre">y</span></code>가 가리키는 리스트의 첫째 항목이 10으로 업데이트된 이후의 메모리 상태를 보여주며,
+변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 가리키는 리스트는 전혀 수정되지 않았음을 확인할 수 있다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/list-copy-02.png" width="800"/></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/render.html#code=x%20%20%3D%20%5B1,%202,%203%5D%0Ay%20%3D%20x.copy%28%29%0Ay%5B0%5D%20%3D%2010&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><p>반면에 아래 코드에서처럼 사본을 만들지 않으면 리스트 원본이 함께 수정된다.
+이유는 <code class="docutils literal notranslate"><span class="pre">x</span></code>와 <code class="docutils literal notranslate"><span class="pre">y</span></code>가 동일한 리스트 <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>를 가리키기 때문이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1"># 0번 인데스 항목 수정</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x: [10, 2, 3]
+y: [10, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 그림은 두 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>와 <code class="docutils literal notranslate"><span class="pre">y</span></code>가 선언된 순간의 메모리 상태를 보여준다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/list-copy-03.png" width="800"/></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/render.html#code=x%20%20%3D%20%5B1,%202,%203%5D%0Ay%20%3D%20x%0Ay%5B0%5D%20%3D%2010&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><p>아래 그림은 <code class="docutils literal notranslate"><span class="pre">y</span></code>가 가리키는 리스트의 첫째 항목이 10으로 업데이트되면
+<code class="docutils literal notranslate"><span class="pre">x</span></code>가 동일한 리스트를 가리키기에 0번 인덱스 항목이 똑같이 10이 됨을 잘 보여준다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/list-copy-04.png" width="800"/></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://pythontutor.com/render.html#code=x%20%20%3D%20%5B1,%202,%203%5D%0Ay%20%3D%20x%0Ay%5B0%5D%20%3D%2010&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false">Python Tutor</a>&gt;</div></p><p><strong><code class="docutils literal notranslate"><span class="pre">append()</span></code> 메서드</strong></p>
 <p>6명의 키 정보로 구성된 리스트를 <code class="docutils literal notranslate"><span class="pre">height_list</span></code>가 가리키도록 하자.
 키 정보는 각 리스트에서 3번 인덱스 항목이기에 다음과 같이
 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문과 인덱싱을 이용하면 쉽게 리스트로 추출할 수 있다.</p>
@@ -2168,7 +2224,7 @@ i번 인덱스에 해당하는 사람의 체질량 지수는 다음과 같이 �
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bmi</span> <span class="o">=</span> <span class="n">weight_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">height_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">(height_list[i]/100)</span></code>는 cm 단위를 m 단위로 변경한다.
+<p><code class="docutils literal notranslate"><span class="pre">(height_list[i]/100)</span></code>는 센티미터(cm) 단위를 미터(m) 단위로 변경한다.
 또한 체질량지수를 소수점 이하 둘째 자리에서 반올림해서 보다 간단하게 표현하기 위해 <code class="docutils literal notranslate"><span class="pre">round()</span></code> 함수도 이용한다.
 <code class="docutils literal notranslate"><span class="pre">round()</span></code> 함수는 반올림을 이용하여 소수점 이하 자리수를 제한한다.
 아래 코드는 체질량지수를 소수점 이하 첫째 자리까지만 계산한다.</p>
@@ -2187,6 +2243,47 @@ i번 인덱스에 해당하는 사람의 체질량 지수는 다음과 같이 �
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[21.9, 19.3, 19.5, 23.2, 19.9, 23.6]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">insert()</span></code> 메서드</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">append()</span></code> 메서드는 리스트의 끝에 항목을 추가한다.
+반면에 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> 메서드는 특정 위치에 항목을 삽입한다.
+항목이 삽입되면 원래 그 위치를 포함해서 오른쪽에 위치했던 항목들은
+모두 한 칸씩 오른쪽으로 이동된다.</p>
+<p>아래 코드는 1번 인덱스 자리에 2를 삽입하여 1부터 4까지의 정수로 구성된 리스트를 완성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">x</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># 1번 인덱스에 2 삽입</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 코드는 <code class="docutils literal notranslate"><span class="pre">height_list</span></code>를 <code class="docutils literal notranslate"><span class="pre">insert()</span></code>를 이용하여 생성한다.
+삽입은 항상 0번 인덱스로 하기에 <code class="docutils literal notranslate"><span class="pre">info_list</span></code>의 항목을 역순으로
+선택해야 한다.
+이를 위해 역순 슬라이싱을 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">height_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">info_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">height_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">person</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># 0번 인덱스에 키 정보 삽입</span>
+
+<span class="n">height_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[172.5, 163.5, 156.7, 187.2, 164.6, 178.3]
 </pre></div>
 </div>
 </div>
@@ -2211,8 +2308,7 @@ i번 인덱스에 해당하는 사람의 체질량 지수는 다음과 같이 �
 </div>
 <p>아래 코드는 김강현의 정보를 담은 리스트에 위 리스트를 연결하여 확장한다.
 <code class="docutils literal notranslate"><span class="pre">kgh</span></code> 변수가 가리키는 리스트를 직접 건드리지 않기 위해
-리스트의 <code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드를 이용하여 먼저 복사본을 만든 다음에 리스트를 확장한다.
-<code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드는 주어진 리스트의 복사본을 새로 생성하며, 원본을 수정하지 않기 위해 많이 사용된다.</p>
+<code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드를 이용하여 먼저 사본을 만든 다음에 리스트를 확장한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kgh_copy</span> <span class="o">=</span> <span class="n">kgh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -2228,34 +2324,16 @@ i번 인덱스에 해당하는 사람의 체질량 지수는 다음과 같이 �
 </div>
 </div>
 <div class="note admonition">
-<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">extend()</span></code> 메서드 대 <code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자</p>
-<p>두 개의 리스트를 덧셈 기호를 이용하여 확장할 수도 있지만, 원래의 리스트를 변경하는 것이 아니라 새로운 리스트를 생성한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;coconut&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">food</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;eggplant&#39;</span><span class="p">,</span> <span class="s1">&#39;fig&#39;</span><span class="p">]</span>
-<span class="go">[&#39;banana&#39;, &#39;apple&#39;, &#39;coconut&#39;, &#39;apple&#39;, &#39;eggplant&#39;, &#39;fig&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">food</span>
-<span class="go">[&#39;banana&#39;, &#39;apple&#39;, &#39;coconut&#39;, &#39;apple&#39;]</span>
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">extend()</span></code> 메서드 대 이어붙이기 <code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자</p>
+<p><code class="docutils literal notranslate"><span class="pre">extend()</span></code> 메서드는 기존 리스트에 새로운 리스트를 이어붙이는 방식으로 확장한다.
+즉, 기존의 리스트를 수정한다.
+반변에 <code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자는 리스트 두개를 이어붙여 완전히 새로운 리스트를 생성한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;바나나&#39;</span><span class="p">,</span> <span class="s1">&#39;사과&#39;</span><span class="p">,</span> <span class="s1">&#39;복숭아&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fruits</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;배&#39;</span><span class="p">,</span> <span class="s1">&#39;포도&#39;</span><span class="p">]</span>
+<span class="go">[&#39;바나나&#39;, &#39;사과&#39;, &#39;복숭아&#39;, &#39;배&#39;, &#39;포도&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fruits</span> <span class="c1"># 변경되지 않음</span>
+<span class="go">[&#39;바나나&#39;, &#39;사과&#39;, &#39;복숭아&#39;]</span>
 </pre></div>
-</div>
-</div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">insert()</span></code> 메서드</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;blueberry&#39;</span><span class="p">)</span>
-<span class="n">food</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">98</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">food</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;blueberry&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">food</span>
-
-<span class="ne">NameError</span>: name &#39;food&#39; is not defined
-</pre></div>
-</div>
 </div>
 </div>
 <p><strong><code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드</strong></p>
@@ -2266,7 +2344,12 @@ i번 인덱스에 해당하는 사람의 체질량 지수는 다음과 같이 �
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;banana&#39;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">102</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">food</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;food&#39; is not defined
 </pre></div>
 </div>
 </div>
